@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-/* DUMMYDATA */
-const tripsData = require("../../dummydata/trips.json");
-const connectionsData = require("../../dummydata/connections.json");
-const stationsData = require("../../dummydata/stations.json");
+/* Saved Stations */
+let stationsData = require("../../dummydata/stations.json");
 
 @Injectable()
 export class IRailService {
@@ -29,14 +27,13 @@ export class IRailService {
                 console.log(data);
                 resolve(data);
             } catch (e) {
-                // Require failed
                 reject(e);
             }
         });
     }
 
     getStations(query: string): Promise<any> {
-        return new Promise((resolve, reject) => {
+        /*return new Promise((resolve, reject) => {
             this.getAllStations().then((data) => {
                 resolve(data.station.filter((curr) => {
                     let names = [curr.standardname.toLowerCase(), curr.name.toLowerCase()];
@@ -45,17 +42,17 @@ export class IRailService {
                     return names[0].indexOf(query) > -1 || names[1].indexOf(query) > -1;
                 }));
             }).catch(e => this.handleError(e));
-        });
+        });*/
+
+        // Non API-Call version
+        return this.fakeReply(stationsData);
     }
 
     getAllStations(): Promise<any> {
-        /* TODO: find a way to cache this for about a day? */
         return this.http.get(`${this.iRailUrl}/stations?format=json`, this.options)
             .toPromise()
             .then((response) => response.json())
             .catch(this.handleError);
-        /* USE DUMMY DATA */
-        /*return this.fakeReply(stationsData);*/
     }
 
     /* DATE FORMAT: DD/MM/YYYY */
@@ -87,8 +84,5 @@ export class IRailService {
             .toPromise()
             .then((response) => response.json())
             .catch(this.handleError);
-
-        /* Return Fake Data */
-        /* return this.fakeReply(connectionsData);*/
     }
 }

@@ -1,7 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { GraphSection } from './graphSection.component';
-
 @Component({
     selector: 'app-root',
     templateUrl: './templates/app.component.html',
@@ -10,11 +8,10 @@ import { GraphSection } from './graphSection.component';
 
 export class AppComponent {
     title = 'Oasis';
-    @ViewChild(GraphSection) graph: GraphSection;
 
     handleRouteUpdate(e) {
-        console.log("Route updated?")
-        this.graph.updateData(e);
+        console.log("Route has been requested!")
+        // TODO: Start the calculator...
         console.log(e)
     }
 }

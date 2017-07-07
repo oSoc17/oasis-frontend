@@ -13,10 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 /* Components */
 import { AppComponent } from './components/app.component';
 import { StationList } from './components/stationList.component';
-import { Graph } from './components/graph.component';
-import { JourneyDetail } from './components/journeyDetail.component';
 import { ConnectionQuery } from './components/connectionQuery.component';
-import { GraphSection } from './components/graphSection.component';
 import { DepartTime } from './components/departTime.component';
 import { DepartDate } from './components/departDate.component';
 
@@ -27,10 +24,7 @@ import { IRailService } from './services/iRail.service'
   declarations: [
     AppComponent,
     StationList,
-    Graph,
-    JourneyDetail,
     ConnectionQuery,
-    GraphSection,
     DepartTime,
     DepartDate
   ],
