@@ -18,9 +18,9 @@ Install Angular CLI
 npm install -g @angular/cli
 ```
 
-Install Karma CLI
+Install typings
 ```
-npm install -g karma-cli
+npm install -g typings
 ```
 
 ### Commands
