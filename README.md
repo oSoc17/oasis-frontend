@@ -1,4 +1,6 @@
 # OASIS front-end
+### Status
+[![Build Status](https://travis-ci.org/oSoc17/oasis-frontend.png)](https://travis-ci.org/oSoc17/oasis-frontend)
 ## About
 Together, Ghent and the region of Madrid have initiated an innovative action that will increase the accessibility of public services and public transport. To do this, they will collaborate to publish linked open data. Both cities are experienced publishers of open data, and together they will prove that new technologies (such as the “Semantic Web”) can lead to economies of scale, such as the creation of cross-country applications.  
 
@@ -9,6 +11,18 @@ The applications uses linked open data from the iRail API, combined with histori
 ### Requirements
 * Node.JS (^v6.9.x)
 * npm (^v3.x.x)
+
+### Global Dependancies
+Install Angular CLI
+```
+npm install -g @angular/cli
+```
+
+Install Karma CLI
+```
+npm install -g karma-cli
+```
+
 ### Commands
 To install all dependancies (required before running any of the other commands).
 ```
