@@ -11,6 +11,18 @@ The applications uses linked open data from the iRail API, combined with histori
 ### Requirements
 * Node.JS (^v6.9.x)
 * npm (^v3.x.x)
+
+### Global Dependancies
+Install Angular CLI
+```
+npm install -g @angular/cli
+```
+
+Install Karma CLI
+```
+npm install -g karma-cli
+```
+
 ### Commands
 To install all dependancies (required before running any of the other commands).
 ```
