@@ -4,9 +4,6 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-/* Non-Angular libraries */
-import { ChartsModule } from 'ng2-charts/ng2-charts';
-
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
 
@@ -32,7 +29,6 @@ import { IRailService } from './services/iRail.service'
     BrowserModule,
     HttpModule,
     FormsModule,
-    ChartsModule,
     AppRoutingModule
   ],
   providers: [ IRailService ],
