@@ -1,0 +1,301 @@
+{
+    "version": "1.1",
+    "timestamp": "1499284185",
+    "connection": [
+        {
+            "id": "0",
+            "departure": {
+                "delay": "0",
+                "station": "Aalst",
+                "stationinfo": {
+                    "id": "BE.NMBS.008895000",
+                    "locationX": "4.039653",
+                    "locationY": "50.942813",
+                    "@id": "http://irail.be/stations/NMBS/008895000",
+                    "standardname": "Aalst",
+                    "name": "Aalst"
+                },
+                "time": "1494083220",
+                "vehicle": "BE.NMBS.S102088",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                },
+                "departureConnection": "http://irail.be/connections/8895000/20170506/S102088",
+                "occupancy": {
+                    "@id": "http://api.irail.be/terms/unknown",
+                    "name": "unknown"
+                }
+            },
+            "arrival": {
+                "delay": "0",
+                "station": "Brussels-Central",
+                "stationinfo": {
+                    "id": "BE.NMBS.008813003",
+                    "locationX": "4.356801",
+                    "locationY": "50.845658",
+                    "@id": "http://irail.be/stations/NMBS/008813003",
+                    "name": "Brussels-Central",
+                    "standardname": "Brussel-Centraal/Bruxelles-Central"
+                },
+                "time": "1494086280",
+                "vehicle": "BE.NMBS.S102088",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                }
+            },
+            "duration": "3060",
+            "occupancy": {
+                "@id": "http://api.irail.be/terms/unknown",
+                "name": "unknown"
+            }
+        },
+        {
+            "id": "1",
+            "departure": {
+                "delay": "0",
+                "station": "Aalst",
+                "stationinfo": {
+                    "id": "BE.NMBS.008895000",
+                    "locationX": "4.039653",
+                    "locationY": "50.942813",
+                    "@id": "http://irail.be/stations/NMBS/008895000",
+                    "standardname": "Aalst",
+                    "name": "Aalst"
+                },
+                "time": "1494086820",
+                "vehicle": "BE.NMBS.S102089",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                },
+                "departureConnection": "http://irail.be/connections/8895000/20170506/S102089",
+                "occupancy": {
+                    "@id": "http://api.irail.be/terms/unknown",
+                    "name": "unknown"
+                }
+            },
+            "arrival": {
+                "delay": "0",
+                "station": "Brussels-Central",
+                "stationinfo": {
+                    "id": "BE.NMBS.008813003",
+                    "locationX": "4.356801",
+                    "locationY": "50.845658",
+                    "@id": "http://irail.be/stations/NMBS/008813003",
+                    "name": "Brussels-Central",
+                    "standardname": "Brussel-Centraal/Bruxelles-Central"
+                },
+                "time": "1494089880",
+                "vehicle": "BE.NMBS.S102089",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                }
+            },
+            "duration": "3060",
+            "occupancy": {
+                "@id": "http://api.irail.be/terms/unknown",
+                "name": "unknown"
+            }
+        },
+        {
+            "id": "2",
+            "departure": {
+                "delay": "0",
+                "station": "Aalst",
+                "stationinfo": {
+                    "id": "BE.NMBS.008895000",
+                    "locationX": "4.039653",
+                    "locationY": "50.942813",
+                    "@id": "http://irail.be/stations/NMBS/008895000",
+                    "standardname": "Aalst",
+                    "name": "Aalst"
+                },
+                "time": "1494090420",
+                "vehicle": "BE.NMBS.S102090",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                },
+                "departureConnection": "http://irail.be/connections/8895000/20170506/S102090",
+                "occupancy": {
+                    "@id": "http://api.irail.be/terms/unknown",
+                    "name": "unknown"
+                }
+            },
+            "arrival": {
+                "delay": "0",
+                "station": "Brussels-Central",
+                "stationinfo": {
+                    "id": "BE.NMBS.008813003",
+                    "locationX": "4.356801",
+                    "locationY": "50.845658",
+                    "@id": "http://irail.be/stations/NMBS/008813003",
+                    "name": "Brussels-Central",
+                    "standardname": "Brussel-Centraal/Bruxelles-Central"
+                },
+                "time": "1494093480",
+                "vehicle": "BE.NMBS.S102090",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                }
+            },
+            "duration": "3060",
+            "occupancy": {
+                "@id": "http://api.irail.be/terms/unknown",
+                "name": "unknown"
+            }
+        },
+        {
+            "id": "3",
+            "departure": {
+                "delay": "0",
+                "station": "Aalst",
+                "stationinfo": {
+                    "id": "BE.NMBS.008895000",
+                    "locationX": "4.039653",
+                    "locationY": "50.942813",
+                    "@id": "http://irail.be/stations/NMBS/008895000",
+                    "standardname": "Aalst",
+                    "name": "Aalst"
+                },
+                "time": "1494094020",
+                "vehicle": "BE.NMBS.S102091",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                },
+                "departureConnection": "http://irail.be/connections/8895000/20170506/S102091",
+                "occupancy": {
+                    "@id": "http://api.irail.be/terms/unknown",
+                    "name": "unknown"
+                }
+            },
+            "arrival": {
+                "delay": "0",
+                "station": "Brussels-Central",
+                "stationinfo": {
+                    "id": "BE.NMBS.008813003",
+                    "locationX": "4.356801",
+                    "locationY": "50.845658",
+                    "@id": "http://irail.be/stations/NMBS/008813003",
+                    "name": "Brussels-Central",
+                    "standardname": "Brussel-Centraal/Bruxelles-Central"
+                },
+                "time": "1494097080",
+                "vehicle": "BE.NMBS.S102091",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                }
+            },
+            "duration": "3060",
+            "occupancy": {
+                "@id": "http://api.irail.be/terms/unknown",
+                "name": "unknown"
+            }
+        },
+        {
+            "id": "4",
+            "departure": {
+                "delay": "0",
+                "station": "Aalst",
+                "stationinfo": {
+                    "id": "BE.NMBS.008895000",
+                    "locationX": "4.039653",
+                    "locationY": "50.942813",
+                    "@id": "http://irail.be/stations/NMBS/008895000",
+                    "standardname": "Aalst",
+                    "name": "Aalst"
+                },
+                "time": "1494097620",
+                "vehicle": "BE.NMBS.S102092",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                },
+                "departureConnection": "http://irail.be/connections/8895000/20170506/S102092",
+                "occupancy": {
+                    "@id": "http://api.irail.be/terms/unknown",
+                    "name": "unknown"
+                }
+            },
+            "arrival": {
+                "delay": "0",
+                "station": "Brussels-Central",
+                "stationinfo": {
+                    "id": "BE.NMBS.008813003",
+                    "locationX": "4.356801",
+                    "locationY": "50.845658",
+                    "@id": "http://irail.be/stations/NMBS/008813003",
+                    "name": "Brussels-Central",
+                    "standardname": "Brussel-Centraal/Bruxelles-Central"
+                },
+                "time": "1494100680",
+                "vehicle": "BE.NMBS.S102092",
+                "platform": "",
+                "platforminfo": {
+                    "name": "",
+                    "normal": "1"
+                },
+                "canceled": "0",
+                "direction": {
+                    "name": "Dendermonde"
+                }
+            },
+            "duration": "3060",
+            "occupancy": {
+                "@id": "http://api.irail.be/terms/unknown",
+                "name": "unknown"
+            }
+        }
+    ]
+}

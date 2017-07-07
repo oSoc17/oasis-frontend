@@ -1,0 +1,4 @@
+<!-- TODO: Add a search to this -->
+<select [(ngModel)]="selectedStation" id="selectfrom" class="stationList" (ngModelChange)="onSelect($event)">
+    <option *ngFor="let station of stations" [ngValue]="station">{{station.standardname}}</option>
+</select>

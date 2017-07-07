@@ -1,0 +1,40 @@
+{
+    "station": [
+        {
+            "id": "http://irail.be/stations/NMBS/007015400",
+            "alternative": [
+                {
+                    "@language": "fr",
+                    "@value": "Londres Saint Pancras"
+                },
+                {
+                    "@language": "nl",
+                    "@value": "Londen Saint Pancras"
+                }
+            ],
+            "avgStopTimes": "0",
+            "country": "http://sws.geonames.org/2635167/",
+            "latitude": "51.5310399",
+            "longitude": "-0.1260606",
+            "name": "London Saint Pancras International",
+            "standardname": "London Saint Pancras International"
+        },
+        {
+            "id": "http://irail.be/stations/NMBS/007015440",
+            "avgStopTimes": "0",
+            "country": "http://sws.geonames.org/2635167/",
+            "latitude": "51.44304",
+            "longitude": "0.32107",
+            "name": "Ebbsfleet International",
+            "standardname": "Ebbsfleet International"
+        },
+        {
+            "id": "http://irail.be/stations/NMBS/008008094",
+            "avgStopTimes": "4.2225433526012",
+            "country": "http://sws.geonames.org/2921044/",
+            "latitude": "51.219962",
+            "longitude": "6.794319",
+            "name": "Düsseldorf Hbf",
+            "standardname": "Düsseldorf Hbf"
+        }]
+}

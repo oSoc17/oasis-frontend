@@ -1,4 +1,4 @@
-# OASIS front-end: _Proof of concept_
+# OASIS front-end
 ## About
 Together, Ghent and the region of Madrid have initiated an innovative action that will increase the accessibility of public services and public transport. To do this, they will collaborate to publish linked open data. Both cities are experienced publishers of open data, and together they will prove that new technologies (such as the “Semantic Web”) can lead to economies of scale, such as the creation of cross-country applications.  
 
