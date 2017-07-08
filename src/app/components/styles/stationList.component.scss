@@ -1,5 +1,30 @@
-.stationList {
+.searchModule {
+  width: 250px;
+  display: inline-block;
+
+  & > ul {
+    background: #FFFFFF;
+    position: absolute;
+    z-index: 1000;
+    border: 2px solid #000000;
+    width: 270px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  & > ul > li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    &:hover {
+      color: #FFFFFF;
+      background: #21B3BE;
+    }
+  }
+
+  & > input[type=text] {
     padding: 10px;
-    min-width: 200px;
-  margin-left: 15px;
+    width: 100%;
+  }
 }
+
