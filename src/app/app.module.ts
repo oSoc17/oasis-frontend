@@ -13,6 +13,7 @@ import { StationList } from './components/stationList.component';
 import { ConnectionQuery } from './components/connectionQuery.component';
 import { TravelTime } from './components/travelTime.component';
 import { TravelDate } from './components/travelDate.component';
+import { Connections } from './components/connections.component';
 
 /* Services */
 import { IRailService } from './services/iRail.service'
@@ -23,7 +24,8 @@ import { IRailService } from './services/iRail.service'
     StationList,
     ConnectionQuery,
     TravelTime,
-    TravelDate
+    TravelDate,
+    Connections
   ],
   imports: [
     BrowserModule,

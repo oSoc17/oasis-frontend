@@ -18,29 +18,24 @@ export class ConnectionQuery {
     @ViewChild(TravelTime) depTime: TravelTime;
     @ViewChild(TravelDate) depDate: TravelDate;
     @Output() routeUpdated = new EventEmitter();
+    error: string;
 
-    constructor(
-        private IRailService: IRailService,
-
-    ){
-        this.routeUpdated.emit('hello world');
-    }
-
-    calcDuration() {
-        console.log(`${this.depStation.selectedStation} to ${this.arrStation.selectedStation}`);
-    }
+    constructor(private IRailService: IRailService) {}
 
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;
         if (arriveSt.id === departSt.id) {
-            console.log('stations can\'t be the same.');
+            this.error = 'stations can\'t be the same.';
         } else {
             this.IRailService.getRoutesReadable(arriveSt.id, departSt.id, this.depTime.selectedTime,
                 this.depDate.selectedDate, 'arrive').then((data) => {
                     console.log(data.connection[0]);
                     this.routeUpdated.emit(data);
-                }).catch(e => console.log(e));
+                }).catch(e => {
+                    this.error = 'No connections found.';
+                    console.log(e);
+                });
         }
     }
 }

@@ -7,6 +7,7 @@
       <traveltime></traveltime>
       <traveldate></traveldate>
     </h2>
-    <button (click)="clickCalculate()">Show alternatives</button>
+    <p>{{ error }}</p>
+    <button (click)="clickCalculate()" [routerLink]="['/connections']">Show alternatives</button>
     <div class="clearfix"></div>
 </section>

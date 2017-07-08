@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Components
 import { ConnectionQuery } from './components/connectionQuery.component';
+import { Connections } from './components/connections.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: ConnectionQuery
+  },
+  {
+    path: 'connections',
+    component: Connections
   },
 ];
 
