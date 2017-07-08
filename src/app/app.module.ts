@@ -11,8 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
 import { StationList } from './components/stationList.component';
 import { ConnectionQuery } from './components/connectionQuery.component';
-import { DepartTime } from './components/departTime.component';
-import { DepartDate } from './components/departDate.component';
+import { TravelTime } from './components/travelTime.component';
+import { TravelDate } from './components/travelDate.component';
 
 /* Services */
 import { IRailService } from './services/iRail.service'
@@ -22,8 +22,8 @@ import { IRailService } from './services/iRail.service'
     AppComponent,
     StationList,
     ConnectionQuery,
-    DepartTime,
-    DepartDate
+    TravelTime,
+    TravelDate
   ],
   imports: [
     BrowserModule,
