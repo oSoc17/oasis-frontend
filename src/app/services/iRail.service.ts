@@ -3,11 +3,11 @@ import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } f
 import 'rxjs/add/operator/toPromise';
 
 /* Saved Stations */
-let stationsData = require("../../dummydata/stations.json");
+const stationsData = require('../../dummydata/stations.json');
 
 @Injectable()
 export class IRailService {
-    private iRailUrl = "http://api.irail.be";
+    private iRailUrl = 'http://api.irail.be';
     private options = new RequestOptions({
         headers: new Headers({
             'Accept': 'application/json'
@@ -21,7 +21,7 @@ export class IRailService {
         return Promise.reject(error.message || error);
     }
 
-    fakeReply(data:any): Promise<any> {
+    fakeReply(data: any): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
                 console.log(data);
@@ -57,25 +57,25 @@ export class IRailService {
 
     /* DATE FORMAT: DD/MM/YYYY */
     /* TIME FORMAT: HH:MM */
-    getRoutesReadable(to:string, from:string, time:string, date:string, timeSel:string):Promise<any>{
+    getRoutesReadable(to: string, from: string, time: string, date: string, timeSel: string): Promise<any>{
         date = new Date(date).toLocaleDateString('en-GB');
-        time = time.replace(/\:/g,'');
+        time = time.replace(/\:/g, '');
         console.log(date);
-        date = date.replace(/\//g,'');
+        date = date.replace(/\//g, '');
         date = `${date.substring(0, 4)}${date.substring(6, 8)}`;
-        console.log("Time: " + time + " Date: " + date);
+        console.log('Time: ' + time + ' Date: ' + date);
         return this.getRoutes(to, from, time, date, timeSel);
     }
 
-    getRoutes(to:string, from:string, time:string, date:string, timeSel:string):Promise<any>{
-      let params = new URLSearchParams();
-        params.set("to", to);
-        params.set("from", from);
-        params.set("time", time);
+    getRoutes(to: string, from: string, time: string, date: string, timeSel: string): Promise<any>{
+      const params = new URLSearchParams();
+        params.set('to', to);
+        params.set('from', from);
+        params.set('time', time);
         params.set('timeSel', timeSel);
         params.set('date', date);
-        params.set("format", "json");
-        let options = new RequestOptions();
+        params.set('format', 'json');
+        const options = new RequestOptions();
         options.headers = this.options.headers;
         options.responseType = this.options.responseType;
         options.search = params;

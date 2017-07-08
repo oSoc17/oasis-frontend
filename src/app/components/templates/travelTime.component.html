@@ -1,0 +1,5 @@
+<input type="radio" name="timeType" [(ngModel)]="selectedType" value="depart" class="timeType" (change)='changeType()' id="departType" checked>
+<label for="departType">Depart</label>
+<input type="radio" name="timeType" [(ngModel)]="selectedType" value="arrival" class="timeType" (change)='changeType()' id="arrivalType">
+<label for="arrivalType">Arrival</label>
+<input type="time" class="time" [(ngModel)]="selectedTime" (change)='changeTime()' />

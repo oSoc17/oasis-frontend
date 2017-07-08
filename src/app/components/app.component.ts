@@ -10,7 +10,7 @@ export class AppComponent {
     title = 'Oasis';
 
     handleRouteUpdate(e) {
-        console.log("Route has been requested!")
+        console.log('Route has been requested!')
         // TODO: Start the calculator...
         console.log(e)
     }
