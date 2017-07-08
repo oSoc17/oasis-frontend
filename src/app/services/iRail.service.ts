@@ -32,27 +32,33 @@ export class IRailService {
         });
     }
 
+    filterStations(stations: any, query: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            resolve(stations.filter((curr) => {
+                const names = [curr.standardname.toLowerCase(), curr.name.toLowerCase()];
+                query = query.toLowerCase();
+
+                return names[0].indexOf(query) > -1 || names[1].indexOf(query) > -1;
+            }));
+        });
+    }
+
     getStations(query: string): Promise<any> {
-        /*return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.getAllStations().then((data) => {
-                resolve(data.station.filter((curr) => {
-                    let names = [curr.standardname.toLowerCase(), curr.name.toLowerCase()];
-                    query = query.toLowerCase();
-
-                    return names[0].indexOf(query) > -1 || names[1].indexOf(query) > -1;
-                }));
+                return(this.filterStations(data, query));
             }).catch(e => this.handleError(e));
-        });*/
-
-        // Non API-Call version
-        return this.fakeReply(stationsData);
+        });
     }
 
     getAllStations(): Promise<any> {
-        return this.http.get(`${this.iRailUrl}/stations?format=json`, this.options)
+        /*return this.http.get(`${this.iRailUrl}/stations?format=json`, this.options)
             .toPromise()
             .then((response) => response.json())
-            .catch(this.handleError);
+            .catch(this.handleError);*/
+
+        /* Reply fake data for developement */
+        return this.fakeReply(stationsData);
     }
 
     /* DATE FORMAT: DD/MM/YYYY */
