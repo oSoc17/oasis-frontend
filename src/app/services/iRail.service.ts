@@ -77,13 +77,9 @@ export class IRailService {
 
     getRoutes(query: SearchData): Promise<any> {
       const params = new URLSearchParams();
-        params.set('to', query.arrStation);
-        params.set('from', query.depStation);
-        params.set('time', query.travelTime);
-        params.set('timeSel', query.timeType);
-        params.set('date', query.travelDate);
-        params.set('format', 'json');
-        console.log(params.paramsMap);
+      params.paramsMap = new Map([['to', [query.arrStation]], ['from', [query.depStation]],
+                            ['time', [query.travelTime]], ['timeSel', [query.timeType]],
+                            ['date', [query.travelDate]], ['format', ['json']]]);
         const options = new RequestOptions();
         options.headers = this.options.headers;
         options.responseType = this.options.responseType;
