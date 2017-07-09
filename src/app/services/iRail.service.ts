@@ -4,16 +4,17 @@ import 'rxjs/add/operator/toPromise';
 
 /* Saved Stations */
 const stationsData = require('../../dummydata/stations.json');
+const config = require('../../config.json');
 
 import { SearchData } from '../classes/searchData';
+import { Cache } from '../classes/cache';
 
 @Injectable()
 export class IRailService {
-    private iRailUrl = 'http://api.irail.be';
+    private cache: Cache = new Cache();
+    private uri = config.servers[0].uri;
     private options = new RequestOptions({
-        headers: new Headers({
-            'Accept': 'application/json'
-        }),
+        headers: new Headers({'Accept': 'application/json'}),
         responseType: ResponseContentType.Json
     });
 
@@ -85,9 +86,18 @@ export class IRailService {
         options.responseType = this.options.responseType;
         options.search = params;
 
-        return this.http.get(`${this.iRailUrl}/connections`, options)
-            .toPromise()
-            .then((response) => response.json())
-            .catch(this.handleError);
+        return new Promise((resolve, reject) => {
+            this.cache.getItem(`stations${config.servers[0].name}`).then((data) => {
+                return resolve(data);
+            }).catch(e => {
+                this.http.get(`${this.uri}/connections`, options)
+                .toPromise()
+                .then((response) => {
+                    // Cache all stations
+                    this.cache.addItem(`stations${config.servers[0].name}`, response.json());
+                    return resolve(response.json());
+                }).catch(er => reject(er));
+            });
+        });
     }
 }
