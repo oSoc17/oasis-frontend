@@ -1,10 +1,11 @@
 import { Component, Input, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
 
-import { IRailService } from '../services/iRail.service';
+import { SearchData } from '../classes/searchData';
 
 @Component({
     selector: 'connectionquery',
@@ -15,12 +16,13 @@ import { IRailService } from '../services/iRail.service';
 export class ConnectionQuery {
     @ViewChild('departure') depStation: StationList;
     @ViewChild('arrival') arrStation: StationList;
-    @ViewChild(TravelTime) depTime: TravelTime;
-    @ViewChild(TravelDate) depDate: TravelDate;
+    @ViewChild(TravelTime) travelTime: TravelTime;
+    @ViewChild(TravelDate) travelDate: TravelDate;
     @Output() routeUpdated = new EventEmitter();
+    searchData: SearchData;
     error: string;
 
-    constructor(private IRailService: IRailService) {}
+    constructor(private router: Router) {}
 
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
@@ -28,14 +30,10 @@ export class ConnectionQuery {
         if (arriveSt.id === departSt.id) {
             this.error = 'stations can\'t be the same.';
         } else {
-            this.IRailService.getRoutesReadable(arriveSt.id, departSt.id, this.depTime.selectedTime,
-                this.depDate.selectedDate, 'arrive').then((data) => {
-                    console.log(data.connection[0]);
-                    this.routeUpdated.emit(data);
-                }).catch(e => {
-                    this.error = 'No connections found.';
-                    console.log(e);
-                });
+            this.searchData = new SearchData(departSt.id, arriveSt.id, this.travelTime.selectedTime,
+                                    this.travelDate.selectedDate, this.travelTime.selectedType);
+
+            this.router.navigate(['/connections', this.searchData]);
         }
     }
 }

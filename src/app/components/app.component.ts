@@ -1,4 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ConnectionQuery } from './connectionQuery.component';
 
@@ -8,4 +9,12 @@ import { ConnectionQuery } from './connectionQuery.component';
     styleUrls: ['./styles/app.component.scss']
 })
 
-export class AppComponent {}
+export class AppComponent {
+    constructor(private router: Router) { }
+
+    requestConnections(data) {
+        console.log('Received data => Redirect');
+        console.log(data);
+        this.router.navigate(['connections']).then(e => console.log(e)).catch(e => console.log(e));
+    }
+}

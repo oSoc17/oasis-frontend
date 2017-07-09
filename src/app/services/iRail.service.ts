@@ -5,6 +5,8 @@ import 'rxjs/add/operator/toPromise';
 /* Saved Stations */
 const stationsData = require('../../dummydata/stations.json');
 
+import { SearchData } from '../classes/searchData';
+
 @Injectable()
 export class IRailService {
     private iRailUrl = 'http://api.irail.be';
@@ -63,24 +65,25 @@ export class IRailService {
 
     /* DATE FORMAT: DD/MM/YYYY */
     /* TIME FORMAT: HH:MM */
-    getRoutesReadable(to: string, from: string, time: string, date: string, timeSel: string): Promise<any>{
+    getRoutesReadable(query: SearchData): Promise<any> {
+        let date = query.travelDate;
+        let time = query.travelTime;
         date = new Date(date).toLocaleDateString('en-GB');
         time = time.replace(/\:/g, '');
-        console.log(date);
         date = date.replace(/\//g, '');
         date = `${date.substring(0, 4)}${date.substring(6, 8)}`;
-        console.log('Time: ' + time + ' Date: ' + date);
-        return this.getRoutes(to, from, time, date, timeSel);
+        return this.getRoutes(new SearchData(query.depStation, query.arrStation, time, date, query.timeType));
     }
 
-    getRoutes(to: string, from: string, time: string, date: string, timeSel: string): Promise<any>{
+    getRoutes(query: SearchData): Promise<any> {
       const params = new URLSearchParams();
-        params.set('to', to);
-        params.set('from', from);
-        params.set('time', time);
-        params.set('timeSel', timeSel);
-        params.set('date', date);
+        params.set('to', query.arrStation);
+        params.set('from', query.depStation);
+        params.set('time', query.travelTime);
+        params.set('timeSel', query.timeType);
+        params.set('date', query.travelDate);
         params.set('format', 'json');
+        console.log(params.paramsMap);
         const options = new RequestOptions();
         options.headers = this.options.headers;
         options.responseType = this.options.responseType;
