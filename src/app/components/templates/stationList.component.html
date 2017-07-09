@@ -1,4 +1,6 @@
-<!-- TODO: Add a search to this -->
-<select [(ngModel)]="selectedStation" id="selectfrom" class="stationList" (ngModelChange)="onSelect($event)">
-    <option *ngFor="let station of stations" [ngValue]="station">{{station.standardname}}</option>
-</select>
+<div class="searchModule">
+    <input type="text" (keypress)="getSuggestions()" [(ngModel)]='currQuery' (focus)='showSuggestions = true' (focusout)='hideSuggestions()' />
+    <ul *ngIf="showSuggestions">
+        <li *ngFor='let station of filteredStations' (click)='clickSuggestion(station)'>{{station.standardname}}</li>
+    </ul>
+</div>

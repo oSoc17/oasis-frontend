@@ -1,4 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+
+import { ConnectionQuery } from './connectionQuery.component';
 
 @Component({
     selector: 'app-root',
@@ -6,12 +8,4 @@ import { Component, ViewChild } from '@angular/core';
     styleUrls: ['./styles/app.component.scss']
 })
 
-export class AppComponent {
-    title = 'Oasis';
-
-    handleRouteUpdate(e) {
-        console.log("Route has been requested!")
-        // TODO: Start the calculator...
-        console.log(e)
-    }
-}
+export class AppComponent {}
