@@ -1,0 +1,12 @@
+{
+    "caching": {
+        "ttl": 0,
+        "deleteInterval": 0
+    },
+    "servers": [
+        {
+            "name": "iRail",
+            "uri": "http://api.irail.be"
+        }
+    ]
+}
