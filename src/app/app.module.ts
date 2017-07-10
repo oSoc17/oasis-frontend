@@ -8,32 +8,21 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 /* Components */
+import { Components } from './components.module';
 import { AppComponent } from './components/app.component';
-import { StationList } from './components/search/stationList.component';
-import { ConnectionQuery } from './components/search/connectionQuery.component';
-import { TravelTime } from './components/search/travelTime.component';
-import { TravelDate } from './components/search/travelDate.component';
-import { Connections } from './components/connections/connections.component';
 
 /* Services */
-import { IRailService } from './services/iRail.service'
+import { Services } from './services.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StationList,
-    ConnectionQuery,
-    TravelTime,
-    TravelDate,
-    Connections
-  ],
+  declarations: Components.components,
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     AppRoutingModule
   ],
-  providers: [ IRailService ],
+  providers: Services.providers,
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -5,6 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConnectionQuery } from './components/search/connectionQuery.component';
 import { Connections } from './components/connections/connections.component';
 
+/* Services */
+import { IRailService } from './services/iRail.service'
+
 const routes: Routes = [
   {
     path: '',
