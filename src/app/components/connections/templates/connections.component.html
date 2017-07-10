@@ -1,11 +1,13 @@
 <mz-spinner
   [color]="'blue'"
-  [size]="'big'">
+  [size]="'big'" *ngIf="loading">
 </mz-spinner>
 
 <h3>{{ error }}</h3>
 
-<connection></connection>
-<connection></connection>
-<connection></connection>
-<connection></connection>
+<div *ngIf="!loading && !error">
+  <connection></connection>
+  <connection></connection>
+  <connection></connection>
+  <connection></connection>
+</div>
