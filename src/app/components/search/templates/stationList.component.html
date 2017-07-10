@@ -1,4 +1,4 @@
-<mz-input-container class="col s12">
+<mz-input-container class="col s12" (focusout)='clickStation(stationInput.value)' >
   <input mz-input id="stationlist" type="text" [autocomplete]="autocomplete" 
-    (keypress)="getSuggestions()" [(ngModel)]='currQuery'>
+  [(ngModel)]='currQuery' #stationInput >
 </mz-input-container>

@@ -11,7 +11,6 @@ export class StationList implements OnInit {
     stations: any;
     currQuery: string;
     selectedStation: any;
-    filteredStations: any;
     autocomplete: any = {
         data: { },
         limit: 5 };
@@ -28,30 +27,26 @@ export class StationList implements OnInit {
     ngOnInit() {
         this.IRailService.getAllStations().then((d) => {
             this.stations = this.transformiRailResponse(d);
-            this.filteredStations = this.stations;
-            this.selectedStation = this.filteredStations[0];
-            this.convStationsToAutocomplete(this.filteredStations);
+            this.selectedStation = this.stations[0];
+            this.convStationsToAutocomplete(this.stations);
         }).catch(e => console.log(e));
     }
 
     convStationsToAutocomplete(stations) {
+        const firststation = this.autocomplete.data[stations[0]];
+        this.autocomplete.data = {};
+        this.autocomplete.data[stations[0].standardname] = null;
         for (let i =  0; i < stations.length; i++) {
-            this.autocomplete.data[stations[i].standardname] = stations[i];
+            this.autocomplete.data[stations[i].standardname] = null;
         }
-
-        console.log(this.autocomplete);
     }
 
-    getSuggestions() {
-        if (!this.currQuery) {return}
-        this.IRailService.filterStations(this.stations, this.currQuery).then(fstations => {
-            this.filteredStations = fstations;
-            this.selectedStation = this.filteredStations[0];
-            this.convStationsToAutocomplete(this.filteredStations);
-        }).catch(e => console.log(e));
-    }
-
-    onSelect() {
-        console.log(this.selectedStation)
+    clickStation(val) {
+        console.log(val);
+        this.currQuery = val;
+        this.selectedStation = this.stations.find((e) => {
+            return e.standardname.valueOf() === this.currQuery.valueOf();
+        });
+        console.log(this.selectedStation);
     }
 }
