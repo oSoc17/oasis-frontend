@@ -10,9 +10,11 @@ import { Language } from '../../classes/language';
 export class LanguageChooser {
   language: Language = new Language();
   languages: string[] = this.language.getLanguages();
+  currentLanguage: string = this.language.toName(Language.language);
 
-
-  onClick(){
-    //TODO: change language on click
+  onSelect(){
+    let selected: string = (event.target as Element).id;
+    this.language.setLanguage(selected);
+    //TODO: change language is options
   }
 }

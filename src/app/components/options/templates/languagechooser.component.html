@@ -9,9 +9,8 @@
   [stopPropagation]="true"
 >
   <li *ngFor="let lang of languages">
-    <mz-dropdown-item ><a href="#!" (click)='onClick()'>{{ lang["name"] }}</a></mz-dropdown-item>
+    <mz-dropdown-item ><a href="#!" (click)='onSelect()' id="{{ lang['tag'] }}">{{ lang['name'] }}</a></mz-dropdown-item>
   </li>
 
 </mz-dropdown>
-
-  <a mz-button id="btn-dropdown-demo" href="#">{{ currentLanguage }}</a>
+<a mz-button id="btn-dropdown-demo" href="#"><i class="material-icons left">cloud</i>{{ currentLanguage }}</a>
