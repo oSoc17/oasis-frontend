@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { IRailService } from '../services/iRail.service';
+import { IRailService } from '../../services/iRail.service';
 
 @Component({
     selector: 'stationlist',

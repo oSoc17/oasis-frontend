@@ -9,11 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 /* Components */
 import { AppComponent } from './components/app.component';
-import { StationList } from './components/stationList.component';
-import { ConnectionQuery } from './components/connectionQuery.component';
-import { TravelTime } from './components/travelTime.component';
-import { TravelDate } from './components/travelDate.component';
-import { Connections } from './components/connections.component';
+import { StationList } from './components/search/stationList.component';
+import { ConnectionQuery } from './components/search/connectionQuery.component';
+import { TravelTime } from './components/search/travelTime.component';
+import { TravelDate } from './components/search/travelDate.component';
+import { Connections } from './components/connections/connections.component';
 
 /* Services */
 import { IRailService } from './services/iRail.service'

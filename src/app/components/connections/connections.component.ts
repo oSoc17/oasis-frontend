@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { IRailService } from '../services/iRail.service';
+import { IRailService } from '../../services/iRail.service';
 
-import { SearchData } from '../classes/searchData';
+import { SearchData } from '../../classes/searchData';
 
 import 'rxjs/add/operator/switchMap';
 

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Components
-import { ConnectionQuery } from './components/connectionQuery.component';
-import { Connections } from './components/connections.component';
+import { ConnectionQuery } from './components/search/connectionQuery.component';
+import { Connections } from './components/connections/connections.component';
 
 const routes: Routes = [
   {

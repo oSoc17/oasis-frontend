@@ -5,7 +5,7 @@ import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
 
-import { SearchData } from '../classes/searchData';
+import { SearchData } from '../../classes/searchData';
 
 @Component({
     selector: 'connectionquery',
