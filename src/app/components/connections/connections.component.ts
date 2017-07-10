@@ -9,8 +9,7 @@ import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'connections',
-    templateUrl: './templates/connections.component.html',
-    styleUrls: ['./styles/connections.component.scss']
+    templateUrl: './templates/connections.component.html'
 })
 
 export class Connections implements OnInit {

@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'connection',
-    templateUrl: './templates/connection.component.html',
-    styleUrls: ['./styles/connection.component.scss']
+    templateUrl: './templates/connection.component.html'
 })
 
 export class Connection {
