@@ -1,5 +1,5 @@
-import { expect } from 'chai';
 import {} from 'jasmine';
+import { expect } from 'chai';
 import {Connection} from '../src/app/classes/connection';
 /*---------------------------------------------------------------------------------------------------------------------------------------
 Conventions for writing tests:
