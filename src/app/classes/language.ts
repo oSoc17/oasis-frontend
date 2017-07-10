@@ -1,5 +1,5 @@
 export class Language {
-    public static language = 'nl_BE';
+    public static language = 'en_GB';
 
     getLanguageData() {
         try {
@@ -26,6 +26,16 @@ export class Language {
       } catch (e) {
           console.log(e);
           return null;
+      }
+    }
+
+    setLanguage(code: string) {
+      // checks if language code appears in languages.json and sets it to that code if so
+      const languages = this.getLanguages();
+      for(let couple of languages) {
+        if(couple["tag"] == code) {
+          Language.language = code;
+        }
       }
     }
 }
