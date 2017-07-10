@@ -1,6 +1,7 @@
 # OASIS front-end
 ### Status
 [![Build Status](https://travis-ci.org/oSoc17/oasis-frontend.png)](https://travis-ci.org/oSoc17/oasis-frontend)
+[![Build Status](https://david-dm.org/osoc17/oasis-frontend.svg)](https://david-dm.org/osoc17/oasis-frontend)
 ### Contributing
 Please read the [Contribution guidelines](https://github.com/oSoc17/oasis-frontend/blob/develop/CONTRIBUTING.md) before committing any code!
 ## About
