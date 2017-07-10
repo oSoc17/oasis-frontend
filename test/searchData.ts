@@ -1,4 +1,3 @@
-import {} from 'jasmine';
 import { expect } from 'chai';
 import { SearchData } from '../src/app/classes/searchData';
 

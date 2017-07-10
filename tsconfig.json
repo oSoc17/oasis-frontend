@@ -18,7 +18,10 @@
     ],
     "types": [
       "jquery",
-      "materialize-css"
+      "materialize-css",
+      "node",
+      "mocha",
+      "chai"
     ]
   }
 }

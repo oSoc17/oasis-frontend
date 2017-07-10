@@ -1,4 +1,3 @@
-import {} from 'jasmine';
 import { expect } from 'chai';
 import {Connection} from '../src/app/classes/connection';
 /*---------------------------------------------------------------------------------------------------------------------------------------
