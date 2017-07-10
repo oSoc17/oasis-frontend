@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { IRailService } from '../services/iRail.service';
+import { IRailService } from '../../services/iRail.service';
 
-import { SearchData } from '../classes/searchData';
+import { SearchData } from '../../classes/searchData';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -27,7 +27,8 @@ export class Connections implements OnInit {
             console.log('we got a search request!');
             console.log(search);
             console.log('Log available routes!');
-            this.IRailService.getRoutesReadable(search).then((data) => {
+            setInterval(() => {
+                this.IRailService.getRoutesReadable(search).then((data) => {
                     console.log(data);
                     this.error = JSON.stringify(data);
                     this.loading = false;
@@ -35,6 +36,7 @@ export class Connections implements OnInit {
                     this.error = 'No connections found.';
                     console.log(e);
                 });
+            }, 100);
         } else {
             this.error = 'Please fill in the entire search form.';
         }

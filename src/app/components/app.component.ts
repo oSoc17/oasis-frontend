@@ -1,12 +1,12 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ConnectionQuery } from './connectionQuery.component';
+import { ConnectionQuery } from './search/connectionQuery.component';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './templates/app.component.html',
-    styleUrls: ['./styles/app.component.scss']
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent {
