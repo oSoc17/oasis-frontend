@@ -27,5 +27,4 @@ export class Route {
     /* returns components of QoE */
     // TODO: return seperate values from QoE calculation
   }
-
 }
