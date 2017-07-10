@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'connection',
+  selector: 'options',
   templateUrl: './options.component.html'
 })
 
