@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import {QoE} from '../src/app/classes/qoe';
-import {} from 'jasmine';
+import { QoE } from '../src/app/classes/qoe';
 
 /* Constructor test */
 describe('QoE.ts constructor', () => {

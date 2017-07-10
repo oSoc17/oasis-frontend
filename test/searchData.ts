@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import {SearchData} from '../src/app/classes/searchData';
+import { SearchData } from '../src/app/classes/searchData';
 
 /* POSTPONED TODO: Fix this */
 /*describe('SearchData test', () => {
