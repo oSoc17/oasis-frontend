@@ -1,12 +1,51 @@
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+
 const NodeCache = require('node-cache');
 const config = require('../../config.json');
 
 export class Cache {
-    /* TODO: Find a way to make this not reset on page refresh */
+    /* TODO: Find a decent, (almost) perfect way to make this not reset on every page refresh/redirect */
     public static cache = new NodeCache({
         stdTTL: config.caching.ttl,
         checkperiod: config.caching.deleteInterval
     });
+
+    constructor(private router: Router) {
+        /* A solution for losing cache @routing? */
+        this.router.events.subscribe((e) => {
+            this.addItem('test', 'test').then().catch(e => console.log(e));
+            if (e instanceof NavigationStart) {
+                console.log('Redirecting to a page');
+                if (typeof localStorage !== 'undefined') {
+                    localStorage.setItem('cache', JSON.stringify(Cache.cache));
+                }
+            }
+
+            if (e instanceof NavigationEnd) {
+                console.log('Redirected from a page');
+                if (typeof localStorage !== 'undefined') {
+                    console.log(JSON.parse(localStorage.getItem('cache')));
+                    this.appendCache(JSON.parse(localStorage.getItem('cache')));
+                }
+            }
+
+            console.log(e);
+        });
+    }
+
+    private appendCache(oldCache) {
+        this.getAllKeys().then((keys) => {
+            console.log('PRINT KEYS');
+            console.log(keys);
+            for (let i = 0; i < keys.length; i++) {
+                const obj = oldCache.data[keys[i]];
+                if (obj) {
+                    this.addItem(keys[i], obj.v).then().catch(e => console.log(e));
+                }
+            }
+            console.log(Cache.cache);
+        }).catch(e => console.log(e));
+    }
 
     public addItem(key: string, obj: any): Promise<any> {
         return new Promise((resolve, reject) => {

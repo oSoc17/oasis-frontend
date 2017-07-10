@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -11,14 +12,14 @@ import { Cache } from '../classes/cache';
 
 @Injectable()
 export class IRailService {
-    private cache: Cache = new Cache();
+    private cache: Cache = new Cache(this.router);
     private uri = config.servers[0].uri;
     private options = new RequestOptions({
         headers: new Headers({'Accept': 'application/json'}),
         responseType: ResponseContentType.Json
     });
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private router: Router) { }
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
