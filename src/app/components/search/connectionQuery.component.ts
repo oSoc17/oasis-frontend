@@ -10,7 +10,8 @@ import { Language } from '../../classes/language';
 
 @Component({
     selector: 'connectionquery',
-    templateUrl: './templates/connectionQuery.component.html'
+    templateUrl: './templates/connectionQuery.component.html',
+    styleUrls: ['./styles/connectionQuery.component.scss']
 })
 
 export class ConnectionQuery {

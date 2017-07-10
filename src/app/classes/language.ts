@@ -22,7 +22,7 @@ export class Language {
     getLanguages(): string[] {
       try {
         const file = require('../../locales/languages.json');
-        return file["languages"];
+        return file['languages'];
       } catch (e) {
           console.log(e);
           return null;
