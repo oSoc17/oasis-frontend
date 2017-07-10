@@ -9,8 +9,7 @@ import { SearchData } from '../../classes/searchData';
 
 @Component({
     selector: 'connectionquery',
-    templateUrl: './templates/connectionQuery.component.html',
-    styleUrls: ['./styles/connectionQuery.component.scss']
+    templateUrl: './templates/connectionQuery.component.html'
 })
 
 export class ConnectionQuery {

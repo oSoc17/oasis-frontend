@@ -1,79 +1,9 @@
-/* GENERAL PAGE CSS */
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-
-
-body {
-  font-family: Montserrat;
-}
-
-main {
-  min-height: 70vh;
-}
-
-header {
-  padding: 20px 50px;
-  background: #21B3BE;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+.logo {
+    height: 30px;
+    padding-top: 10px;
+    width: auto;
 }
 
 footer {
-  /* TODO: Footer needs to be fixed to bottom */
-  width: 100%;
-  height: 75px;
-  padding-top: 20px;
-  background: #24292E;
-  margin-top: 100px;
-}
-
-h1 {
-  font-size: 1.8rem;
-  text-transform: uppercase;
-}
-
-h2 {
-  font-size: 1rem;
-  text-transform: uppercase;
-  margin-top: 10px;
-}
-
-h3 {
-  font-size: 1.3rem;
-}
-
-h4 {
-  font-size: 1.1rem;
-  text-align: center;
-  color: #999;
-  margin-bottom: 50px;
-  margin-top: 35px;
-}
-
-p {
-  margin-top: 10px;
-}
-.oasis-footer__text {
-  font-size: .7rem;
-  color: #EEE;
-  text-align: center;
-}
-.oasis-text--secondary {
-  font-style: italic;
-  color: #FFFFFF;
-  text-transform: none;
-  font-weight: 200;
-  font-size: 1.2rem;
-  text-decoration: none;
-
-}
-.oasis-layout__content {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-img.logo {
-  height: 25px;
-  margin-right: 15px;
-}
-a {
-  color: #AAA;
+    margin-top: 25px;
 }
