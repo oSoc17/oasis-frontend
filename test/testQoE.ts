@@ -1,10 +1,10 @@
 import { expect } from 'chai';
-import {QoE} from "../src/app/classes/QoE";
+import {QoE} from '../src/app/classes/qoe';
 import {} from 'jasmine';
 
 /* Constructor test */
 describe('QoE.ts constructor', () => {
   it('object should be created', () => {
-    let qoe = new QoE(15);
+    const qoe = new QoE(15);
   });
 });

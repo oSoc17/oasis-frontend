@@ -21,6 +21,7 @@
     "@angular/router": "^4.0.0",
     "@types/node": "^6.0.79",
     "core-js": "^2.4.1",
+    "lc-client": "0.0.13",
     "mdi": "^1.9.33",
     "ng2-materialize": "^1.4.2",
     "node-cache": "^4.1.1",
