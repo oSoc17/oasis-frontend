@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {} from 'jasmine';
-import {Connection} from '../src/app/classes/Connection';
+import {Connection} from '../src/app/classes/connection';
 /*---------------------------------------------------------------------------------------------------------------------------------------
 Conventions for writing tests:
 - the name of the file where the piece of code that is being tested should be mentioned in the name of the test
