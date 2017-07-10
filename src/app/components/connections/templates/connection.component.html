@@ -1,11 +1,9 @@
 <section class="row">
     <aside class="col s3">
         <strong>{{ depart }}</strong>
-        <strong>{{ departTime }}</strong>
     </aside>
     <aside class="col s3">
         <strong>{{ arrival }}</strong>
-        <strong>{{ arrivalTime }}</strong>
     </aside>
     <aside class="col s4">
         <mz-progress
@@ -15,7 +13,7 @@
             </mz-progress>
     </aside>
     <aside class="col s2">
-        <a href="#">Details ></a>
+        <a (click)="getDetails()">Details ></a>
     </aside>
 </section>
 <section class="row">
