@@ -1,1 +1,18 @@
-<h2>Dummycontent</h2>
+<section class="row">
+    <aside class="col s3">
+        <strong>{{ depart }}</strong>
+    </aside>
+    <aside class="col s3">
+        <strong>{{ arrival }}</strong>
+    </aside>
+    <aside class="col s4">
+        <mz-progress
+            [backgroundClass]="'blue lighten-4'"
+            [percentage]="(percentage)"
+            [progressClass]="'blue'">
+            </mz-progress>
+    </aside>
+    <aside class="col s2">
+        <a href="#">Details ></a>
+    </aside>
+</section>
