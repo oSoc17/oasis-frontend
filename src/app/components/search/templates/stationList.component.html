@@ -1,6 +1,4 @@
-<div class="searchModule">
-    <input type="text" (keypress)="getSuggestions()" [(ngModel)]='currQuery' (focus)='showSuggestions = true' (focusout)='hideSuggestions()' />
-    <ul *ngIf="showSuggestions">
-        <li *ngFor='let station of filteredStations' (click)='clickSuggestion(station)'>{{station.standardname}}</li>
-    </ul>
-</div>
+<mz-input-container class="col s12">
+  <input mz-input id="stationlist" type="text" [autocomplete]="autocomplete" 
+    (keypress)="getSuggestions()" [(ngModel)]='currQuery' [label]="'Autocomplete'">
+</mz-input-container>
