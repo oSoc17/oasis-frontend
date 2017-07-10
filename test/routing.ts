@@ -1,6 +1,7 @@
+import {} from 'jasmine';
 import { expect } from 'chai';
-import {RouteService} from '../src/app/services/routing.service';
-import {SearchData} from '../src/app/classes/searchData';
+import { RouteService } from '../src/app/services/routing.service';
+import { SearchData } from '../src/app/classes/searchData';
 
 describe('RoutingService test', () => {
     it('RoutingService#query()', () => {
