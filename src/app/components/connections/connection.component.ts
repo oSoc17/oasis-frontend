@@ -6,5 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 
 export class Connection {
-
+    depart = 'Depart station';
+    arrival = 'Arrival station';
+    percentage = Math.floor(Math.random() * 100);
 }
