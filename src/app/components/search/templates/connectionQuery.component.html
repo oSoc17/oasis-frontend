@@ -1,15 +1,15 @@
 <section class='connquery'>
-  <h4>Which route do you usually take?</h4>
-    <h2>Departure <stationlist #departure></stationlist></h2>
-    <h2>Destination <stationlist #arrival></stationlist></h2>
+  <h4>{{ language.getMessage('searchHeader') }}</h4>
+    <h2>{{ language.getMessage('departure') }} <stationlist #departure></stationlist></h2>
+    <h2>{{ language.getMessage('destination') }} <stationlist #arrival></stationlist></h2>
     <h2>
-      Time
+      {{ language.getMessage('time') }}
       <traveltime></traveltime>
       <traveldate></traveldate>
     </h2>
     <p>{{ error }}</p>
     <button mz-button (click)='clickCalculate()'>
-      Show alternatives
+      {{ language.getMessage('showAlts') }}
     </button>
     <div class="clearfix"></div>
 </section>

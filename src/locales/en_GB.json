@@ -1,0 +1,10 @@
+{
+    "searchHeader": "Which route do you usually take?",
+    "showAlts": "Show alternatives",
+    "time": "Time",
+    "departure": "Departure",
+    "destination": "Destination",
+    "errEqualStations": "stations can\"t be the same.",
+    "fillEntireSearchForm": "Please fill in the entire search form.",
+    "noConnections": "No connections found."
+}
