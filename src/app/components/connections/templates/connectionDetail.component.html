@@ -1,4 +1,4 @@
-<h5><a href="#" (click)="goBack()">< Go back</a></h5>
+<h5><a href="#" (click)="goBack()">< {{ language.getMessage('back') }}</a></h5>
 
 <section class="row">
     <aside class="col s8">
@@ -12,7 +12,7 @@
         </mz-progress>
     </aside>
     <aside class="col s2">
-        <a href="#">Details ></a>
+        <a href="#">{{ language.getMessage('details') }} ></a>
     </aside>
 </section>
 
@@ -21,9 +21,9 @@
     <table>
         <thead>
             <tr>
-                <th>Depart</th>
-                <th>Station</th>
-                <th>Platform</th>
+                <th>{{ language.getMessage('departure') }}</th>
+                <th>{{ language.getMessage('station') }}</th>
+                <th>{{ language.getMessage('platform') }}</th>
             </tr>
         </thead>
 

@@ -6,5 +6,10 @@
     "destination": "Destination",
     "errEqualStations": "stations can\"t be the same.",
     "fillEntireSearchForm": "Please fill in the entire search form.",
-    "noConnections": "No connections found."
+    "noConnections": "No connections found.",
+    "details": "Details",
+    "back": "Go back",
+    "qualityofexperience": "Quality of Experience",
+    "station": "Station",
+    "platform": "Platform"
 }

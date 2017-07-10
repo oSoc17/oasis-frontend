@@ -6,5 +6,10 @@
   "destination": "Bestemming",
   "errEqualStations": "vertrek- en eindstation kunnen niet hetzelfde zijn",
   "fillEntireSearchForm": "Gelieve het formulier volledig in te vullen.",
-  "noConnections": "Geen verbinding gevonden."
+  "noConnections": "Geen verbinding gevonden.",
+  "details": "Details",
+  "back": "Ga terug",
+  "qualityofexperience": "Gebruikservaring",
+  "station": "Station",
+  "platform": "Perron"
 }
