@@ -7,6 +7,27 @@
         {
             "name": "iRail",
             "uri": "http://api.irail.be"
+        },
+        {
+            "name":"linkedconnections",
+            "uri":"http://belgium.linkedconnections.org",
+            "types":[
+                {
+                    "name": "sncb-schedule",
+                    "path": "/sncb/connections",
+                    "variables": ["departureTime"]
+                },
+                {
+                    "name": "crtm-schedule",
+                    "path": "/crtm/connections",
+                    "variables": ["departureTime"]
+                },
+                {
+                    "name": "delijn-schedule",
+                    "path": "/delijn/connections",
+                    "variables": ["departureTime"]
+                }
+            ]
         }
     ]
 }
