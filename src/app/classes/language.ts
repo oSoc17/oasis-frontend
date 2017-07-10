@@ -1,5 +1,5 @@
 export class Language {
-    public static language = 'nl_BE';
+    public static language = 'en_GB';
 
     getLanguageData() {
         try {
@@ -22,7 +22,7 @@ export class Language {
     getLanguages(): string[] {
       try {
         const file = require('../../locales/languages.json');
-        return file["languages"];
+        return file['languages'];
       } catch (e) {
           console.log(e);
           return null;
