@@ -1,11 +1,9 @@
-// import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
 import {SearchData} from '../classes/searchData';
 
 const Client = require('lc-client');
 
-// @Injectable()
 export class RouteService {
     private planner;
 

@@ -8,6 +8,7 @@ import { Connections } from './components/connections/connections.component';
 import { Connection } from './components/connections/connection.component';
 import { Options } from './components/options/options.component';
 import {LanguageChooser} from "./components/options/languagechooser.component";
+import { ConnectionDetail } from './components/connections/connectionDetail.component';
 
 export class Components {
     public static components = [
@@ -19,6 +20,7 @@ export class Components {
         Connections,
         Connection,
         Options,
-        LanguageChooser
+        LanguageChooser,
+        ConnectionDetail,
     ];
 }

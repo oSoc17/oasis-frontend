@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConnectionQuery } from './components/search/connectionQuery.component';
 import { Connections } from './components/connections/connections.component';
 import { Options } from './components/options/options.component';
+import { ConnectionDetail } from './components/connections/connectionDetail.component';
 
 /* Services */
 import { IRailService } from './services/iRail.service'
@@ -26,7 +27,11 @@ const routes: Routes = [
   {
     path: 'options',
     component: Options
-  }
+  },
+  {
+    path: 'connectiondetail',
+    component: ConnectionDetail
+  },
 ];
 
 @NgModule({
