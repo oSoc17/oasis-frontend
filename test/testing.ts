@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import {} from 'jasmine';
 
 /* Example test */
 describe('1+1 test', () => {

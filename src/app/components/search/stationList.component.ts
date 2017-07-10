@@ -8,7 +8,6 @@ import { IRailService } from '../../services/iRail.service';
 })
 
 export class StationList implements OnInit {
-    /* this.stations might dissapear once we improve performance with caching */
     stations: any;
     currQuery: string;
     selectedStation: any;
@@ -39,6 +38,8 @@ export class StationList implements OnInit {
         for (let i =  0; i < stations.length; i++) {
             this.autocomplete.data[stations[i].standardname] = stations[i];
         }
+
+        console.log(this.autocomplete);
     }
 
     getSuggestions() {
