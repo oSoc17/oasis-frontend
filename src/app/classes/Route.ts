@@ -1,3 +1,3 @@
-export class Route() {
+export class Route {
 
 }
