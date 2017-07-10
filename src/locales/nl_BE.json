@@ -1,0 +1,10 @@
+{
+  "searchHeader": "Welke route wilt u nemen?",
+  "showAlts": "Toon alternatieven",
+  "time": "Tijdstip",
+  "departure": "Vertrek",
+  "destination": "Bestemming",
+  "errEqualStations": "vertrek- en eindstation kunnen niet hetzelfde zijn",
+  "fillEntireSearchForm": "Gelieve het formulier volledig in te vullen.",
+  "noConnections": "Geen verbinding gevonden."
+}
