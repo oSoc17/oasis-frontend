@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'traveldate',
-    templateUrl: './templates/travelDate.component.html',
-    styleUrls: ['./styles/travelDate.component.scss']
+    templateUrl: './templates/travelDate.component.html'
 })
 
 export class TravelDate {

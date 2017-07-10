@@ -6,6 +6,7 @@ import { TravelTime } from './components/search/travelTime.component';
 import { TravelDate } from './components/search/travelDate.component';
 import { Connections } from './components/connections/connections.component';
 import { Connection } from './components/connections/connection.component';
+import { Options } from './components/options.component';
 
 export class Components {
     public static components = [
@@ -15,6 +16,7 @@ export class Components {
         TravelTime,
         TravelDate,
         Connections,
-        Connection
+        Connection,
+        Options
     ];
 }

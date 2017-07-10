@@ -1,7 +1,7 @@
 # compiled output
 /tmp
 /out-tsc
-dist/
+/dist
 
 # dependencies
 /node_modules
@@ -15,6 +15,7 @@ npm-debug.log
 testem.log
 /typings
 package-lock.json
+/.idea
 
 # e2e
 /e2e/*.js
