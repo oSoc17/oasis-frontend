@@ -8,32 +8,23 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 /* Components */
+import { Components } from './components.module';
 import { AppComponent } from './components/app.component';
-import { StationList } from './components/stationList.component';
-import { ConnectionQuery } from './components/connectionQuery.component';
-import { TravelTime } from './components/travelTime.component';
-import { TravelDate } from './components/travelDate.component';
-import { Connections } from './components/connections.component';
+import { MaterializeModule } from 'ng2-materialize';
 
 /* Services */
-import { IRailService } from './services/iRail.service'
+import { Services } from './services.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StationList,
-    ConnectionQuery,
-    TravelTime,
-    TravelDate,
-    Connections
-  ],
+  declarations: Components.components,
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterializeModule.forRoot()
   ],
-  providers: [ IRailService ],
+  providers: Services.providers,
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

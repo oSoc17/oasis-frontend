@@ -1,0 +1,4 @@
+<mz-input-container class="col s12" (focusout)='clickStation(stationInput.value)' >
+  <input mz-input id="stationlist" type="text" [autocomplete]="autocomplete" 
+  [(ngModel)]='currQuery' #stationInput >
+</mz-input-container>

@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 /* Saved Stations */
 const stationsData = require('../../dummydata/stations.json');
+const config = require('../../config.json');
 
 import { SearchData } from '../classes/searchData';
 
 @Injectable()
 export class IRailService {
-    private iRailUrl = 'http://api.irail.be';
+    private uri = config.servers[0].uri;
     private options = new RequestOptions({
-        headers: new Headers({
-            'Accept': 'application/json'
-        }),
+        headers: new Headers({'Accept': 'application/json'}),
         responseType: ResponseContentType.Json
     });
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private router: Router) { }
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
@@ -85,9 +85,12 @@ export class IRailService {
         options.responseType = this.options.responseType;
         options.search = params;
 
-        return this.http.get(`${this.iRailUrl}/connections`, options)
-            .toPromise()
-            .then((response) => response.json())
-            .catch(this.handleError);
+        return new Promise((resolve, reject) => {
+            this.http.get(`${this.uri}/connections`, options)
+                .toPromise()
+                .then((response) => {
+                    return resolve(response.json());
+                }).catch(er => reject(er));
+        });
     }
 }

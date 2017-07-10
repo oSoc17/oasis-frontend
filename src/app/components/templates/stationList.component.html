@@ -1,6 +1,0 @@
-<div class="searchModule">
-    <input type="text" (keypress)="getSuggestions()" [(ngModel)]='currQuery' (focus)='showSuggestions = true' (focusout)='hideSuggestions()' />
-    <ul *ngIf="showSuggestions">
-        <li *ngFor='let station of filteredStations' (click)='clickSuggestion(station)'>{{station.standardname}}</li>
-    </ul>
-</div>

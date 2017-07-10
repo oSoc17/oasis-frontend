@@ -1,0 +1,26 @@
+<mz-spinner
+  [color]="'blue'"
+  [size]="'big'" *ngIf="loading">
+</mz-spinner>
+
+<h3>{{ error }}</h3>
+
+<div *ngIf="!loading && !error">
+  <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
+  <section class="row">
+    <aside class="col s3">
+      <h5>{{ language.getMessage('departure') }}</h5>
+    </aside>
+    <aside class="col s3">
+      <h5>{{ language.getMessage('destination') }}</h5>
+    </aside>
+    <aside class="col s4">
+      <h5>{{ language.getMessage('qualityofexperience') }}</h5>
+    </aside>
+    <aside class="col s2"></aside>
+  </section>
+  <connection></connection>
+  <connection></connection>
+  <connection></connection>
+  <connection></connection>
+</div>
