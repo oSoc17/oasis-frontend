@@ -1,5 +1,5 @@
 export class Language {
-    public static language = 'nl_BE';
+    public static language = 'en_GB';
 
     getLanguageData() {
         try {
