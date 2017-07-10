@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { IRailService } from '../../services/iRail.service';
 import { SearchData } from '../../classes/searchData';
@@ -20,7 +21,8 @@ export class Connections implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private IRailService: IRailService) {}
+        private IRailService: IRailService,
+        private location: Location) {}
 
     logParams(search: SearchData) {
         if (search.arrStation && search.depStation && search.timeType && search.travelDate && search.travelTime) {
@@ -29,7 +31,7 @@ export class Connections implements OnInit {
             console.log('Log available routes!');
             this.IRailService.getRoutesReadable(search).then((data) => {
                 console.log(data);
-                this.error = JSON.stringify(data);
+                // this.error = JSON.stringify(data);
                 this.loading = false;
             }).catch(e => {
                 this.error = this.language.getMessage('noConnections');
@@ -43,5 +45,9 @@ export class Connections implements OnInit {
 
     ngOnInit(): void {
             this.logParams(this.route.params['_value']);
+    }
+
+    goBack() {
+        this.location.back();
     }
 }
