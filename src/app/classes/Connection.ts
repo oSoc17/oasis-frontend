@@ -13,8 +13,8 @@ export class Connection {
 		this.type = GraphItemJson["@type"];
 		this.departureStop = GraphItemJson["departureStop"];
 		this.arrivalStop = GraphItemJson["arrivalStop"];
-		this.departureTime = new Date(GraphItemJson["departureTime"]);
-		this.arrivalTime = new Date(GraphItemJson["arrivalTime"]);
+		this.departureTime = new Date(Date.parse(GraphItemJson["departureTime"]));
+		this.arrivalTime = new Date(Date.parse(GraphItemJson["arrivalTime"]));
 		this.gtfstrip = GraphItemJson["gtfs:trip"];
 		this.gtfsroute = GraphItemJson["gtfs:route"];
 	}
@@ -26,6 +26,5 @@ export class Connection {
         //TODO: calculate QoE for this connection
         return ret;
     }
-
-    //TODO:
+    //TODO: 
 }
