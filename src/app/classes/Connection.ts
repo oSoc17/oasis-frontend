@@ -26,6 +26,5 @@ export class Connection {
         //TODO: calculate QoE for this connection
         return ret;
     }
-
     //TODO: 
 }
