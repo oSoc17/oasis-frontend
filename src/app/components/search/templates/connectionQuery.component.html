@@ -1,15 +1,18 @@
 <section class='connquery'>
   <h4>{{ language.getMessage('searchHeader') }}</h4>
-    <h2>{{ language.getMessage('departure') }} <stationlist #departure></stationlist></h2>
-    <h2>{{ language.getMessage('destination') }} <stationlist #arrival></stationlist></h2>
-    <h2>
-      {{ language.getMessage('time') }}
-      <traveltime></traveltime>
-      <traveldate></traveldate>
-    </h2>
-    <p>{{ error }}</p>
-    <button mz-button (click)='clickCalculate()'>
-      {{ language.getMessage('showAlts') }}
-    </button>
-    <div class="clearfix"></div>
+  <label>{{ language.getMessage('departure') }}</label><stationlist #departure></stationlist>
+  <label>{{ language.getMessage('destination') }}</label><stationlist #arrival></stationlist>
+
+  <label>{{ language.getMessage('time') }}</label>
+  <traveltime></traveltime>
+
+  <label>Date</label>
+  <traveldate></traveldate>
+    
+  <p>{{ error }}</p>
+
+  <button mz-button (click)='clickCalculate()'>
+    {{ language.getMessage('showAlts') }}
+  </button>
+  <div class="clearfix"></div>
 </section>
