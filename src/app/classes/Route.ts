@@ -1,19 +1,19 @@
-import {Connection} from "./Connection";
+import {Connection} from './Connection';
 
 export class Route {
   private connections: Connection[] = [];
 
   public getQoE() {
     /* returns the  global QoE percentage of the route */
-    if (this.connections.length == 0) {
-      throw new Error("Route is empty");
+    if (this.connections.length === 0) {
+      throw new Error('Route is empty');
     } else {
-      let QoE: number = 0;
-      let totalTravelTime: number = 0;
+      let QoE = 0;
+      let totalTravelTime = 0;
       let n = 1;
-      for (let c of this.connections) {
+      for (const c of this.connections) {
         // iterative avg calculation algorithm
-        let travelTime = c.arrivalTime.valueOf() - c.departureTime.valueOf();
+        const travelTime = c.arrivalTime.valueOf() - c.departureTime.valueOf();
         QoE = QoE + (c.calculateQoE() * travelTime - QoE) / (n * totalTravelTime);
         n++;
         totalTravelTime += travelTime;
