@@ -39,11 +39,11 @@ describe('Connection.ts: Connection class constructor test' , () => {
   });
 
   it('departuretime should be 2017-07-10T09:30:00.000Z', () => {
-    expect(connection.departureTime).to.equal('2017-07-10T09:30:00.000Z');
+    expect(connection.departureTime.getTime()).to.equal(new Date(Date.parse('2017-07-10T09:30:00.000Z')).getTime());
   });
 
   it('arrivaltime should be 2017-07-10T09:30:00.000Z', () => {
-    expect(connection.arrivalTime).to.equal('2017-07-10T09:30:00.000Z');
+    expect(connection.arrivalTime.getTime()).to.equal(new Date(Date.parse('2017-07-10T09:30:00.000Z')).getTime());
   });
 
   it('trip should be http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710', () => {

@@ -3,8 +3,8 @@ export class Connection {
 	type: string;
 	departureStop: string;
 	arrivalStop: string;
-	departureTime: string;
-	arrivalTime: string;
+	departureTime: Date;
+	arrivalTime: Date;
 	gtfstrip: string;
 	gtfsroute: string;
 
@@ -13,8 +13,8 @@ export class Connection {
 		this.type = GraphItemJson["@type"];
 		this.departureStop = GraphItemJson["departureStop"];
 		this.arrivalStop = GraphItemJson["arrivalStop"];
-		this.departureTime = GraphItemJson["departureTime"];
-		this.arrivalTime = GraphItemJson["arrivalTime"];
+		this.departureTime = new Date(Date.parse(GraphItemJson["departureTime"]));
+		this.arrivalTime = new Date(Date.parse(GraphItemJson["arrivalTime"]));
 		this.gtfstrip = GraphItemJson["gtfs:trip"];
 		this.gtfsroute = GraphItemJson["gtfs:route"];
 	}
