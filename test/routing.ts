@@ -2,9 +2,9 @@ import * as Chai from 'chai';
 import * as ChaiAsPromised from 'chai-as-promised';
 Chai.use(ChaiAsPromised);
 const expect = Chai.expect;
-import {RouteService} from '../src/app/services/routing.service';
-import {RouteMockService} from '../src/app/services/routing.mock.service';
-import {SearchData} from '../src/app/classes/searchData';
+import { RouteService } from '../src/app/services/routing.service';
+import { RouteMockService } from '../src/app/services/routing.mock.service';
+import { SearchData } from '../src/app/classes/searchData';
 import 'rxjs/add/operator/toPromise';
 
 describe('RoutingMockService test', () => {
