@@ -21,11 +21,6 @@ Install Angular CLI
 npm install -g @angular/cli
 ```
 
-Install typings
-```
-npm install -g typings
-```
-
 ### Commands
 To install all dependencies (required before running any of the other commands).
 ```
