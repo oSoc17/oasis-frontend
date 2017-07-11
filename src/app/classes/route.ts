@@ -28,7 +28,7 @@ export class Route {
         // TODO: return seperate values from QoE calculation
     }
 
-    public totalTravelTime(): Date {
+    public getTotalTravelTime(): Date {
         /* returns the total travel time (Date) */
         if(this.connections.length) {
             const first: Date = this.connections[0].departureTime;
@@ -39,7 +39,7 @@ export class Route {
         return new Date(0);
     }
 
-    public interMediateStops(): number {
+    public getInterMediateStopsAmount(): number {
         /* returns amount of intermediate stops */
         if(this.connections.length)
             return this.connections.length - 1;
@@ -47,9 +47,38 @@ export class Route {
         return null;
     }
 
-    public changeTime(): Date {
+    public getChangesAmount(): number {
+        /* returns amount of changes */
+        if(this.connections.length > 1) {
+            let changesAmount: number = 0;
+            for(let i=0; i<this.connections.length-1; i++){
+                if(this.connections[i].gtfstrip != this.connections[i+1].gtfstrip) {
+                    changesAmount++;
+                }
+            }
+            return changesAmount;
+        }
+        console.log("List of connections is empty");
+        return 0;
+    }
+
+    public getAvgChangeTime(): Date {
         /* returns average change time of a route */
-        // TODO: figure out how get this
+        if(this.connections.length > 1) {
+            let changeAmount: number = 0;
+            let sumChangeTime: number = 0;
+            for(let i=0; i<this.connections.length-1; i++){
+                if(this.connections[i].gtfstrip != this.connections[i+1].gtfstrip) {
+                    changeAmount++;
+                    sumChangeTime += this.connections[i+1].departureTime.valueOf() - this.connections[i].arrivalTime.valueOf();
+                }
+            }
+            if(changeAmount)
+                return new Date(sumChangeTime / changeAmount);
+            console.log('There are no train changes to be made');
+            return new Date(0);
+        }
+        console.log('List of connections is empty');
         return new Date(0);
     }
 }
