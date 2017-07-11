@@ -7,14 +7,14 @@ export class RouteHistory {
 
     constructor(route: Route) {
         this.routes.push(route);
-        // TODO: fill array with historic data
+        // TODO: fill array with historic data, how?
     }
 
     public getAvgTravelTime(): Date {
         /* returns avg change time based on historic data */
         let data: number[] = [];
         for(let route of this.routes)
-            //data.push(route.getTotalTravelTime().valueOf());
+            data.push(route.getTotalTravelTime().valueOf());
             return new Date(Average.calculate(data));
     }
 
@@ -22,7 +22,7 @@ export class RouteHistory {
         /* returns avg change time based on historic data */
         let data: number[] = [];
         for(let route of this.routes)
-            //data.push(route.getIntermediateStopsAmount().valueOf());
+            data.push(route.getInterMediateStopsAmount().valueOf());
             return Average.calculate(data);
     }
 
@@ -30,7 +30,7 @@ export class RouteHistory {
         /* returns avg delay based on historic data */
         let data: number[] = [];
         for(let route of this.routes)
-            //data.push(route.getDelay().valueOf());
+            data.push(route.getDelay().valueOf());
         return new Date(Average.calculate(data));
     }
 
@@ -38,9 +38,9 @@ export class RouteHistory {
         /* returns avg change time based on historic data */
         let data: number[] = [];
         for(let route of this.routes)
-            //data.push(route.getAvgChangeTime().valueOf());
+            data.push(route.getAvgChangeTime().valueOf());
         return new Date(Average.calculate(data));
     }
 
-
+    // TODO: implement more
 }
