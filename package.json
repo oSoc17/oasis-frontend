@@ -19,8 +19,6 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "@types/chai-as-promised": "0.0.31",
-    "chai-as-promised": "^7.1.1",
     "core-js": "^2.4.1",
     "lc-client": "^0.1.1",
     "ldfetch": "0.0.3",
