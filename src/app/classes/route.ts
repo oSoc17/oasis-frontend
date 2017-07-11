@@ -1,7 +1,11 @@
-import {Connection} from './connection';
+import { Connection } from './connection';
 
 export class Route {
-    connections: Connection[] = [];
+    connections: Connection[];
+
+    constructor(connections: Connection[]) {
+        this.connections = connections;
+    }
 
     public getQoE(): number {
         /* returns the  global QoE percentage of the route */
