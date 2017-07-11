@@ -56,8 +56,8 @@ export class Language {
     toName(tag: string): string {
         // returns a readable name for the language ISO tag
         const languages: string[] = this.getLanguages();
-        for(let pair of languages) {
-            if(pair["tag"] == tag) {
+        for (let pair of languages) {
+            if (pair["tag"] == tag) {
                 return pair["name"];
             }
         }

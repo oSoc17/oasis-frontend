@@ -6,8 +6,12 @@ import { TravelTime } from './components/search/travelTime.component';
 import { TravelDate } from './components/search/travelDate.component';
 import { Connections } from './components/connections/connections.component';
 import { Connection } from './components/connections/connection.component';
+<<<<<<< HEAD
 import { Options } from './components/options/options.component';
 import {LanguageChooser} from "./components/options/languagechooser.component";
+=======
+import { Options } from './components/options.component';
+>>>>>>> develop
 import { ConnectionDetail } from './components/connections/connectionDetail.component';
 
 export class Components {
