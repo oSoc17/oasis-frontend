@@ -35,6 +35,15 @@ export class Route {
             const last: Date = this.connections[this.connections.length - 1].arrivalTime;
             return new Date(last.valueOf() - first.valueOf());
         }
+        console.log("List of connections is empty");
         return new Date(0);
+    }
+
+    public interMediateStops(): number {
+        /* returns amount of intermediate stops */
+        if(this.connections.length)
+            return this.connections.length - 1;
+        console.log("List of connections is empty");
+        return null;
     }
 }
