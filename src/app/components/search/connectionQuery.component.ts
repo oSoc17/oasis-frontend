@@ -6,6 +6,7 @@ import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
 
 import { SearchData } from '../../classes/searchData';
+import { Language } from '../../classes/language';
 
 @Component({
     selector: 'connectionquery',
@@ -21,6 +22,7 @@ export class ConnectionQuery {
     @Output() routeUpdated = new EventEmitter();
     searchData: SearchData;
     error: string;
+    language: Language = new Language();
 
     constructor(private router: Router) {}
 
@@ -28,7 +30,7 @@ export class ConnectionQuery {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;
         if (arriveSt.id === departSt.id) {
-            this.error = 'stations can\'t be the same.';
+            this.error = this.language.getMessage('errEqualStations');
         } else {
             this.searchData = new SearchData(departSt.id, arriveSt.id, this.travelTime.selectedTime,
                                     this.travelDate.selectedDate, this.travelTime.selectedType);

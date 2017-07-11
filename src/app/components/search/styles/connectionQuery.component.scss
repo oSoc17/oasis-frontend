@@ -1,23 +1,9 @@
 .connquery {
-  max-width: 500px;
-  margin: auto;
-  h2 {
-    text-align: right;
-  }
-  button {
-    padding: 10px;
-    background: none;
-    border: 2px solid #21B3BE;
-    float: right;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: all .25s ease-in-out;
-    &:hover {
-      background: #21B3BE;
-      color: #FFFFFF;
+    label {
+        font-size: 1.5rem;
     }
-  }
-  .clearfix {
-    clear: both;
-  }
+
+    h4 {
+        font-size: 1.7rem;
+    }
 }
