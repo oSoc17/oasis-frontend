@@ -19,8 +19,19 @@ export class SearchData {
     public travelDate: string; // travel date in DD/MM/YYYY
     public timeType: string;   // either 'departureTime' or 'arrivalTime'
 
+/**
+ * returns a list of SearchData objects where the travelDate is split according to the provided parameters
+ * @param depStation id of departure station
+ * @param arrStation id of arrival station
+ * @param travelTime traveltime in HH:MM
+ * @param startDate startDate
+ * @param timeType either 'departureTime' or 'arrivalTime'
+ * @param period days between trips
+ * @param amount amount of SearchDataObjects wanted (default = 5)
+ * @param goesForward wether or not the days should be added instead of removed to the startdate (default = false)
+ */
     public static createPeriodicList(
-        depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number,
+        depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number = 5,
         goesForward: boolean = false): SearchData[] {
         const dataList = SearchData[amount];
         const calcdate = new Date(Date.parse(startDate));
