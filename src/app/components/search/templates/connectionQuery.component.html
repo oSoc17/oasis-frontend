@@ -1,4 +1,4 @@
-<section class='connquery'>
+<section class='connquery card-panel'>
   <h4>{{ language.getMessage('searchHeader') }}</h4>
   <label>{{ language.getMessage('departure') }}</label><stationlist #departure></stationlist>
   <label>{{ language.getMessage('destination') }}</label><stationlist #arrival></stationlist>
@@ -8,10 +8,10 @@
 
   <label>Date</label>
   <traveldate></traveldate>
-    
+
   <p>{{ error }}</p>
 
-  <button mz-button (click)='clickCalculate()'>
+  <button mz-button class="red accent-2" (click)='clickCalculate()'>
     {{ language.getMessage('showAlts') }}
   </button>
   <div class="clearfix"></div>
