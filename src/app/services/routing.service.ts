@@ -40,17 +40,13 @@ export class RouteService {
                 });
         });
     }
+
     public queryPeriod(searchDataList: SearchData[]) {
-        return new Promise((resolve, reject) => {
-             const ret = [];
-        searchDataList.forEach(searchData => {
-            this.query(searchData).then((result) => {
-                ret.push(result);
-            });
+        const promiselist = [];
+         searchDataList.forEach(searchData => {
+            promiselist.push(this.query(searchData));
         });
-        while (ret.length < searchDataList.length) {}
-        return resolve(ret);
-        });
+        return Promise.all(promiselist);
     }
     public get onQueryResult(): ISimpleEvent<any> {
         return this._onQueryResult.asEvent();
