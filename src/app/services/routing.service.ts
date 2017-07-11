@@ -19,9 +19,9 @@ export class RouteService {
             const stop_condition = false;
             this.planner.query(searchData.toJSON(), function (resultStream, source) {
                     resultStream.on('result', function (path) {
-                        console.log(path);
-                        this._onQueryResult.dispatch(path);
+                        // console.log(path);
                         resolve(path);
+                        this._onQueryResult.dispatch(path);
                     });
                     resultStream.on('data', function (connection) {
                         // console.log(connection);
