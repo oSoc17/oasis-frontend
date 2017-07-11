@@ -1,4 +1,4 @@
-# OASIS front-end
+# OASIS front-end (v0.0.0)
 ### Status
 [![Build Status](https://travis-ci.org/oSoc17/oasis-frontend.png)](https://travis-ci.org/oSoc17/oasis-frontend)
 [![Build Status](https://david-dm.org/osoc17/oasis-frontend.svg)](https://david-dm.org/osoc17/oasis-frontend)
