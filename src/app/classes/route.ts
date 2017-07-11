@@ -46,4 +46,10 @@ export class Route {
         console.log("List of connections is empty");
         return null;
     }
+
+    public changeTime(): Date {
+        /* returns average change time of a route */
+        // TODO: figure out how get this
+        return new Date(0);
+    }
 }
