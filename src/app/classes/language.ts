@@ -1,7 +1,8 @@
 export class Language {
     public static language = 'en_GB';
 
-    getLanguageData() {
+    getLanguageData(): string {
+        // returns locales/[currentLanguage].json
         try {
             const language = require(`../../locales/${Language.language}.json`);
             return language;
@@ -11,7 +12,8 @@ export class Language {
         }
     }
 
-    getMessage(key: string) {
+    getMessage(key: string): string {
+        // returns message in current language
         const lang = this.getLanguageData();
         if (lang) {
             return lang[key];
@@ -20,22 +22,45 @@ export class Language {
     }
 
     getLanguages(): string[] {
-      try {
-        const file = require('../../locales/languages.json');
-        return file['languages'];
-      } catch (e) {
-          console.log(e);
-          return null;
-      }
+        // returns locales/languages.json
+        try {
+            const file = require('../../locales/languages.json');
+            return file['languages'];
+        } catch (e) {
+            console.log(e);
+            return null;
+        }
     }
 
-    setLanguage(code: string) {
-      // checks if language code appears in languages.json and sets it to that code if so
-      const languages = this.getLanguages();
-      for(let couple of languages) {
-        if(couple["tag"] == code) {
-          Language.language = code;
+    setLanguage(tag: string) {
+        // checks if language appears in locales/languages.json and selects if so
+        const languages = this.getLanguages();
+        for(let pair of languages) {
+            if(pair['tag'] == tag) {
+                Language.language = tag;
+            }
         }
-      }
+    }
+
+    toTag(name: string): string {
+        // returns ISO tag for a language name
+        const languages: string[] = this.getLanguages();
+        for(let pair of languages) {
+            if(pair['name'] == name) {
+                return pair['tag'];
+            }
+        }
+        return null;
+    }
+
+    toName(tag: string): string {
+        // returns a readable name for the language ISO tag
+        const languages: string[] = this.getLanguages();
+        for (let pair of languages) {
+            if (pair["tag"] == tag) {
+                return pair["name"];
+            }
+        }
+        return null;
     }
 }
