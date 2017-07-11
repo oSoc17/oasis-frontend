@@ -37,6 +37,18 @@ export class RouteService {
                 });
         });
     }
+    /**
+     * does multiple queries with the same configuration. Only the date is different.
+     * The time between query dates is determened by the second parameter
+     * @param searchData object containing information regarding the query
+     * @param period time in days between the dates to query
+     * @returns an array of query results
+     */
+    queryPeriod(searchData: SearchData, period: number ): Promise<any> {
+        return new Promise((resolve, reject) => {
+
+        });
+    }
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
