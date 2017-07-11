@@ -18,7 +18,7 @@ describe('RoutingService test', () => {
             }
             done('No arrivalStop value in first item of array');
         }).catch(e => done(e));
-    }).timeout(5000);
+    }).timeout(15000);
 });
 
  describe('SearchData create datalist test', () => {
