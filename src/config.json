@@ -3,6 +3,9 @@
         "ttl": 0,
         "deleteInterval": 0
     },
+    "entrypoints": [
+      "http://belgium.linkedconnections.org/sncb/connections"
+    ],
     "servers": [
         {
             "name": "iRail",

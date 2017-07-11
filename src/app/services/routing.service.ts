@@ -46,7 +46,7 @@ export class RouteService {
      * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
      * @param searchDataList list of SearchData objects
      */
-    public queryPeriod(searchDataList: SearchData[]): Promise<any> {
+    public queryPeriod(searchDataList: SearchData[]): Promise<any[]> {
         const promiselist = [];
          searchDataList.forEach(searchData => {
             promiselist.push(this.query(searchData));

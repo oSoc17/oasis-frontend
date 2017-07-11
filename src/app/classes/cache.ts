@@ -93,7 +93,7 @@ export class Cache {
 
     public getAllKeys(): Promise<Array<string>> {
         return new Promise((resolve, reject) => {
-            Cache.cache.keys( function( err, keys ){
+            Cache.cache.keys(function (err, keys) {
                 if (err) {
                     reject(err);
                 }
