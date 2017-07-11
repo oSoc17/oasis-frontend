@@ -24,7 +24,8 @@ export class RouteService {
                         this._onQueryResult.dispatch(path);
                     });
                     resultStream.on('data', function (connection) {
-                        console.log(connection);
+                        // console.log(connection);
+                        console.log('We have received data');
                         // if you're not interested anymore, you can stop the processing by doing this
                         if (stop_condition) {
                             source.close();
