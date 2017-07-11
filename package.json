@@ -1,7 +1,7 @@
 {
   "name": "oasis-frontend",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "ALL RIGHTS RESERVED",
   "main": "./src/main.ts",
   "scripts": {
     "start": "ng serve --open",
