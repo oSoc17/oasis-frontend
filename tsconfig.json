@@ -21,8 +21,7 @@
       "materialize-css",
       "node",
       "mocha",
-      "chai",
-      "chai-as-promised"
+      "chai"
     ]
   }
 }
