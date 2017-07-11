@@ -2,11 +2,13 @@ import 'rxjs/add/operator/toPromise';
 
 import {SearchData} from '../classes/searchData';
 
+import {SimpleEventDispatcher, ISimpleEvent} from 'strongly-typed-events';
+
 const Client = require('lc-client');
 
 export class RouteService {
     private planner;
-
+    private _onQueryResult = new SimpleEventDispatcher<any>();
     // example: ['http://belgianrail.linkedconnections.org/']
     constructor(entryPoints: [string]) {
         this.planner = new Client({'entrypoints': entryPoints});
@@ -17,9 +19,12 @@ export class RouteService {
             const stop_condition = false;
             this.planner.query(searchData.toJSON(), function (resultStream, source) {
                     resultStream.on('result', function (path) {
-                        return resolve(path);
+                        // console.log(path);
+                        resolve(path);
+                        this._onQueryResult.dispatch(path);
                     });
                     resultStream.on('data', function (connection) {
+                        // console.log('We have received data');
                         // console.log(connection);
                         // if you're not interested anymore, you can stop the processing by doing this
                         if (stop_condition) {
@@ -37,7 +42,20 @@ export class RouteService {
                 });
         });
     }
-
+    /**
+     * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
+     * @param searchDataList list of SearchData objects
+     */
+    public queryPeriod(searchDataList: SearchData[]): Promise<any> {
+        const promiselist = [];
+         searchDataList.forEach(searchData => {
+            promiselist.push(this.query(searchData));
+        });
+        return Promise.all(promiselist);
+    }
+    public get onQueryResult(): ISimpleEvent<any> {
+        return this._onQueryResult.asEvent();
+    }
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
     }

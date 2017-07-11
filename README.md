@@ -1,4 +1,4 @@
-# OASIS front-end
+# OASIS front-end (v0.0.0)
 ### Status
 [![Build Status](https://travis-ci.org/oSoc17/oasis-frontend.png)](https://travis-ci.org/oSoc17/oasis-frontend)
 [![Build Status](https://david-dm.org/osoc17/oasis-frontend.svg)](https://david-dm.org/osoc17/oasis-frontend)
@@ -19,11 +19,6 @@ The applications uses linked open data from the iRail API, combined with histori
 Install Angular CLI
 ```
 npm install -g @angular/cli
-```
-
-Install typings
-```
-npm install -g typings
 ```
 
 ### Commands
