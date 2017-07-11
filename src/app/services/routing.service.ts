@@ -2,11 +2,13 @@ import 'rxjs/add/operator/toPromise';
 
 import {SearchData} from '../classes/searchData';
 
+import {SimpleEventDispatcher, ISimpleEvent} from 'strongly-typed-events';
+
 const Client = require('lc-client');
 
 export class RouteService {
     private planner;
-
+    private _onQueryResult = new SimpleEventDispatcher<any>();
     // example: ['http://belgianrail.linkedconnections.org/']
     constructor(entryPoints: [string]) {
         this.planner = new Client({'entrypoints': entryPoints});
@@ -17,6 +19,7 @@ export class RouteService {
             const stop_condition = false;
             this.planner.query(searchData.toJSON(), function (resultStream, source) {
                     resultStream.on('result', function (path) {
+                        this._onQueryResult.dispatch(path);
                         return resolve(path);
                     });
                     resultStream.on('data', function (connection) {
@@ -48,6 +51,9 @@ export class RouteService {
         while (ret.length < searchDataList.length) {}
         return resolve(ret);
         });
+    }
+    public get onQueryResult(): ISimpleEvent<any> {
+        return this._onQueryResult.asEvent();
     }
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
