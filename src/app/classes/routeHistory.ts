@@ -11,7 +11,7 @@ export class RouteHistory {
     }
 
     public getAvgTravelTime(): Date {
-        /* returns avg change time based on historic data */
+        /* returns avg travel time based on historic data */
         let data: number[] = [];
         for(let route of this.routes)
             data.push(route.getTotalTravelTime().valueOf());
