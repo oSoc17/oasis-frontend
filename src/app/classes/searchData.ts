@@ -33,7 +33,7 @@ export class SearchData {
     public static createPeriodicList(
         depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number = 5,
         goesForward: boolean = false): SearchData[] {
-        const dataList = SearchData[amount];
+        const dataList = [];
         const calcdate = new Date(Date.parse(startDate));
         let dateString = '';
         for (let i = 0; i < amount; i++) {
