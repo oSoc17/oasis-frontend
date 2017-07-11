@@ -28,12 +28,12 @@ export class Route {
         // TODO: return seperate values from QoE calculation
     }
 
-    public totalTravelTime() {
-        /* returns the total travel time (milliseconds) */
+    public totalTravelTime(): Date {
+        /* returns the total travel time (Date) */
         if(this.connections.length) {
             const first: Date = this.connections[0].departureTime;
             const last: Date = this.connections[this.connections.length - 1].arrivalTime;
-            return last.valueOf() - first.valueOf();
+            return new Date(last.valueOf() - first.valueOf());
         }
         return new Date(0);
     }
