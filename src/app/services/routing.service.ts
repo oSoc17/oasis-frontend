@@ -37,7 +37,18 @@ export class RouteService {
                 });
         });
     }
-
+    public queryPeriod(searchDataList: SearchData[]) {
+        return new Promise((resolve, reject) => {
+             const ret = [];
+        searchDataList.forEach(searchData => {
+            this.query(searchData).then((result) => {
+                ret.push(result);
+            });
+        });
+        while (ret.length < searchDataList.length) {}
+        return resolve(ret);
+        });
+    }
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
     }
