@@ -1,4 +1,3 @@
-import * as Chai from 'chai';
 import { RouteService } from '../src/app/services/routing.service';
 import { SearchData } from '../src/app/classes/searchData';
 import 'rxjs/add/operator/toPromise';
