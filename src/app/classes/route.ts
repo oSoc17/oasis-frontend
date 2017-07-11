@@ -81,4 +81,13 @@ export class Route {
         console.log('List of connections is empty');
         return new Date(0);
     }
+
+    public getDelay(): Date {
+        /* returns the last arrivalDelay */
+        // TODO: is the delay only defined by the last arrivalDelay? What about missed changes due to delays?
+        if(this.connections.length > 1)
+            return this.connections[this.connections.length-1].arrivalDelay;
+        console.log("List of connections is empty");
+        return new Date(0);
+    }
 }
