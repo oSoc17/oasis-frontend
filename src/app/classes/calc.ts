@@ -29,4 +29,15 @@ export class Calc {
         const stdDev = Math.sqrt(avgSquareDiff);
         return stdDev;
     }
+
+    public static clipPercentage(value: number): number {
+        /* clips given value to a percentage between 0 and 1 */
+        if (value > 1) {
+            return 1;
+        }
+        if (value < 0) {
+            return 0;
+        }
+        return value;
+    }
 }
