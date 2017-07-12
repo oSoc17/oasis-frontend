@@ -12,8 +12,8 @@ export class LanguageChooser {
   languages: string[] = this.language.getLanguages();
   currentLanguage: string = this.language.toName(Language.language);
 
-  onSelect(){
-    let selected: string = (event.target as Element).id;
+  onSelect() {
+    const selected: string = (event.target as Element).id;
     this.language.setLanguage(selected);
     //TODO: change language is options
   }

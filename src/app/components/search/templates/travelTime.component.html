@@ -2,4 +2,4 @@
 <label for="departType">{{ language.getMessage('departure') }}</label>
 <input type="radio" name="timeType" [(ngModel)]="selectedType" value="arrival" class="timeType" (change)='changeType()' id="arrivalType">
 <label for="arrivalType">{{ language.getMessage('destination') }}</label>
-<input type="time" class="time" [(ngModel)]="selectedTime" (change)='changeTime()' />
+<input type="time" class="time timepicker" [(ngModel)]="selectedTime" (change)='changeTime()' />

@@ -4,10 +4,6 @@
     width: auto;
 }
 
-footer {
-    margin-top: 25px;
-}
-
 h1 {
     text-transform: uppercase;
     font-size: 2.5rem;
@@ -21,4 +17,14 @@ h2 {
 h3 {
     text-transform: uppercase;
     font-size: 2rem;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+app-root {
+    flex: 1 0 auto;
 }
