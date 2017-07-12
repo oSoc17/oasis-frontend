@@ -15,6 +15,7 @@ export class UserPreferencesMock implements IUserPreferences {
         this.weight_DelayConsistency = 0.1;
         this.weight_AvgTravelTime = 0.1;
         this.weight_NumberOfRoutesWithinHour = 0.1;
-        this.weight_NumberOfMissedConnections = 0.4;
+        this.weight_NumberOfMissedConnections = 0.2;
+        this.weight_Price = 0.2;
     }
 }
