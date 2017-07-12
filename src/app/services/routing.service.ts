@@ -6,7 +6,13 @@ import { SimpleEventDispatcher, ISimpleEvent } from 'strongly-typed-events';
 
 const Client = require('lc-client');
 
-export class RouteService {
+export interface IRouteService {
+    onQueryResult: ISimpleEvent<any>;
+    query(searchData: SearchData): Promise<any>;
+    queryPeriod(searchDataList: SearchData[]): Promise<any[]>;
+}
+
+export class RouteService implements IRouteService {
     private planner;
     private _onQueryResult;
     // example: ['http://belgianrail.linkedconnections.org/']
