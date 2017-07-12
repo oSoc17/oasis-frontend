@@ -34,7 +34,7 @@ describe('routeHistory.ts getAvgTravelTime()', () => {
     });
 });
 
-/* getDelayConsistency test */
+/* getDelayConsistency test *//*
 describe('routeHistory.ts getDelayConsistency()', () => {
     it('should return 150,000 (2.5 min)', () => {
         // setup
@@ -56,4 +56,4 @@ describe('routeHistory.ts getDelayConsistency()', () => {
         expect(routeHistory.getDelayConsistency().valueOf()).to.equal(150000);
 
     });
-});
+});*/
