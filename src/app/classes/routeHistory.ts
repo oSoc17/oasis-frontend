@@ -1,5 +1,5 @@
 import { Route } from './route';
-import { Average } from './average';
+import { Calc } from './calc';
 
 export class RouteHistory {
     /* contains the historic data of a route */
@@ -16,7 +16,7 @@ export class RouteHistory {
         for (const route of this.routes) {
             data.push(route.getTotalTravelTime().valueOf());
         }
-        return new Date(Average.calculate(data));
+        return new Date(Calc.avg(data));
     }
 
     public getAvgChangesAmount(): number {
@@ -25,7 +25,7 @@ export class RouteHistory {
         for (const route of this.routes) {
             data.push(route.getInterMediateStopsAmount().valueOf());
         }
-        return Average.calculate(data);
+        return Calc.avg(data);
     }
 
     public getAvgDelay(): Date {
@@ -34,7 +34,7 @@ export class RouteHistory {
         for (const route of this.routes) {
             data.push(route.getDelay().valueOf());
         }
-        return new Date(Average.calculate(data));
+        return new Date(Calc.avg(data));
     }
 
     public getAvgChangeTime(): Date {
@@ -43,7 +43,7 @@ export class RouteHistory {
         for (const route of this.routes) {
             data.push(route.getAvgChangeTime().valueOf());
         }
-        return new Date(Average.calculate(data));
+        return new Date(Calc.avg(data));
     }
 
     public getDelayConsistency() {
@@ -51,7 +51,7 @@ export class RouteHistory {
         let data: number[] = [];
         for(let route of this.routes)
             data.push(route.getDelay().valueOf());
-        return new Date(Average.standardDeviation(data));
+        return new Date(Calc.stdDev(data));
     }
 
     // TODO: implement more
