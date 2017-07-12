@@ -19,7 +19,7 @@ export class Route {
             const last: Date = this.connections[this.connections.length - 1].arrivalTime;
             return new Date(last.valueOf() - first.valueOf());
         }
-        console.log('List of connections is empty');
+        // console.log('List of connections is empty');
         return new Date(0);
     }
 
@@ -28,7 +28,7 @@ export class Route {
         if (this.connections.length) {
             return this.connections.length - 1;
         }
-        console.log('List of connections is empty');
+        // console.log('List of connections is empty');
         return null;
     }
 
@@ -36,6 +36,7 @@ export class Route {
         /* returns amount of changes */
         if (this.connections.length > 1) {
             let changesAmount = 0;
+            console.log('connections: '+ this.connections.length);
             for (let i = 0; i < this.connections.length - 1; i++) {
                 if (this.connections[i].gtfstrip !== this.connections[i + 1].gtfstrip) {
                     changesAmount++;
@@ -43,7 +44,7 @@ export class Route {
             }
             return changesAmount;
         }
-        console.log('List of connections is empty');
+        // console.log('List of connections is empty');
         return 0;
     }
 
@@ -61,10 +62,10 @@ export class Route {
             if (changeAmount) {
                 return new Date(sumChangeTime / changeAmount);
             }
-            console.log('There are no train changes to be made');
+            // console.log('There are no train changes to be made');
             return new Date(0);
         }
-        console.log('List of connections is empty');
+        // console.log('List of connections is empty');
         return new Date(0);
     }
 
@@ -74,7 +75,7 @@ export class Route {
         if (this.connections.length > 1) {
             return this.connections[this.connections.length - 1].arrivalDelay;
         }
-        console.log('List of connections is empty');
+        // console.log('List of connections is empty');
         return new Date(0);
     }
 }

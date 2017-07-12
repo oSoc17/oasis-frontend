@@ -17,8 +17,8 @@ export class Connection {
         this.arrivalStop = GraphItemJson['arrivalStop'];
         this.departureTime = new Date(Date.parse(GraphItemJson['departureTime']));
         this.arrivalTime = new Date(Date.parse(GraphItemJson['arrivalTime']));
-        this.gtfstrip = GraphItemJson['gtfs:trip'];
-        this.gtfsroute = GraphItemJson['gtfs:route'];
+        this.gtfstrip = GraphItemJson['http://vocab.gtfs.org/terms#trip'];
+        this.gtfsroute = GraphItemJson['http://vocab.gtfs.org/terms#route'];
 
         if (GraphItemJson['departureDelay']) {
             this.departureDelay.setMinutes(GraphItemJson['departureDelay']);

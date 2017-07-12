@@ -8,7 +8,7 @@ export class QoE implements IQoE {
     private routeHistory: RouteHistory;
     private userPreferences: IUserPreferences;
 
-    constructor(routeHistory: RouteHistory, preference: IUserPreferences = null) {
+    constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
         this.routeHistory = routeHistory;
         this.userPreferences = preference;
     }
@@ -83,7 +83,7 @@ export class QoE implements IQoE {
         return undefined;
     }
 
-    getQoE(weights): number {
+    getQoE(): number {
         let sum = 0;
         sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
