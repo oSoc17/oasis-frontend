@@ -19,6 +19,9 @@ import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdAutocompleteModule, MaterialModule, MdInputModule, MdProgressSpinnerModule } from '@angular/material';
 
+/* custom classes */
+import { Options } from './classes/options';
+
 @NgModule({
   declarations: Components.components,
   imports: [
@@ -35,4 +38,12 @@ import { MdAutocompleteModule, MaterialModule, MdInputModule, MdProgressSpinnerM
   providers: Services.providers,
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+
+export class AppModule {
+  static options: Options = new Options();
+
+  constructor() {
+    console.log('=== Options ===');
+    AppModule.options.load();
+  }
+}
