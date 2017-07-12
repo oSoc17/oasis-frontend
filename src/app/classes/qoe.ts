@@ -1,13 +1,13 @@
 import { RouteHistory } from './routeHistory';
 import { IQoE } from '../interfaces/iQoE';
-import { IUserPreferences } from '../interfaces/iUserPreferences';
+import { IUserPreferences } from "../interfaces/iUserPreferences";
 
 export class QoE implements IQoE {
 
     private routeHistory: RouteHistory;
     private userPreferences: IUserPreferences;
 
-    constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
+    constructor(routeHistory: RouteHistory, preference: IUserPreferences = null) {
         this.routeHistory = routeHistory;
         this.userPreferences = preference;
     }
