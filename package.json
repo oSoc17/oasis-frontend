@@ -25,8 +25,6 @@
     "lc-client": "^0.1.1",
     "ldfetch": "0.0.3",
     "materialize-css": "^0.99.0",
-    "mdi": "^1.9.33",
-    "ng2-materialize": "^1.4.2",
     "rxjs": "^5.1.0",
     "strongly-typed-events": "^1.0.1",
     "zone.js": "^0.8.4"
@@ -37,7 +35,6 @@
     "@angular/language-service": "^4.0.0",
     "@types/jasmine": "2.5.45",
     "@types/jquery": "^3.2.6",
-    "@types/materialize-css": "^0.98.3",
     "@types/node": "^8.0.10",
     "codelyzer": "~3.0.1",
     "jasmine-core": "~2.6.2",

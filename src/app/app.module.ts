@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 /* Components */
 import { Components } from './components.module';
 import { AppComponent } from './components/app.component';
-import { MaterializeModule } from 'ng2-materialize';
 
 /* Services */
 import { Services } from './services.module';
@@ -21,8 +20,7 @@ import { Services } from './services.module';
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule,
-    MaterializeModule.forRoot()
+    AppRoutingModule
   ],
   providers: Services.providers,
   bootstrap: [ AppComponent ]
