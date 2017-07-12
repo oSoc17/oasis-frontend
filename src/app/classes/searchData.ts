@@ -2,14 +2,14 @@
  * formats date object into DD/MM/YYY string
  */
 export function formatDate(date: Date): string {
-    return zeroPad(date.getDay(), 2) + '/' + zeroPad(date.getMonth(), 2) + '/' + zeroPad(date.getFullYear(), 4);
+    return zeroPad(date.getDate(), 2) + '/' + zeroPad(date.getMonth() + 1, 2) + '/' + zeroPad(date.getFullYear(), 4);
 }
 /**
  * returns string of number of the specified width (or larger), padded with leading zeroes
  */
 export function zeroPad(num: number, width: number): string {
-        const zero = width - num.toString().length + 1;
-        return Array(+(zero > 0 && zero)).join('0') + num;
+    const zero = width - num.toString().length + 1;
+    return Array(+(zero > 0 && zero)).join('0') + num;
 }
 
 export class SearchData {
@@ -19,21 +19,24 @@ export class SearchData {
     public travelDate: string; // travel date in DD/MM/YYYY
     public timeType: string;   // either 'depart' or 'arrival'
 
-/**
- * returns a list of SearchData objects where the travelDate is split according to the provided parameters
- * @param depStation id of departure station
- * @param arrStation id of arrival station
- * @param travelTime traveltime in HH:MM
- * @param startDate startDate
- * @param timeType either 'departureTime' or 'arrivalTime'
- * @param period days between trips
- * @param amount amount of SearchDataObjects wanted (default = 5)
- * @param goesForward wether or not the days should be added instead of removed to the startdate (default = false)
- */
-    public static createPeriodicList (depStation, arrStation, travelTime, startDate, timeType,
-                            period: number, amount: number = 5, goesForward: boolean = false): SearchData[] {
+    /**
+     * returns a list of SearchData objects where the travelDate is split according to the provided parameters
+     * @param depStation id of departure station
+     * @param arrStation id of arrival station
+     * @param travelTime traveltime in HH:MM
+     * @param startDate startDate as 'MM/DD/YY'
+     * @param timeType either 'departureTime' or 'arrivalTime'
+     * @param period days between trips
+     * @param amount amount of SearchDataObjects wanted (default = 5)
+     * @param goesForward wether or not the days should be added instead of removed to the startdate (default = false)
+     */
+    public static createPeriodicList(depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number = 5,
+                                     goesForward: boolean = false): SearchData[] {
         const dataList = [];
         const calcdate = new Date(Date.parse(startDate));
+        if (!goesForward) {
+            period = -period;
+        }
         let dateString = '';
         for (let i = 0; i < amount; i++) {
             calcdate.setDate(calcdate.getDate() + period);

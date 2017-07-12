@@ -1,45 +1,57 @@
-import {Route} from "./route";
-import {Average} from "./average";
+import { Route } from './route';
+import { Calc } from './calc';
 
 export class RouteHistory {
     /* contains the historic data of a route */
-    public routes: Route[] = [];
+    public routes: Route[];
 
-    constructor(route: Route) {
-        this.routes.push(route);
+    constructor(routes: Route[]) {
+        this.routes = routes;
         // TODO: fill array with historic data, how?
     }
 
     public getAvgTravelTime(): Date {
         /* returns avg travel time based on historic data */
-        let data: number[] = [];
-        for(let route of this.routes)
+        const data: number[] = [];
+        for (const route of this.routes) {
             data.push(route.getTotalTravelTime().valueOf());
-            return new Date(Average.calculate(data));
+        }
+        return new Date(Calc.avg(data));
     }
 
     public getAvgChangesAmount(): number {
         /* returns avg change time based on historic data */
-        let data: number[] = [];
-        for(let route of this.routes)
+        const data: number[] = [];
+        for (const route of this.routes) {
             data.push(route.getInterMediateStopsAmount().valueOf());
-            return Average.calculate(data);
+        }
+        return Calc.avg(data);
     }
 
-    public getAvgDelay(): Date{
+    public getAvgDelay(): Date {
         /* returns avg delay based on historic data */
-        let data: number[] = [];
-        for(let route of this.routes)
+        const data: number[] = [];
+        for (const route of this.routes) {
             data.push(route.getDelay().valueOf());
-        return new Date(Average.calculate(data));
+        }
+        return new Date(Calc.avg(data));
     }
 
     public getAvgChangeTime(): Date {
         /* returns avg change time based on historic data */
+        const data: number[] = [];
+        for (const route of this.routes) {
+            data.push(route.getAvgChangeTime().valueOf());
+        }
+        return new Date(Calc.avg(data));
+    }
+
+    public getDelayConsistency() {
+        /* returns standard deviation of delays */
         let data: number[] = [];
         for(let route of this.routes)
-            data.push(route.getAvgChangeTime().valueOf());
-        return new Date(Average.calculate(data));
+            data.push(route.getDelay().valueOf());
+        return new Date(Calc.stdDev(data));
     }
 
     // TODO: implement more
