@@ -1,6 +1,6 @@
-export class Average {
+export class Calc {
 
-    public static calculate(values: number[]): number {
+    public static avg(values: number[]): number {
         /* calculates average */
         let sum = 0;
         for (const i of values) {
@@ -9,14 +9,14 @@ export class Average {
         return sum / values.length;
     }
 
-    public static recalculate(oldAverage: number, newValue: number, totalAmount: number): number {
+    public static newAvg(oldAverage: number, newValue: number, totalAmount: number): number {
         /* recalculates an old average based on a new value and the total amount of values */
         return oldAverage + (newValue - oldAverage) / totalAmount;
     }
 
-    public static standardDeviation(values: number[]): number {
+    public static stdDev(values: number[]): number {
         /* returns the standard deviation */
-        const avg = Average.calculate(values);
+        const avg = Calc.avg(values);
 
         const squareDiffs = values.map(function(value){
             let diff = value - avg;
@@ -24,7 +24,7 @@ export class Average {
             return sqrDiff;
         });
 
-        const avgSquareDiff = Average.calculate(squareDiffs);
+        const avgSquareDiff = Calc.avg(squareDiffs);
 
         const stdDev = Math.sqrt(avgSquareDiff);
         return stdDev;
