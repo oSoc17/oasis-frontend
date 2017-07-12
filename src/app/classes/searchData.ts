@@ -2,7 +2,7 @@
  * formats date object into DD/MM/YYY string
  */
 export function formatDate(date: Date): string {
-    return zeroPad(date.getDay(), 2) + '/' + zeroPad(date.getMonth(), 2) + '/' + zeroPad(date.getFullYear(), 4);
+    return zeroPad(date.getDate(), 2) + '/' + zeroPad(date.getMonth() + 1, 2) + '/' + zeroPad(date.getFullYear(), 4);
 }
 /**
  * returns string of number of the specified width (or larger), padded with leading zeroes
@@ -24,7 +24,7 @@ export class SearchData {
      * @param depStation id of departure station
      * @param arrStation id of arrival station
      * @param travelTime traveltime in HH:MM
-     * @param startDate startDate
+     * @param startDate startDate as 'MM/DD/YY'
      * @param timeType either 'departureTime' or 'arrivalTime'
      * @param period days between trips
      * @param amount amount of SearchDataObjects wanted (default = 5)
@@ -34,6 +34,9 @@ export class SearchData {
                                      goesForward: boolean = false): SearchData[] {
         const dataList = [];
         const calcdate = new Date(Date.parse(startDate));
+        if (!goesForward) {
+            period = -period;
+        }
         let dateString = '';
         for (let i = 0; i < amount; i++) {
             calcdate.setDate(calcdate.getDate() + period);
