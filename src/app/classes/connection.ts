@@ -33,7 +33,7 @@ export class Connection {
      */
     public calculateQoE(): number {
         const ret = 0;
-        // TODO: calculate QoE for this connection
+        // TODO: avg QoE for this connection
         return ret;
     }
 
