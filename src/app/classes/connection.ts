@@ -27,15 +27,4 @@ export class Connection {
             this.arrivalDelay.setMinutes(GraphItemJson['arrivalDelay']);
         }
     }
-
-    /**
-     * calculates the QoE for this object using data stored in the object
-     */
-    public calculateQoE(): number {
-        const ret = 0;
-        // TODO: avg QoE for this connection
-        return ret;
-    }
-
-    // TODO:
 }

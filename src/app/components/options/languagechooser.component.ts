@@ -15,6 +15,6 @@ export class LanguageChooser {
   onSelect() {
     const selected: string = (event.target as Element).id;
     this.language.setLanguage(selected);
-    //TODO: change language is options
+    // TODO: change language is options
   }
 }

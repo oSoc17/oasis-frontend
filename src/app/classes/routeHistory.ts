@@ -48,9 +48,10 @@ export class RouteHistory {
 
     public getDelayConsistency() {
         /* returns standard deviation of delays */
-        let data: number[] = [];
-        for(let route of this.routes)
+        const data: number[] = [];
+        for (const route of this.routes){
             data.push(route.getDelay().valueOf());
+        }
         return new Date(Calc.stdDev(data));
     }
 
