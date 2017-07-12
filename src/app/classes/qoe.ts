@@ -1,47 +1,57 @@
 import { RouteHistory } from './routeHistory';
 import { IQoE } from '../interfaces/iQoE';
+import { IUserPreferences } from '../interfaces/iUserPreferences';
 
 export class QoE implements IQoE {
 
-    routeHistory: RouteHistory;
+    private routeHistory: RouteHistory;
+    private userPreferences: IUserPreferences;
 
-    constructor(routeHistory: RouteHistory) {
+    constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
         this.routeHistory = routeHistory;
+        this.userPreferences = preference;
     }
 
-    getAvgDelay(): Date {
+    getAvgDelay(): any {
+        const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000;
+        // TODO: review QoE calculation
+        // QoE(Delay) = 1 - delay / worst case delay
+        const score = this.userPreferences.weight_AvgDelay * (1 - delay / 60);
+        return {
+            score: score,
+            value: delay
+        };
+    }
+
+    getAvgChangesAmount(): any {
         return undefined;
     }
 
-    getAvgChangesAmount(): Date {
+    getAvgChangeTime(): any {
         return undefined;
     }
 
-    getAvgChangeTime(): Date {
+    getDelayConsistency(): any {
         return undefined;
     }
 
-    getDelayConsistency(): Date {
+    getAvgTravelTime(): any {
         return undefined;
     }
 
-    getAvgTravelTime(): Date {
+    getNumberOfRoutesWithinHour(): any {
         return undefined;
     }
 
-    getNumberOfRoutesWithinHour(): number {
+    getNumberOfMissedConnections(): any {
         return undefined;
     }
 
-    getNumberOfMissedConnections(): number {
+    getPrice(): any {
         return undefined;
     }
 
-    getPrice(): number {
-        return undefined;
-    }
-
-    getQoE(weights): number {
+    getQoE(weights): any {
         return undefined;
     }
 }
