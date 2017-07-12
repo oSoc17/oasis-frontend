@@ -11,21 +11,20 @@ export class UserPreferences implements IUserPreferences {
     constructor(avgDelay: number, avgChangesAmount: number, avgChangeTime: number,
         delayConsistency: number, avgTravelTime: number,
         routenumber: number, missedConnections: number, price: number) {
-        this.weight_AvgDelay = avgDelay;
-        this.weight_AvgChangesAmount = avgChangesAmount;
-        this.weight_AvgChangeTime = avgChangeTime;
-        this.weight_DelayConsistency = delayConsistency;
-        this.weight_AvgTravelTime = avgTravelTime;
-        this.weight_NumberOfRoutesWithinHour = routenumber;
-        this.weight_NumberOfMissedConnections = missedConnections;
-        this.weight_Price = price;
+            const totinp = avgDelay + avgChangesAmount + avgChangeTime +
+            delayConsistency + avgTravelTime + routenumber + missedConnections + price;
+            this.weight_AvgDelay = avgDelay / totinp;
+            this.weight_AvgChangesAmount = avgChangesAmount / totinp;
+            this.weight_AvgChangeTime = avgChangeTime / totinp;
+            this.weight_DelayConsistency = delayConsistency / totinp;
+            this.weight_AvgTravelTime = avgTravelTime / totinp;
+            this.weight_NumberOfRoutesWithinHour = routenumber / totinp;
+            this.weight_NumberOfMissedConnections = missedConnections / totinp;
+            this.weight_Price = price / totinp;
 
-        const tot = this.weight_AvgChangesAmount + this.weight_AvgChangeTime
-                    + this.weight_AvgDelay + this.weight_AvgTravelTime
-                    + this.weight_DelayConsistency + this.weight_NumberOfMissedConnections
-                    + this.weight_NumberOfRoutesWithinHour + this.weight_Price;
-        if (tot !== 1) {
-            throw new Error('total should be 1');
-        }
+            const tot = this.weight_AvgChangesAmount + this.weight_AvgChangeTime
+                        + this.weight_AvgDelay + this.weight_AvgTravelTime
+                        + this.weight_DelayConsistency + this.weight_NumberOfMissedConnections
+                        + this.weight_NumberOfRoutesWithinHour + this.weight_Price;
         }
 }
