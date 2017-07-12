@@ -1,21 +1,21 @@
 export interface IQoE {
 
-    getAvgDelay(): Date
+    getAvgDelay(): any
 
-    getAvgChangesAmount(): Date
+    getAvgChangesAmount(): any
 
-    getAvgChangeTime(): Date
+    getAvgChangeTime(): any
 
-    getDelayConsistency(): Date
+    getDelayConsistency(): any
 
-    getAvgTravelTime(): Date
+    getAvgTravelTime(): any
 
-    getNumberOfRoutesWithinHour(): number
+    getNumberOfRoutesWithinHour(): any
 
-    getNumberOfMissedConnections(): number
+    getNumberOfMissedConnections(): any
 
-    getPrice(): number
+    getPrice(): any
 
-    getQoE(weights): number
+    getQoE(weights): any
 
 }
