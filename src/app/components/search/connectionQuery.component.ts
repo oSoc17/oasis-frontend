@@ -33,7 +33,7 @@ export class ConnectionQuery {
             this.error = this.language.getMessage('errEqualStations');
         } else {
             this.searchData = new SearchData(departSt.id, arriveSt.id, this.travelTime.selectedTime,
-                                    this.travelDate.selectedDate, this.travelTime.selectedType);
+                                    new Date(), this.travelTime.selectedType);
 
             this.router.navigate(['/connections', this.searchData]);
         }
