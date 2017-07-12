@@ -1,8 +1,8 @@
-import { QoE } from "../app/classes/qoe";
-import { UserPreferencesMock } from "../app/classes/userprefs.mock";
-import { RouteHistory } from "../app/classes/routeHistory";
-import { instance, mock, when } from "ts-mockito";
-import { Route } from "../app/classes/route";
+import { QoE } from '../app/classes/qoe';
+import { UserPreferencesMock } from '../app/classes/userprefs.mock';
+import { RouteHistory } from '../app/classes/routeHistory';
+import { instance, mock, when } from 'ts-mockito';
+import { Route } from '../app/classes/route';
 
 /* Constructor test */
 describe('QoE.ts constructor', () => {
