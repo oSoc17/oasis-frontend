@@ -6,7 +6,13 @@ import { SimpleEventDispatcher, ISimpleEvent } from 'strongly-typed-events';
 
 const Client = require('lc-client');
 
-export class RouteService {
+export interface IRouteService {
+    onQueryResult: ISimpleEvent<any>;
+    query(searchData: SearchData): Promise<any>;
+    queryPeriod(searchDataList: SearchData[]): Promise<any[]>;
+}
+
+export class RouteService implements IRouteService {
     private planner;
     private _onQueryResult;
     // example: ['http://belgianrail.linkedconnections.org/']
@@ -46,7 +52,7 @@ export class RouteService {
      * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
      * @param searchDataList list of SearchData objects
      */
-    public queryPeriod(searchDataList: SearchData[]): Promise<any> {
+    public queryPeriod(searchDataList: SearchData[]): Promise<any[]> {
         const promiselist = [];
          searchDataList.forEach(searchData => {
             promiselist.push(this.query(searchData));
