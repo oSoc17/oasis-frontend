@@ -3,5 +3,5 @@
 
 <!-- Dropdown Structure -->
 <ul id='languageDropdown' class='dropdown-content'>
-  <li *ngFor="let lang of languages"><a href="#!" (click)='onSelect()' id="{{ lang['tag'] }}">{{ lang['name'] }}</a></li>
+  <li *ngFor="let lang of languages"><a (click)='onSelect()' id="{{ lang['tag'] }}">{{ lang['name'] }}</a></li>
 </ul>

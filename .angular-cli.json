@@ -18,15 +18,8 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "styles.scss",
-        "./assets/styles/materialize.min.css",
-        "./assets/styles/materialdesignicons.min.css"
-      ],
-      "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
-        "./assets/js/materialize.min.js"
-      ],
+      "styles": ["styles.scss"],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

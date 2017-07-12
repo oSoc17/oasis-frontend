@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
@@ -14,13 +14,23 @@ import { AppComponent } from './components/app.component';
 /* Services */
 import { Services } from './services.module';
 
+/* Material by Angular */
+import 'hammerjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdAutocompleteModule, MaterialModule, MdInputModule, MdProgressSpinnerModule } from '@angular/material';
+
 @NgModule({
   declarations: Components.components,
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    MaterialModule,
+    MdAutocompleteModule,
+    BrowserAnimationsModule,
+    MdProgressSpinnerModule
   ],
   providers: Services.providers,
   bootstrap: [ AppComponent ]
