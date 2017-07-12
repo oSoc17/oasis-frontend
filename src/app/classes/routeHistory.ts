@@ -46,5 +46,13 @@ export class RouteHistory {
         return new Date(Average.calculate(data));
     }
 
+    public getDelayConsistency() {
+        /* returns standard deviation of delays */
+        let data: number[] = [];
+        for(let route of this.routes)
+            data.push(route.getDelay().valueOf());
+        return new Date(Average.standardDeviation(data));
+    }
+
     // TODO: implement more
 }
