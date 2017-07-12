@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-import { Connection } from '../src/app/classes/connection';
+import { Connection } from '../app/classes/connection';
 
 describe('Connection.ts: Connection class constructor test', () => {
     // setup
@@ -13,39 +12,39 @@ describe('Connection.ts: Connection class constructor test', () => {
     const connection = new Connection(json);
     // assertions
     it('id should be #1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710', () => {
-        expect(connection.id).to.equal('#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710');
+        expect(connection.id).toEqual('#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710');
     });
 
     it('type should be Connection', () => {
-        expect(connection.type).to.equal('Connection');
+        expect(connection.type).toEqual('Connection');
     });
 
     it('departurestop should be http://irail.be/stations/NMBS/008814340', () => {
-        expect(connection.departureStop).to.equal('http://irail.be/stations/NMBS/008814340');
+        expect(connection.departureStop).toEqual('http://irail.be/stations/NMBS/008814340');
     });
 
     it('arrivalstop should be http://irail.be/stations/NMBS/008814357', () => {
-        expect(connection.arrivalStop).to.equal('http://irail.be/stations/NMBS/008814357');
+        expect(connection.arrivalStop).toEqual('http://irail.be/stations/NMBS/008814357');
     });
 
     it('departuretime should be 2017-07-10T09:30:00.000Z', () => {
-        expect(connection.departureTime.getTime()).to.equal(new Date(Date.parse('2017-07-10T09:30:00.000Z')).getTime());
+        expect(connection.departureTime.getTime()).toEqual(new Date(Date.parse('2017-07-10T09:30:00.000Z')).getTime());
     });
 
     it('arrivaltime should be 2017-07-10T09:30:00.000Z', () => {
-        expect(connection.arrivalTime.getTime()).to.equal(new Date(Date.parse('2017-07-10T09:30:00.000Z')).getTime());
+        expect(connection.arrivalTime.getTime()).toEqual(new Date(Date.parse('2017-07-10T09:30:00.000Z')).getTime());
     });
 
     it('trip should be http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710', () => {
-        expect(connection.gtfstrip).to.equal('http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710');
+        expect(connection.gtfstrip).toEqual('http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710');
     });
 
     it('route should be http://irail.be/routes/51', () => {
-        expect(connection.gtfsroute).to.equal('http://irail.be/routes/51');
+        expect(connection.gtfsroute).toEqual('http://irail.be/routes/51');
     });
 
     it('departureDelay should be 0', () => {
-        expect(connection.departureDelay.getMinutes()).to.equal(new Date(0).getMinutes());
+        expect(connection.departureDelay.getMinutes()).toEqual(new Date(0).getMinutes());
     });
 
 
@@ -63,7 +62,7 @@ describe('Connection.ts: Connection class constructor test', () => {
     const connection = new Connection(json);
     // assertions
     it('departureDelay should be 10', () => {
-        expect(connection.departureDelay.getMinutes()).to.equal(10);
+        expect(connection.departureDelay.getMinutes()).toEqual(10);
     });
 
 
