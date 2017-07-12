@@ -56,6 +56,7 @@ export class Route {
         /* returns amount of changes */
         if (this.connections.length > 1) {
             let changesAmount = 0;
+            console.log('connections: '+ this.connections.length);
             for (let i = 0; i < this.connections.length - 1; i++) {
                 if (this.connections[i].gtfstrip !== this.connections[i + 1].gtfstrip) {
                     changesAmount++;
