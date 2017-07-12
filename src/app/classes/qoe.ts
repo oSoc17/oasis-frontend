@@ -17,7 +17,7 @@ export class QoE implements IQoE {
         const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000; // in minutes
         const weight: number = this.userPreferences.weight_AvgDelay;
         // QoE(delay) = 1 - delay / worst case delay
-        const score = Calc.clipPercentage(weight * (1 - delay / 60));
+        const score = weight * Calc.clipPercentage(1 - delay / 60);
         return {
             score: score,
             value: delay
@@ -28,7 +28,7 @@ export class QoE implements IQoE {
         const changes: number = this.routeHistory.getAvgChangesAmount();
         const weight: number = this.userPreferences.weight_AvgChangesAmount;
         // QoE(changes) = 1 - changes / worst case changes
-        const score: number = Calc.clipPercentage(weight * (1 - changes / 5));
+        const score: number = weight * Calc.clipPercentage(1 - changes / 5);
         return {
             score: score,
             value: changes
@@ -39,7 +39,7 @@ export class QoE implements IQoE {
         const changeTime: number = this.routeHistory.getAvgChangeTime().valueOf() / 60000; // in minutes
         const weight: number = this.userPreferences.weight_AvgChangeTime;
         // QoE(changeTime) = 0 if less than 3 min., otherwise compare to 20 min.
-        const score: number = Calc.clipPercentage(weight * (changeTime < 3 ? 0 : 1 - ((changeTime - 3) / 17)));
+        const score: number = weight * Calc.clipPercentage(changeTime < 3 ? 0 : 1 - ((changeTime - 3) / 17));
         return {
             score: score,
             value: changeTime
@@ -50,7 +50,7 @@ export class QoE implements IQoE {
         const delayConsistency: number = this.routeHistory.getDelayConsistency().valueOf() / 60000; // in minutes
         const weight: number = this.userPreferences.weight_DelayConsistency;
         // QoE(stdDev) = 1 - stdDev / worst case stdDev
-        const score = Calc.clipPercentage(weight * (1 - delayConsistency / 60));
+        const score = weight * Calc.clipPercentage(1 - delayConsistency / 60);
         return {
             score: score,
             value: delayConsistency
@@ -61,7 +61,7 @@ export class QoE implements IQoE {
         const travelTime: number = this.routeHistory.getAvgTravelTime().valueOf() / 60000; // in minutes
         const weight: number = this.userPreferences.weight_AvgTravelTime;
         // QoE(travelTime) = TODO: figure out formula
-        const score = Calc.clipPercentage(weight * (travelTime / 60));
+        const score = weight * Calc.clipPercentage(travelTime / 60);
         return {
             score: 0,
             value: travelTime
