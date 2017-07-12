@@ -1,7 +1,9 @@
-export class QoE {
-  delay: number;
+import { RouteHistory } from './routeHistory';
 
-  constructor(delay: number) {
-    this.delay = delay;
-  }
+export class QoE {
+    routeHistory: RouteHistory;
+
+    constructor(routeHistory: RouteHistory) {
+        this.routeHistory = routeHistory;
+    }
 }

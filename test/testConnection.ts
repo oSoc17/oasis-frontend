@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import {Connection} from '../src/app/classes/connection';
+import { Connection } from '../src/app/classes/connection';
 
-describe('Connection.ts: Connection class constructor test' , () => {
+describe('Connection.ts: Connection class constructor test', () => {
     // setup
     const dummyjson = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710"'
         + ',"@type": "Connection","departureStop": "http://irail.be/stations/NMBS/008814340","arrivalStop": '
@@ -51,7 +51,7 @@ describe('Connection.ts: Connection class constructor test' , () => {
 
 });
 
-describe('Connection.ts: Connection class constructor test' , () => {
+describe('Connection.ts: Connection class constructor test', () => {
     // setup
     const dummyjson = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710"'
         + ',"@type": "Connection","departureStop": "http://irail.be/stations/NMBS/008814340","arrivalStop": '
