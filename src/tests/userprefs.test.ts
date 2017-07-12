@@ -1,7 +1,6 @@
-import {expect} from 'chai';
-import {UserPreferencesMock} from '../src/app/classes/userprefs.mock';
-import {IUserPreferences} from '../src/app/interfaces/iUserPreferences';
-import {UserPreferences} from '../src/app/classes/userprefs';
+import {UserPreferencesMock} from '../app/classes/userprefs.mock';
+import {IUserPreferences} from '../app/interfaces/iUserPreferences';
+import {UserPreferences} from '../app/classes/userprefs';
 
 describe('testing UserPreferences interface class', () => {
     let prefs: IUserPreferences;
@@ -15,7 +14,7 @@ describe('testing UserPreferences interface class', () => {
                      + prefs.weight_NumberOfRoutesWithinHour
                      + prefs.weight_Price;
         it('should total to 1', () => {
-            expect(tot).to.equal(1);
+            expect(tot).toEqual(1);
         });
 });
 
@@ -30,7 +29,7 @@ describe('testing UserPrreferences constructor', () => {
                      + prefs.weight_NumberOfRoutesWithinHour
                      + prefs.weight_Price;
         it('should total to 1', () => {
-            expect(Math.round(tot)).to.equal(1);
+            expect(Math.round(tot)).toEqual(1);
         });
 });
 
