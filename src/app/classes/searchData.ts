@@ -75,13 +75,16 @@ export class SearchData {
             'departureStop': this.depStation
         };
 
+        json['departureTime'] = datetime;
+
+        /* TODO: Make arrivalTime possible with lc-client update
         switch (this.timeType) {
             case 'arrival':
                 json['arrivalTime'] = datetime;
                 break;
             default:
                 json['departureTime'] = datetime;
-        }
+        }*/
 
         return json;
     }
