@@ -35,14 +35,25 @@ export class UserPreferences implements IUserPreferences {
             + this.avgDelay + this.avgTravelTime
             + this.delayConsistency + this.numberOfMissedConnections
             + this.numberOfRoutesWithinHour + this.price;
-        this.avgDelay /= total;
-        this.avgChangesAmount /= total;
-        this.avgChangeTime /= total;
-        this.delayConsistency /= total;
-        this.avgTravelTime /= total;
-        this.numberOfRoutesWithinHour /= total;
-        this.numberOfMissedConnections /= total;
-        this.price /= total;
+        if (total) {
+            this.avgDelay /= total;
+            this.avgChangesAmount /= total;
+            this.avgChangeTime /= total;
+            this.delayConsistency /= total;
+            this.avgTravelTime /= total;
+            this.numberOfRoutesWithinHour /= total;
+            this.numberOfMissedConnections /= total;
+            this.price /= total;
+        } else {
+            this.avgDelay = 0.125;
+            this.avgChangesAmount = 0.125;
+            this.avgChangeTime = 0.125;
+            this.delayConsistency = 0.125;
+            this.avgTravelTime = 0.125;
+            this.numberOfRoutesWithinHour = 0.125;
+            this.numberOfMissedConnections = 0.125;
+            this.price = 0.125;
+        }
     }
 
     get weight_AvgDelay() {
