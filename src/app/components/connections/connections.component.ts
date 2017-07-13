@@ -25,12 +25,13 @@ export class Connections implements OnInit {
         private location: Location) {}
 
     logParams(search: SearchData) {
+        console.log(search);
         if (search.arrStation && search.depStation && search.timeType && search.travelDate && search.travelTime) {
             console.log('we got a search request!');
             console.log(search);
-            console.log('Log available routes!');
             this.IRailService.getRoutesReadable(search).then((data) => {
                 console.log(data);
+                console.log('Log available routes!');
                 // this.error = JSON.stringify(data);
                 this.loading = false;
             }).catch(e => {
