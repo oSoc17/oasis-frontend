@@ -14,10 +14,10 @@ export class LanguageChooser {
   languages: string[] = this.language.getLanguages();
   currentLanguage: string = this.language.toName(Language.language);
 
-  onSelect() {
-    const selected: string = (event.target as Element).id;
-    this.language.setLanguage(selected);
-    AppModule.options.language = this.language.setLanguage(selected);
+  onSelect(lang) {
+    const tag = lang['tag'];
+    this.currentLanguage = this.language.toName(tag);
+    AppModule.options.language = this.language.setLanguage(tag);
     AppModule.options.save();
     location.reload();
   }
