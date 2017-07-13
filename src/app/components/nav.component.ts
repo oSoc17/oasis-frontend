@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { AppComponent } from './app.component';
 
 @Component({
     selector: 'nav-root',
@@ -7,11 +8,11 @@ import { Router } from '@angular/router';
 })
 
 export class NavComponent {
-    constructor(private router: Router) { }
+    constructor() { }
 
     clickSettings() {
         console.log('open settings');
 
-        this.router.navigate(['options']);
+        AppComponent.setPage(2);
     }
 }
