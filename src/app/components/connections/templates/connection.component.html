@@ -6,11 +6,9 @@
         <strong>{{ arrival }}</strong>
     </aside>
     <aside class="col s4">
-        <mz-progress
-            [backgroundClass]="'blue lighten-4'"
-            [percentage]="(percentage)"
-            [progressClass]="'blue'">
-            </mz-progress>
+        <div class="progress">
+            <div class="determinate" {{ `style="width: ${percentage}%"` }}></div>
+        </div>
     </aside>
     <aside class="col s2">
         <a (click)="getDetails()">{{ language.getMessage('details') }} ></a>

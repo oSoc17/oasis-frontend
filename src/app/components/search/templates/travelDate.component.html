@@ -1,1 +1,32 @@
-<input type="date" (input)="changeDate(value)" class="departDate" [(ngModel)]="selectedDate" />
+<div class="row">
+    <div class="col s1 day">M</div>
+    <div class="col s1 day">T</div>
+    <div class="col s1 day">W</div>
+    <div class="col s1 day">T</div>
+    <div class="col s1 day">F</div>
+    <div class="col s1 day">S</div>
+    <div class="col s1 day">S</div>
+</div>
+<div class="row checks">
+    <div class="col s1 day" (click)="clickDay(0)" [ngClass]="selectedDays[0] ? 'active' : ''">
+        <i class="mdi mdi-check"></i>
+    </div>
+    <div class="col s1 day" (click)="clickDay(1)" [ngClass]="selectedDays[1] ? 'active' : ''">
+        <i class="mdi mdi-check"></i>
+    </div>
+    <div class="col s1 day" (click)="clickDay(2)" [ngClass]="selectedDays[2] ? 'active' : ''">
+        <i class="mdi mdi-check"></i>
+    </div>
+    <div class="col s1 day" (click)="clickDay(3)" [ngClass]="selectedDays[3] ? 'active' : ''">
+        <i class="mdi mdi-check"></i>
+    </div>
+    <div class="col s1 day" (click)="clickDay(4)" [ngClass]="selectedDays[4] ? 'active' : ''">
+        <i class="mdi mdi-check"></i>
+    </div>
+    <div class="col s1 day" (click)="clickDay(5)" [ngClass]="selectedDays[5] ? 'active' : ''">
+        <i class="mdi mdi-check"></i>
+    </div>
+    <div class="col s1 day" (click)="clickDay(6)" [ngClass]="selectedDays[6] ? 'active' : ''">
+        <i class="mdi mdi-check"></i>
+    </div>
+</div>

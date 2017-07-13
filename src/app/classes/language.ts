@@ -1,5 +1,13 @@
+import { AppModule } from '../app.module';
+
 export class Language {
     public static language = 'en_GB';
+
+    constructor() {
+        if (AppModule.options.language) {
+            this.setLanguage(AppModule.options.language);
+        }
+    }
 
     getLanguageData(): string {
         // returns locales/[currentLanguage].json
@@ -35,9 +43,10 @@ export class Language {
     setLanguage(tag: string) {
         // checks if language appears in locales/languages.json and selects if so
         const languages = this.getLanguages();
-        for(let pair of languages) {
-            if(pair['tag'] == tag) {
+        for (const pair of languages) {
+            if (pair['tag'] === tag) {
                 Language.language = tag;
+                return tag;
             }
         }
     }
@@ -45,8 +54,8 @@ export class Language {
     toTag(name: string): string {
         // returns ISO tag for a language name
         const languages: string[] = this.getLanguages();
-        for(let pair of languages) {
-            if(pair['name'] == name) {
+        for (const pair of languages) {
+            if (pair['name'] === name) {
                 return pair['tag'];
             }
         }
@@ -56,9 +65,9 @@ export class Language {
     toName(tag: string): string {
         // returns a readable name for the language ISO tag
         const languages: string[] = this.getLanguages();
-        for (let pair of languages) {
-            if (pair["tag"] == tag) {
-                return pair["name"];
+        for (const pair of languages) {
+            if (pair['tag'] === tag) {
+                return pair['name'];
             }
         }
         return null;

@@ -1,0 +1,20 @@
+.row {
+    margin: 0;
+}
+
+.day {
+    background: #29B6F6;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.checks .day {
+    background: #ffffff;
+    border: 1px solid #29B6F6;
+}
+
+.checks .active {
+    background: #29B6F6;
+}

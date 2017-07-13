@@ -1,12 +1,87 @@
-<mz-spinner
-  [color]="'blue'"
-  [size]="'big'" *ngIf="loading">
-</mz-spinner>
+<div class="preloader-wrapper big active" *ngIf="loading && !error">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
 
-<h3>{{ error }}</h3>
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+
+<h3 *ngIf="error">ERROR: {{ error }}</h3>
 
 <div *ngIf="!loading && !error">
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
+
+  <ul *ngIf="this.qoeResults">
+    <li><h5>{{ language.getMessage('qoe') }}: {{ toPercentage( qoeResults.getQoE()) }}%</h5>
+      <div class="progress">
+        <div class="determinate" [ngStyle]="qualityOfExperienceStyle"></div>
+      </div>
+    </li>
+    <li><h5>{{ language.getMessage('avgDelay') }}</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgDelay().score) }} %</p>
+      <p><i class="mdi mdi-clock"></i> {{ toTime(qoeResults.getAvgDelay().value.valueOf()) }}</p>
+    </li>
+    <li><h5>{{ language.getMessage('avgChanges') }}</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgChangesAmount().score) }} %</p>
+      <p><i class="mdi mdi-walk"></i> {{ qoeResults.getAvgChangesAmount().value }}</p>
+    </li>
+    <li><h5>{{ language.getMessage('changeTime') }}</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgChangeTime().score) }} %</p>
+      <p><i class="mdi mdi-clock"></i> {{ toTime(qoeResults.getAvgChangeTime().value.valueOf()) }}</p>
+    </li>
+    <li><h5>{{ language.getMessage('delayConsistency') }}</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getDelayConsistency().score) }} %</p>
+      <p><i class="mdi mdi-chart-line"></i> {{ qoeResults.getDelayConsistency().value.valueOf() }}</p>
+    </li>
+    <li><h5>{{ language.getMessage('avgTravelTime') }}</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgTravelTime().score) }} %</p>
+      <p><i class="mdi mdi-clock"></i> {{ toTime(qoeResults.getAvgTravelTime().value.valueOf()) }}</p>
+    </li>
+    <li><h5>{{ language.getMessage('routesPerHour') }}</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(this.qoeResults.getNumberOfRoutesWithinHour().score) }} %</p>
+      <p><i class="mdi mdi-train"></i> {{ this.qoeResults.getNumberOfRoutesWithinHour().value }}</p>
+    </li>
+    <li><h5>{{ language.getMessage('missedConnections') }}</h5>
+      <p><i class="mdi mdi-link-variant-off"></i> {{ this.qoeResults.getNumberOfMissedConnections().value }}</p>
+    </li>
+  </ul>
+
+
+  <!-- <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
   <section class="row">
     <aside class="col s3">
       <h5>{{ language.getMessage('departure') }}</h5>
@@ -22,5 +97,5 @@
   <connection></connection>
   <connection></connection>
   <connection></connection>
-  <connection></connection>
+  <connection></connection> -->
 </div>

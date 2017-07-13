@@ -1,22 +1,5 @@
-<mz-dropdown
-  [id]="'dropdown-demo'"
-  [align]="'right'"
-  [constrainWidth]="true"
-  [dropdownButtonId]="'btn-dropdown-demo'"
-  [gutter]="true"
-  [inDuration]="300"
-  [outDuration]="300"
-  [stopPropagation]="true"
->
-  <li *ngFor="let lang of languages">
-    <mz-dropdown-item ><a href="#!" (click)='onSelect()' id="{{ lang['tag'] }}">{{ lang['name'] }}</a></mz-dropdown-item>
-  </li>
-
-</mz-dropdown>
-<a mz-button id="btn-dropdown-demo" href="#">
-  {{ currentLanguage }}
-  <i mz-icon-mdi
-    [align]="'right'"
-    [icon]="'menu-down'"
-    [size]="'18px'"></i>
-</a>
+<h4>{{ language.getMessage('language') }}</h4>
+<button md-button [mdMenuTriggerFor]="langmenu">{{ currentLanguage }}</button>
+<md-menu #langmenu="mdMenu">
+  <button md-menu-item *ngFor="let lang of languages" (click)='onSelect(lang)'>{{ lang['name'] }}</button>
+</md-menu>

@@ -1,4 +1,4 @@
-<section class='connquery'>
+<section class='connquery card-panel'>
   <h4>{{ language.getMessage('searchHeader') }}</h4>
   <label>{{ language.getMessage('departure') }}</label><stationlist #departure></stationlist>
   <label>{{ language.getMessage('destination') }}</label><stationlist #arrival></stationlist>
@@ -6,13 +6,13 @@
   <label>{{ language.getMessage('time') }}</label>
   <traveltime></traveltime>
 
-  <label>Date</label>
+  <label>{{ language.getMessage('date') }}</label>
   <traveldate></traveldate>
-    
-  <p>{{ error }}</p>
 
-  <button mz-button (click)='clickCalculate()'>
+  <p>{{ error }}</p>
+  <button class="btn waves-effect waves-light" type="submit" name="action" (click)='clickCalculate()'>
     {{ language.getMessage('showAlts') }}
+    <i class="mdi mdi-send"></i>
   </button>
   <div class="clearfix"></div>
 </section>
