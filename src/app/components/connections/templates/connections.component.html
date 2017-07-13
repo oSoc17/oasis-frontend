@@ -76,7 +76,12 @@
       <p><i class="mdi mdi-train"></i> {{ this.qoeResults.getNumberOfRoutesWithinHour().value }}</p>
     </li>
     <li><h5>Missed connections</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(this.qoeResults.getNumberOfMissedConnections().score) }} %</p>
       <p><i class="mdi mdi-link-variant-off"></i> {{ this.qoeResults.getNumberOfMissedConnections().value }}</p>
+    </li>
+    <li><h5>Price</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(this.qoeResults.getPrice().score) }} %</p>
+      <p><i class="mdi mdi-cash-multiple"></i>€ {{ this.qoeResults.getPrice().value }} / min.</p>
     </li>
   </ul>
 
