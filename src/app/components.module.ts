@@ -10,6 +10,7 @@ import { Options } from './components/options/options.component';
 import { LanguageChooser } from './components/options/languagechooser.component';
 import { ConnectionDetail } from './components/connections/connectionDetail.component';
 import { NavComponent } from './components/nav.component';
+import { QoESliderComponent } from './components/options/qoeSlider.component';
 
 export class Components {
     public static components = [
@@ -23,6 +24,7 @@ export class Components {
         Options,
         LanguageChooser,
         ConnectionDetail,
-        NavComponent
+        NavComponent,
+        QoESliderComponent
     ];
 }
