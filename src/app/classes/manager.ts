@@ -7,6 +7,7 @@ import { RouteHistory } from './routeHistory';
 import { RouteMockService } from '../services/routing.mock.service';
 import { environment } from '../../environments/environment';
 import { UserPreferencesMock } from './userprefs.mock';
+import { UserPreferences } from './userprefs';
 
 export class Manager {
 
@@ -25,7 +26,7 @@ export class Manager {
                     }));
                 }));
             })
-            .then((routeHistory) => new QoE(routeHistory, new UserPreferencesMock())); // TODO: change for production
+            .then((routeHistory) => new QoE(routeHistory, new UserPreferences())); // TODO: change for production
     }
 
 }
