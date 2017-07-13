@@ -14,5 +14,21 @@
     "back": "Go back",
     "qualityofexperience": "Quality of Experience",
     "station": "Station",
-    "platform": "Platform"
+    "platform": "Platform",
+    "date": "Date",
+    "qoe": "Quality Of Experience",
+    "avgDelay": "Average Delay",
+    "avgChanges": "Average amount of Changes",
+    "changeTime": "Average time for a platform change",
+    "delayConsistency": "Delay consistency",
+    "avgTravelTime": "Average Travel Time",
+    "routesPerHour": "Routes per hour",
+    "missedConnections": "Possibly missed connections due to delays",
+    "options": "Options",
+    "language": "Language",
+    "delay": "Delay",
+    "amountOfChanges": "Amount of changes",
+    "travelTime": "Travel time",
+    "optMissedConnections": "Missed Connections",
+    "price": "Price"
 }
