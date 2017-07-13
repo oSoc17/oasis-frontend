@@ -4,9 +4,6 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-/* Routing */
-import { AppRoutingModule } from './app-routing.module';
-
 /* Components */
 import { Components } from './components.module';
 import { AppComponent } from './components/app.component';
@@ -29,7 +26,6 @@ import { Options } from './classes/options';
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     MaterialModule,
     MdAutocompleteModule,
     BrowserAnimationsModule,

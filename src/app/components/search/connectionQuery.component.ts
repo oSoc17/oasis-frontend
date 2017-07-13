@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
 
 import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
@@ -21,12 +20,11 @@ export class ConnectionQuery {
     @ViewChild('arrival') arrStation: StationList;
     @ViewChild(TravelTime) travelTime: TravelTime;
     @ViewChild(TravelDate) travelDate: TravelDate;
-    @Output() routeUpdated = new EventEmitter();
     searchData: SearchData[];
     error: string;
     language: Language = new Language();
 
-    constructor(private router: Router) {
+    constructor() {
     }
 
     clickCalculate() {
@@ -43,13 +41,12 @@ export class ConnectionQuery {
                     if (this.travelDate.selectedDays['' + i]) {
                         this.searchData = this.searchData.concat(
                             SearchData.createPeriodicList(departSt.id, arriveSt.id, this.travelTime.selectedTime,
-                                GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 1 ));
+                                GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 1));
                     }
             }
 
             AppComponent.searchData = this.searchData;
-
-            this.router.navigate(['/connections']);
+            AppComponent.setPage(1);
         }
     }
 }
