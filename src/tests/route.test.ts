@@ -26,7 +26,6 @@ describe('Route.ts connections', () => {
     });
 });
 
-
 /* totalTravelTime test */
 describe('Route.ts totalTravelTime()', () => {
     it('Should return 20 minutes', () => {

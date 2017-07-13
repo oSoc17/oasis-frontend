@@ -6,7 +6,7 @@ import { Connection } from './connection';
 import { RouteHistory } from './routeHistory';
 import { RouteMockService } from '../services/routing.mock.service';
 import { environment } from '../../environments/environment';
-import { UserPreferencesMock } from "./userprefs.mock";
+import { UserPreferencesMock } from './userprefs.mock';
 
 export class Manager {
 
