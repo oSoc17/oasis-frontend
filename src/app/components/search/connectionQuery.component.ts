@@ -32,11 +32,20 @@ export class ConnectionQuery {
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;
-        console.log(!(arriveSt && departSt));
-        console.log(arriveSt);
-        console.log(departSt);
-        if (!(arriveSt && departSt) || arriveSt.id === departSt.id) {
+        if (!(arriveSt && departSt)) {
+            this.error = this.language.getMessage('errNoStations');
+        } else if ( arriveSt.id === departSt.id) {
             this.error = this.language.getMessage('errEqualStations');
+        } else if (this.travelTime.selectedTime === '') {
+            this.error = this.language.getMessage('errNoTime');
+        } else if (!(this.travelDate.selectedDays['0']
+                    || this.travelDate.selectedDays['1']
+                    || this.travelDate.selectedDays['2']
+                    || this.travelDate.selectedDays['3']
+                    || this.travelDate.selectedDays['4']
+                    || this.travelDate.selectedDays['5']
+                    || this.travelDate.selectedDays['6'])) {
+            this.error = this.language.getMessage('errNoDays');
         } else {
             this.searchData = []
             for (let i = 0; i < 7; i++) {

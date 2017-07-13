@@ -55,6 +55,5 @@ describe('QoE.ts', () => {
       console.log(q, 'qoe');
     expect( '' + q !== '' + NaN).toBe(true);
     })
-
   });
 });
