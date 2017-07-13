@@ -1,8 +1,5 @@
-<!-- Dropdown Trigger -->
 <h4>Language</h4>
-<a class='dropdown-button btn' href='#' data-activates='languageDropdown'>{{ currentLanguage }}</a>
-
-<!-- Dropdown Structure -->
-<ul id='languageDropdown' class='dropdown-content'>
-  <li *ngFor="let lang of languages"><a (click)='onSelect()' id="{{ lang['tag'] }}">{{ lang['name'] }}</a></li>
-</ul>
+<button md-button [mdMenuTriggerFor]="langmenu">{{ currentLanguage }}</button>
+<md-menu #langmenu="mdMenu">
+  <button md-menu-item *ngFor="let lang of languages" (click)='onSelect(lang)'>{{ lang['name'] }}</button>
+</md-menu>

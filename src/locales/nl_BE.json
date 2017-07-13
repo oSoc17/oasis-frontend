@@ -1,6 +1,6 @@
 {
   "searchHeader": "Welke route wilt u nemen?",
-  "showAlts": "Toon alternatieven",
+  "showAlts": "Bereken gebruikservaring",
   "time": "Tijdstip",
   "departure": "Vertrek",
   "destination": "Bestemming",
@@ -8,10 +8,10 @@
   "errNoStations": "er moet zowel een vertrek- en eindstation gekozen zijn",
   "errNoTime": "selecteer een tijd",
   "errNoDays": "selecteer minstens één dag van de week",
-  "fillEntireSearchForm": "Gelieve het formulier volledig in te vullen.",
+  "fillEntireSearchForm": "gelieve het formulier volledig in te vullen.",
   "noConnections": "Geen verbinding gevonden.",
   "details": "Details",
-  "back": "Ga terug",
+  "back": "Terug",
   "qualityofexperience": "Gebruikservaring",
   "station": "Station",
   "platform": "Perron"
