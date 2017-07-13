@@ -13,7 +13,7 @@ export class Cache {
     constructor(private router: Router) {
         /* A solution for losing cache @routing? */
         this.router.events.subscribe((e) => {
-            this.addItem('test', 'test').then().catch(e => console.log(e));
+            this.addItem('test', 'test').then().catch(er => console.log(er));
             if (e instanceof NavigationStart) {
                 console.log('Redirecting to a page');
                 if (typeof localStorage !== 'undefined') {

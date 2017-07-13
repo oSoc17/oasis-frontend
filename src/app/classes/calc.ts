@@ -19,8 +19,8 @@ export class Calc {
         const avg = Calc.avg(values);
 
         const squareDiffs = values.map(function(value){
-            let diff = value - avg;
-            let sqrDiff = diff * diff;
+            const diff = value - avg;
+            const sqrDiff = diff * diff;
             return sqrDiff;
         });
 

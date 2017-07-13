@@ -1,4 +1,5 @@
 import {IUserPreferences} from '../interfaces/iUserPreferences'
+
 export class UserPreferences implements IUserPreferences {
     weight_AvgDelay: number;
     weight_AvgChangesAmount: number;

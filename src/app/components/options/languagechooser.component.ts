@@ -17,8 +17,12 @@ export class LanguageChooser {
   onSelect() {
     const selected: string = (event.target as Element).id;
     this.language.setLanguage(selected);
+<<<<<<< HEAD
     AppModule.options.language = this.language.setLanguage(selected);
     AppModule.options.save();
     location.reload();
+=======
+    // TODO: change language is options
+>>>>>>> 4d139d6d9480929b00e8cd7b0d8348e6fac69220
   }
 }

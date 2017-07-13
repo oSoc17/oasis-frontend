@@ -1,7 +1,6 @@
-import { expect } from 'chai';
-import { Route } from '../src/app/classes/route';
-import { RouteHistory } from '../src/app/classes/routeHistory';
-import { Connection } from '../src/app/classes/connection';
+import { Route } from '../app/classes/route';
+import { RouteHistory } from '../app/classes/routeHistory';
+import { Connection } from '../app/classes/connection';
 
 /* Constructor test */
 describe('routeHistory.ts constructor', () => {
@@ -29,7 +28,7 @@ describe('routeHistory.ts getAvgTravelTime()', () => {
         routeHistory.routes.push(route2);
 
         //assertion
-        expect(routeHistory.getAvgTravelTime().getMinutes()).to.equal(15);
+        expect(routeHistory.getAvgTravelTime().getMinutes()).toEqual(15);
 
     });
 });

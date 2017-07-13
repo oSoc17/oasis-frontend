@@ -1,4 +1,5 @@
 import {IUserPreferences} from '../interfaces/iUserPreferences'
+
 export class UserPreferencesMock implements IUserPreferences {
     weight_AvgDelay: number;
     weight_AvgChangesAmount: number;
