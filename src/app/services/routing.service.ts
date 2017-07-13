@@ -24,7 +24,7 @@ export class RouteService implements IRouteService {
     query(searchData: SearchData): Promise<any> {
         return new Promise((resolve, reject) => {
             const stop_condition = false;
-            console.log(searchData.toJSON());
+            // console.log(searchData.toJSON());
             this.planner.query(searchData.toJSON(), (resultStream, source) => {
                     resultStream.on('result',  (path) => {
                         this._onQueryResult.dispatchAsync(path);
