@@ -1,14 +1,14 @@
 export class Options {
     language = 'en_GB';
     qoeParameters = {
-        AvgDelay: 50,
-        AvgChangesAmount: 50,
-        AvgChangeTime: 50,
-        DelayConsistency: 50,
-        AvgTravelTime: 50,
-        NumberOfRoutesWithinHour: 50,
-        NumberOfMissedConnections: 50,
-        Price: 50
+        avgDelay: 50,
+        avgChangesAmount: 50,
+        avgChangeTime: 50,
+        delayConsistency: 50,
+        avgTravelTime: 50,
+        numberOfRoutesWithinHour: 50,
+        numberOfMissedConnections: 50,
+        price: 50
     };
 
     public save(): boolean {
