@@ -40,7 +40,7 @@
       </div>
     </div>
 
-<h3>ERROR: {{ error }}</h3>
+<h3 *ngIf="error">ERROR: {{ error }}</h3>
 
 <div *ngIf="!loading && !error">
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
