@@ -12,7 +12,7 @@ it('should give last monday', () => {
                 }
            }
         s.forEach((da) => {
-            console.log(da.travelDate);
+            // console.log(da.travelDate);
             expect(da).toBe(da);
         });
     });
