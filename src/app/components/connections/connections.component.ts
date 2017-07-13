@@ -45,4 +45,17 @@ export class Connections implements OnInit {
     goBack() {
         this.location.back();
     }
+
+    toPercentage(val) {
+        return Math.round(val * 100);
+    }
+
+    private formatNumber(number) {
+        return ('0' + number).slice(-2);
+    }
+
+    toTime(val) {
+        const date = new Date(val);
+        return `${this.formatNumber(date.getMinutes())}:${this.formatNumber(date.getSeconds())}`;
+    }
 }
