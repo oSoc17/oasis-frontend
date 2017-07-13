@@ -7,7 +7,7 @@ describe('testing UserPreferences interface class', () => {
         prefs = new UserPreferencesMock();
         const tot =  prefs.weight_AvgChangesAmount
                      + prefs.weight_AvgChangeTime
-                     + prefs.avgDelay
+                     + prefs.weight_AvgDelay
                      + prefs.weight_AvgTravelTime
                      + prefs.weight_DelayConsistency
                      + prefs.weight_NumberOfMissedConnections
@@ -19,7 +19,7 @@ describe('testing UserPreferences interface class', () => {
 });
 
 describe('testing UserPrreferences constructor', () => {
-    const prefs = new UserPreferences(100, 50, 100, 100, 100, 100, 100, 100);
+    const prefs = new UserPreferences();
     const tot =  prefs.weight_AvgChangesAmount
                      + prefs.weight_AvgChangeTime
                      + prefs.avgDelay
