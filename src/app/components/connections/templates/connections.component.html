@@ -1,9 +1,82 @@
-<md-progress-spinner [mode]="indeterminate"></md-progress-spinner>
+<div class="preloader-wrapper big active" *ngIf="loading">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
 
 <h3>{{ error }}</h3>
 
 <div *ngIf="!loading && !error">
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
+  
+  <ul *ngIf="this.qoeResults">
+    <li><h5>Quality Of Experience</h5>
+      <div class="progress">
+        <div class="determinate" style="width: {{ qoeResults.getQoE() * 100 }}%"></div>
+      </div>
+    </li>
+    <li><h5>Average delay</h5>
+      <p>Score: {{ qoeResults.getAvgDelay().score }}</p>
+      <p>Delay: {{ qoeResults.getAvgDelay().value.valueOf() }}</p>
+    </li>
+    <li><h5>Average Changes</h5>
+      <p>Score: {{ qoeResults.getAvgChangesAmount().score }}</p>
+      <p>Changes: {{ qoeResults.getAvgChangesAmount().value }}</p>
+    </li>
+    <li><h5>Change Time</h5>
+      <p>Score: {{ qoeResults.getAvgChangeTime().score }}</p>
+      <p>Time: {{ qoeResults.getAvgChangeTime().value.valueOf() }}</p>
+    </li>
+    <li><h5>Delay consistency</h5>
+      <p>Score: {{ qoeResults.getDelayConsistency().score }}</p>
+      <p>Consistency: {{ qoeResults.getDelayConsistency().value.valueOf() }}</p>
+    </li>
+    <li><h5>Average travel time</h5>
+      <p>Score: {{ qoeResults.getAvgTravelTime().score }}</p>
+      <p>Time: {{ qoeResults.getAvgTravelTime().value.valueOf() }}</p>
+    </li>
+    <!-- <li>Router per hour: {{ this.qoeResults.getNumberOfRoutesWithinHour().score }} - {{ this.qoeResults.getNumberOfRoutesWithinHour().value }}</li>
+    <li>Missed connections: {{ this.qoeResults.getNumberOfMissedConnections() }}</li> -->
+  </ul>
+  
+  
+  <!-- <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
   <section class="row">
     <aside class="col s3">
       <h5>{{ language.getMessage('departure') }}</h5>
@@ -19,5 +92,5 @@
   <connection></connection>
   <connection></connection>
   <connection></connection>
-  <connection></connection>
+  <connection></connection> -->
 </div>
