@@ -54,6 +54,6 @@ export class Connections implements OnInit {
 
     toTime(val) {
         const date = new Date(val);
-        return `${this.formatNumber(date.getMinutes())}:${this.formatNumber(date.getSeconds())}`;
+        return `${this.formatNumber(date.getHours())}:${this.formatNumber(date.getMinutes())}`;
     }
 }

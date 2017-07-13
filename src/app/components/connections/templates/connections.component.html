@@ -71,8 +71,13 @@
       <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgTravelTime().score) }} %</p>
       <p><i class="mdi mdi-clock"></i> {{ toTime(qoeResults.getAvgTravelTime().value.valueOf()) }}</p>
     </li>
-    <!-- <li>Router per hour: {{ this.qoeResults.getNumberOfRoutesWithinHour().score }} - {{ this.qoeResults.getNumberOfRoutesWithinHour().value }}</li>
-    <li>Missed connections: {{ this.qoeResults.getNumberOfMissedConnections() }}</li> -->
+    <li><h5>Routes per hour</h5>
+      <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(this.qoeResults.getNumberOfRoutesWithinHour().score) }} %</p>
+      <p><i class="mdi mdi-train"></i> {{ this.qoeResults.getNumberOfRoutesWithinHour().value }}</p>
+    </li>
+    <li><h5>Missed connections</h5>
+      <p><i class="mdi mdi-link-variant-off"></i> {{ this.qoeResults.getNumberOfMissedConnections().value }}</p>
+    </li>
   </ul>
   
   
