@@ -16,38 +16,38 @@ export class Options {
     },
     {
       name: 'Amount of changes',
-      value: AppModule.options.qoeParameters['AvgChangesAmount'],
-      id: 'AvgChangesAmount'
+      value: AppModule.options.qoeParameters['avgChangesAmount'],
+      id: 'avgChangesAmount'
     },
     {
       name: 'Average change time',
-      value: AppModule.options.qoeParameters['AvgChangeTime'],
-      id: 'AvgChangeTime'
+      value: AppModule.options.qoeParameters['avgChangeTime'],
+      id: 'avgChangeTime'
     },
     {
       name: 'Delay consistency',
-      value: AppModule.options.qoeParameters['DelayConsistency'],
-      id: 'DelayConsistency'
+      value: AppModule.options.qoeParameters['delayConsistency'],
+      id: 'delayConsistency'
     },
     {
       name: 'Travel Time',
-      value: AppModule.options.qoeParameters['AvgTravelTime'],
-      id: 'AvgTravelTime'
+      value: AppModule.options.qoeParameters['avgTravelTime'],
+      id: 'avgTravelTime'
     },
     {
       name: 'Routes per hour',
-      value: AppModule.options.qoeParameters['NumberOfRoutesWithinHour'],
-      id: 'NumberOfRoutesWithinHour'
+      value: AppModule.options.qoeParameters['numberOfRoutesWithinHour'],
+      id: 'numberOfRoutesWithinHour'
     },
     {
       name: 'Missed connections',
-      value: AppModule.options.qoeParameters['NumberOfMissedConnections'],
-      id: 'NumberOfMissedConnections'
+      value: AppModule.options.qoeParameters['numberOfMissedConnections'],
+      id: 'numberOfMissedConnections'
     },
     {
-      name: 'Price',
-      value: AppModule.options.qoeParameters['Price'],
-      id: 'Price'
+      name: 'price',
+      value: AppModule.options.qoeParameters['price'],
+      id: 'price'
     }
   ]
 }
