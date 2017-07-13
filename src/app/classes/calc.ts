@@ -40,4 +40,9 @@ export class Calc {
         }
         return value;
     }
+
+    public static linearInterpolatePercentage(value: number, min: number, max: number): number {
+        /* returns the ratio of a given value between a max and a min */
+        return (value - min) / (max - min);
+    }
 }
