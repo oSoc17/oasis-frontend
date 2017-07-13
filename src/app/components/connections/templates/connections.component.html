@@ -46,36 +46,36 @@
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
 
   <ul *ngIf="this.qoeResults">
-    <li><h5>Quality Of Experience: {{ toPercentage( qoeResults.getQoE()) }}%</h5>
+    <li><h5>{{ language.getMessage('qoe') }}: {{ toPercentage( qoeResults.getQoE()) }}%</h5>
       <div class="progress">
         <div class="determinate" [ngStyle]="qualityOfExperienceStyle"></div>
       </div>
     </li>
-    <li><h5>Average delay</h5>
+    <li><h5>{{ language.getMessage('avgDelay') }}</h5>
       <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgDelay().score) }} %</p>
       <p><i class="mdi mdi-clock"></i> {{ toTime(qoeResults.getAvgDelay().value.valueOf()) }}</p>
     </li>
-    <li><h5>Average Changes</h5>
+    <li><h5>{{ language.getMessage('avgChanges') }}</h5>
       <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgChangesAmount().score) }} %</p>
       <p><i class="mdi mdi-walk"></i> {{ qoeResults.getAvgChangesAmount().value }}</p>
     </li>
-    <li><h5>Change Time</h5>
+    <li><h5>{{ language.getMessage('changeTime') }}</h5>
       <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgChangeTime().score) }} %</p>
       <p><i class="mdi mdi-clock"></i> {{ toTime(qoeResults.getAvgChangeTime().value.valueOf()) }}</p>
     </li>
-    <li><h5>Delay consistency</h5>
+    <li><h5>{{ language.getMessage('delayConsistency') }}</h5>
       <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getDelayConsistency().score) }} %</p>
       <p><i class="mdi mdi-chart-line"></i> {{ qoeResults.getDelayConsistency().value.valueOf() }}</p>
     </li>
-    <li><h5>Average travel time</h5>
+    <li><h5>{{ language.getMessage('avgTravelTime') }}</h5>
       <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(qoeResults.getAvgTravelTime().score) }} %</p>
       <p><i class="mdi mdi-clock"></i> {{ toTime(qoeResults.getAvgTravelTime().value.valueOf()) }}</p>
     </li>
-    <li><h5>Routes per hour</h5>
+    <li><h5>{{ language.getMessage('routesPerHour') }}</h5>
       <p><i class="mdi mdi-chart-bar"></i> {{ toPercentage(this.qoeResults.getNumberOfRoutesWithinHour().score) }} %</p>
       <p><i class="mdi mdi-train"></i> {{ this.qoeResults.getNumberOfRoutesWithinHour().value }}</p>
     </li>
-    <li><h5>Missed connections</h5>
+    <li><h5>{{ language.getMessage('missedConnections') }}</h5>
       <p><i class="mdi mdi-link-variant-off"></i> {{ this.qoeResults.getNumberOfMissedConnections().value }}</p>
     </li>
   </ul>

@@ -2,50 +2,54 @@ import { Component, Input } from '@angular/core';
 
 import { AppModule } from '../../app.module';
 
+import { Language } from '../../classes/language';
+
 @Component({
   selector: 'options',
   templateUrl: './templates/options.component.html'
 })
 
 export class Options {
+  language = new Language();
+
   slider = [
     {
-      name: 'Delay',
+      name: this.language.getMessage('delay'),
       value: AppModule.options.qoeParameters['AvgDelay'],
       id: 'AvgDelay'
     },
     {
-      name: 'Amount of changes',
+      name: this.language.getMessage('amountOfChanges'),
       value: AppModule.options.qoeParameters['avgChangesAmount'],
       id: 'avgChangesAmount'
     },
     {
-      name: 'Average change time',
+      name: this.language.getMessage('changeTime'),
       value: AppModule.options.qoeParameters['avgChangeTime'],
       id: 'avgChangeTime'
     },
     {
-      name: 'Delay consistency',
+      name: this.language.getMessage('delayConsistency'),
       value: AppModule.options.qoeParameters['delayConsistency'],
       id: 'delayConsistency'
     },
     {
-      name: 'Travel Time',
+      name: this.language.getMessage('travelTime'),
       value: AppModule.options.qoeParameters['avgTravelTime'],
       id: 'avgTravelTime'
     },
     {
-      name: 'Routes per hour',
+      name: this.language.getMessage('routesPerHour'),
       value: AppModule.options.qoeParameters['numberOfRoutesWithinHour'],
       id: 'numberOfRoutesWithinHour'
     },
     {
-      name: 'Missed connections',
+      name: this.language.getMessage('optMissedConnections'),
       value: AppModule.options.qoeParameters['numberOfMissedConnections'],
       id: 'numberOfMissedConnections'
     },
     {
-      name: 'price',
+      name: this.language.getMessage('price'),
       value: AppModule.options.qoeParameters['price'],
       id: 'price'
     }
