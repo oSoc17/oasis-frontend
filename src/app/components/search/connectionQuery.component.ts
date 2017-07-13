@@ -5,15 +5,9 @@ import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
 
-import { SearchData } from '../../classes/searchData';
+import { SearchData, GetLatest } from '../../classes/searchData';
 import { Language } from '../../classes/language';
 
-function GetLatest(dayOfWeek: number) {
-    const d = new Date();
-    const day = d.getDay();
-    d.setDate(d.getDate() - day + dayOfWeek);
-    return d;
-}
 
 @Component({
     selector: 'connectionquery',
