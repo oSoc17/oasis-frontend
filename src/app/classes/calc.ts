@@ -43,6 +43,9 @@ export class Calc {
 
     public static linearInterpolatePercentage(value: number, min: number, max: number): number {
         /* returns the ratio of a given value between a max and a min */
-        return (value - min) / (max - min);
+        if (max === min) {
+            throw Error('max & min can\'t be the same');
+        }
+        return Calc.clipPercentage((value - min) / (max - min));
     }
 }

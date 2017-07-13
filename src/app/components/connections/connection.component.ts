@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Language } from '../../classes/language';
 
@@ -18,9 +17,9 @@ export class Connection {
     arrivalPlatform = 'P04';
     language: Language = new Language();
 
-    constructor(private router: Router) {}
+    constructor() {}
 
     getDetails() {
-        this.router.navigate(['/connectiondetail']);
+        // TODO: make this
     }
 }
