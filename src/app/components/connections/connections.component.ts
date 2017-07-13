@@ -1,12 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
-import { IRailService } from '../../services/iRail.service';
+import { AppComponent } from '../app.component';
 import { SearchData } from '../../classes/searchData';
 import { Language } from '../../classes/language';
 
-import 'rxjs/add/operator/switchMap';
+import { Manager } from '../../classes/manager';
+import { QoE} from '../../classes/qoe'
 
 @Component({
     selector: 'connections',
@@ -15,40 +17,45 @@ import 'rxjs/add/operator/switchMap';
 
 export class Connections implements OnInit {
     loading: any = true;
-    searchData: SearchData;
+    searchData: SearchData[];
     error: string;
     language: Language = new Language();
+    qoeResults: QoE;
+    foundRoutes: any[];
 
-    constructor(
-        private route: ActivatedRoute,
-        private IRailService: IRailService,
-        private location: Location) {}
-
-    logParams(search: SearchData) {
-        console.log(search);
-        if (search.arrStation && search.depStation && search.timeType && search.travelDate && search.travelTime) {
-            console.log('we got a search request!');
-            console.log(search);
-            this.IRailService.getRoutesReadable(search).then((data) => {
-                console.log(data);
-                console.log('Log available routes!');
-                // this.error = JSON.stringify(data);
-                this.loading = false;
-            }).catch(e => {
-                this.error = this.language.getMessage('noConnections');
-                this.loading = false;
-                console.log(e);
-            });
-        } else {
-            this.error = this.language.getMessage('fillEntireSearchForm');
-        }
-    }
+    constructor(private route: ActivatedRoute,
+        private location: Location, private router: Router) {}
 
     ngOnInit(): void {
-            this.logParams(this.route.params['_value']);
+        // this.searchData = JSON.parse(this.route.params['_value']);
+        if (AppComponent.searchData) {
+            this.searchData = AppComponent.searchData;
+            Manager.getQoE(this.searchData).then((result) => {
+                this.qoeResults = result;
+                this.loading = false;
+                console.log(this.qoeResults.getAvgChangesAmount())
+                console.log(this.qoeResults);
+                console.log(this.qoeResults.getAvgTravelTime());
+            }).catch(e => this.error = e);
+        } else {
+            this.router.navigate(['/']);
+        }
     }
 
     goBack() {
         this.location.back();
+    }
+
+    toPercentage(val) {
+        return Math.round(val * 100);
+    }
+
+    private formatNumber(number) {
+        return ('0' + number).slice(-2);
+    }
+
+    toTime(val) {
+        const date = new Date(val);
+        return `${this.formatNumber(date.getMinutes())}:${this.formatNumber(date.getSeconds())}`;
     }
 }
