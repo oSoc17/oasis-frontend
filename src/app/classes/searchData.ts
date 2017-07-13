@@ -4,6 +4,14 @@
 export function formatDate(date: Date): string {
     return zeroPad(date.getDate(), 2) + '/' + zeroPad(date.getMonth() + 1, 2) + '/' + zeroPad(date.getFullYear(), 4);
 }
+
+export function GetLatest(dayOfWeek: number) {
+    const d = new Date();
+    const day = d.getDay();
+    d.setDate(d.getDate() - day + dayOfWeek);
+    return d;
+}
+
 /**
  * returns string of number of the specified width (or larger), padded with leading zeroes
  */
@@ -37,11 +45,12 @@ export class SearchData {
         if (!goesForward) {
             period = -period;
         }
-        let dateString = '';
-        for (let i = 0; i < amount; i++) {
+        let dateString = formatDate(calcdate);
+        dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
+        for (let i = 1; i < amount; i++) {
             calcdate.setDate(calcdate.getDate() + period);
             dateString = formatDate(calcdate);
-            dataList[i] = new SearchData(depStation, arrStation, travelTime, dateString, timeType);
+            dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
         }
         return dataList;
     }

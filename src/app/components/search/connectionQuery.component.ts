@@ -5,8 +5,9 @@ import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
 
-import { SearchData } from '../../classes/searchData';
+import { SearchData, GetLatest } from '../../classes/searchData';
 import { Language } from '../../classes/language';
+
 
 @Component({
     selector: 'connectionquery',
@@ -20,11 +21,12 @@ export class ConnectionQuery {
     @ViewChild(TravelTime) travelTime: TravelTime;
     @ViewChild(TravelDate) travelDate: TravelDate;
     @Output() routeUpdated = new EventEmitter();
-    searchData: SearchData;
+    searchData: SearchData[];
     error: string;
     language: Language = new Language();
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) {
+    }
 
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
@@ -35,8 +37,14 @@ export class ConnectionQuery {
         if (!(arriveSt && departSt) || arriveSt.id === departSt.id) {
             this.error = this.language.getMessage('errEqualStations');
         } else {
-            this.searchData = new SearchData(departSt.id, arriveSt.id, this.travelTime.selectedTime,
-                                    new Date(), this.travelTime.selectedType);
+            this.searchData = []
+           for (let i = 0; i < 7; i++) {
+                if (this.travelDate.selectedDays['' + i]) {
+                    this.searchData = this.searchData.concat(
+                        SearchData.createPeriodicList(departSt.id, arriveSt.id, this.travelTime.selectedTime,
+                            GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 1 ));
+                }
+           }
 
             this.router.navigate(['/connections', this.searchData]);
         }
