@@ -28,10 +28,10 @@ describe('QoE.ts', () => {
     when(mockedRouteHistory.getAvgTravelTime()).thenReturn(new Date(0));
     const qoe = new QoE(instance(mockedRouteHistory), new UserPreferencesMock);
     // execution
-    qoe.getAvgChangesAmount();
-    qoe.getAvgDelay();
-    qoe.getDelayConsistency();
-    qoe.getAvgChangeTime();
-    qoe.getAvgTravelTime();
+    expect(qoe.getAvgChangesAmount().score).toEqual(jasmine.any(Number));
+    expect(qoe.getAvgDelay().score).toEqual(jasmine.any(Number));
+    expect(qoe.getDelayConsistency().score).toEqual(jasmine.any(Number));
+    expect(qoe.getAvgChangeTime().score).toEqual(jasmine.any(Number));
+    expect(qoe.getQoE()).toEqual(jasmine.any(Number));
   });
 });
