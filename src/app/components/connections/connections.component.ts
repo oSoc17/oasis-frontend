@@ -22,6 +22,7 @@ export class Connections implements OnInit {
     language: Language = new Language();
     qoeResults: QoE;
     foundRoutes: any[];
+    qualityOfExperienceStyle;
 
     constructor(private route: ActivatedRoute,
         private location: Location, private router: Router) {}
@@ -33,6 +34,9 @@ export class Connections implements OnInit {
             Manager.getQoE(this.searchData).then((result) => {
                 this.qoeResults = result;
                 this.loading = false;
+                this.qualityOfExperienceStyle = {
+                    width: `${this.toPercentage(this.qoeResults.getQoE())}%`
+                }
                 console.log(this.qoeResults.getAvgChangesAmount())
                 console.log(this.qoeResults);
                 console.log(this.qoeResults.getAvgTravelTime());

@@ -48,7 +48,7 @@
   <ul *ngIf="this.qoeResults">
     <li><h5>Quality Of Experience</h5>
       <div class="progress">
-        <div class="determinate" style="width: {{ qoeResults.getQoE() * 100 }}%"></div>
+        <div class="determinate" [ngStyle]="qualityOfExperienceStyle"></div>
       </div>
     </li>
     <li><h5>Average delay</h5>
