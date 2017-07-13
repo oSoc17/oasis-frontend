@@ -8,6 +8,7 @@ import { TravelDate } from './travelDate.component';
 import { SearchData, GetLatest } from '../../classes/searchData';
 import { Language } from '../../classes/language';
 
+import { AppComponent } from '../app.component';
 
 @Component({
     selector: 'connectionquery',
@@ -38,15 +39,17 @@ export class ConnectionQuery {
             this.error = this.language.getMessage('errEqualStations');
         } else {
             this.searchData = []
-           for (let i = 0; i < 7; i++) {
-                if (this.travelDate.selectedDays['' + i]) {
-                    this.searchData = this.searchData.concat(
-                        SearchData.createPeriodicList(departSt.id, arriveSt.id, this.travelTime.selectedTime,
-                            GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 1 ));
-                }
-           }
+            for (let i = 0; i < 7; i++) {
+                    if (this.travelDate.selectedDays['' + i]) {
+                        this.searchData = this.searchData.concat(
+                            SearchData.createPeriodicList(departSt.id, arriveSt.id, this.travelTime.selectedTime,
+                                GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 1 ));
+                    }
+            }
 
-            this.router.navigate(['/connections', this.searchData]);
+            AppComponent.searchData = this.searchData;
+
+            this.router.navigate(['/connections']);
         }
     }
 }
