@@ -49,7 +49,7 @@ export class ConnectionQuery {
             for (let i = 0; i < 7; i++) {
                     if (this.travelDate.selectedDays['' + i]) {
                         this.searchData = this.searchData.concat(
-                            SearchData.createPeriodicList(departSt.id, arriveSt.id, this.travelTime.selectedTime,
+                            SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'], this.travelTime.selectedTime,
                                 GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 1));
                     }
             }

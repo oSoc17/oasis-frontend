@@ -74,7 +74,15 @@ export class SearchData {
             'arrivalStop': this.arrStation,
             'departureStop': this.depStation
         };
-        json[this.timeType] = datetime;
+
+        switch (this.timeType) {
+            case 'arrival':
+                json['arrivalTime'] = datetime;
+                break;
+            default:
+                json['departureTime'] = datetime;
+        }
+
         return json;
     }
 }

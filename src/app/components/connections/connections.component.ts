@@ -33,9 +33,7 @@ export class Connections implements OnInit {
                 this.qualityOfExperienceStyle = {
                     width: `${this.toPercentage(this.qoeResults.getQoE())}%`
                 }
-                console.log(this.qoeResults.getAvgChangesAmount())
                 console.log(this.qoeResults);
-                console.log(this.qoeResults.getAvgTravelTime());
             }).catch(e => this.error = e);
         } else {
             AppComponent.setPage(0);

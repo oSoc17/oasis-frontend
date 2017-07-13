@@ -1,6 +1,8 @@
 var Client = require('lc-client');
 var planner = new Client({"entrypoints" : ["http://belgium.linkedconnections.org/sncb/connections"]});
-planner.query({"arrivalStop" : "http://irail.be/stations/NMBS/008896115", "departureStop" : "http://irail.be/stations/NMBS/008821006", "departureTime": new Date()}, function (resultStream, source) {
+planner.query({"arrivalStop" : "http://irail.be/stations/NMBS/008896115", 
+      "departureStop" : "http://irail.be/stations/NMBS/008821006", "departureTime": new Date()}, 
+      function (resultStream, source) {
   resultStream.on('result', function (path) {
     console.log(JSON.stringify(path));
   });
