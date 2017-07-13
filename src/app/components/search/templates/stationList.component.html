@@ -1,7 +1,10 @@
-<mz-input-container class="col s12" (focusout)='clickStation(stationInput.value)' >
-  <input mz-input
-         id="stationlist"
-         type="text"
-         [autocomplete]="autocomplete"
-        [(ngModel)]='currQuery' #stationInput >
-</mz-input-container>
+<md-input-container class="stationList">
+  <input mdInput placeholder="Station" [mdAutocomplete]="auto" [formControl]="stationCtrl"  >
+</md-input-container>
+
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let station of filteredStations | async" [value]="station.standardname" 
+                  (click)="filterStations(station.standardname)">
+    {{ station.standardname }}
+  </md-option>
+</md-autocomplete>

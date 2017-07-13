@@ -1,5 +1,13 @@
+import { AppModule } from '../app.module';
+
 export class Language {
     public static language = 'en_GB';
+
+    constructor() {
+        if (AppModule.options.language) {
+            this.setLanguage(AppModule.options.language);
+        }
+    }
 
     getLanguageData(): string {
         // returns locales/[currentLanguage].json
@@ -38,6 +46,7 @@ export class Language {
         for (const pair of languages) {
             if (pair['tag'] === tag) {
                 Language.language = tag;
+                return tag;
             }
         }
     }

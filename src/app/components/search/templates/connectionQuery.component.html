@@ -10,9 +10,9 @@
   <traveldate></traveldate>
 
   <p>{{ error }}</p>
-
-  <button mz-button class="red accent-2" (click)='clickCalculate()'>
+  <button class="btn waves-effect waves-light" type="submit" name="action" (click)='clickCalculate()'>
     {{ language.getMessage('showAlts') }}
+    <i class="mdi mdi-send"></i>
   </button>
   <div class="clearfix"></div>
 </section>
