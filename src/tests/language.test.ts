@@ -14,7 +14,7 @@ describe('language.ts setLanguage()', () => {
     it('should keep language to nl_BE', () => {
         const l: Language = new Language();
         l.setLanguage('nl_NL');
-        console.log(l);
+        // console.log(l);
         expect(Language.language).not.toBe('nl_NL');
     });
 });

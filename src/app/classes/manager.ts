@@ -15,8 +15,14 @@ export class Manager {
     private static entryPoints = Manager.config.entrypoints;
     private static routeService = environment.production ? new RouteService(Manager.entryPoints) : new RouteMockService();
 
-    static getQoE(searchDataList: SearchData[]): Promise<QoE> {
-        return Manager.routeService
+    /**
+     * gets QoE object
+     * @param searchDataList datalist to query
+     * @param deploycheck wether or not deployment should be checked (default: true)
+     */
+    static getQoE(searchDataList: SearchData[], deploycheck: boolean = true): Promise<QoE> {
+        if (deploycheck) {
+            return Manager.routeService
             .queryPeriod(searchDataList)
             .then((routes) => {
                 return new RouteHistory(routes.map((connections) => {
@@ -26,6 +32,18 @@ export class Manager {
                 }));
             })
             .then((routeHistory) => new QoE(routeHistory, new UserPreferencesMock())); // TODO: change for production
+        } else {
+            return new RouteMockService()
+            .queryPeriod(searchDataList)
+            .then((routes) => {
+                return new RouteHistory(routes.map((connections) => {
+                    return new Route(connections.map((connection) => {
+                        return new Connection(connection);
+                    }));
+                }));
+            })
+            .then((routeHistory) => new QoE(routeHistory, new UserPreferencesMock())); // TODO: change for production
+        }
     }
 
 }

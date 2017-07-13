@@ -5,8 +5,8 @@ import { QoE } from '../app/classes/qoe';
 
 describe('Manager test', () => {
     it('Manager#getQoE()', (done) => {
-        const searchData = new SearchData('not_used', 'not_used', '12:30', '10/07/2017', '');
-        Manager.getQoE([searchData]).then((qoe) => {
+        const searchData = new SearchData('not_used', 'notsused', '12:30', '10/07/2017', '');
+        Manager.getQoE([searchData], false).then((qoe) => {
             /*console.log('qoe.getAvgDelay()');
             console.log(qoe.getAvgDelay());
             console.log('qoe.getAvgChangesAmount()');
