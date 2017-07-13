@@ -1,6 +1,7 @@
 <nav-root></nav-root>
 <main class="section no-pad-bot" id="index-banner">
-    Current page: {{ getPage() }}
+    <!-- For page debugging -->
+    <!-- Current page: {{ getPage() }} -->
     <section class="container">
         <connectionquery *ngIf="getPage() == 0"></connectionquery>
         <connections *ngIf="getPage() == 1"></connections>
