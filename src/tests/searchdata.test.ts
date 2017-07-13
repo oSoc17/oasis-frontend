@@ -1,11 +1,18 @@
-import { SearchData } from '../app/classes/searchData';
+import { SearchData, GetLatest } from '../app/classes/searchData';
 
-/* POSTPONED TODO: Fix this */
-/*describe('SearchData test', () => {
-    it('SearchData#toJSON()', () => {
-        const type = 'departureTime';
-        const json = new SearchData('not_used', 'not_used', '12:30', '10/07/2017', type).toJSON();
-        const expected = '2017-07-10T10:30:00.000Z'; // todo: figure out timezone fix
-        expect(json[type]).to.equal(expected);
+it('should give last monday', () => {
+    let s: SearchData[] = [];
+    const days = {'0': true, '1': false}
+
+        for (let i = 0; i < 7; i++) {
+                if (days['' + i]) {
+                    s = s.concat(
+                        SearchData.createPeriodicList('departSt.id', 'arriveSt.id', 'this.travelTime.selectedTime',
+                            GetLatest((i + 1) % 6), 'this.travelTime.selectedType', 7, 2 ));
+                }
+           }
+        s.forEach((da) => {
+            console.log(da.travelDate);
+            expect(da).toBe(da);
+        });
     });
-}); */
