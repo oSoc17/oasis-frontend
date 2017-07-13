@@ -23,7 +23,7 @@ export class RouteHistory {
         /* returns avg change time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getInterMediateStopsAmount().valueOf());
+            data.push(route.getChangesAmount());
         }
         return Calc.avg(data);
     }
