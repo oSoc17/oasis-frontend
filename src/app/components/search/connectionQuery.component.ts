@@ -29,7 +29,10 @@ export class ConnectionQuery {
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;
-        if (arriveSt.id === departSt.id) {
+        console.log(!(arriveSt && departSt));
+        console.log(arriveSt);
+        console.log(departSt);
+        if (!(arriveSt && departSt) || arriveSt.id === departSt.id) {
             this.error = this.language.getMessage('errEqualStations');
         } else {
             this.searchData = new SearchData(departSt.id, arriveSt.id, this.travelTime.selectedTime,
