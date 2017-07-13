@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
 
 import { AppComponent } from '../app.component';
 import { SearchData } from '../../classes/searchData';
@@ -24,8 +21,7 @@ export class Connections implements OnInit {
     foundRoutes: any[];
     qualityOfExperienceStyle;
 
-    constructor(private route: ActivatedRoute,
-        private location: Location, private router: Router) {}
+    constructor() {}
 
     ngOnInit(): void {
         // this.searchData = JSON.parse(this.route.params['_value']);
@@ -42,12 +38,12 @@ export class Connections implements OnInit {
                 console.log(this.qoeResults.getAvgTravelTime());
             }).catch(e => this.error = e);
         } else {
-            this.router.navigate(['/']);
+            AppComponent.setPage(0);
         }
     }
 
     goBack() {
-        this.location.back();
+        AppComponent.goBack();
     }
 
     toPercentage(val) {

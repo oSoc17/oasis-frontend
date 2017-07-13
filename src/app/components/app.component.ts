@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ConnectionQuery } from './search/connectionQuery.component';
 
@@ -12,12 +11,24 @@ import { SearchData } from './../classes/searchData';
 
 export class AppComponent {
     public static searchData: SearchData[];
+    private static currPage = 0;
+    private static prevPage = 0;
 
-    constructor(private router: Router) { }
+    public static setPage(number) {
+        // TODO: Insert check if page exists
+        if (number <= 3) {
+            AppComponent.prevPage = AppComponent.currPage;
+            AppComponent.currPage = number;
+        }
+    }
 
-    requestConnections(data) {
-        console.log('Received data => Redirect');
-        console.log(data);
-        this.router.navigate(['connections']).then(e => console.log(e)).catch(e => console.log(e));
+    public static goBack() {
+        AppComponent.setPage(AppComponent.prevPage);
+    }
+
+    constructor() { }
+
+    getPage() {
+        return AppComponent.currPage;
     }
 }

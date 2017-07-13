@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -17,7 +16,7 @@ export class IRailService {
         responseType: ResponseContentType.Json
     });
 
-    constructor(private http: Http, private router: Router) { }
+    constructor(private http: Http) { }
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
