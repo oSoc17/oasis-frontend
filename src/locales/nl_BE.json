@@ -14,5 +14,21 @@
   "back": "Terug",
   "qualityofexperience": "Gebruikservaring",
   "station": "Station",
-  "platform": "Perron"
+  "platform": "Perron",
+  "date": "Datum",
+  "qoe": "Gebruikerservaring",
+  "avgDelay": "Gemiddelde vertraging",
+  "avgChanges": "Gemiddeld aantal overstappen",
+  "changeTime": "Gemiddelde tijd voor een overstap",
+  "delayConsistency": "Consistentie van vertraging",
+  "avgTravelTime": "Gemiddelde reistijd",
+  "routesPerHour": "Routes per uur",
+  "missedConnections": "Mogelijks gemiste connecties",
+  "options": "Instellingen",
+  "language": "Taal",
+  "delay": "Vertraging",
+  "amountOfChanges": "Aantal overstappen",
+  "travelTime": "Reistijd",
+  "optMissedConnections": "Gemiste connecties",
+  "price": "Prijs"
 }
