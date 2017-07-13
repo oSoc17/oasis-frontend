@@ -20,7 +20,7 @@ export class QoE implements IQoE {
         const score = weight * Calc.clipPercentage(1 - delay / 60);
         return {
             score: score,
-            value: delay
+            value: this.routeHistory.getAvgDelay() // Date
         };
     }
 
@@ -42,18 +42,23 @@ export class QoE implements IQoE {
         const score: number = weight * Calc.clipPercentage(changeTime < 3 ? 0 : 1 - ((changeTime - 3) / 17));
         return {
             score: score,
-            value: changeTime
+            value: this.routeHistory.getAvgChangeTime() // Date
         };
     }
 
     getDelayConsistency(): any {
-        const delayConsistency: number = this.routeHistory.getDelayConsistency().valueOf() / 60000; // in minutes
+        const stdDev: number = this.routeHistory.getDelayConsistency().valueOf();
+        const avg: number = this.routeHistory.getAvgDelay().valueOf();
+        const cov: number = stdDev / avg; // coefficient of variation
         const weight: number = this.userPreferences.weight_DelayConsistency;
-        // QoE(stdDev) = 1 - stdDev / worst case stdDev
-        const score = weight * Calc.clipPercentage(1 - delayConsistency / 60);
+        /**
+         *  < 0.21: on schedule (100%)
+         *  > 0.75: mostly delayed (0%)
+         */
+        const score = weight * Calc.clipPercentage(Calc.linearInterpolatePercentage(cov, 0.75, 0.21));
         return {
             score: score,
-            value: delayConsistency
+            value: this.routeHistory.getDelayConsistency() // Date
         };
     }
 
@@ -63,13 +68,20 @@ export class QoE implements IQoE {
         // QoE(travelTime) = TODO: figure out formula
         const score = weight * Calc.clipPercentage(travelTime / 60);
         return {
-            score: 0,
-            value: travelTime
+            score: undefined,
+            value: this.routeHistory.getAvgTravelTime() // Date
         };
     }
 
     getNumberOfRoutesWithinHour(): any {
         // TODO: modify lc-client
+        const period = 30; // minutes between trips
+        const weight: number = this.userPreferences.weight_NumberOfRoutesWithinHour;
+        /**
+         *  < 5: very frequent (100%)
+         *  > 60: poor frequency (0%)
+         */
+        const score = weight * Calc.clipPercentage(Calc.linearInterpolatePercentage(period, 60, 5));
         return undefined;
     }
 
@@ -85,7 +97,7 @@ export class QoE implements IQoE {
 
     getQoE(): number {
         let sum = 0;
-        sum += this.getAvgTravelTime().score;
+        // sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
         sum += this.getAvgChangesAmount().score;
         sum += this.getDelayConsistency().score;
