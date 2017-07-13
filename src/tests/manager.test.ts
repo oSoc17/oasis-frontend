@@ -7,7 +7,7 @@ describe('Manager test', () => {
     it('Manager#getQoE()', (done) => {
         const searchData = new SearchData('http://irail.be/stations/NMBS/008896115',
                     'http://irail.be/stations/NMBS/008821006', '12:30', '10/07/2017', '');
-        Manager.getQoE([searchData]).then((qoe) => {
+        Manager.getQoE([searchData], false).then((qoe) => {
             /*console.log('qoe.getAvgDelay()');
             console.log(qoe.getAvgDelay());
             console.log('qoe.getAvgChangesAmount()');
