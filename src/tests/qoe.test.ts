@@ -53,7 +53,7 @@ describe('QoE.ts', () => {
     qoe.then((res) => {
       q = res.getQoE();
       console.log(q, 'qoe');
-    expect( '' + q !== '' + NaN).toBe(true);
+      expect(isNaN(q)).toBe(false);
     })
   });
 });

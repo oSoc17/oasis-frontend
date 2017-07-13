@@ -31,8 +31,8 @@ export class RouteService implements IRouteService {
                         resolve(path);
                     });
                     resultStream.on('data', function (connection) {
-                        console.log('We have received data');
-                        console.log(connection);
+                        // console.log('We have received data');
+                        // console.log(connection);
                         // if you're not interested anymore, you can stop the processing by doing this
                         if (stop_condition) {
                             source.close();
@@ -40,11 +40,11 @@ export class RouteService implements IRouteService {
                     });
                     // you can also count the number of HTTP requests done by the interface as follows
                     source.on('request', function (url) {
-                        console.log('Requesting', url);
+                        // console.log('Requesting', url);
                     });
                     // you can also catch when a response is generated HTTP requests done by the interface as follows
                     source.on('response', function (url) {
-                        console.log('Response received for', url);
+                        // console.log('Response received for', url);
                     });
                 });
         });
