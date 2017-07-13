@@ -49,7 +49,7 @@ export class QoE implements IQoE {
     getDelayConsistency(): any {
         const stdDev: number = this.routeHistory.getDelayConsistency().valueOf();
         const avg: number = this.routeHistory.getAvgDelay().valueOf();
-        const cov: number = stdDev / avg; // coefficient of variation
+        const cov: number = avg ? stdDev / avg : 0; // coefficient of variation
         const weight: number = this.userPreferences.weight_DelayConsistency;
         /**
          *  < 0.21: on schedule (100%)
@@ -68,7 +68,7 @@ export class QoE implements IQoE {
         // QoE(travelTime) = TODO: figure out formula
         const score = weight * Calc.clipPercentage(travelTime / 60);
         return {
-            score: undefined,
+            score: 0,
             value: this.routeHistory.getAvgTravelTime() // Date
         };
     }
@@ -99,9 +99,13 @@ export class QoE implements IQoE {
         let sum = 0;
         // sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
+        console.log('qoe: ' + sum);
         sum += this.getAvgChangesAmount().score;
+        console.log('qoe: ' + sum);
         sum += this.getDelayConsistency().score;
+        console.log('qoe: ' + sum);
         sum += this.getAvgDelay().score;
+        console.log('qoe: ' + sum);
         // sum += this.getNumberOfMissedConnections().score;
         // sum += this.getNumberOfRoutesWithinHour().score;
         // sum += this.getPrice().score;
