@@ -36,7 +36,7 @@ export class Route {
         /* returns amount of changes */
         if (this.connections.length > 1) {
             let changesAmount = 0;
-            console.log('connections: '+ this.connections.length);
+            console.log('connections: ' + this.connections.length);
             for (let i = 0; i < this.connections.length - 1; i++) {
                 if (this.connections[i].gtfstrip !== this.connections[i + 1].gtfstrip) {
                     changesAmount++;
@@ -77,5 +77,29 @@ export class Route {
         }
         // console.log('List of connections is empty');
         return new Date(0);
+    }
+
+    public getChangesMissed(min: number = 3): number {
+        let ret = 0;
+        let dep: Connection;
+        let arr: Connection;
+        if (this.connections.length > 1) {
+            for (let i = 0; i < this.connections.length - 1; i++) {
+                if (this.connections[i].gtfstrip !== this.connections[i + 1].gtfstrip) {
+                    dep = this.connections[i];
+                    arr = this.connections[i + 1];
+
+                    const arrT = new Date();
+                    arrT.setTime(dep.arrivalTime.getTime() + (dep.arrivalDelay.getTime()));
+                    const depT = new Date();
+                    depT.setTime(arr.departureTime.getTime() + arr.departureDelay.getTime());
+
+                    if (arrT.getTime() + min * 60 * 1000 >= depT.getTime()) {
+                        ret++;
+                    }
+                }
+            }
+        }
+        return ret;
     }
 }

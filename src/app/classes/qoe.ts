@@ -105,7 +105,7 @@ export class QoE implements IQoE {
 
     getNumberOfMissedConnections(): any {
         // TODO: modify lc-client
-        const missedConnections = 1;
+        const missedConnections = this.routeHistory.getChangeMissedChance();
         const weight: number = this.userPreferences.weight_NumberOfMissedConnections;
         const score = weight * Calc.linearInterpolatePercentage(missedConnections, 3, 0);
         return {
