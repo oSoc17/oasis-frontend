@@ -27,9 +27,45 @@ describe('routeHistory.ts getAvgTravelTime()', () => {
         route2.connections.push(c2);
         routeHistory.routes.push(route2);
 
-        //assertion
+        // assertion
         expect(routeHistory.getAvgTravelTime().getMinutes()).toEqual(15);
 
+    });
+});
+
+/* getChangeMissedChance tests */
+describe('routeHistory.ts getChangeMissedChance() tests', () => {
+     const startOnTime = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
+                                            + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
+                                            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
+                                            + ' "arrivalDelay": "3"}'));
+    const endOnTime = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
+                                            + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
+                                            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "1",'
+                                            + ' "arrivalDelay": "10"}'));
+    const startLate = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
+                                            + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
+                                            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
+                                            + ' "arrivalDelay": "30"}'));
+    const endLate = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
+                                            + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
+                                            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "30",'
+                                            + ' "arrivalDelay": "10"}'));
+    const r1 = new Route([startOnTime, endOnTime]);
+    const r2 = new Route([startLate, endOnTime]);
+    const r3 = new Route([startLate, endLate]);
+    const rh1 = new RouteHistory([r1, r2, r3]);
+    const rh2 = new RouteHistory([r1, r1, r1]);
+    const rh3 = new RouteHistory([r2, r2, r2]);
+
+    it('should return 0', () => {
+        expect(rh2.getChangeMissedChance()).toBe(0);
+    });
+    it('should be 1', () => {
+        expect(rh3.getChangeMissedChance()).toBe(1);
+    });
+    it('should return 1/3', () => {
+        expect(rh1.getChangeMissedChance()).toBe(1 / 3);
     });
 });
 
