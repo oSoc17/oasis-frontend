@@ -67,7 +67,7 @@ export class RouteService implements IRouteService {
             this.continuousQuery(searchData, (data) => {
                 console.log('resolve data');
                 console.log(data);
-                resolve(data);
+                resolve(data[0]);
             });
         });
     }

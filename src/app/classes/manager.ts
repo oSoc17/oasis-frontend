@@ -28,7 +28,7 @@ export class Manager {
             .then((routes) => {
                 console.log('routes');
                 console.log(routes);
-                return new RouteHistory(routes[0].map((connections) => {
+                return new RouteHistory(routes.map((connections) => {
                     return new Route(connections.map((connection) => {
                         return new Connection(connection);
                     }));
