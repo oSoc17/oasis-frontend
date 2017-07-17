@@ -57,10 +57,12 @@ export class RouteHistory {
 
     public getChangeMissedChance(): number {
         let missed = 0;
-        const changes = this.getAvgChangesAmount();
+        let changes = 0;
         for (const route of this.routes){
             missed += route.getChangesMissed();
+            changes += route.getChangesAmount();
         }
+        console.log(missed + ' / ' + changes)
         return missed / changes;
     }
 
