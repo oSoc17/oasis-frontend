@@ -112,3 +112,35 @@ describe('Route.ts getDelay()', () => {
         expect(changes.getMinutes()).toEqual(3);
     });
 });
+
+/* missed train test */
+describe('Route.ts getChangesMissed()', () => {
+    const startOnTime = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
+                                            + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
+                                            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
+                                            + ' "arrivalDelay": "3"}'));
+    const endOnTime = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
+                                            + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
+                                            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "1",'
+                                            + ' "arrivalDelay": "10"}'));
+    const startLate = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
+                                            + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
+                                            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
+                                            + ' "arrivalDelay": "30"}'));
+    const endLate = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
+                                            + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
+                                            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "30",'
+                                            + ' "arrivalDelay": "10"}'));
+    const r1 = new Route([startOnTime, endOnTime]);
+    const r2 = new Route([startLate, endOnTime]);
+    const r3 = new Route([startLate, endLate]);
+    it('should return 0', () => {
+        expect(r1.getChangesMissed()).toEqual(0);
+    });
+    it('should return 1', () => {
+        expect(r2.getChangesMissed()).toEqual(1);
+    });
+    it('should return 0', () => {
+        expect(r3.getChangesMissed()).toEqual(0);
+    });
+});

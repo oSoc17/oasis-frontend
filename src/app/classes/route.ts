@@ -95,6 +95,7 @@ export class Route {
                     depT.setTime(arr.departureTime.getTime() + arr.departureDelay.getTime());
 
                     if (arrT.getTime() + min * 60 * 1000 >= depT.getTime()) {
+                        console.log('4');
                         ret++;
                     }
                 }
