@@ -55,5 +55,16 @@ export class RouteHistory {
         return new Date(Calc.stdDev(data));
     }
 
+    public getChangeMissedChance(): number {
+        let missed = 0;
+        let changes = 0;
+        for (const route of this.routes){
+            missed += route.getChangesMissed();
+            changes += route.getChangesAmount();
+        }
+        console.log(missed + ' / ' + changes)
+        return missed / changes;
+    }
+
     // TODO: implement more
 }
