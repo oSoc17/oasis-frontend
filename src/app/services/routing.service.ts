@@ -21,48 +21,74 @@ export class RouteService implements IRouteService {
         this._onQueryResult = new SimpleEventDispatcher<any>();
     }
 
-    query(searchData: SearchData): Promise<any> {
-        return new Promise((resolve, reject) => {
-            const stop_condition = false;
-            // console.log(searchData.toJSON());
-            this.planner.query(searchData.toJSON(), (resultStream, source) => {
-                    resultStream.on('result',  (path) => {
-                        this._onQueryResult.dispatchAsync(path);
-                        resolve(path);
-                    });
-                    resultStream.on('data', function (connection) {
-                        // console.log('We have received data');
-                        // console.log(connection);
-                        // if you're not interested anymore, you can stop the processing by doing this
-                        if (stop_condition) {
-                            source.close();
-                        }
-                    });
-                    // you can also count the number of HTTP requests done by the interface as follows
-                    source.on('request', function (url) {
-                        // console.log('Requesting', url);
-                    });
-                    // you can also catch when a response is generated HTTP requests done by the interface as follows
-                    source.on('response', function (url) {
-                        // console.log('Response received for', url);
-                    });
-                });
+    private continuousQuery(searchData: SearchData, cb, paths = [], dataCount = 0) {
+        if (!searchData.latestDepartTime) {
+            // reject('Invalid latestDepartTime!');
+            return console.log('Invalid latestDepartTime!');
+        }
+
+        if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
+            console.log('Total connections processed ', dataCount);
+            return cb(paths);
+        }
+
+        this.planner.query(searchData, (resultStream, source) => {
+            resultStream.on('result',  (path) => {
+                // Route found
+                console.log('Route found!');
+                console.log('Depart time: ', path[0].departureTime);
+                console.log(path);
+                searchData.departureTime = new Date(new Date(path[0].departureTime).getTime() + 60000);
+                paths.push(path);
+                this.continuousQuery(searchData, cb, paths, dataCount);
+            });
+
+            resultStream.on('data', function (connection) {
+                // Processed connections
+                console.log('Datacount: ', dataCount);
+                dataCount++;
+            });
+
+            source.on('request', function (url) {
+                // HTTP Request
+            });
+
+            source.on('response', function (url) {
+                // HTTP Respons
+            });
         });
     }
+
+    query(searchData: SearchData): Promise<any> {
+        searchData = searchData.toJSON();
+        return new Promise((resolve, reject) => {
+            console.log(searchData);
+
+            this.continuousQuery(searchData, (data) => {
+                console.log('resolve data');
+                console.log(data);
+                resolve(data);
+            });
+        });
+    }
+
     /**
      * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
      * @param searchDataList list of SearchData objects
      */
     public queryPeriod(searchDataList: SearchData[]): Promise<any[]> {
         const promiselist = [];
-         searchDataList.forEach(searchData => {
+        searchDataList.forEach(searchData => {
             promiselist.push(this.query(searchData));
         });
+        console.log(promiselist);
         return Promise.all(promiselist);
     }
+
     public get onQueryResult(): ISimpleEvent<any> {
         return this._onQueryResult.asEvent();
     }
+
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
     }
