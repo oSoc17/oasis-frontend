@@ -26,13 +26,18 @@ export class Manager {
             return Manager.routeService
             .queryPeriod(searchDataList)
             .then((routes) => {
+                console.log('routes');
+                console.log(routes);
                 return new RouteHistory(routes.map((connections) => {
                     return new Route(connections.map((connection) => {
                         return new Connection(connection);
                     }));
                 }));
             })
-            .then((routeHistory) => new QoE(routeHistory, new UserPreferencesMock())); // TODO: change for production
+            .then((routeHistory) => {
+                    return new QoE(routeHistory, new UserPreferencesMock());
+                }
+            );
         } else {
             return new RouteMockService()
             .queryPeriod(searchDataList)

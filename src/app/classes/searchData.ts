@@ -26,6 +26,8 @@ export class SearchData {
     public travelTime: string; // travel time in HH:MM
     public travelDate: string; // travel date in DD/MM/YYYY
     public timeType: string;   // either 'depart' or 'arrival'
+    public latestDepartTime: Date;
+    public departureTime: Date;
 
     /**
      * returns a list of SearchData objects where the travelDate is split according to the provided parameters
@@ -69,13 +71,16 @@ export class SearchData {
         const day = Number(this.travelDate.split('/')[0]);
         const month = Number(this.travelDate.split('/')[1]) - 1;
         const year = Number(this.travelDate.split('/')[2]);
-        const datetime = new Date(year, month, day, hour, min).toISOString();
+        const datetime = new Date(year, month, day, hour, min);
+        const inAnHour = new Date(datetime.getTime() + 60 * 60 * 1000);
+        const fifteenMins = new Date(15 * 60 * 1000);
         const json = {
             'arrivalStop': this.arrStation,
-            'departureStop': this.depStation
+            'departureStop': this.depStation,
+            'latestDepartTime': inAnHour,
+            'departureTime': datetime,
+            'minimumTransferTime': fifteenMins
         };
-
-        json['departureTime'] = datetime;
 
         /* TODO: Make arrivalTime possible with lc-client update
         switch (this.timeType) {
