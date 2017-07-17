@@ -29,6 +29,8 @@ export class RouteService implements IRouteService {
     }
 
     private continuousQuery(searchData: SearchData, cb, paths = [], dataCount = 0, httpRequests = 0, httpResponses = 0) {
+        const self = this;
+
         if (!searchData.latestDepartTime) {
             // reject('Invalid latestDepartTime!');
             return console.log('Invalid latestDepartTime!');
@@ -43,25 +45,25 @@ export class RouteService implements IRouteService {
             resultStream.on('result',  (path) => {
                 searchData.departureTime = new Date(new Date(path[0].departureTime).getTime() + 60000);
                 paths.push(path);
-                this.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
+                self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
             });
 
             resultStream.on('data', function (connection) {
                 // Processed connections
                 dataCount++;
-                this._onDataUpdate.dispatch(dataCount);
+                self._onDataUpdate.dispatch(dataCount);
             });
 
             source.on('request', function (url) {
                 // HTTP Request
                 httpRequests++;
-                this._onHttpRequest.dispatch(httpRequests);
+                self._onHttpRequest.dispatch(httpRequests);
             });
 
             source.on('response', function (url) {
                 // HTTP Respons
                 httpResponses++;
-                this._onHttpResponse.dispatch(httpResponses);
+                self._onHttpResponse.dispatch(httpResponses);
             });
         });
     }
@@ -91,9 +93,9 @@ export class RouteService implements IRouteService {
         console.log(promiselist);
 
         // Test event handlers
-        this.onDataUpdate.subscribe(dataCount => console.log(`Connections processed: ${dataCount}`));
+        /*this.onDataUpdate.subscribe(dataCount => console.log(`Connections processed: ${dataCount}`));
         this.onHttpRequest.subscribe(httpRequests => console.log(`HTTP Requests: ${httpRequests}`));
-        this.onHttpResponse.subscribe(httpResponses => console.log(`HTTP Responses: ${httpResponses}`));
+        this.onHttpResponse.subscribe(httpResponses => console.log(`HTTP Responses: ${httpResponses}`));*/
 
         return Promise.all(promiselist);
     }

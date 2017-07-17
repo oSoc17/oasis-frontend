@@ -10,11 +10,10 @@ import { UserPreferencesMock } from './userprefs.mock';
 import { UserPreferences } from './userprefs';
 
 export class Manager {
-
     private static config = require('../../config.json');
     // private entryPoints = this.config.servers.reduce((array, server) => array.concat(server.uri), []);
     private static entryPoints = Manager.config.entrypoints;
-    private static routeService = environment.production ? new RouteService(Manager.entryPoints) : new RouteMockService();
+    private static routeService = new RouteService(Manager.entryPoints);
 
     /**
      * gets QoE object
@@ -52,4 +51,7 @@ export class Manager {
         }
     }
 
+    public static get getRouteService() {
+        return this.routeService;
+    }
 }
