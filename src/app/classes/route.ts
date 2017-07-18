@@ -1,18 +1,31 @@
 import { Connection } from './connection';
 
 export class Route {
-    connections: Connection[];
+    private connections: Connection[];
 
     constructor(connections: Connection[]) {
         this.connections = connections;
     }
 
-    public getDataValues() {
-        /* returns components of QoE */
-        // TODO: return seperate values from QoE calculation
+    public get departureStation() {
+        return this.connections[0].departureStop;
     }
 
-    public getTotalTravelTime(): Date {
+    public get arrivalStation() {
+        return this.connections[this.connections.length - 1].arrivalStop;
+    }
+
+    public get departureTime() {
+        return this.connections[this.connections.length - 1].departureTime;
+    }
+
+    public get dataValues() {
+        /* returns components of QoE */
+        // TODO: return seperate values from QoE calculation
+        return undefined;
+    }
+
+    public get totalTravelTime(): Date {
         /* returns the total travel time (Date) */
         if (this.connections.length) {
             const first: Date = this.connections[0].departureTime;
@@ -23,7 +36,7 @@ export class Route {
         return new Date(0);
     }
 
-    public getInterMediateStopsAmount(): number {
+    public get interMediateStopsAmount(): number {
         /* returns amount of intermediate stops */
         if (this.connections.length) {
             return this.connections.length - 1;
@@ -32,11 +45,11 @@ export class Route {
         return null;
     }
 
-    public getChangesAmount(): number {
+    public get changesAmount(): number {
         /* returns amount of changes */
         if (this.connections.length > 1) {
             let changesAmount = 0;
-            console.log('connections: ' + this.connections.length);
+            // console.log('connections: ' + this.connections.length);
             for (let i = 0; i < this.connections.length - 1; i++) {
                 if (this.connections[i].gtfstrip !== this.connections[i + 1].gtfstrip) {
                     changesAmount++;
@@ -48,7 +61,7 @@ export class Route {
         return 0;
     }
 
-    public getAvgChangeTime(): Date {
+    public get avgChangeTime(): Date {
         /* returns average change time of a route */
         if (this.connections.length > 1) {
             let changeAmount = 0;
@@ -69,14 +82,22 @@ export class Route {
         return new Date(0);
     }
 
-    public getDelay(): Date {
+    public get delay(): Date {
         /* returns the last arrivalDelay */
         // TODO: is the delay only defined by the last arrivalDelay? What about missed changes due to delays?
         if (this.connections.length > 1) {
-            return this.connections[this.connections.length - 1].arrivalDelay;
+            if (this.connections[this.connections.length - 1].arrivalDelay) {
+                return this.connections[this.connections.length - 1].arrivalDelay;
+            } else {
+                return new Date(0);
+            }
         }
         // console.log('List of connections is empty');
         return new Date(0);
+    }
+
+    public get totalConnections() {
+        return this.connections.length;
     }
 
     public getChangesMissed(min: number = 3): number {
@@ -101,5 +122,9 @@ export class Route {
             }
         }
         return ret;
+    }
+
+    public addConnection(conn: Connection) {
+        this.connections.push(conn);
     }
 }
