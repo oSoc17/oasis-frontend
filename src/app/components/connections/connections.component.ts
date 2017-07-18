@@ -24,6 +24,7 @@ export class Connections implements OnInit {
     qualityOfExperienceStyle;
     manager: Manager;
     qoeList: QoE[];
+    searchString = AppComponent.searchString;
 
     /* Interactive loading */
     dataCount = 0;

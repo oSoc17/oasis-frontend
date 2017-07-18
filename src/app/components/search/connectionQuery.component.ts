@@ -47,6 +47,7 @@ export class ConnectionQuery {
             this.searchData = SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'],
                 this.travelTime.selectedTime, GetLatest(this.travelDate.selectedDay), 'departureTime', 14);
             AppComponent.searchData = this.searchData;
+            AppComponent.searchString = departSt.standardname + ' - ' + arriveSt.standardname;
             AppModule.options.addRecent(new Recent(this.searchData, departSt.standardname, arriveSt.standardname,
                 this.travelTime.selectedTime, this.travelDate.selectedDay));
             AppModule.options.save();
