@@ -16,6 +16,7 @@ import { Route } from '../../classes/route';
 
 export class Connections implements OnInit {
     loading: any = true;
+    finished: any = false;
     searchData: SearchData[];
     error: string;
     language: Language = new Language();
@@ -44,10 +45,11 @@ export class Connections implements OnInit {
         if (AppComponent.searchData) {
             this.searchData = AppComponent.searchData;
             const onQueryResult = this.manager.getQoE(this.searchData);
-            onQueryResult.subscribe(result => this.loading = false);
+            onQueryResult.subscribe((result) => {this.loading = false; });
             this.manager.onDataUpdate.subscribe(e => this.dataCount = this.manager.dataCount);
             this.manager.onHttpRequest.subscribe(e => this.httpRequests = this.manager.httpRequests);
             this.manager.onHttpResponse.subscribe(e => this.httpResponses = this.manager.httpResponses);
+            this.manager.onComplete.subscribe(e => this.finished = true);
         } else {
             AppComponent.setPage(0);
         }

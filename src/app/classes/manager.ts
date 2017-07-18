@@ -83,4 +83,8 @@ export class Manager {
     public get onHttpResponse(): ISimpleEvent<number> {
         return this.routeService.onHttpResponse;
     }
+
+    public get onComplete(): ISimpleEvent<any> {
+        return this.routeService.onComplete;
+    }
 }
