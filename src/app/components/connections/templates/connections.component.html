@@ -20,17 +20,8 @@
 
 <div *ngIf="!loading && !error">
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
-    <md-expansion-panel class="md-expansion-demo-width" #myPanel>
-        <md-expansion-panel-header>
-            <mat-panel-description>This is a panel description.</mat-panel-description>
-            <mat-panel-title>Panel Title</mat-panel-title>
-        </md-expansion-panel-header>
-        This is the content text that makes sense here.
-        <md-action-row>
-            <button md-button (click)="myPanel.expanded = false">CANCEL</button>
-            <button md-button>SAVE</button>
-        </md-action-row>
-    </md-expansion-panel>
+    <route></route>
+<!--
 
   <ul *ngIf="this.qoeResults">
     <li><h5>{{ language.getMessage('qoe') }}: {{ toPercentage( qoeResults.getQoE()) }}%</h5>

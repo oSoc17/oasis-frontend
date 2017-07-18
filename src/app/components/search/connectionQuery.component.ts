@@ -45,7 +45,7 @@ export class ConnectionQuery {
              || this.travelDate.selectedDays['4']
              || this.travelDate.selectedDays['5']
              || this.travelDate.selectedDays['6'])) {*/
-        } else if (!this.travelDate.selectedDay) {
+        } else if (this.travelDate.selectedDay === null) {
             this.error = this.language.getMessage('errNoDays');
         } else {
             this.searchData = [];

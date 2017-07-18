@@ -12,6 +12,7 @@ import { ConnectionDetail } from './components/connections/connectionDetail.comp
 import { NavComponent } from './components/nav.component';
 import { QoESliderComponent } from './components/options/qoeSlider.component';
 import { Recents } from "./components/search/recents.component";
+import { Route } from "./components/connections/route.component";
 
 export class Components {
     public static components = [
@@ -27,6 +28,7 @@ export class Components {
         ConnectionDetail,
         NavComponent,
         QoESliderComponent,
-        Recents
+        Recents,
+        Route
     ];
 }
