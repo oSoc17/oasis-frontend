@@ -33,8 +33,14 @@ export class Route {
 
     toTime(val) {
         const date = new Date(val);
+        return `${this.formatNumber(date.getHours())}:${this.formatNumber(date.getMinutes())}`;
+    }
+
+    toUTCTime(val) {
+        const date = new Date(val);
         return `${this.formatNumber(date.getUTCHours())}:${this.formatNumber(date.getUTCMinutes())}`;
     }
+
     getSliderValue() {
         return this.toScore(this.qoe.getQoE() * 10) * 10;
     }

@@ -11,7 +11,7 @@
     </md-expansion-panel-header>
     <div class="row">
         <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toTime(qoe.getAvgDelay().value.valueOf()) }}</h1>
+            <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toUTCTime(qoe.getAvgDelay().value.valueOf()) }}</h1>
             <p class="route-subheader">{{ language.getMessage('avgDelay') }}</p>
         </div>
         <div class="col m4">
@@ -19,7 +19,7 @@
             <p class="route-subheader">{{ language.getMessage('avgChanges') }}</p>
         </div>
         <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toTime(qoe.getAvgChangeTime().value.valueOf()) }}</h1>
+            <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toUTCTime(qoe.getAvgChangeTime().value.valueOf()) }}</h1>
             <p class="route-subheader">{{ language.getMessage('changeTime') }}</p>
         </div>
         <div class="col m4">
@@ -27,7 +27,7 @@
             <p class="route-subheader">{{ language.getMessage('delayConsistency') }}</p>
         </div>
         <!--<div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-train"></i> {{ toTime(qoe.getAvgTravelTime().value.valueOf()) }}</h1>
+            <h1 class="route-header"><i class="mdi mdi-train"></i> {{ toUTCTime(qoe.getAvgTravelTime().value.valueOf()) }}</h1>
             <p class="route-subheader">{{ language.getMessage('avgTravelTime') }}</p>
         </div>-->
         <div class="col m4">
