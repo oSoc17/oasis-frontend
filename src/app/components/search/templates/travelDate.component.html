@@ -1,4 +1,4 @@
-<div class="row">
+<!--<div class="row">
     <div class="col s1 day">M</div>
     <div class="col s1 day">T</div>
     <div class="col s1 day">W</div>
@@ -29,4 +29,29 @@
     <div class="col s1 day" (click)="clickDay(6)" [ngClass]="selectedDays[6] ? 'active' : ''">
         <i class="mdi mdi-check"></i>
     </div>
-</div>
+</div>-->
+
+
+<md-select>
+    <md-option [value]="selectedDay">
+        Monday
+    </md-option>
+    <md-option [value]="selectedDay">
+        Tuesday
+    </md-option>
+    <md-option [value]="selectedDay">
+        Wednesday
+    </md-option>
+    <md-option [value]="selectedDay">
+        Thursday
+    </md-option>
+    <md-option [value]="selectedDay">
+        Friday
+    </md-option>
+    <md-option [value]="selectedDay">
+        Saturday
+    </md-option>
+    <md-option [value]="selectedDay">
+        Sunday
+    </md-option>
+</md-select>

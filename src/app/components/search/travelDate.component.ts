@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 
 export class TravelDate {
+    selectedDay = 'Monday';
     selectedDays = {
         '0': false,
         '1': false,
