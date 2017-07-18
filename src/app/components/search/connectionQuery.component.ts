@@ -53,7 +53,7 @@ export class ConnectionQuery {
                     if (this.travelDate.selectedDays['' + i]) {
                         this.searchData = this.searchData.concat(
                             SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'], this.travelTime.selectedTime,
-                                GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 1));
+                                GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 3));
                     }
             }
             */
