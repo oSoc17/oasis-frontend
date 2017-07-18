@@ -40,7 +40,7 @@ export class StationList implements OnInit {
             if (filtered.length > 0 &&
                     filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
                 this.selectedStation = filtered[0];
-                console.log(this.selectedStation);
+                // console.log(this.selectedStation);
             }
             return filtered;
         }

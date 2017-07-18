@@ -39,7 +39,6 @@ export class AppModule {
   static options: Options = new Options();
 
   constructor() {
-    console.log('=== Options ===');
     AppModule.options.load();
   }
 }

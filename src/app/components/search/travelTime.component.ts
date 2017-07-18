@@ -14,10 +14,10 @@ export class TravelTime {
     constructor() {}
 
     changeType() {
-        console.log(this.selectedType);
+        // console.log(this.selectedType);
     }
 
     changeTime() {
-        console.log(this.selectedTime);
+        // console.log(this.selectedTime);
     }
 }

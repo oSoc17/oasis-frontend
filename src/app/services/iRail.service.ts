@@ -25,7 +25,7 @@ export class IRailService {
     fakeReply(data: any): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
-                console.log(data);
+                // console.log(data);
                 resolve(data);
             } catch (e) {
                 reject(e);
