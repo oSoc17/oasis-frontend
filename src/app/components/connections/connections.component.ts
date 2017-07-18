@@ -33,9 +33,6 @@ export class Connections implements OnInit {
     constructor(private ref: ChangeDetectorRef) {
         this.manager = new Manager();
         this.qoeList = this.manager.qoeList;
-        this.dataCount = this.manager.dataCount;
-        this.httpRequests = this.manager.httpRequests;
-        this.httpResponses = this.manager.httpResponses;
         // This improves performance
         setInterval(() => {
             this.ref.detectChanges();
