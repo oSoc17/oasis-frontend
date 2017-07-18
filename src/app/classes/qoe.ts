@@ -19,6 +19,14 @@ export class QoE implements IQoE {
         return this._departureTime;
     }
 
+    public get departureStation(): string {
+        return this.routeHistory.routes[0].departureStation;
+    }
+
+    public get arrivalStation(): string {
+        return this.routeHistory.routes[0].arrivalStation;
+    }
+
     public addRoute(route: Route) {
         return this.routeHistory.routes.push(route);
     }
