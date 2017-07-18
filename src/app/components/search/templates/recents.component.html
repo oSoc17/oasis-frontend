@@ -1,5 +1,5 @@
 <div class="col l6">
-    <h5 class='grey-text darken-3'>Recents</h5>
+    <h5 class='grey-text darken-3'>{{ language.getMessage('recents') }}</h5>
     <md-list dense>
         <a (click)="onClick(recent)" *ngFor="let recent of recents">
             <md-list-item>
