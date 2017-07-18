@@ -31,5 +31,11 @@
     "travelTime": "Travel time",
     "optMissedConnections": "Missed Connections",
     "price": "Price",
-    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "delay_tooltip":"The avarage amount time lost due to delays.",
+    "amountOfChanges_tooltip": "The avarage amount of times that you have to change trains.",
+    "delayConsistency_tooltip": "How consistent delays are.",
+    "changeTime_tooltip": "The avarage time spent waiting between trains.",
+    "avgTravelTime_tooltip": "Avarage time between departure and arrival.",
+    "missedConnections_tooltip": "The avarage chance that you will miss the change of train. Often influenced by delays."
 }
