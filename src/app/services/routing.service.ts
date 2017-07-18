@@ -15,54 +15,109 @@ export interface IRouteService {
 export class RouteService implements IRouteService {
     private planner;
     private _onQueryResult;
+    private _onDataUpdate;
+    private _onHttpRequest;
+    private _onHttpResponse;
+
     // example: ['http://belgianrail.linkedconnections.org/']
     constructor(entryPoints: [string]) {
         this.planner = new Client({'entrypoints': entryPoints});
         this._onQueryResult = new SimpleEventDispatcher<any>();
+        this._onDataUpdate = new SimpleEventDispatcher<any>();
+        this._onHttpRequest = new SimpleEventDispatcher<any>();
+        this._onHttpResponse = new SimpleEventDispatcher<any>();
+    }
+
+    private continuousQuery(searchData: SearchData, cb, paths = [], dataCount = 0, httpRequests = 0, httpResponses = 0) {
+        const self = this;
+
+        if (!searchData.latestDepartTime) {
+            // reject('Invalid latestDepartTime!');
+            return console.log('Invalid latestDepartTime!');
+        }
+
+        if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
+            console.log('Total connections processed ', dataCount);
+            return cb(paths);
+        }
+
+        this.planner.query(searchData, (resultStream, source) => {
+            resultStream.on('result',  (path) => {
+                searchData.departureTime = new Date(new Date(path[0].departureTime).getTime() + 60000);
+                paths.push(path);
+                self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
+            });
+
+            resultStream.on('data', function (connection) {
+                // Processed connections
+                dataCount++;
+                self._onDataUpdate.dispatch(dataCount);
+            });
+
+            source.on('request', function (url) {
+                // HTTP Request
+                httpRequests++;
+                self._onHttpRequest.dispatch(httpRequests);
+            });
+
+            source.on('response', function (url) {
+                // HTTP Respons
+                httpResponses++;
+                self._onHttpResponse.dispatch(httpResponses);
+            });
+        });
     }
 
     query(searchData: SearchData): Promise<any> {
+        searchData = searchData.toJSON();
         return new Promise((resolve, reject) => {
-            const stop_condition = false;
-            // console.log(searchData.toJSON());
-            this.planner.query(searchData.toJSON(), (resultStream, source) => {
-                    resultStream.on('result',  (path) => {
-                        this._onQueryResult.dispatchAsync(path);
-                        resolve(path);
-                    });
-                    resultStream.on('data', function (connection) {
-                        // console.log('We have received data');
-                        // console.log(connection);
-                        // if you're not interested anymore, you can stop the processing by doing this
-                        if (stop_condition) {
-                            source.close();
-                        }
-                    });
-                    // you can also count the number of HTTP requests done by the interface as follows
-                    source.on('request', function (url) {
-                        // console.log('Requesting', url);
-                    });
-                    // you can also catch when a response is generated HTTP requests done by the interface as follows
-                    source.on('response', function (url) {
-                        // console.log('Response received for', url);
-                    });
-                });
+            console.log(searchData);
+
+            this.continuousQuery(searchData, (data) => {
+                console.log('resolve data');
+                console.log(data);
+                resolve(data[0]);
+            });
         });
     }
+
     /**
      * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
      * @param searchDataList list of SearchData objects
      */
     public queryPeriod(searchDataList: SearchData[]): Promise<any[]> {
         const promiselist = [];
-         searchDataList.forEach(searchData => {
+        searchDataList.forEach(searchData => {
             promiselist.push(this.query(searchData));
         });
+        console.log(promiselist);
+
+        // Test event handlers
+        /*this.onDataUpdate.subscribe(dataCount => console.log(`Connections processed: ${dataCount}`));
+        this.onHttpRequest.subscribe(httpRequests => console.log(`HTTP Requests: ${httpRequests}`));
+        this.onHttpResponse.subscribe(httpResponses => console.log(`HTTP Responses: ${httpResponses}`));*/
+
         return Promise.all(promiselist);
     }
+
+    // This is already handled in a promise
+    // might be a nice to have adition for the queryPeriod function.
     public get onQueryResult(): ISimpleEvent<any> {
         return this._onQueryResult.asEvent();
     }
+
+    public get onDataUpdate(): ISimpleEvent<number> {
+        return this._onDataUpdate.asEvent();
+    }
+
+    public get onHttpRequest(): ISimpleEvent<number> {
+        return this._onHttpRequest.asEvent();
+    }
+
+    public get onHttpResponse(): ISimpleEvent<number> {
+        return this._onHttpResponse.asEvent();
+    }
+
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
     }

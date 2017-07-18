@@ -10,11 +10,10 @@ import { UserPreferencesMock } from './userprefs.mock';
 import { UserPreferences } from './userprefs';
 
 export class Manager {
-
     private static config = require('../../config.json');
     // private entryPoints = this.config.servers.reduce((array, server) => array.concat(server.uri), []);
     private static entryPoints = Manager.config.entrypoints;
-    private static routeService = environment.production ? new RouteService(Manager.entryPoints) : new RouteMockService();
+    private static routeService = new RouteService(Manager.entryPoints);
 
     /**
      * gets QoE object
@@ -26,13 +25,18 @@ export class Manager {
             return Manager.routeService
             .queryPeriod(searchDataList)
             .then((routes) => {
+                console.log('routes');
+                console.log(routes);
                 return new RouteHistory(routes.map((connections) => {
                     return new Route(connections.map((connection) => {
                         return new Connection(connection);
                     }));
                 }));
             })
-            .then((routeHistory) => new QoE(routeHistory, new UserPreferencesMock())); // TODO: change for production
+            .then((routeHistory) => {
+                    return new QoE(routeHistory, new UserPreferencesMock());
+                }
+            );
         } else {
             return new RouteMockService()
             .queryPeriod(searchDataList)
@@ -47,4 +51,7 @@ export class Manager {
         }
     }
 
+    public static get getRouteService() {
+        return this.routeService;
+    }
 }

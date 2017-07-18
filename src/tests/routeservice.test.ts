@@ -29,6 +29,13 @@ describe('RoutingService test', () => {
         routeService.query(searchData).then((connections) => {
             expect(connections).toEqual(jasmine.any(Array));
             connections.forEach((connection) => {
+                if (connection.arrivalStop === undefined || connection.arrivalTime === undefined ||
+                        connection.departureStop === undefined || connection.departureTime === undefined ||
+                        connection['http://vocab.gtfs.org/terms#trip'] === undefined) {
+                    console.log('HUGE FAILURE');
+                    console.log(connection);
+                }
+
                 expect(connection.arrivalStop).toBeDefined();
                 expect(connection.arrivalTime).toBeDefined();
                 expect(connection.departureStop).toBeDefined();

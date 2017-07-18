@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { AppComponent } from '../app.component';
 import { SearchData } from '../../classes/searchData';
@@ -21,12 +21,33 @@ export class Connections implements OnInit {
     foundRoutes: any[];
     qualityOfExperienceStyle;
 
-    constructor() {}
+    /* Interactive loading */
+    dataCount = 0;
+    httpRequests = 0;
+    httpResponses = 0;
+
+    constructor(private ref: ChangeDetectorRef) {}
 
     ngOnInit(): void {
         // this.searchData = JSON.parse(this.route.params['_value']);
         if (AppComponent.searchData) {
             this.searchData = AppComponent.searchData;
+            Manager.getRouteService.onDataUpdate.subscribe(dataCount => {
+                this.dataCount = dataCount;
+                // Force update because subscribe is async and angular doesn't catch that in autoupdate
+                this.ref.detectChanges();
+            });
+            Manager.getRouteService.onHttpRequest.subscribe(httpRequests => {
+                this.httpRequests = httpRequests;
+                // Force update because subscribe is async and angular doesn't catch that in autoupdate
+                this.ref.detectChanges();
+            });
+            Manager.getRouteService.onHttpResponse.subscribe(httpResponses => {
+                this.httpResponses = httpResponses;
+                // Force update because subscribe is async and angular doesn't catch that in autoupdate
+                this.ref.detectChanges();
+            });
+            Manager.getRouteService.onQueryResult.subscribe(() => console.log('Query result received.'));
             Manager.getQoE(this.searchData).then((result) => {
                 this.qoeResults = result;
                 this.loading = false;
