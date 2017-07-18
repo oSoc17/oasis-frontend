@@ -7,14 +7,15 @@
             <stationlist #departure></stationlist>
             <label>{{ language.getMessage('destination') }}</label>
             <stationlist #arrival></stationlist>
-
-            <div class="col s6">
-            <label>{{ language.getMessage('time') }}</label>
-            <traveltime></traveltime>
-            </div>
-            <div class="col s6">
-            <label>{{ language.getMessage('date') }}</label>
-            <traveldate></traveldate>
+            <div class="row">
+                <div class="col s6">
+                    <label>{{ language.getMessage('time') }}</label>
+                    <traveltime></traveltime>
+                </div>
+                <div class="col s6">
+                    <label>{{ language.getMessage('date') }}</label>
+                    <traveldate></traveldate>
+                </div>
             </div>
 
             <p>{{ error }}</p>
@@ -22,24 +23,8 @@
                     (click)='clickCalculate()'>
                 {{ language.getMessage('showAlts') }}
             </button>
+
         </md-card>
     </div>
-    <div class="col l6">
-        <h5 class='grey-text darken-3'>Recents</h5>
-        <md-list dense>
-            <a href="">
-                <md-list-item>
-                    <h4 md-line>Gent-Sint-Pieters - Brugge</h4>
-                    <p md-line>8:30 monday</p>
-                    <i class="material-icons">send</i>
-                </md-list-item>
-            </a>
-            <md-divider></md-divider>
-            <md-list-item>
-                <h4 md-line>Antwerpen-Centraal - Brussel-Noord</h4>
-                <p md-line>16:45 wednesday</p>
-                <i class="material-icons">send</i>
-            </md-list-item>
-        </md-list>
-    </div>
+    <recents></recents>
 </div>

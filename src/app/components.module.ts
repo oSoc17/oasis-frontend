@@ -11,6 +11,7 @@ import { LanguageChooser } from './components/options/languagechooser.component'
 import { ConnectionDetail } from './components/connections/connectionDetail.component';
 import { NavComponent } from './components/nav.component';
 import { QoESliderComponent } from './components/options/qoeSlider.component';
+import { Recents } from "./components/search/recents.component";
 
 export class Components {
     public static components = [
@@ -25,6 +26,7 @@ export class Components {
         LanguageChooser,
         ConnectionDetail,
         NavComponent,
-        QoESliderComponent
+        QoESliderComponent,
+        Recents
     ];
 }

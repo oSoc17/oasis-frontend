@@ -29,6 +29,15 @@ export class Language {
         return null;
     }
 
+    getMessages(key: string): string[] {
+        // returns an array of messages in current language
+        const lang = this.getLanguageData();
+        if (lang) {
+            return lang[key];
+        }
+        return null;
+    }
+
     getLanguages(): string[] {
         // returns locales/languages.json
         try {
