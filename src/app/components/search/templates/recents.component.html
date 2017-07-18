@@ -1,13 +1,11 @@
-<div class="col l6">
     <h5 class='grey-text darken-3'>{{ language.getMessage('recents') }}</h5>
     <md-list dense>
-        <a (click)="onClick(recent)" *ngFor="let recent of recents">
+        <a class="cursor-pointer" (click)="onClick(recent)" *ngFor="let recent of recents">
+            <md-divider></md-divider>
             <md-list-item>
                 <h4 md-line>{{ recent.depStationReadable }} - {{ recent.arrStationReadable }}</h4>
                 <p md-line>{{ recent.travelTimeReadable }} {{ language.getMessage('weekdays')[recent.travelDay]}}</p>
                 <i class="material-icons">send</i>
             </md-list-item>
-            <md-divider></md-divider>
         </a>
     </md-list>
-</div>

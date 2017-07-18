@@ -1,12 +1,12 @@
 <div class='row'>
     <h4>{{ language.getMessage('searchHeader') }}</h4>
-    <div class='col l6 connquery'>
+    <div class='col l6 m12 s12 connquery'>
         <md-card>
             <label>{{ language.getMessage('departure') }}</label>
             <stationlist #departure></stationlist>
             <label>{{ language.getMessage('destination') }}</label>
             <stationlist #arrival></stationlist>
-            <div class="row">
+            <div class="row valign-wrapper">
                 <div class="col s6">
                     <label>{{ language.getMessage('time') }}</label>
                     <traveltime></traveltime>
@@ -25,5 +25,7 @@
 
         </md-card>
     </div>
-    <recents></recents>
+    <div class="col l6 m12 s12">
+        <recents></recents>
+    </div>
 </div>

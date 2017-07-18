@@ -18,6 +18,7 @@ export class RouteService implements IRouteService {
     private _onDataUpdate;
     private _onHttpRequest;
     private _onHttpResponse;
+    private _onComplete;
 
     // example: ['http://belgianrail.linkedconnections.org/']
     constructor(entryPoints: [string]) {
@@ -26,6 +27,7 @@ export class RouteService implements IRouteService {
         this._onDataUpdate = new SimpleEventDispatcher<any>();
         this._onHttpRequest = new SimpleEventDispatcher<any>();
         this._onHttpResponse = new SimpleEventDispatcher<any>();
+        this._onComplete = new SimpleEventDispatcher<any>();
     }
 
     private continuousQuery(searchData: SearchData, cb, paths = [], dataCount = 0, httpRequests = 0, httpResponses = 0) {
@@ -38,6 +40,7 @@ export class RouteService implements IRouteService {
 
         if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
             console.log('Total connections processed ', dataCount);
+
             return cb(paths);
         }
 
@@ -111,11 +114,11 @@ export class RouteService implements IRouteService {
     public queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any>  {
         const promiselist = [];
         searchDataList.forEach(searchData => {
-            this.query(searchData).then(() => {
-                console.log('Timespan query result received');
-            }).catch(e => console.log(e));
+             promiselist.push(this.query(searchData));
         });
-
+            Promise.all(promiselist).then((res) => {
+                this._onComplete.dispatch(res);
+            });
         return this._onQueryResult;
 
         // Test event handlers
@@ -129,6 +132,10 @@ export class RouteService implements IRouteService {
     // might be a nice to have adition for the queryPeriod function.
     public get onQueryResult(): ISimpleEvent<any> {
         return this._onQueryResult.asEvent();
+    }
+
+    public get onComplete(): ISimpleEvent<any> {
+        return this._onComplete.asEvent();
     }
 
     public get onDataUpdate(): ISimpleEvent<number> {
