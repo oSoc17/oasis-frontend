@@ -10,20 +10,19 @@
       </div>
     </div>
   </div>
-
-  <p>Connections processed: {{ dataCount }}</p>
-  <p>HTTP Requests: {{ httpRequests }}</p>
-  <p>HTTP Responses: {{ httpResponses }}</p>
 </div>
+
+<p>Connections processed: {{ dataCount }}</p>
+<p>HTTP Requests: {{ httpRequests }}</p>
+<p>HTTP Responses: {{ httpResponses }}</p>
 
 <h3 *ngIf="error">ERROR: {{ error }}</h3>
 
 <div *ngIf="!loading && !error">
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
 
-  <div *ngFor="let route of routes">
-    <p>{{ route.departureStation }} to {{ route.arrivalStation }}</p>
-    <p>Departure: {{ route.departureTime.toLocaleTimeString() }} - Traveltime {{ route.totalTravelTime.valueOf() / 1000 / 60 }} Mins</p>
+  <div *ngFor="let qoe of qoeList">
+    <p>{{ qoe.departureTime.toLocaleTimeString() }}</p>
   </div>
 
   <ul *ngIf="this.qoeResults">

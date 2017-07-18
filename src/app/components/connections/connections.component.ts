@@ -22,7 +22,7 @@ export class Connections implements OnInit {
     foundRoutes: any[];
     qualityOfExperienceStyle;
     manager: Manager;
-    routes: Route[];
+    qoeList: QoE[];
 
     /* Interactive loading */
     dataCount = 0;
@@ -31,32 +31,31 @@ export class Connections implements OnInit {
 
     constructor(private ref: ChangeDetectorRef) {
         this.manager = new Manager();
-        this.routes = this.manager.routes;
+        this.qoeList = this.manager.qoeList;
+        this.dataCount = this.manager.dataCount;
+        this.httpRequests = this.manager.httpRequests;
+        this.httpResponses = this.manager.httpResponses;
     }
 
     ngOnInit(): void {
         // this.searchData = JSON.parse(this.route.params['_value']);
         if (AppComponent.searchData) {
             this.searchData = AppComponent.searchData;
-            this.manager.onDataUpdate.subscribe(dataCount => {
-                this.dataCount = dataCount;
-                // Force update because subscribe is async and angular doesn't catch that in autoupdate
-                this.ref.detectChanges();
-            });
-            this.manager.onHttpRequest.subscribe(httpRequests => {
-                this.httpRequests = httpRequests;
-                // Force update because subscribe is async and angular doesn't catch that in autoupdate
-                this.ref.detectChanges();
-            });
-            this.manager.onHttpResponse.subscribe(httpResponses => {
-                this.httpResponses = httpResponses;
-                // Force update because subscribe is async and angular doesn't catch that in autoupdate
-                this.ref.detectChanges();
-            });
             const onQueryResult = this.manager.getQoE(this.searchData);
             onQueryResult.subscribe(result => {
-                console.log(this.routes[0].departureStation);
                 this.loading = false;
+            });
+            this.manager.onDataUpdate.subscribe(e => {
+                this.dataCount = this.manager.dataCount;
+                this.ref.detectChanges()
+            });
+            this.manager.onHttpRequest.subscribe(e => {
+                this.httpRequests = this.manager.httpRequests;
+                this.ref.detectChanges()
+            });
+            this.manager.onHttpResponse.subscribe(e => {
+                this.httpResponses = this.manager.httpResponses;
+                this.ref.detectChanges()
             });
         } else {
             AppComponent.setPage(0);

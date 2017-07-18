@@ -2,14 +2,25 @@ import { RouteHistory } from './routeHistory';
 import { IQoE } from '../interfaces/iQoE';
 import { IUserPreferences } from '../interfaces/iUserPreferences';
 import { Calc } from './calc';
+import { Route } from './route';
 
 export class QoE implements IQoE {
     private routeHistory: RouteHistory;
     private userPreferences: IUserPreferences;
+    private _departureTime: Date;
 
     constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
         this.routeHistory = routeHistory;
         this.userPreferences = preference;
+        this._departureTime = routeHistory.routes[0].departureTime;
+    }
+
+    public get departureTime(): Date {
+        return this._departureTime;
+    }
+
+    public addRoute(route: Route) {
+        return this.routeHistory.routes.push(route);
     }
 
     getAvgDelay(): any {

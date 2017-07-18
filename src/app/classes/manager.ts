@@ -15,15 +15,26 @@ export class Manager {
     // private entryPoints = this.config.servers.reduce((array, server) => array.concat(server.uri), []);
     private entryPoints = Manager.config.entrypoints;
     private routeService: RouteService;
-    private routesProcessed: Route[] = [];
+    private _qoeList: QoE[] = [];
+
+    private _dataCount = 0;
+    private _httpRequests = 0;
+    private _httpResponses = 0;
 
     constructor() {
         if (!this.routeService) {
             this.routeService = new RouteService(this.entryPoints);
         }
         this.routeService.onQueryResult.subscribe((result) => {
-            this.routesProcessed.push(new Route(result as Connection[]));
-            console.log(this.routesProcessed);
+            const route = new Route(result);
+            for (const qoe of this._qoeList) {
+                if (qoe.departureTime.toTimeString() === route.departureTime.toTimeString()) {
+                    return qoe.addRoute(route);
+                }
+            }
+            const routeHistory = new RouteHistory([route]);
+            this._qoeList.push(new QoE(routeHistory, new UserPreferences()));
+            console.log(this._qoeList);
         });
     }
 
@@ -33,6 +44,9 @@ export class Manager {
      * @param deploycheck wether or not deployment should be checked (default: true)
      */
     getQoE(searchDataList: SearchData[], deploycheck: boolean = true): ISimpleEvent<any> {
+        this.onDataUpdate.subscribe(e => this._dataCount++);
+        this.onHttpRequest.subscribe(e => this._httpRequests++);
+        this.onHttpResponse.subscribe(e => this._httpResponses++);
         return this.routeService.queryPeriod(searchDataList);
     }
 
@@ -40,9 +54,21 @@ export class Manager {
         return this.routeService.onQueryResult;
     }
 
-    public get routes() {
+    public get qoeList() {
         // TODO: Make it able to calculate QoE per route.
-        return this.routesProcessed;
+        return this._qoeList;
+    }
+
+    public get dataCount() {
+        return this._dataCount;
+    }
+
+    public get httpRequests() {
+        return this._httpRequests;
+    }
+
+    public get httpResponses() {
+        return this._httpResponses;
     }
 
     public get onDataUpdate(): ISimpleEvent<number> {
