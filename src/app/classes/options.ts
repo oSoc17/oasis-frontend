@@ -1,3 +1,5 @@
+import { Recent } from './recent';
+
 export class Options {
     language = 'en_GB';
     qoeParameters = {
@@ -10,6 +12,7 @@ export class Options {
         numberOfMissedConnections: 85,
         price: 78
     };
+    recents: Recent[] = [];
 
     public save(): boolean {
         if (typeof localStorage !== 'undefined') {
