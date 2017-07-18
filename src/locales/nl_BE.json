@@ -31,5 +31,11 @@
   "travelTime": "Reistijd",
   "optMissedConnections": "Gemiste connecties",
   "price": "Prijs",
-  "weekdays": ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"]
+  "weekdays": ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"],
+  "delay_tooltip":"De gemiddelde duur van vertragingen.",
+  "amountOfChanges_tooltip": "Het gemiddeld aantal keer je moet overstappen.",
+  "delayConsistency_tooltip": "Hoe consistent vertragingen zijn.",
+  "changeTime_tooltip": "De gemiddelde tijd wachtend op de trein waarop je moet overstappen.",
+  "avgTravelTime_tooltip": "De gemiddelde reistijd.",
+  "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen."
 }

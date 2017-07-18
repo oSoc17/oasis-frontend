@@ -22,5 +22,4 @@ export class Recents {
         AppComponent.searchData = recent.searchData;
         AppComponent.setPage(1);
     }
-
 }
