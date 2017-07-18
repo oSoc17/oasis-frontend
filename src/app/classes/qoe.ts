@@ -2,15 +2,37 @@ import { RouteHistory } from './routeHistory';
 import { IQoE } from '../interfaces/iQoE';
 import { IUserPreferences } from '../interfaces/iUserPreferences';
 import { Calc } from './calc';
+import { Route } from './route';
 
 export class QoE implements IQoE {
-
     private routeHistory: RouteHistory;
     private userPreferences: IUserPreferences;
+    private _departureTime: Date;
 
     constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
         this.routeHistory = routeHistory;
         this.userPreferences = preference;
+        if (routeHistory.routes.length > 0) {
+            this._departureTime = routeHistory.routes[0].departureTime;
+        } else {
+            this._departureTime = new Date(0);
+        }
+    }
+
+    public get departureTime(): Date {
+        return this._departureTime;
+    }
+
+    public get departureStation(): string {
+        return this.routeHistory.routes[0].departureStation;
+    }
+
+    public get arrivalStation(): string {
+        return this.routeHistory.routes[0].arrivalStation;
+    }
+
+    public addRoute(route: Route) {
+        return this.routeHistory.routes.push(route);
     }
 
     getAvgDelay(): any {
@@ -135,6 +157,16 @@ export class QoE implements IQoE {
         sum += this.getNumberOfMissedConnections().score;
         sum += this.getNumberOfRoutesWithinHour().score;
         sum += this.getPrice().score;
+
+        /*console.log('getAvgTravelTime', this.getAvgTravelTime().score);
+        console.log('getAvgChangeTime', this.getAvgChangeTime().score);
+        console.log('getAvgChangesAmount', this.getAvgChangesAmount().score);
+        console.log('getDelayConsistency', this.getDelayConsistency().score);
+        console.log('getAvgDelay', this.getAvgDelay().score);
+        console.log('getNumberOfMissedConnections', this.getNumberOfMissedConnections().score);
+        console.log('getNumberOfRoutesWithinHour', this.getNumberOfRoutesWithinHour().score);
+        console.log('getPrice', this.getPrice().score);*/
+
         return sum;
     }
 }

@@ -9,7 +9,7 @@ const Client = require('lc-client');
 export interface IRouteService {
     onQueryResult: ISimpleEvent<any>;
     query(searchData: SearchData): Promise<any>;
-    queryPeriod(searchDataList: SearchData[]): Promise<any[]>;
+    queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any>;
 }
 
 export class RouteService implements IRouteService {
@@ -46,6 +46,7 @@ export class RouteService implements IRouteService {
                 searchData.departureTime = new Date(new Date(path[0].departureTime).getTime() + 60000);
                 paths.push(path);
                 self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
+                this._onQueryResult.dispatch(path);
             });
 
             resultStream.on('data', function (connection) {
@@ -73,11 +74,7 @@ export class RouteService implements IRouteService {
         return new Promise((resolve, reject) => {
             console.log(searchData);
 
-            this.continuousQuery(searchData, (data) => {
-                console.log('resolve data');
-                console.log(data);
-                resolve(data[0]);
-            });
+            this.continuousQuery(searchData, resolve);
         });
     }
 
@@ -85,19 +82,21 @@ export class RouteService implements IRouteService {
      * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
      * @param searchDataList list of SearchData objects
      */
-    public queryPeriod(searchDataList: SearchData[]): Promise<any[]> {
+    public queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any>  {
         const promiselist = [];
         searchDataList.forEach(searchData => {
-            promiselist.push(this.query(searchData));
+            this.query(searchData).then(() => {
+                console.log('Timespan query result received');
+            }).catch(e => console.log(e));
         });
-        console.log(promiselist);
+
+        return this._onQueryResult;
 
         // Test event handlers
         /*this.onDataUpdate.subscribe(dataCount => console.log(`Connections processed: ${dataCount}`));
         this.onHttpRequest.subscribe(httpRequests => console.log(`HTTP Requests: ${httpRequests}`));
-        this.onHttpResponse.subscribe(httpResponses => console.log(`HTTP Responses: ${httpResponses}`));*/
-
-        return Promise.all(promiselist);
+        this.onHttpResponse.subscribe(httpResponses => console.log(`HTTP Responses: ${httpResponses}`));
+        this.onQueryResult.subscribe(queryResult => console.log(`HTTP Responses: ${queryResult}`));*/
     }
 
     // This is already handled in a promise

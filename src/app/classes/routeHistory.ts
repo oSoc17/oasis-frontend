@@ -6,6 +6,9 @@ export class RouteHistory {
     public routes: Route[];
 
     constructor(routes: Route[]) {
+        if (!routes) {
+            this.routes = [];
+        }
         this.routes = routes;
         // TODO: fill array with historic data, how?
     }
@@ -14,7 +17,7 @@ export class RouteHistory {
         /* returns avg travel time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getTotalTravelTime().valueOf());
+            data.push(route.totalTravelTime.valueOf());
         }
         return new Date(Calc.avg(data));
     }
@@ -23,7 +26,7 @@ export class RouteHistory {
         /* returns avg change time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getChangesAmount());
+            data.push(route.changesAmount);
         }
         return Calc.avg(data);
     }
@@ -32,7 +35,7 @@ export class RouteHistory {
         /* returns avg delay based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getDelay().valueOf());
+            data.push(route.delay.valueOf());
         }
         return new Date(Calc.avg(data));
     }
@@ -41,7 +44,7 @@ export class RouteHistory {
         /* returns avg change time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getAvgChangeTime().valueOf());
+            data.push(route.avgChangeTime.valueOf());
         }
         return new Date(Calc.avg(data));
     }
@@ -49,8 +52,8 @@ export class RouteHistory {
     public getDelayConsistency() {
         /* returns standard deviation of delays */
         const data: number[] = [];
-        for (const route of this.routes){
-            data.push(route.getDelay().valueOf());
+        for (const route of this.routes) {
+            data.push(route.delay.valueOf());
         }
         return new Date(Calc.stdDev(data));
     }
@@ -58,12 +61,17 @@ export class RouteHistory {
     public getChangeMissedChance(): number {
         let missed = 0;
         let changes = 0;
-        for (const route of this.routes){
+        for (const route of this.routes) {
             missed += route.getChangesMissed();
-            changes += route.getChangesAmount();
+            // console.log('missed', missed);
+            changes += route.changesAmount;
+            if (changes > 0) {
+                console.log('changes bigger than 0: ', changes);
+            }
         }
-        console.log(missed + ' / ' + changes)
-        return missed / changes;
+        // console.log(missed + ' / ' + changes);
+        // Divide by 0 check... - there are no changes...
+        return changes > 0 ? missed / changes : 0;
     }
 
     // TODO: implement more
