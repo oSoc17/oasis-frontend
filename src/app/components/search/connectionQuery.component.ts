@@ -40,25 +40,10 @@ export class ConnectionQuery {
             this.error = this.language.getMessage('errEqualStations');
         } else if (this.travelTime.selectedTime === '') {
             this.error = this.language.getMessage('errNoTime');
-            /*} else if (!(this.travelDate.selectedDays['0']
-             || this.travelDate.selectedDays['1']
-             || this.travelDate.selectedDays['2']
-             || this.travelDate.selectedDays['3']
-             || this.travelDate.selectedDays['4']
-             || this.travelDate.selectedDays['5']
-             || this.travelDate.selectedDays['6'])) {*/
         } else if (this.travelDate.selectedDay === null) {
             this.error = this.language.getMessage('errNoDays');
         } else {
             this.searchData = [];
-            /*for (let i = 0; i < 7; i++) {
-                    if (this.travelDate.selectedDays['' + i]) {
-                        this.searchData = this.searchData.concat(
-                            SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'], this.travelTime.selectedTime,
-                                GetLatest((i + 1) % 6), this.travelTime.selectedType, 7, 3));
-                    }
-            }
-            */
             this.searchData = SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'],
                 this.travelTime.selectedTime, GetLatest(this.travelDate.selectedDay), 'departureTime', 14);
             AppComponent.searchData = this.searchData;

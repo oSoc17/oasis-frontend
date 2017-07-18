@@ -65,9 +65,6 @@ export class RouteHistory {
             missed += route.getChangesMissed();
             // console.log('missed', missed);
             changes += route.changesAmount;
-            if (changes > 0) {
-                console.log('changes bigger than 0: ', changes);
-            }
         }
         // console.log(missed + ' / ' + changes);
         // Divide by 0 check... - there are no changes...

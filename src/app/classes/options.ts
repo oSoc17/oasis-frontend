@@ -17,7 +17,7 @@ export class Options {
     public save(): boolean {
         if (typeof localStorage !== 'undefined') {
             localStorage.setItem('Options', JSON.stringify(this));
-            console.log(JSON.stringify(this));
+            // console.log(JSON.stringify(this));
             return true;
         }
         return false;
@@ -32,7 +32,7 @@ export class Options {
                     this.qoeParameters = options.qoeParameters;
                 }
             }
-            console.log(JSON.stringify(this));
+            // console.log(JSON.stringify(this));
             return true;
         }
         return false;

@@ -11,7 +11,7 @@ export class NavComponent {
     constructor() { }
 
     clickSettings() {
-        console.log('open settings');
+        // console.log('open settings');
 
         AppComponent.setPage(2);
     }
