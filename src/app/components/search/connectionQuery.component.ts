@@ -9,6 +9,8 @@ import { Language } from '../../classes/language';
 
 import { AppComponent } from '../app.component';
 import { Recents } from './recents.component';
+import { AppModule } from '../../app.module';
+import { Recent } from '../../classes/recent';
 
 @Component({
     selector: 'connectionquery',
@@ -60,6 +62,8 @@ export class ConnectionQuery {
             this.searchData = SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'],
                 this.travelTime.selectedTime, GetLatest(this.travelDate.selectedDay), 'departureTime', 14);
             AppComponent.searchData = this.searchData;
+            AppModule.options.recents.push(new Recent(this.searchData, departSt.standardname, arriveSt.standardname,
+                this.travelTime.selectedTime, this.travelDate.selectedDay));
             AppComponent.setPage(1);
         }
     }
