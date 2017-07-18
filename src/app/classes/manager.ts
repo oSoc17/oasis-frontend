@@ -21,6 +21,13 @@ export class Manager {
     private _httpRequests = 0;
     private _httpResponses = 0;
 
+    private genTime(hours, minutes) {
+        const date = new Date(0);
+        date.setHours(hours);
+        date.setMinutes(minutes);
+        return date;
+    }
+
     constructor() {
         if (!this.routeService) {
             this.routeService = new RouteService(this.entryPoints);
@@ -34,7 +41,12 @@ export class Manager {
             }
             const routeHistory = new RouteHistory([route]);
             this._qoeList.push(new QoE(routeHistory, new UserPreferences()));
-            console.log(this._qoeList);
+            this._qoeList.sort((a, b) => {
+                const aTime = (this.genTime(a.departureTime.getHours(), a.departureTime.getMinutes()));
+                const bTime = (this.genTime(b.departureTime.getHours(), b.departureTime.getMinutes()));
+                return aTime.valueOf() - bTime.valueOf();
+            });
+            // console.log(this._qoeList);
         });
     }
 
