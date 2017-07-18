@@ -1,4 +1,9 @@
-<div class="row">
+<md-select [(ngModel)]="selectedDay">
+    <md-option *ngFor="let day of language.getMessage('weekdays'); let i = index" [value]="i">
+        {{ day }}
+    </md-option>
+</md-select>
+<!--<div class="row">
     <div class="col s1 day">M</div>
     <div class="col s1 day">T</div>
     <div class="col s1 day">W</div>
@@ -29,4 +34,4 @@
     <div class="col s1 day" (click)="clickDay(6)" [ngClass]="selectedDays[6] ? 'active' : ''">
         <i class="mdi mdi-check"></i>
     </div>
-</div>
+</div>-->

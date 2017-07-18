@@ -22,6 +22,8 @@
 
 <div *ngIf="!loading && !error">
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
+    <route></route>
+<!--
 
   <ul *ngIf="this.qoeResults">
     <li><h5>{{ language.getMessage('qoe') }}: {{ toPercentage( qoeResults.getQoE()) }}%</h5>
