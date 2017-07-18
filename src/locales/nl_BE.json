@@ -30,5 +30,6 @@
   "amountOfChanges": "Aantal overstappen",
   "travelTime": "Reistijd",
   "optMissedConnections": "Gemiste connecties",
-  "price": "Prijs"
+  "price": "Prijs",
+  "weekdays": ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"]
 }

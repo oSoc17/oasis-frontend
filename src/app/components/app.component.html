@@ -2,10 +2,10 @@
 <main class="section no-pad-bot" id="index-banner">
     <!-- For page debugging -->
     <!-- Current page: {{ getPage() }} -->
-    <section class="container">
-        <connectionquery *ngIf="getPage() == 0"></connectionquery>
-        <connections *ngIf="getPage() == 1"></connections>
-        <options *ngIf="getPage() == 2"></options>
-        <connectiondetail *ngIf="getPage() == 3"></connectiondetail>
-    </section>
+    <div class="container">
+            <connectionquery *ngIf="getPage() == 0"></connectionquery>
+            <connections *ngIf="getPage() == 1"></connections>
+            <options *ngIf="getPage() == 2"></options>
+            <connectiondetail *ngIf="getPage() == 3"></connectiondetail>
+    </div>
 </main>

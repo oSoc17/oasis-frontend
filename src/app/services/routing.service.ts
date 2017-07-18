@@ -9,19 +9,28 @@ const Client = require('lc-client');
 export interface IRouteService {
     onQueryResult: ISimpleEvent<any>;
     query(searchData: SearchData): Promise<any>;
-    queryPeriod(searchDataList: SearchData[]): Promise<any[]>;
+    queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any>;
 }
 
 export class RouteService implements IRouteService {
     private planner;
     private _onQueryResult;
+    private _onDataUpdate;
+    private _onHttpRequest;
+    private _onHttpResponse;
+
     // example: ['http://belgianrail.linkedconnections.org/']
     constructor(entryPoints: [string]) {
         this.planner = new Client({'entrypoints': entryPoints});
         this._onQueryResult = new SimpleEventDispatcher<any>();
+        this._onDataUpdate = new SimpleEventDispatcher<any>();
+        this._onHttpRequest = new SimpleEventDispatcher<any>();
+        this._onHttpResponse = new SimpleEventDispatcher<any>();
     }
 
-    private continuousQuery(searchData: SearchData, cb, paths = [], dataCount = 0) {
+    private continuousQuery(searchData: SearchData, cb, paths = [], dataCount = 0, httpRequests = 0, httpResponses = 0) {
+        const self = this;
+
         if (!searchData.latestDepartTime) {
             // reject('Invalid latestDepartTime!');
             return console.log('Invalid latestDepartTime!');
@@ -34,27 +43,28 @@ export class RouteService implements IRouteService {
 
         this.planner.query(searchData, (resultStream, source) => {
             resultStream.on('result',  (path) => {
-                // Route found
-                console.log('Route found!');
-                console.log('Depart time: ', path[0].departureTime);
-                console.log(path);
                 searchData.departureTime = new Date(new Date(path[0].departureTime).getTime() + 60000);
                 paths.push(path);
-                this.continuousQuery(searchData, cb, paths, dataCount);
+                self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
+                this._onQueryResult.dispatch(path);
             });
 
             resultStream.on('data', function (connection) {
                 // Processed connections
-                console.log('Datacount: ', dataCount);
                 dataCount++;
+                self._onDataUpdate.dispatch(dataCount);
             });
 
             source.on('request', function (url) {
                 // HTTP Request
+                httpRequests++;
+                self._onHttpRequest.dispatch(httpRequests);
             });
 
             source.on('response', function (url) {
                 // HTTP Respons
+                httpResponses++;
+                self._onHttpResponse.dispatch(httpResponses);
             });
         });
     }
@@ -64,11 +74,7 @@ export class RouteService implements IRouteService {
         return new Promise((resolve, reject) => {
             console.log(searchData);
 
-            this.continuousQuery(searchData, (data) => {
-                console.log('resolve data');
-                console.log(data);
-                resolve(data[0]);
-            });
+            this.continuousQuery(searchData, resolve);
         });
     }
 
@@ -76,17 +82,39 @@ export class RouteService implements IRouteService {
      * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
      * @param searchDataList list of SearchData objects
      */
-    public queryPeriod(searchDataList: SearchData[]): Promise<any[]> {
+    public queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any>  {
         const promiselist = [];
         searchDataList.forEach(searchData => {
-            promiselist.push(this.query(searchData));
+            this.query(searchData).then(() => {
+                console.log('Timespan query result received');
+            }).catch(e => console.log(e));
         });
-        console.log(promiselist);
-        return Promise.all(promiselist);
+
+        return this._onQueryResult;
+
+        // Test event handlers
+        /*this.onDataUpdate.subscribe(dataCount => console.log(`Connections processed: ${dataCount}`));
+        this.onHttpRequest.subscribe(httpRequests => console.log(`HTTP Requests: ${httpRequests}`));
+        this.onHttpResponse.subscribe(httpResponses => console.log(`HTTP Responses: ${httpResponses}`));
+        this.onQueryResult.subscribe(queryResult => console.log(`HTTP Responses: ${queryResult}`));*/
     }
 
+    // This is already handled in a promise
+    // might be a nice to have adition for the queryPeriod function.
     public get onQueryResult(): ISimpleEvent<any> {
         return this._onQueryResult.asEvent();
+    }
+
+    public get onDataUpdate(): ISimpleEvent<number> {
+        return this._onDataUpdate.asEvent();
+    }
+
+    public get onHttpRequest(): ISimpleEvent<number> {
+        return this._onHttpRequest.asEvent();
+    }
+
+    public get onHttpResponse(): ISimpleEvent<number> {
+        return this._onHttpResponse.asEvent();
     }
 
     private handleError(error: any): Promise<any> {

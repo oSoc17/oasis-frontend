@@ -30,5 +30,6 @@
     "amountOfChanges": "Amount of changes",
     "travelTime": "Travel time",
     "optMissedConnections": "Missed Connections",
-    "price": "Price"
+    "price": "Price",
+    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 }
