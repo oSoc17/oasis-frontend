@@ -12,6 +12,7 @@ export class QoESliderComponent {
     @Input('percentage') percentage: number;
     @Input('name') name: string;
     @Input('id') id: string;
+    @Input('tooltip') tooltip: string;
 
     changeVal(val) {
         console.log(`id: ${this.id} val: ${this.percentage}`);
