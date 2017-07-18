@@ -72,7 +72,7 @@ export class RouteService implements IRouteService {
     query(searchData: SearchData): Promise<any> {
         searchData = searchData.toJSON();
         return new Promise((resolve, reject) => {
-            console.log(searchData);
+            // console.log(searchData);
 
             this.continuousQuery(searchData, resolve);
         });

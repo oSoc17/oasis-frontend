@@ -12,7 +12,6 @@ export class NavComponent {
 
     clickSettings() {
         // console.log('open settings');
-
         AppComponent.setPage(2);
     }
 }
