@@ -20,6 +20,7 @@ export class Recents {
 
     onClick(recent) {
         AppComponent.searchData = recent.searchData;
+        AppComponent.searchString = recent.depStationReadable + ' - ' + recent.arrStationReadable;
         AppComponent.setPage(1);
     }
 }
