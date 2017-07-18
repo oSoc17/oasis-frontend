@@ -57,16 +57,4 @@ export class Connections implements OnInit {
         AppComponent.goBack();
     }
 
-    toPercentage(val) {
-        return Math.round(val * 100);
-    }
-
-    private formatNumber(number) {
-        return ('0' + number).slice(-2);
-    }
-
-    toTime(val) {
-        const date = new Date(val);
-        return `${this.formatNumber(date.getUTCHours())}:${this.formatNumber(date.getUTCMinutes())}`;
-    }
 }
