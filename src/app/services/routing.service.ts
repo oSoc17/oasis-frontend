@@ -64,7 +64,6 @@ export class RouteService implements IRouteService {
                         for (const event of resultStream._events.data) {
                             source.removeListener('data', event);
                         }
-                        console.log(resultStream._events.data.length);
                     }
                 }
             });
@@ -77,7 +76,6 @@ export class RouteService implements IRouteService {
                     for (const event of source._events.request) {
                         source.removeListener('request', event);
                     }
-                    console.log(source._events.request.length);
                 }
             });
 
@@ -89,10 +87,8 @@ export class RouteService implements IRouteService {
                 // console.log(require('events').EventEmitter.listenerCount(source, 'response'));
                 if (result) {
                     for (const event of source._events.response) {
-                        console.log(event);
                         source.removeListener('response', event);
                     }
-                    console.log(source._events.response.length);
                 }
             });
         });
