@@ -1,7 +1,7 @@
 <div class="col l6">
     <h5 class='grey-text darken-3'>Recents</h5>
     <md-list dense>
-        <a href="" (click)="onClick(recent)" *ngFor="let recent of recents">
+        <a (click)="onClick(recent)" *ngFor="let recent of recents">
             <md-list-item>
                 <h4 md-line>{{ recent.depStationReadable }} - {{ recent.arrStationReadable }}</h4>
                 <p md-line>{{ recent.travelTimeReadable }} {{ language.getMessage('weekdays')[recent.travelDay]}}</p>
