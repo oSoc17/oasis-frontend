@@ -14,5 +14,5 @@ describe('Manager test', () => {
             expect(qoe).toEqual(jasmine.any(QoE));
             done();
         });
-    });
+    }, 15000);
 });
