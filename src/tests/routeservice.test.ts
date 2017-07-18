@@ -1,9 +1,8 @@
 import { RouteService } from '../app/services/routing.service';
-import { RouteMockService } from '../app/services/routing.mock.service';
 import { SearchData } from '../app/classes/searchData';
 import 'rxjs/add/operator/toPromise';
 
-describe('RoutingMockService test', () => {
+/*describe('RoutingMockService test', () => {
     it('RoutingMockService#query()', (done) => {
         const routeService = new RouteMockService();
         routeService.query().then((connections) => {
@@ -18,7 +17,7 @@ describe('RoutingMockService test', () => {
             done();
         }).catch(e => done.fail(e));
     }, 5000);
-});
+});*/
 
 describe('RoutingService test', () => {
     it('RoutingService#query()', (done) => {
