@@ -26,7 +26,7 @@
 
 <div *ngIf="!loading && !error">
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
-    <route></route>
+    <route *ngFor="let i of qoeList" [qoe]='i'></route>
 <!--
 
   <div *ngFor="let qoe of qoeList">

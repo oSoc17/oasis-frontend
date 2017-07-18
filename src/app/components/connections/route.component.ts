@@ -12,7 +12,31 @@ import { QoE } from "../../classes/qoe";
 
 export class Route {
     language: Language = new Language();
-    QoE: QoE = null;
-    constructor() {}
+    @Input() qoe: QoE;
+    sliderValue = 0;
+
+    constructor() {
+    }
+
+
+    toScore(val: number) {
+        return (Math.round(val * 2) / 2);
+    }
+
+    toPercentage(val) {
+        return Math.round(val * 100);
+    }
+
+    private formatNumber(number) {
+        return ('0' + number).slice(-2);
+    }
+
+    toTime(val) {
+        const date = new Date(val);
+        return `${this.formatNumber(date.getUTCHours())}:${this.formatNumber(date.getUTCMinutes())}`;
+    }
+    getSliderValue() {
+        return this.toScore(this.qoe.getQoE()) * 10;
+    }
 
 }

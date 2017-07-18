@@ -34,7 +34,7 @@ export class Manager {
             }
             const routeHistory = new RouteHistory([route]);
             this._qoeList.push(new QoE(routeHistory, new UserPreferences()));
-            // console.log(this._qoeList);
+            console.log(this._qoeList);
         });
     }
 
