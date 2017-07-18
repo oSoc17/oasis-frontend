@@ -1,6 +1,6 @@
 {
-  "searchHeader": "Welke route wilt u nemen?",
-  "showAlts": "Bereken gebruikservaring",
+  "searchHeader": "Bereken uw tripscore",
+  "showAlts": "Bereken tripscore",
   "time": "Tijdstip",
   "departure": "Vertrek",
   "destination": "Bestemming",
@@ -15,7 +15,7 @@
   "qualityofexperience": "Gebruikservaring",
   "station": "Station",
   "platform": "Perron",
-  "date": "Datum",
+  "date": "Dag",
   "qoe": "Gebruikerservaring",
   "avgDelay": "Gemiddelde vertraging",
   "avgChanges": "Gemiddeld aantal overstappen",
@@ -37,5 +37,6 @@
   "delayConsistency_tooltip": "Hoe consistent vertragingen zijn.",
   "changeTime_tooltip": "De gemiddelde tijd wachtend op de trein waarop je moet overstappen.",
   "avgTravelTime_tooltip": "De gemiddelde reistijd.",
-  "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen."
+  "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen.",
+  "recents": "Recent"
 }
