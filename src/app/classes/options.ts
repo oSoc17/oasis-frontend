@@ -12,7 +12,7 @@ export class Options {
         numberOfMissedConnections: 85,
         price: 78
     };
-    recents: Recent[] = [];
+    private _recents: Recent[] = [];
 
     public save(): boolean {
         if (typeof localStorage !== 'undefined') {
@@ -36,5 +36,16 @@ export class Options {
             return true;
         }
         return false;
+    }
+
+    public addRecent(val: Recent) {
+        this._recents.push(val);
+        if (this._recents.length > 4){
+            this._recents.shift();
+        }
+    }
+
+    public get recents() {
+        return this._recents;
     }
 }
