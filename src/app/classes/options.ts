@@ -31,6 +31,9 @@ export class Options {
                 if (options.qoeParameters) {
                     this.qoeParameters = options.qoeParameters;
                 }
+                if (options._recents) {
+                    this._recents = options._recents;
+                }
             }
             // console.log(JSON.stringify(this));
             return true;

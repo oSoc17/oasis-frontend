@@ -39,3 +39,6 @@ input:not([type]):focus:not([readonly]), input[type=time]:not(.browser-default):
     box-shadow: none;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
