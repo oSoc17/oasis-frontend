@@ -32,10 +32,10 @@
   "optMissedConnections": "Gemiste connecties",
   "price": "Prijs",
   "weekdays": ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"],
-  "delay_tooltip":"The avarage amount time lost due to delays.",
-  "amountOfChanges_tooltip": "The avarage amount of times that you have to change trains.",
-  "delayConsistency_tooltip": "How consistent delays are.",
-  "changeTime_tooltip": "The avarage time spent waiting between trains.",
-  "avgTravelTime_tooltip": "Avarage time between departure and arrival.",
-  "missedConnections_tooltip": "The avarage chance that you will miss the change of train. Often influenced by delays."
+  "delay_tooltip":"De gemiddelde duur van vertragingen.",
+  "amountOfChanges_tooltip": "Het gemiddeld aantal keer je moet overstappen.",
+  "delayConsistency_tooltip": "Hoe consistent vertragingen zijn.",
+  "changeTime_tooltip": "De gemiddelde tijd wachtend op de trein waarop je moet overstappen.",
+  "avgTravelTime_tooltip": "De gemiddelde reistijd.",
+  "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen."
 }
