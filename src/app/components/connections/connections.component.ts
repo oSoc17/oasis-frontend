@@ -36,6 +36,10 @@ export class Connections implements OnInit {
         this.dataCount = this.manager.dataCount;
         this.httpRequests = this.manager.httpRequests;
         this.httpResponses = this.manager.httpResponses;
+        // This improves performance
+        setInterval(() => {
+            this.ref.detectChanges();
+        }, 100);
     }
 
     ngOnInit(): void {
@@ -43,21 +47,10 @@ export class Connections implements OnInit {
         if (AppComponent.searchData) {
             this.searchData = AppComponent.searchData;
             const onQueryResult = this.manager.getQoE(this.searchData);
-            onQueryResult.subscribe(result => {
-                this.loading = false;
-            });
-            this.manager.onDataUpdate.subscribe(e => {
-                this.dataCount = this.manager.dataCount;
-                this.ref.detectChanges()
-            });
-            this.manager.onHttpRequest.subscribe(e => {
-                this.httpRequests = this.manager.httpRequests;
-                this.ref.detectChanges()
-            });
-            this.manager.onHttpResponse.subscribe(e => {
-                this.httpResponses = this.manager.httpResponses;
-                this.ref.detectChanges()
-            });
+            onQueryResult.subscribe(result => this.loading = false);
+            this.manager.onDataUpdate.subscribe(e => this.dataCount = this.manager.dataCount);
+            this.manager.onHttpRequest.subscribe(e => this.httpRequests = this.manager.httpRequests);
+            this.manager.onHttpResponse.subscribe(e => this.httpResponses = this.manager.httpResponses);
         } else {
             AppComponent.setPage(0);
         }
