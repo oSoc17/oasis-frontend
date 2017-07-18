@@ -12,7 +12,11 @@ export class QoE implements IQoE {
     constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
         this.routeHistory = routeHistory;
         this.userPreferences = preference;
-        this._departureTime = routeHistory.routes[0].departureTime;
+        if (routeHistory.routes.length > 0) {
+            this._departureTime = routeHistory.routes[0].departureTime;
+        } else {
+            this._departureTime = new Date(0);
+        }
     }
 
     public get departureTime(): Date {
@@ -153,6 +157,16 @@ export class QoE implements IQoE {
         sum += this.getNumberOfMissedConnections().score;
         sum += this.getNumberOfRoutesWithinHour().score;
         sum += this.getPrice().score;
+
+        /*console.log('getAvgTravelTime', this.getAvgTravelTime().score);
+        console.log('getAvgChangeTime', this.getAvgChangeTime().score);
+        console.log('getAvgChangesAmount', this.getAvgChangesAmount().score);
+        console.log('getDelayConsistency', this.getDelayConsistency().score);
+        console.log('getAvgDelay', this.getAvgDelay().score);
+        console.log('getNumberOfMissedConnections', this.getNumberOfMissedConnections().score);
+        console.log('getNumberOfRoutesWithinHour', this.getNumberOfRoutesWithinHour().score);
+        console.log('getPrice', this.getPrice().score);*/
+
         return sum;
     }
 }

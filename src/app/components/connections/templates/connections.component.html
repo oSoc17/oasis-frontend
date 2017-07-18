@@ -23,6 +23,7 @@
 
   <div *ngFor="let qoe of qoeList">
     <p>{{ qoe.departureTime.toLocaleTimeString() }}</p>
+    <p>QoE: {{ qoe.getQoE() }}</p>
   </div>
 
   <ul *ngIf="this.qoeResults">

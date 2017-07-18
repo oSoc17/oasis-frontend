@@ -49,7 +49,7 @@ export class Route {
         /* returns amount of changes */
         if (this.connections.length > 1) {
             let changesAmount = 0;
-            console.log('connections: ' + this.connections.length);
+            // console.log('connections: ' + this.connections.length);
             for (let i = 0; i < this.connections.length - 1; i++) {
                 if (this.connections[i].gtfstrip !== this.connections[i + 1].gtfstrip) {
                     changesAmount++;
@@ -86,10 +86,18 @@ export class Route {
         /* returns the last arrivalDelay */
         // TODO: is the delay only defined by the last arrivalDelay? What about missed changes due to delays?
         if (this.connections.length > 1) {
-            return this.connections[this.connections.length - 1].arrivalDelay;
+            if (this.connections[this.connections.length - 1].arrivalDelay) {
+                return this.connections[this.connections.length - 1].arrivalDelay;
+            } else {
+                return new Date(0);
+            }
         }
         // console.log('List of connections is empty');
         return new Date(0);
+    }
+
+    public get totalConnections() {
+        return this.connections.length;
     }
 
     public getChangesMissed(min: number = 3): number {
@@ -114,5 +122,9 @@ export class Route {
             }
         }
         return ret;
+    }
+
+    public addConnection(conn: Connection) {
+        this.connections.push(conn);
     }
 }

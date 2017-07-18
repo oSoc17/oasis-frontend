@@ -6,6 +6,9 @@ export class RouteHistory {
     public routes: Route[];
 
     constructor(routes: Route[]) {
+        if (!routes) {
+            this.routes = [];
+        }
         this.routes = routes;
         // TODO: fill array with historic data, how?
     }
@@ -49,7 +52,7 @@ export class RouteHistory {
     public getDelayConsistency() {
         /* returns standard deviation of delays */
         const data: number[] = [];
-        for (const route of this.routes){
+        for (const route of this.routes) {
             data.push(route.delay.valueOf());
         }
         return new Date(Calc.stdDev(data));
@@ -58,12 +61,17 @@ export class RouteHistory {
     public getChangeMissedChance(): number {
         let missed = 0;
         let changes = 0;
-        for (const route of this.routes){
+        for (const route of this.routes) {
             missed += route.getChangesMissed();
+            // console.log('missed', missed);
             changes += route.changesAmount;
+            if (changes > 0) {
+                console.log('changes bigger than 0: ', changes);
+            }
         }
-        console.log(missed + ' / ' + changes)
-        return missed / changes;
+        // console.log(missed + ' / ' + changes);
+        // Divide by 0 check... - there are no changes...
+        return changes > 0 ? missed / changes : 0;
     }
 
     // TODO: implement more
