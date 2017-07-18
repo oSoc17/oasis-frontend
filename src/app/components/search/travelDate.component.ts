@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Language } from '../../classes/language';
 
 @Component({
     selector: 'traveldate',
@@ -7,6 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 
 export class TravelDate {
+    selectedDay: number = null;
+    language = new Language();
+    /*
     selectedDays = {
         '0': false,
         '1': false,
@@ -25,4 +29,5 @@ export class TravelDate {
         }
         console.log(`Selected days: ${JSON.stringify(this.selectedDays)}`)
     }
+    */
 }

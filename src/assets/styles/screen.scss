@@ -28,3 +28,13 @@ body {
 app-root {
     flex: 1 0 auto;
 }
+
+input:not([type]), input[type=time]:not(.browser-default) {
+    margin: 0;
+    border-bottom: none;
+    height: 1rem;
+}
+input:not([type]):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: none;
+    box-shadow: none;
+}
