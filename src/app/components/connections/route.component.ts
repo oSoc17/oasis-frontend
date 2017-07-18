@@ -36,7 +36,7 @@ export class Route {
         return `${this.formatNumber(date.getUTCHours())}:${this.formatNumber(date.getUTCMinutes())}`;
     }
     getSliderValue() {
-        return this.toScore(this.qoe.getQoE()) * 10;
+        return this.toScore(this.qoe.getQoE() * 10) * 10;
     }
 
 }
