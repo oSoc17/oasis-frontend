@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { AppModule } from '../../app.module';
 
-import { Language } from '../../classes/language';
+import { Language } from '../../classes/userData/language';
 
 @Component({
   selector: 'options',

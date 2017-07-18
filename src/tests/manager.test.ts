@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/toPromise';
-import { Manager } from '../app/classes/manager';
-import { SearchData } from '../app/classes/searchData';
-import { QoE } from '../app/classes/qoe';
+import { Manager } from '../app/classes/connections/manager';
+import { SearchData } from '../app/classes/connections/searchData';
+import { QoE } from '../app/classes/connections/qoe';
 
 describe('Manager test', () => {
     it('Manager#getQoE()', (done) => {

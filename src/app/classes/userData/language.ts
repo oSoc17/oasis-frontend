@@ -1,8 +1,8 @@
-import { AppModule } from '../app.module';
+import { AppModule } from '../../app.module';
 
 export class Language {
     public static language = 'en_GB';
-
+    
     constructor() {
         if (AppModule.options.language) {
             this.setLanguage(AppModule.options.language);
@@ -12,7 +12,7 @@ export class Language {
     getLanguageData(): string {
         // returns locales/[currentLanguage].json
         try {
-            const language = require(`../../locales/${Language.language}.json`);
+            const language = require(`../../../locales/${Language.language}.json`);
             return language;
         } catch (e) {
             // console.log(e);
@@ -41,7 +41,7 @@ export class Language {
     getLanguages(): string[] {
         // returns locales/languages.json
         try {
-            const file = require('../../locales/languages.json');
+            const file = require('../../../locales/languages.json');
             return file['languages'];
         } catch (e) {
             // console.log(e);

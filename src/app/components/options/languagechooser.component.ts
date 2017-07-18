@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Language } from '../../classes/language';
+import { Language } from '../../classes/userData/language';
 
 import { AppModule } from '../../app.module';
 

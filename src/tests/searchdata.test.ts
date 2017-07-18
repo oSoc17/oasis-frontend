@@ -1,4 +1,4 @@
-import { SearchData, GetLatest } from '../app/classes/searchData';
+import { SearchData, GetLatest } from '../app/classes/connections/searchData';
 
 it('should give last monday', () => {
     let s: SearchData[] = [];

@@ -4,13 +4,13 @@ import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
 
-import { SearchData, GetLatest } from '../../classes/searchData';
-import { Language } from '../../classes/language';
+import { SearchData, GetLatest } from '../../classes/connections/searchData';
+import { Language } from '../../classes/userData/language';
 
 import { AppComponent } from '../app.component';
 import { Recents } from './recents.component';
 import { AppModule } from '../../app.module';
-import { Recent } from '../../classes/recent';
+import { Recent } from '../../classes/userData/recent';
 
 @Component({
     selector: 'connectionquery',

@@ -1,5 +1,5 @@
-import { Route } from '../app/classes/route';
-import { Connection } from '../app/classes/connection';
+import { Route } from '../app/classes/connections/route';
+import { Connection } from '../app/classes/connections/connection';
 
 /* Constructor test */
 describe('Route.ts constructor', () => {

@@ -1,5 +1,5 @@
 import { Route } from './route';
-import { Calc } from './calc';
+import { Calc } from '../utils/calc';
 
 export class RouteHistory {
     /* contains the historic data of a route */

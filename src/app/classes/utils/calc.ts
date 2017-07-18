@@ -1,5 +1,4 @@
 export class Calc {
-
     public static avg(values: number[]): number {
         /* calculates average */
         let sum = 0;

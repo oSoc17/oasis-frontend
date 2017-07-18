@@ -1,6 +1,6 @@
-import {IUserPreferences} from '../interfaces/iUserPreferences'
-import { Options } from 'app/classes/options';
-import { AppModule } from '../app.module';
+import { IUserPreferences } from '../../interfaces/iUserPreferences'
+import { Options } from './options';
+import { AppModule } from '../../app.module';
 
 export class UserPreferences implements IUserPreferences {
     private options: Options = AppModule.options;

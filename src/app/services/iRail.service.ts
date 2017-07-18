@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 const stationsData = require('../../dummydata/stations.json');
 const config = require('../../config.json');
 
-import { SearchData } from '../classes/searchData';
+import { SearchData } from '../classes/connections/searchData';
 
 @Injectable()
 export class IRailService {

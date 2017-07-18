@@ -1,7 +1,7 @@
 import { RouteHistory } from './routeHistory';
-import { IQoE } from '../interfaces/iQoE';
-import { IUserPreferences } from '../interfaces/iUserPreferences';
-import { Calc } from './calc';
+import { IQoE } from '../../interfaces/iQoE';
+import { IUserPreferences } from '../../interfaces/iUserPreferences';
+import { Calc } from '../utils/calc';
 import { Route } from './route';
 
 export class QoE implements IQoE {

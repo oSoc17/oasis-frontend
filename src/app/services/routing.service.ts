@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/toPromise';
 
-import {SearchData} from '../classes/searchData';
+import {SearchData} from '../classes/connections/searchData';
 
 import { SimpleEventDispatcher, ISimpleEvent } from 'strongly-typed-events';
 

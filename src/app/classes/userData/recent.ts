@@ -1,5 +1,5 @@
-import { SearchData } from './searchData';
-import { Utils } from './utils';
+import { SearchData } from '../connections/searchData';
+import { Utils } from '../utils/utils';
 
 export class Recent {
     public searchData: SearchData[];

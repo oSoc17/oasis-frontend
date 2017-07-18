@@ -1,5 +1,5 @@
-import { RouteHistory } from './routeHistory';
-import { IQoE } from '../interfaces/iQoE';
+import { RouteHistory } from '../connections/routeHistory';
+import { IQoE } from '../../interfaces/iQoE';
 
 export class QoEMock implements IQoE {
 

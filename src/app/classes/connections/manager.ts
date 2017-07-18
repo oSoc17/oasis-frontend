@@ -1,17 +1,16 @@
 import { Route } from './route';
 import { QoE } from './qoe';
 import { SearchData } from './searchData';
-import { RouteService } from '../services/routing.service';
+import { RouteService } from '../../services/routing.service';
 import { Connection } from './connection';
 import { RouteHistory } from './routeHistory';
-import { environment } from '../../environments/environment';
-import { UserPreferencesMock } from './userprefs.mock';
-import { UserPreferences } from './userprefs';
+import { UserPreferencesMock } from '../mocks/userprefs.mock';
+import { UserPreferences } from '../userData/userprefs';
 
 import { ISimpleEvent } from 'strongly-typed-events';
 
 export class Manager {
-    private static config = require('../../config.json');
+    private static config = require('../../../config.json');
     // private entryPoints = this.config.servers.reduce((array, server) => array.concat(server.uri), []);
     private entryPoints = Manager.config.entrypoints;
     private routeService: RouteService;
