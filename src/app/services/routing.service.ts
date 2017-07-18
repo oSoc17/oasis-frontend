@@ -42,29 +42,55 @@ export class RouteService implements IRouteService {
         }
 
         this.planner.query(searchData, (resultStream, source) => {
-            resultStream.on('result',  (path) => {
+            let result = false;
+
+            resultStream.once('result',  (path) => {
                 searchData.departureTime = new Date(new Date(path[0].departureTime).getTime() + 60000);
                 paths.push(path);
                 self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
                 this._onQueryResult.dispatch(path);
+                result = true;
             });
 
-            resultStream.on('data', function (connection) {
+            resultStream.on('data', () => {
                 // Processed connections
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
+                if (result) {
+                    if (result) {
+                        for (const event of resultStream._events.data) {
+                            source.removeListener('data', event);
+                        }
+                        console.log(resultStream._events.data.length);
+                    }
+                }
             });
 
-            source.on('request', function (url) {
+            source.on('request', () => {
                 // HTTP Request
                 httpRequests++;
                 self._onHttpRequest.dispatch(httpRequests);
+                if (result) {
+                    for (const event of source._events.request) {
+                        source.removeListener('request', event);
+                    }
+                    console.log(source._events.request.length);
+                }
             });
 
-            source.on('response', function (url) {
+            source.on('response', () => {
                 // HTTP Respons
                 httpResponses++;
                 self._onHttpResponse.dispatch(httpResponses);
+                // console.log(source);
+                // console.log(require('events').EventEmitter.listenerCount(source, 'response'));
+                if (result) {
+                    for (const event of source._events.response) {
+                        console.log(event);
+                        source.removeListener('response', event);
+                    }
+                    console.log(source._events.response.length);
+                }
             });
         });
     }
