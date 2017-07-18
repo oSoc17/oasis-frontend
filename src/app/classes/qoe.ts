@@ -4,7 +4,6 @@ import { IUserPreferences } from '../interfaces/iUserPreferences';
 import { Calc } from './calc';
 
 export class QoE implements IQoE {
-
     private routeHistory: RouteHistory;
     private userPreferences: IUserPreferences;
 

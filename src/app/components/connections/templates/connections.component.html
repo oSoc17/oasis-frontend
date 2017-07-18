@@ -21,6 +21,11 @@
 <div *ngIf="!loading && !error">
   <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
 
+  <div *ngFor="let route of routes">
+    <p>{{ route.departureStation }} to {{ route.arrivalStation }}</p>
+    <p>Departure: {{ route.departureTime.toLocaleTimeString() }} - Traveltime {{ route.totalTravelTime.valueOf() / 1000 / 60 }} Mins</p>
+  </div>
+
   <ul *ngIf="this.qoeResults">
     <li><h5>{{ language.getMessage('qoe') }}: {{ toPercentage( qoeResults.getQoE()) }}%</h5>
       <div class="progress">

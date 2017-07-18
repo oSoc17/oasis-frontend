@@ -14,7 +14,7 @@ export class RouteHistory {
         /* returns avg travel time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getTotalTravelTime().valueOf());
+            data.push(route.totalTravelTime.valueOf());
         }
         return new Date(Calc.avg(data));
     }
@@ -23,7 +23,7 @@ export class RouteHistory {
         /* returns avg change time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getChangesAmount());
+            data.push(route.changesAmount);
         }
         return Calc.avg(data);
     }
@@ -32,7 +32,7 @@ export class RouteHistory {
         /* returns avg delay based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getDelay().valueOf());
+            data.push(route.delay.valueOf());
         }
         return new Date(Calc.avg(data));
     }
@@ -41,7 +41,7 @@ export class RouteHistory {
         /* returns avg change time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
-            data.push(route.getAvgChangeTime().valueOf());
+            data.push(route.avgChangeTime.valueOf());
         }
         return new Date(Calc.avg(data));
     }
@@ -50,7 +50,7 @@ export class RouteHistory {
         /* returns standard deviation of delays */
         const data: number[] = [];
         for (const route of this.routes){
-            data.push(route.getDelay().valueOf());
+            data.push(route.delay.valueOf());
         }
         return new Date(Calc.stdDev(data));
     }
@@ -60,7 +60,7 @@ export class RouteHistory {
         let changes = 0;
         for (const route of this.routes){
             missed += route.getChangesMissed();
-            changes += route.getChangesAmount();
+            changes += route.changesAmount;
         }
         console.log(missed + ' / ' + changes)
         return missed / changes;

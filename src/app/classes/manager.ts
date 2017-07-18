@@ -4,54 +4,56 @@ import { SearchData } from './searchData';
 import { RouteService } from '../services/routing.service';
 import { Connection } from './connection';
 import { RouteHistory } from './routeHistory';
-import { RouteMockService } from '../services/routing.mock.service';
 import { environment } from '../../environments/environment';
 import { UserPreferencesMock } from './userprefs.mock';
 import { UserPreferences } from './userprefs';
 
+import { ISimpleEvent } from 'strongly-typed-events';
+
 export class Manager {
     private static config = require('../../config.json');
     // private entryPoints = this.config.servers.reduce((array, server) => array.concat(server.uri), []);
-    private static entryPoints = Manager.config.entrypoints;
-    private static routeService = new RouteService(Manager.entryPoints);
+    private entryPoints = Manager.config.entrypoints;
+    private routeService: RouteService;
+    private routesProcessed: Route[] = [];
+
+    constructor() {
+        if (!this.routeService) {
+            this.routeService = new RouteService(this.entryPoints);
+        }
+        this.routeService.onQueryResult.subscribe((result) => {
+            this.routesProcessed.push(new Route(result as Connection[]));
+            console.log(this.routesProcessed);
+        });
+    }
 
     /**
      * gets QoE object
      * @param searchDataList datalist to query
      * @param deploycheck wether or not deployment should be checked (default: true)
      */
-    static getQoE(searchDataList: SearchData[], deploycheck: boolean = true): Promise<QoE> {
-        if (deploycheck) {
-            return Manager.routeService
-            .queryPeriod(searchDataList)
-            .then((routes) => {
-                console.log('routes');
-                console.log(routes);
-                return new RouteHistory(routes.map((connections) => {
-                    return new Route(connections.map((connection) => {
-                        return new Connection(connection);
-                    }));
-                }));
-            })
-            .then((routeHistory) => {
-                    return new QoE(routeHistory, new UserPreferencesMock());
-                }
-            );
-        } else {
-            return new RouteMockService()
-            .queryPeriod(searchDataList)
-            .then((routes) => {
-                return new RouteHistory(routes.map((connections) => {
-                    return new Route(connections.map((connection) => {
-                        return new Connection(connection);
-                    }));
-                }));
-            })
-            .then((routeHistory) => new QoE(routeHistory, new UserPreferencesMock())); // TODO: change for production
-        }
+    getQoE(searchDataList: SearchData[], deploycheck: boolean = true): ISimpleEvent<any> {
+        return this.routeService.queryPeriod(searchDataList);
     }
 
-    public static get getRouteService() {
-        return this.routeService;
+    public get getRouteListener() {
+        return this.routeService.onQueryResult;
+    }
+
+    public get routes() {
+        // TODO: Make it able to calculate QoE per route.
+        return this.routesProcessed;
+    }
+
+    public get onDataUpdate(): ISimpleEvent<number> {
+        return this.routeService.onDataUpdate;
+    }
+
+    public get onHttpRequest(): ISimpleEvent<number> {
+        return this.routeService.onHttpRequest;
+    }
+
+    public get onHttpResponse(): ISimpleEvent<number> {
+        return this.routeService.onHttpResponse;
     }
 }
