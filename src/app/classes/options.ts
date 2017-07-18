@@ -32,7 +32,10 @@ export class Options {
                     this.qoeParameters = options.qoeParameters;
                 }
                 if (options.recents) {
-                    this.recents = options.recents;
+                    for (const recent of options.recents) {
+                        this.recents.push(Recent.fromJson(recent));
+                    }
+                    console.log(this.recents);
                 }
             }
             // console.log(JSON.stringify(this));

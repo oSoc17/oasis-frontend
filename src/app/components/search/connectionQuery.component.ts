@@ -28,8 +28,7 @@ export class ConnectionQuery {
     error: string;
     language: Language = new Language();
 
-    constructor() {
-    }
+    constructor() {}
 
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
