@@ -9,7 +9,8 @@ import { QoE} from '../../classes/qoe'
 
 @Component({
     selector: 'connections',
-    templateUrl: './templates/connections.component.html'
+    templateUrl: './templates/connections.component.html',
+    styleUrls: ['./styles/connections.component.scss']
 })
 
 export class Connections implements OnInit {
