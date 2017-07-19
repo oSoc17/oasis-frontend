@@ -36,6 +36,7 @@ export class SearchData {
             dateString = Utils.formatDate(calcdate);
             dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
         }
+        console.log(dataList);
         return dataList;
     }
 
@@ -52,14 +53,14 @@ export class SearchData {
      */
     toJSON(): any {
         const datetime = Utils.combineTimeAndDate(this.travelTime, this.travelDate);
-        const inAnHour = new Date(datetime.getTime() + Utils.getHoursValue(1));
+        const inAnHour = new Date(datetime.valueOf() + Utils.getHoursValue(1));
         const transferTime = 180;
         const json = {
             'arrivalStop': this.arrStation,
             'departureStop': this.depStation,
             'latestDepartTime': inAnHour,
-            'departureTime': datetime,
-            'minimumTransferTime': transferTime
+            'departureTime': datetime
+            /*,'minimumTransferTime': transferTime - Currently not working */
         };
 
         return json;
