@@ -1,7 +1,7 @@
 // Node modules
 import 'rxjs/add/operator/toPromise';
 import { SimpleEventDispatcher, ISimpleEvent } from 'strongly-typed-events';
-const Client = require('../../../client.js/lib/lc-client.js');
+const Client = require('lc-client');
 
 // Custom modules
 import { SearchData } from '../classes/connections/searchData';

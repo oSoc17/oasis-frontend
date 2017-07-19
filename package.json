@@ -27,7 +27,8 @@
     "ldfetch": "0.0.3",
     "rxjs": "^5.1.0",
     "strongly-typed-events": "^1.0.1",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "lc-client": "https://github.com/DeMoorJasper/client.js"
   },
   "devDependencies": {
     "@angular/cli": "1.1.3",
