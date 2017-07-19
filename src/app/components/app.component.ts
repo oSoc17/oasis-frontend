@@ -16,7 +16,6 @@ export class AppComponent {
     private static prevPage = 0;
 
     public static setPage(number) {
-        // TODO: Insert check if page exists
         if (number <= 3) {
             AppComponent.prevPage = AppComponent.currPage;
             AppComponent.currPage = number;
@@ -27,9 +26,13 @@ export class AppComponent {
         AppComponent.setPage(AppComponent.prevPage);
     }
 
+    public static getPage() {
+        return AppComponent.currPage;
+    }
+
     constructor() { }
 
-    getPage() {
+    private getPage() {
         return AppComponent.currPage;
     }
 }
