@@ -42,3 +42,10 @@ input:not([type]):focus:not([readonly]), input[type=time]:not(.browser-default):
 .cursor-pointer {
     cursor: pointer;
 }
+.button-small {
+    min-width: 50px !important;
+    padding: 0 5px;
+}
+a i {
+    display: inline;
+}

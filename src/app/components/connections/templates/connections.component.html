@@ -18,11 +18,11 @@
     </md-progress-bar>
   </section>
 </div>
-
+<h5 *ngIf="error || !loading"><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
 <h3 *ngIf="error">ERROR: {{ error }}</h3>
 
 <div *ngIf="!loading && !error">
-  <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
+  
     <h5 class="center-align">{{ searchString }}</h5>
     <route *ngFor="let i of qoeList" [qoe]='i'></route>
 </div>

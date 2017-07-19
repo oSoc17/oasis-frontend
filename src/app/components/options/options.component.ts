@@ -70,3 +70,4 @@ export class Options {
     location.reload();
   }
 }*/]}
+
