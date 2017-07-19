@@ -19,6 +19,10 @@ export class StationList implements OnInit {
     filteredStations: any;
     stations: any;
 
+    /**
+     * Constructor, load in all stations
+     * @param iRailService iRail service instance
+     */
     constructor(iRailService: IRailService) {
         iRailService.getAllStations().then((data) => {
             this.stations = (data as any).station;
@@ -30,10 +34,15 @@ export class StationList implements OnInit {
         // this.stationCtrl.valueChanges.toPromise().then(val => console.log(val)).catch(e => console.log(e))
     }
 
-    ngOnInit() {
-        // Component initialised
-    }
+    /**
+     * Component initialised
+     */
+    ngOnInit() {}
 
+    /**
+     * filter stations on value change
+     * @param val the value to filter on
+     */
     filterStations(val: string) {
         if (val) {
             const filtered = this.stations.filter(s => s.standardname.toLowerCase().indexOf(val.toLowerCase()) === 0);
