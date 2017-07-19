@@ -31,6 +31,9 @@ export class ConnectionQuery {
 
     constructor() {}
 
+    /**
+     * Request connections and process them
+     */
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;

@@ -15,9 +15,7 @@ export class Route {
     @Input() qoe: QoE;
     sliderValue = 0;
 
-    constructor() {
-    }
-
+    constructor() {}
 
     toScore(val: number) {
         return (Math.round(val * 2) / 2);

@@ -12,6 +12,7 @@ import { Language } from '../../classes/userData/language';
 export class Options {
   language = new Language();
 
+  // Array with all the sliders and their properties
   slider = [
     {
       name: this.language.getMessage('delay'),

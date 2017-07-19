@@ -1,10 +1,10 @@
+// Node modules
 import 'rxjs/add/operator/toPromise';
-
-import {SearchData} from '../classes/connections/searchData';
-
 import { SimpleEventDispatcher, ISimpleEvent } from 'strongly-typed-events';
-
 const Client = require('lc-client');
+
+// Custom modules
+import {SearchData} from '../classes/connections/searchData';
 
 export interface IRouteService {
     onQueryResult: ISimpleEvent<any>;
@@ -20,7 +20,10 @@ export class RouteService implements IRouteService {
     private _onHttpResponse;
     private _onComplete;
 
-    // example: ['http://belgianrail.linkedconnections.org/']
+    /**
+     * Constructor to create a routing service instance
+     * @param entryPoints example: ['http://belgianrail.linkedconnections.org/']
+     */
     constructor(entryPoints: [string]) {
         this.planner = new Client({'entrypoints': entryPoints});
         this._onQueryResult = new SimpleEventDispatcher<any>();
@@ -30,6 +33,15 @@ export class RouteService implements IRouteService {
         this._onComplete = new SimpleEventDispatcher<any>();
     }
 
+    /**
+     * Continuously query the linked connections for a certain timespan
+     * @param searchData a searchData object to query
+     * @param cb a callback when all the results are found
+     * @param paths the array of paths where it should add to
+     * @param dataCount the amount of connections processed
+     * @param httpRequests the amount of httpRequests done
+     * @param httpResponses the amount of httpResponses received
+     */
     private continuousQuery(searchData: SearchData, cb, paths = [], dataCount = 0, httpRequests = 0, httpResponses = 0) {
         const self = this;
 
@@ -94,6 +106,10 @@ export class RouteService implements IRouteService {
         });
     }
 
+    /**
+     * do a single query on the linkedconnections data
+     * @param searchData searchData instance to query on
+     */
     query(searchData: SearchData): Promise<any> {
         searchData = searchData.toJSON();
         return new Promise((resolve, reject) => {
@@ -124,28 +140,45 @@ export class RouteService implements IRouteService {
         this.onQueryResult.subscribe(queryResult => console.log(`HTTP Responses: ${queryResult}`));*/
     }
 
-    // This is already handled in a promise
-    // might be a nice to have adition for the queryPeriod function.
+    /**
+     * An event handlers that triggers when we get a query result
+     */
     public get onQueryResult(): ISimpleEvent<any> {
         return this._onQueryResult.asEvent();
     }
 
+    /**
+     * Event that triggers when all queries are completed
+     */
     public get onComplete(): ISimpleEvent<any> {
         return this._onComplete.asEvent();
     }
 
+    /**
+     * Event that triggers when a connection is processed
+     */
     public get onDataUpdate(): ISimpleEvent<number> {
         return this._onDataUpdate.asEvent();
     }
 
+    /**
+     * Event that triggers when a http request is executed
+     */
     public get onHttpRequest(): ISimpleEvent<number> {
         return this._onHttpRequest.asEvent();
     }
 
+    /**
+     * Event that triggers on http Responses
+     */
     public get onHttpResponse(): ISimpleEvent<number> {
         return this._onHttpResponse.asEvent();
     }
 
+    /**
+     * Function to properly handle errors
+     * @param error an Error instance
+     */
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
     }

@@ -27,7 +27,7 @@ export class Connections implements OnInit {
     qoeList: QoE[];
     searchString = AppComponent.searchString;
 
-    /* Interactive loading */
+    // Interactive loading
     dataCount = 0;
     httpRequests = 0;
     httpResponses = 0;
@@ -41,6 +41,9 @@ export class Connections implements OnInit {
         }, 100);
     }
 
+    /**
+     * Triggers when the component initializes
+     */
     ngOnInit(): void {
         // this.searchData = JSON.parse(this.route.params['_value']);
         if (AppComponent.searchData) {
@@ -56,6 +59,9 @@ export class Connections implements OnInit {
         }
     }
 
+    /**
+     * Go back one page
+     */
     goBack() {
         AppComponent.goBack();
     }
