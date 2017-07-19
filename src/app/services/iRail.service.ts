@@ -1,17 +1,20 @@
+// Node Modules
 import { Injectable } from '@angular/core';
 import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-/* Saved Stations */
+// Saved dummydata
 const stationsData = require('../../dummydata/stations.json');
 const config = require('../../config.json');
 
-import { SearchData } from '../classes/searchData';
+// Custom modules
+import { SearchData } from '../classes/connections/searchData';
+import { Utils } from '../classes/utils/utils';
 
 @Injectable()
 export class IRailService {
     private uri = config.servers[0].uri;
-    private options = new RequestOptions({
+    private requestOptions = new RequestOptions({
         headers: new Headers({'Accept': 'application/json'}),
         responseType: ResponseContentType.Json
     });
@@ -22,7 +25,12 @@ export class IRailService {
         return Promise.reject(error.message || error);
     }
 
-    fakeReply(data: any): Promise<any> {
+    /**
+     * Do a reply in the form as a promise which is delayed by a few seconds
+     * @param data an object you expect as a reply
+     * @param delay the amount of delay to set in milliseconds - defaulted to 1 second
+     */
+    fakeReply(data: any, delay: number = Utils.getSecondsValue(1)): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
                 // console.log(data);
@@ -33,6 +41,11 @@ export class IRailService {
         });
     }
 
+    /**
+     * Filter the stations based on a searchQuery
+     * @param stations an array of station objects
+     * @param query a part of a station name
+     */
     filterStations(stations: any, query: string): Promise<any> {
         return new Promise((resolve, reject) => {
             resolve(stations.filter((curr) => {
@@ -44,6 +57,10 @@ export class IRailService {
         });
     }
 
+    /**
+     * Get all stations from the server or cache and filter it
+     * @param query the name or part of a name of the station
+     */
     getStations(query: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.getAllStations().then((data) => {
@@ -80,8 +97,8 @@ export class IRailService {
                             ['time', [query.travelTime]], ['timeSel', [query.timeType]],
                             ['date', [query.travelDate]], ['format', ['json']]]);
         const options = new RequestOptions();
-        options.headers = this.options.headers;
-        options.responseType = this.options.responseType;
+        options.headers = this.requestOptions.headers;
+        options.responseType = this.requestOptions.responseType;
         options.search = params;
 
         return new Promise((resolve, reject) => {

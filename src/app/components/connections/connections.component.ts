@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { AppComponent } from '../app.component';
-import { SearchData } from '../../classes/searchData';
-import { Language } from '../../classes/language';
+import { SearchData } from '../../classes/connections/searchData';
+import { Language } from '../../classes/userData/language';
 
-import { Manager } from '../../classes/manager';
-import { QoE } from '../../classes/qoe';
-import { Route } from '../../classes/route';
+import { Manager } from '../../classes/connections/manager';
+import { QoE } from '../../classes/connections/qoe';
+import { Route } from '../../classes/connections/route';
 
 @Component({
     selector: 'connections',

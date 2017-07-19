@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Language } from '../../classes/language';
 import { AppComponent } from '../app.component';
-import { SearchData } from '../../classes/searchData';
 import { AppModule } from '../../app.module';
-import { Recent } from '../../classes/recent';
+
+import { Language } from '../../classes/userData/language';
+import { SearchData } from '../../classes/connections/searchData';
+import { Recent } from '../../classes/userData/recent';
 
 @Component({
     selector: 'recents',

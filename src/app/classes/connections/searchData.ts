@@ -1,24 +1,5 @@
-/**
- * formats date object into DD/MM/YYY string
- */
-export function formatDate(date: Date): string {
-    return zeroPad(date.getDate(), 2) + '/' + zeroPad(date.getMonth() + 1, 2) + '/' + zeroPad(date.getFullYear(), 4);
-}
-
-export function GetLatest(dayOfWeek: number) {
-    const d = new Date();
-    const day = d.getDay();
-    d.setDate(d.getDate() - day + dayOfWeek);
-    return d;
-}
-
-/**
- * returns string of number of the specified width (or larger), padded with leading zeroes
- */
-export function zeroPad(num: number, width: number): string {
-    const zero = width - num.toString().length + 1;
-    return Array(+(zero > 0 && zero)).join('0') + num;
-}
+// Custom modules
+import { Utils } from '../utils/utils';
 
 export class SearchData {
     public depStation: string; // id of departure station
@@ -48,11 +29,11 @@ export class SearchData {
         if (!goesForward) {
             period = -period;
         }
-        let dateString = formatDate(calcdate);
+        let dateString = Utils.formatDate(calcdate);
         dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
         for (let i = 1; i < amount; i++) {
             calcdate.setDate(calcdate.getDate() + period);
-            dateString = formatDate(calcdate);
+            dateString = Utils.formatDate(calcdate);
             dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
         }
         return dataList;
@@ -66,14 +47,12 @@ export class SearchData {
         this.timeType = timeType;
     }
 
+    /**
+     * convert the searchData object into a queryable object
+     */
     toJSON(): any {
-        const hour = Number(this.travelTime.split(':')[0]);
-        const min = Number(this.travelTime.split(':')[1]);
-        const day = Number(this.travelDate.split('/')[0]);
-        const month = Number(this.travelDate.split('/')[1]) - 1;
-        const year = Number(this.travelDate.split('/')[2]);
-        const datetime = new Date(year, month, day, hour, min);
-        const inAnHour = new Date(datetime.getTime() + 60 * 60 * 1000);
+        const datetime = Utils.combineTimeAndDate(this.travelTime, this.travelDate);
+        const inAnHour = new Date(datetime.getTime() + Utils.getHoursValue(1));
         const fifteenMins = new Date(15 * 60 * 1000);
         const json = {
             'arrivalStop': this.arrStation,
@@ -82,15 +61,6 @@ export class SearchData {
             'departureTime': datetime,
             'minimumTransferTime': fifteenMins
         };
-
-        /* TODO: Make arrivalTime possible with lc-client update
-        switch (this.timeType) {
-            case 'arrival':
-                json['arrivalTime'] = datetime;
-                break;
-            default:
-                json['departureTime'] = datetime;
-        }*/
 
         return json;
     }

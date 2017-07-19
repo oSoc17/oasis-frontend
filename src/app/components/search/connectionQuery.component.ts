@@ -4,13 +4,14 @@ import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
 
-import { SearchData, GetLatest } from '../../classes/searchData';
-import { Language } from '../../classes/language';
+import { SearchData } from '../../classes/connections/searchData';
+import { Language } from '../../classes/userData/language';
+import { Utils } from '../../classes/utils/utils';
 
 import { AppComponent } from '../app.component';
 import { Recents } from './recents.component';
 import { AppModule } from '../../app.module';
-import { Recent } from '../../classes/recent';
+import { Recent } from '../../classes/userData/recent';
 
 @Component({
     selector: 'connectionquery',
@@ -28,8 +29,7 @@ export class ConnectionQuery {
     error: string;
     language: Language = new Language();
 
-    constructor() {
-    }
+    constructor() {}
 
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
@@ -45,7 +45,7 @@ export class ConnectionQuery {
         } else {
             this.searchData = [];
             this.searchData = SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'],
-                this.travelTime.selectedTime, GetLatest(this.travelDate.selectedDay), 'departureTime', 14);
+                this.travelTime.selectedTime, Utils.getLatest(this.travelDate.selectedDay), 'departureTime', 14);
             AppComponent.searchData = this.searchData;
             AppComponent.searchString = departSt.standardname + ' - ' + arriveSt.standardname;
             AppModule.options.addRecent(new Recent(this.searchData, departSt.standardname, arriveSt.standardname,

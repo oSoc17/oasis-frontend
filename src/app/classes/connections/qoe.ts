@@ -1,8 +1,10 @@
+// Custom Modules
+import { IQoE } from '../../interfaces/iQoE';
+import { IUserPreferences } from '../../interfaces/iUserPreferences';
+
 import { RouteHistory } from './routeHistory';
-import { IQoE } from '../interfaces/iQoE';
-import { IUserPreferences } from '../interfaces/iUserPreferences';
-import { Calc } from './calc';
 import { Route } from './route';
+import { Calc } from '../utils/calc';
 
 export class QoE implements IQoE {
     private routeHistory: RouteHistory;
@@ -19,23 +21,38 @@ export class QoE implements IQoE {
         }
     }
 
+    /**
+     * get Departure time of this connection
+     */
     public get departureTime(): Date {
         return this._departureTime;
     }
 
+    /**
+     * get Departure station URI of this connection
+     */
     public get departureStation(): string {
         return this.routeHistory.routes[0].departureStation;
     }
 
+    /**
+     * get Arrival station URI of this connection
+     */
     public get arrivalStation(): string {
         return this.routeHistory.routes[0].arrivalStation;
     }
 
+    /**
+     * Add a route to the routehistory
+     */
     public addRoute(route: Route) {
         return this.routeHistory.routes.push(route);
     }
 
-    getAvgDelay(): any {
+    /**
+     * get the average delay of all routes inside routeHistory
+     */
+    public getAvgDelay(): any {
         const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000; // in minutes
         const weight: number = this.userPreferences.weight_AvgDelay;
         /**
@@ -49,7 +66,10 @@ export class QoE implements IQoE {
         };
     }
 
-    getAvgChangesAmount(): any {
+    /**
+     * get the average amount of changes of all routes inside routeHistory
+     */
+    public getAvgChangesAmount(): any {
         const changes: number = this.routeHistory.getAvgChangesAmount();
         const weight: number = this.userPreferences.weight_AvgChangesAmount;
         /**
@@ -63,7 +83,10 @@ export class QoE implements IQoE {
         };
     }
 
-    getAvgChangeTime(): any {
+    /**
+     * get the average time per change of all routes inside routeHistory
+     */
+    public getAvgChangeTime(): any {
         const changeTime: number = this.routeHistory.getAvgChangeTime().valueOf() / 60000; // in minutes
         const weight: number = this.userPreferences.weight_AvgChangeTime;
         /**
@@ -80,7 +103,10 @@ export class QoE implements IQoE {
         };
     }
 
-    getDelayConsistency(): any {
+    /**
+     * get the consistency of the delays over all routes inside routeHistory
+     */
+    public getDelayConsistency(): any {
         const stdDev: number = this.routeHistory.getDelayConsistency().valueOf();
         const avg: number = this.routeHistory.getAvgDelay().valueOf();
         const cov: number = avg ? stdDev / avg : 0; // coefficient of variation
@@ -96,7 +122,10 @@ export class QoE implements IQoE {
         };
     }
 
-    getAvgTravelTime(): any {
+    /**
+     * get the average travel time/duration over all routes inside routeHistory
+     */
+    public getAvgTravelTime(): any {
         const travelTime: number = this.routeHistory.getAvgTravelTime().valueOf() / 60000; // in minutes
         const weight: number = this.userPreferences.weight_AvgTravelTime;
         /**
@@ -110,8 +139,11 @@ export class QoE implements IQoE {
         };
     }
 
-    getNumberOfRoutesWithinHour(): any {
-        // TODO: modify lc-client
+    /**
+     * get the number of routes per hour heading this direction
+     */
+    public getNumberOfRoutesWithinHour(): any {
+        // TODO: update this to work.
         const period = 30; // minutes between trips, generated
         const weight: number = this.userPreferences.weight_NumberOfRoutesWithinHour;
         /**
@@ -125,7 +157,10 @@ export class QoE implements IQoE {
         };
     }
 
-    getNumberOfMissedConnections(): any {
+    /**
+     * get the amount of connection you can possibly miss due to delays
+     */
+    public getNumberOfMissedConnections(): any {
         // TODO: modify lc-client
         const missedConnections = this.routeHistory.getChangeMissedChance();
         const weight: number = this.userPreferences.weight_NumberOfMissedConnections;
@@ -136,7 +171,10 @@ export class QoE implements IQoE {
         };
     }
 
-    getPrice(): any {
+    /**
+     * get the average price per travel
+     */
+    public getPrice(): any {
         const price = 5;
         const priceRatio = price / (this.routeHistory.getAvgTravelTime().valueOf() / 60000);
         const weight: number = this.userPreferences.weight_Price;
@@ -147,7 +185,10 @@ export class QoE implements IQoE {
         };
     }
 
-    getQoE(): number {
+    /**
+     * get the total Quality Of Experience score
+     */
+    public getQoE(): number {
         let sum = 0;
         sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
@@ -157,15 +198,6 @@ export class QoE implements IQoE {
         sum += this.getNumberOfMissedConnections().score;
         sum += this.getNumberOfRoutesWithinHour().score;
         sum += this.getPrice().score;
-
-        /*console.log('getAvgTravelTime', this.getAvgTravelTime().score);
-        console.log('getAvgChangeTime', this.getAvgChangeTime().score);
-        console.log('getAvgChangesAmount', this.getAvgChangesAmount().score);
-        console.log('getDelayConsistency', this.getDelayConsistency().score);
-        console.log('getAvgDelay', this.getAvgDelay().score);
-        console.log('getNumberOfMissedConnections', this.getNumberOfMissedConnections().score);
-        console.log('getNumberOfRoutesWithinHour', this.getNumberOfRoutesWithinHour().score);
-        console.log('getPrice', this.getPrice().score);*/
 
         return sum;
     }

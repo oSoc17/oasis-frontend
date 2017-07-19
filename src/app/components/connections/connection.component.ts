@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Language } from '../../classes/language';
+import { Language } from '../../classes/userData/language';
 
 @Component({
     selector: 'connection',

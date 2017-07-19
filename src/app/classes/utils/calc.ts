@@ -1,7 +1,9 @@
 export class Calc {
-
+    /**
+     * Calculates an average based on the number array
+     * @param values an array filled with numbers to calc avg from
+     */
     public static avg(values: number[]): number {
-        /* calculates average */
         let sum = 0;
         for (const i of values) {
             sum += i;
@@ -9,13 +11,21 @@ export class Calc {
         return sum / values.length;
     }
 
+    /**
+     * Recalculate the average based on the old average, total amount of values and a newly added value
+     * @param oldAverage the average we need to recalculate
+     * @param newValue the new value added to the average
+     * @param totalAmount the total amount of values
+     */
     public static newAvg(oldAverage: number, newValue: number, totalAmount: number): number {
-        /* recalculates an old average based on a new value and the total amount of values */
         return oldAverage + (newValue - oldAverage) / totalAmount;
     }
 
+    /**
+     * Calculate standard deviation
+     * @param values an array of values used to calc the standard deviation
+     */
     public static stdDev(values: number[]): number {
-        /* returns the standard deviation */
         const avg = Calc.avg(values);
 
         const squareDiffs = values.map(function(value){
@@ -30,8 +40,11 @@ export class Calc {
         return stdDev;
     }
 
+    /**
+     * Clips given value to never over or underflow the percentage value (0-1)
+     * @param value the value that needs clipping
+     */
     public static clipPercentage(value: number): number {
-        /* clips given value to a percentage between 0 and 1 */
         if (value > 1) {
             return 1;
         }
@@ -41,8 +54,13 @@ export class Calc {
         return value;
     }
 
+    /**
+     * returns the ratio of a given value between a max and a min
+     * @param value the value to calculate ratio from
+     * @param min the minimum value
+     * @param max the maximum value
+     */
     public static linearInterpolatePercentage(value: number, min: number, max: number): number {
-        /* returns the ratio of a given value between a max and a min */
         if (max === min) {
             throw Error('max & min can\'t be the same');
         }

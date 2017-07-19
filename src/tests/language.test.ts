@@ -1,4 +1,4 @@
-import { Language } from '../app/classes/language';
+import { Language } from '../app/classes/userData/language';
 
 /* setLanguage test right language */
 describe('language.ts setLanguage()', () => {

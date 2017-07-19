@@ -1,6 +1,6 @@
-import {UserPreferencesMock} from '../app/classes/userprefs.mock';
+import {UserPreferencesMock} from '../app/classes/mocks/userprefs.mock';
 import {IUserPreferences} from '../app/interfaces/iUserPreferences';
-import {UserPreferences} from '../app/classes/userprefs';
+import {UserPreferences} from '../app/classes/userData/userprefs';
 
 describe('testing UserPreferences interface class', () => {
     let prefs: IUserPreferences;

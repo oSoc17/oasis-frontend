@@ -1,4 +1,4 @@
-import { Calc } from '../app/classes/calc';
+import { Calc } from '../app/classes/utils/calc';
 
 /* Calc clipPercentage */
 describe('calc.ts clipPercentage', () => {

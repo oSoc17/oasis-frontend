@@ -1,20 +1,26 @@
+// Custom modules
 import { Route } from './route';
-import { Calc } from './calc';
+import { Calc } from '../utils/calc';
 
 export class RouteHistory {
-    /* contains the historic data of a route */
     public routes: Route[];
 
+    /**
+     * construct the routeHistory object
+     * This contains historic data of a route
+     * @param routes an array of route objects
+     */
     constructor(routes: Route[]) {
         if (!routes) {
             this.routes = [];
         }
         this.routes = routes;
-        // TODO: fill array with historic data, how?
     }
 
+    /**
+     * get the avg Travel duration of the historic array
+     */
     public getAvgTravelTime(): Date {
-        /* returns avg travel time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
             data.push(route.totalTravelTime.valueOf());
@@ -22,8 +28,10 @@ export class RouteHistory {
         return new Date(Calc.avg(data));
     }
 
+    /**
+     * get the average amount of changes over the historic data array
+     */
     public getAvgChangesAmount(): number {
-        /* returns avg change time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
             data.push(route.changesAmount);
@@ -31,8 +39,10 @@ export class RouteHistory {
         return Calc.avg(data);
     }
 
+    /**
+     * get the average delay duration over the historic data array
+     */
     public getAvgDelay(): Date {
-        /* returns avg delay based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
             data.push(route.delay.valueOf());
@@ -40,8 +50,10 @@ export class RouteHistory {
         return new Date(Calc.avg(data));
     }
 
+    /**
+     * get the average time for a change over the historic array
+     */
     public getAvgChangeTime(): Date {
-        /* returns avg change time based on historic data */
         const data: number[] = [];
         for (const route of this.routes) {
             data.push(route.avgChangeTime.valueOf());
@@ -49,8 +61,10 @@ export class RouteHistory {
         return new Date(Calc.avg(data));
     }
 
+    /**
+     * get the consistency of the delays over the historic data array
+     */
     public getDelayConsistency() {
-        /* returns standard deviation of delays */
         const data: number[] = [];
         for (const route of this.routes) {
             data.push(route.delay.valueOf());
@@ -58,7 +72,11 @@ export class RouteHistory {
         return new Date(Calc.stdDev(data));
     }
 
+    /**
+     * get a total of all the possible missed connections over the historic data array
+     */
     public getChangeMissedChance(): number {
+        // TODO: check if this actually makes sense?
         let missed = 0;
         let changes = 0;
         for (const route of this.routes) {
@@ -70,6 +88,4 @@ export class RouteHistory {
         // Divide by 0 check... - there are no changes...
         return changes > 0 ? missed / changes : 0;
     }
-
-    // TODO: implement more
 }

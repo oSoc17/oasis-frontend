@@ -1,32 +1,42 @@
+// Custom modules
 import { Connection } from './connection';
 
 export class Route {
     private connections: Connection[];
 
+    /**
+     * construct the Route object
+     * @param connections an array of all connections making up this route
+     */
     constructor(connections: Connection[]) {
         this.connections = connections;
     }
 
-    public get departureStation() {
+    /**
+     * get the departure station URI
+     */
+    public get departureStation(): string {
         return this.connections[0].departureStop;
     }
 
-    public get arrivalStation() {
+    /**
+     * get the arrival station URI
+     */
+    public get arrivalStation(): string {
         return this.connections[this.connections.length - 1].arrivalStop;
     }
 
-    public get departureTime() {
+    /**
+     * get the departure time date object
+     */
+    public get departureTime(): Date {
         return this.connections[this.connections.length - 1].departureTime;
     }
 
-    public get dataValues() {
-        /* returns components of QoE */
-        // TODO: return seperate values from QoE calculation
-        return undefined;
-    }
-
+    /**
+     * get the Total travel time of the route
+     */
     public get totalTravelTime(): Date {
-        /* returns the total travel time (Date) */
         if (this.connections.length) {
             const first: Date = this.connections[0].departureTime;
             const last: Date = this.connections[this.connections.length - 1].arrivalTime;
@@ -36,8 +46,10 @@ export class Route {
         return new Date(0);
     }
 
+    /**
+     * get the Amount of intermediate stops of the route
+     */
     public get interMediateStopsAmount(): number {
-        /* returns amount of intermediate stops */
         if (this.connections.length) {
             return this.connections.length - 1;
         }
@@ -45,8 +57,10 @@ export class Route {
         return null;
     }
 
+    /**
+     * get the Amount of changes of the route
+     */
     public get changesAmount(): number {
-        /* returns amount of changes */
         if (this.connections.length > 1) {
             let changesAmount = 0;
             // console.log('connections: ' + this.connections.length);
@@ -61,8 +75,10 @@ export class Route {
         return 0;
     }
 
+    /**
+     * get the average time for a train change of the route
+     */
     public get avgChangeTime(): Date {
-        /* returns average change time of a route */
         if (this.connections.length > 1) {
             let changeAmount = 0;
             let sumChangeTime = 0;
@@ -82,8 +98,10 @@ export class Route {
         return new Date(0);
     }
 
+    /**
+     * get the last arrival delay of the route
+     */
     public get delay(): Date {
-        /* returns the last arrivalDelay */
         // TODO: is the delay only defined by the last arrivalDelay? What about missed changes due to delays?
         if (this.connections.length > 1) {
             if (this.connections[this.connections.length - 1].arrivalDelay) {
@@ -96,10 +114,17 @@ export class Route {
         return new Date(0);
     }
 
+    /**
+     * get the Amount of connections of the route
+     */
     public get totalConnections() {
         return this.connections.length;
     }
 
+    /**
+     * get the amount of possible missed changes
+     * @param min minimum time needed for a train change
+     */
     public getChangesMissed(min: number = 3): number {
         let ret = 0;
         let dep: Connection;
@@ -124,6 +149,9 @@ export class Route {
         return ret;
     }
 
+    /**
+     * Add a connection to a route
+     */
     public addConnection(conn: Connection) {
         this.connections.push(conn);
     }

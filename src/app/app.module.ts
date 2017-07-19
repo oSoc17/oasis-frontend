@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdAutocompleteModule, MaterialModule, MdInputModule, MdProgressSpinnerModule } from '@angular/material';
 
 /* custom classes */
-import { Options } from './classes/options';
+import { Options } from './classes/userData/options';
 
 @NgModule({
   declarations: Components.components,

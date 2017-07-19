@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Language } from '../../classes/language';
+import { Language } from '../../classes/userData/language';
 
 import { AppComponent } from '../app.component';
-import { QoE } from "../../classes/qoe";
+import { QoE } from '../../classes/connections/qoe';
 
 @Component({
     selector: 'route',

@@ -1,5 +1,5 @@
 import { RouteService } from '../app/services/routing.service';
-import { SearchData } from '../app/classes/searchData';
+import { SearchData } from '../app/classes/connections/searchData';
 import 'rxjs/add/operator/toPromise';
 
 /*describe('RoutingMockService test', () => {

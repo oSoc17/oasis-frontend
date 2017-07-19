@@ -2,7 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 
 import { ConnectionQuery } from './search/connectionQuery.component';
 
-import { SearchData } from './../classes/searchData';
+import { SearchData } from './../classes/connections/searchData';
 
 @Component({
     selector: 'app-root',
