@@ -10,41 +10,9 @@
         </mat-panel-description>
     </md-expansion-panel-header>
     <div class="row">
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toUTCTime(qoe.getAvgTravelTime().value.valueOf()) }}</h1>
-            <p class="route-subheader">{{ language.getMessage('avgTravelTime') }}</p>
-        </div>
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toUTCTime(qoe.getAvgDelay().value.valueOf()) }}</h1>
-            <p class="route-subheader">{{ language.getMessage('avgDelay') }}</p>
-        </div>
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-transit-transfer"></i> {{ qoe.getAvgChangesAmount().value }}</h1>
-            <p class="route-subheader">{{ language.getMessage('avgChanges') }}</p>
-        </div>
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toUTCTime(qoe.getAvgChangeTime().value.valueOf()) }}</h1>
-            <p class="route-subheader">{{ language.getMessage('changeTime') }}</p>
-        </div>
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-chart-line"></i> {{ qoe.getDelayConsistency().value.valueOf() }}</h1>
-            <p class="route-subheader">{{ language.getMessage('delayConsistency') }}</p>
-        </div>
-        <!--<div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-train"></i> {{ toUTCTime(qoe.getAvgTravelTime().value.valueOf()) }}</h1>
-            <p class="route-subheader">{{ language.getMessage('avgTravelTime') }}</p>
-        </div>-->
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-chart-histogram"></i> {{  60 / qoe.getNumberOfRoutesWithinHour().value }}</h1>
-            <p class="route-subheader">{{ language.getMessage('routesPerHour') }}</p>
-        </div>
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-link-variant-off"></i> {{ qoe.getNumberOfMissedConnections().value }}</h1>
-            <p class="route-subheader">{{ language.getMessage('missedConnections') }}</p>
-        </div>
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-coin"></i> {{ qoe.getPrice().value }}</h1>
-            <p class="route-subheader">{{ language.getMessage('price') }}</p>
+        <div class="col m4" *ngFor="let subScore of getSubScores()">
+            <h1 class="route-header"><i class="mdi mdi-{{subScore.icon}}"></i> {{ subScore.value }}</h1>
+            <p class="route-subheader">{{ subScore.name }}<md-icon class="grey-text small" >help_outline</md-icon></p>
         </div>
     </div>
 </md-expansion-panel>
