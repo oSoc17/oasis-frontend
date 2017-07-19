@@ -15,6 +15,10 @@ export class AppComponent {
     private static currPage = 0;
     private static prevPage = 0;
 
+    /**
+     * change current page
+     * @param number page ID
+     */
     public static setPage(number) {
         if (number <= 3) {
             AppComponent.prevPage = AppComponent.currPage;
@@ -22,16 +26,25 @@ export class AppComponent {
         }
     }
 
+    /**
+     * Go back 1 screen
+     */
     public static goBack() {
         AppComponent.setPage(AppComponent.prevPage);
     }
 
+    /**
+     * Get the currently shown page
+     */
     public static getPage() {
         return AppComponent.currPage;
     }
 
     constructor() { }
 
+    /**
+     * Get the currently shown page
+     */
     private getPage() {
         return AppComponent.currPage;
     }
