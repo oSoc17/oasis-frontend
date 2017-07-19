@@ -14,7 +14,11 @@ export class LanguageChooser {
   languages: string[] = this.language.getLanguages();
   currentLanguage: string = this.language.toName(Language.language);
 
-  onSelect(lang) {
+  /**
+   * Triggered when a language change is request (onSelect)
+   * @param lang the language object
+   */
+  onSelect(lang: any) {
     const tag = lang['tag'];
     this.currentLanguage = this.language.toName(tag);
     AppModule.options.language = this.language.setLanguage(tag);

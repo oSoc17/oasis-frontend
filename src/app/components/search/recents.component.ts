@@ -19,7 +19,11 @@ export class Recents {
     constructor() {
     }
 
-    onClick(recent) {
+    /**
+     * handles the re-querying of a recent search
+     * @param recent the recent object to re-query
+     */
+    onClick(recent: Recent) {
         AppComponent.searchData = recent.searchData;
         AppComponent.searchString = recent.depStationReadable + ' - ' + recent.arrStationReadable;
         AppComponent.setPage(1);

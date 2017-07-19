@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { AppModule } from '../../app.module';
 
 import { Language } from '../../classes/userData/language';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'options',
@@ -12,6 +13,7 @@ import { Language } from '../../classes/userData/language';
 export class Options {
   language = new Language();
 
+  // Array with all the sliders and their properties
   slider = [
     {
       name: this.language.getMessage('delay'),
@@ -61,5 +63,10 @@ export class Options {
       value: AppModule.options.qoeParameters['price'],
       id: 'price'
     }
-  ]
+  ];
+
+  private resetOptions() {
+    AppModule.options.reset();
+    location.reload();
+  }
 }

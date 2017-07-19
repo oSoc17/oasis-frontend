@@ -10,8 +10,16 @@ import { AppComponent } from './app.component';
 export class NavComponent {
     constructor() { }
 
-    clickSettings() {
+    private clickSettings() {
         // console.log('open settings');
-        AppComponent.setPage(2);
+        if (AppComponent.getPage() === 2) {
+            this.goBack();
+        } else {
+            AppComponent.setPage(2);
+        }
+    }
+
+    private goBack() {
+        AppComponent.goBack();
     }
 }
