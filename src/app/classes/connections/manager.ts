@@ -1,13 +1,19 @@
+/* Node modules */
+import { ISimpleEvent } from 'strongly-typed-events';
+
+/* Custom modules */
 import { Route } from './route';
 import { QoE } from './qoe';
 import { SearchData } from './searchData';
-import { RouteService } from '../../services/routing.service';
 import { Connection } from './connection';
 import { RouteHistory } from './routeHistory';
+import { Utils } from '../utils/utils';
+
+import { RouteService } from '../../services/routing.service';
+
+/* Mocks */
 import { UserPreferencesMock } from '../mocks/userprefs.mock';
 import { UserPreferences } from '../userData/userprefs';
-
-import { ISimpleEvent } from 'strongly-typed-events';
 
 export class Manager {
     private static config = require('../../../config.json');
@@ -19,13 +25,6 @@ export class Manager {
     private _dataCount = 0;
     private _httpRequests = 0;
     private _httpResponses = 0;
-
-    private genTime(hours, minutes) {
-        const date = new Date(0);
-        date.setHours(hours);
-        date.setMinutes(minutes);
-        return date;
-    }
 
     constructor() {
         if (!this.routeService) {
@@ -41,8 +40,8 @@ export class Manager {
             const routeHistory = new RouteHistory([route]);
             this._qoeList.push(new QoE(routeHistory, new UserPreferences()));
             this._qoeList.sort((a, b) => {
-                const aTime = (this.genTime(a.departureTime.getHours(), a.departureTime.getMinutes()));
-                const bTime = (this.genTime(b.departureTime.getHours(), b.departureTime.getMinutes()));
+                const aTime = (Utils.dateFromTime(a.departureTime.getHours(), a.departureTime.getMinutes()));
+                const bTime = (Utils.dateFromTime(b.departureTime.getHours(), b.departureTime.getMinutes()));
                 return aTime.valueOf() - bTime.valueOf();
             });
             // console.log(this._qoeList);
@@ -62,39 +61,65 @@ export class Manager {
         return this.routeService.queryPeriod(searchDataList);
     }
 
+    /**
+     * Returns the eventhandler for Query Results
+     */
     public get getRouteListener() {
         return this.routeService.onQueryResult;
     }
 
+    /**
+     * Returns the list of all routes with their calculated QoE
+     */
     public get qoeList() {
-        // TODO: Make it able to calculate QoE per route.
         return this._qoeList;
     }
 
+    /**
+     * Returns the amount of connections processed
+     */
     public get dataCount() {
         return this._dataCount;
     }
 
+    /**
+     * Returns the amount of http requests done
+     */
     public get httpRequests() {
         return this._httpRequests;
     }
 
+    /**
+     * Returns the amount of http responses received
+     */
     public get httpResponses() {
         return this._httpResponses;
     }
 
+    /**
+     * Returns the dataUpdate eventhandler
+     */
     public get onDataUpdate(): ISimpleEvent<number> {
         return this.routeService.onDataUpdate;
     }
 
+    /**
+     * Returns the http Requests eventhandler
+     */
     public get onHttpRequest(): ISimpleEvent<number> {
         return this.routeService.onHttpRequest;
     }
 
+    /**
+     * Returns the http Responses eventhandler
+     */
     public get onHttpResponse(): ISimpleEvent<number> {
         return this.routeService.onHttpResponse;
     }
 
+    /**
+     * Returns event that tells when all queries are finished
+     */
     public get onComplete(): ISimpleEvent<any> {
         return this.routeService.onComplete;
     }

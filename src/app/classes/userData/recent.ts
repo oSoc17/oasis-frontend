@@ -1,3 +1,4 @@
+// Custom modules
 import { SearchData } from '../connections/searchData';
 import { Utils } from '../utils/utils';
 
@@ -8,14 +9,16 @@ export class Recent {
     public travelTimeReadable: string;
     public travelDay: number;
 
+    /**
+     * Convert a json back into a proper usable recent object
+     * @param recentJson a json object describing a recent object
+     */
     public static fromJson(recentJson: any): Recent {
         const searchData: SearchData[] = [];
         for (const search of recentJson.searchData) {
-            // Todo: convert departuretime to HH:MM
-            // And to dd/mm/yyyy
             search.departureTime = new Date(search.departureTime);
             searchData.push(new SearchData(search.departureStop, search.arrivalStop,
-                Utils.timeFromDate(search.departureTime), Utils.formatDate(search.departureTime), 'departure'));
+                Utils.timeStringFromDate(search.departureTime), Utils.formatDate(search.departureTime), 'departure'));
         }
         // console.log(searchData);
         return new Recent(searchData, recentJson.depStationReadable, recentJson.arrStationReadable,

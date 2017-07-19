@@ -1,3 +1,4 @@
+// Custom modules
 import { Recent } from './recent';
 
 export class Options {
@@ -14,6 +15,9 @@ export class Options {
     };
     recents: Recent[] = [];
 
+    /**
+     * Saves the options and some userData
+     */
     public save(): boolean {
         if (typeof localStorage !== 'undefined') {
             localStorage.setItem('Options', JSON.stringify(this));
@@ -23,6 +27,9 @@ export class Options {
         return false;
     }
 
+    /**
+     * Loads the options and some userData
+     */
     public load(): boolean {
         if (typeof localStorage !== 'undefined') {
             const options: Options = JSON.parse(localStorage.getItem('Options'));
@@ -44,6 +51,10 @@ export class Options {
         return false;
     }
 
+    /**
+     * Adds a recent search query
+     * @param val the value of the recent searchQuery
+     */
     public addRecent(val: Recent) {
         this.recents.push(val);
         if (this.recents.length > 4) {

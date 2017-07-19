@@ -1,4 +1,5 @@
-import { SearchData, GetLatest } from '../app/classes/connections/searchData';
+import { SearchData } from '../app/classes/connections/searchData';
+import { Utils } from '../app/classes/utils/utils';
 
 it('should give last monday', () => {
     let s: SearchData[] = [];
@@ -8,7 +9,7 @@ it('should give last monday', () => {
                 if (days['' + i]) {
                     s = s.concat(
                         SearchData.createPeriodicList('departSt.id', 'arriveSt.id', 'this.travelTime.selectedTime',
-                            GetLatest((i + 1) % 6), 'this.travelTime.selectedType', 7, 2 ));
+                            Utils.getLatest((i + 1) % 6), 'this.travelTime.selectedType', 7, 2 ));
                 }
            }
         s.forEach((da) => {
