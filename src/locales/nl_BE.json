@@ -39,5 +39,6 @@
   "avgTravelTime_tooltip": "De gemiddelde reistijd",
   "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen",
   "recents": "Recent",
-  "resetOptions": "Reset"
+  "resetOptions": "Reset",
+  "basedOn": "Gebaseerd op XX record(s)"
 }

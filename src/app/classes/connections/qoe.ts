@@ -201,4 +201,8 @@ export class QoE implements IQoE {
 
         return sum;
     }
+
+    public get amount(){
+        return this.routeHistory.routes.length;
+    }
 }
