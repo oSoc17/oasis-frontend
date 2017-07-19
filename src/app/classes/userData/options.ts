@@ -29,7 +29,7 @@ export class Options {
         if (this.checkLocalStorage()) {
             localStorage.setItem('Options', JSON.stringify(this));
             // console.log(JSON.stringify(this));
-            alert('Options saved!');
+            // alert('Options saved!');
             return true;
         }
         return false;
