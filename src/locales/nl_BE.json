@@ -38,5 +38,6 @@
   "changeTime_tooltip": "De gemiddelde tijd wachtend op de trein waarop je moet overstappen",
   "avgTravelTime_tooltip": "De gemiddelde reistijd",
   "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen",
-  "recents": "Recent"
+  "recents": "Recent",
+  "resetOptions": "Reset"
 }
