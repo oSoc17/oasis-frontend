@@ -30,7 +30,14 @@ export class Route {
      * get the departure time date object
      */
     public get departureTime(): Date {
-        return this.connections[this.connections.length - 1].departureTime;
+        return this.connections[0].departureTime;
+    }
+
+    /**
+     * get the arrival time date object
+     */
+    public get arrivalTime(): Date {
+        return this.connections[this.connections.length - 1].arrivalTime;
     }
 
     /**

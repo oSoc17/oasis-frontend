@@ -1,6 +1,6 @@
 <md-expansion-panel>
     <md-expansion-panel-header>
-        <mat-panel-title><i class="mdi mdi-train"></i>{{ toTime(qoe.departureTime.valueOf()) }}</mat-panel-title>
+        <mat-panel-title><i class="mdi mdi-train"></i>&nbsp;&nbsp;{{ toTime(qoe.departureTime.valueOf()) }} - {{ toTime(qoe.arrivalTime.valueOf()) }}</mat-panel-title>
         <mat-panel-description><strong class="black-text">{{ toScore(qoe.getQoE()*10).toFixed(1) }} </strong> / 10
             <div class="bar-container valign-wrapper">
                 <md-progress-bar
