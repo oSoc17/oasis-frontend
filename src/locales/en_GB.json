@@ -43,5 +43,6 @@
     "now": "now",
     "resetOptions": "Reset",
     "preferences": "Preferences",
-    "prefExplenation": "The following options determine how much each variable is counted when calculating your tripscore. The more important you desegnate an item, the heavier it wil weigh in the final score."
+    "prefExplenation": "The following options determine how much each variable is counted when calculating your tripscore. The more important you desegnate an item, the heavier it wil weigh in the final score.",
+    "minutes": "min"
 }

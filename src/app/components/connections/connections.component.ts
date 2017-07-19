@@ -40,7 +40,7 @@ export class Connections implements OnInit {
             this.ref.detectChanges();
             if ((this.dataCount > 2000 || this.httpResponses > 1500) && this.qoeList.length === 0) {
                 this.finished = true;
-                this.manager.stop()
+                this.manager.stop();
                 this.error = 'routing timed out';
             }
         }, 100);
