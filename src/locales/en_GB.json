@@ -38,5 +38,5 @@
     "changeTime_tooltip": "The avarage time spent waiting between trains.",
     "avgTravelTime_tooltip": "Avarage time between departure and arrival.",
     "missedConnections_tooltip": "The avarage chance that you will miss the change of train. Often influenced by delays.",
-    "recents": "Recents"
+    "recents": "Recent"
 }
