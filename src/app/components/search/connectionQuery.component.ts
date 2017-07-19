@@ -37,8 +37,15 @@ export class ConnectionQuery {
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;
+        const stationList = this.depStation.stations;
+        const arrInputValue = this.arrStation.inputValue;
+        const depInputValue = this.depStation.inputValue;
+        console.log(arriveSt.standardname);
         if (!(arriveSt && departSt)) {
             this.error = this.language.getMessage('errNoStations');
+        } else if (!stationList.some(x => x.standardname.toLowerCase() === arrInputValue.toLowerCase()) ||
+                    !stationList.some(x => x.standardname.toLowerCase() === depInputValue.toLowerCase())) {
+            this.error = this.language.getMessage('errWrongStations');
         } else if ( arriveSt.id === departSt.id) {
             this.error = this.language.getMessage('errEqualStations');
         } else if (this.travelTime.selectedTime === '') {
