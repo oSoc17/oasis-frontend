@@ -4,7 +4,8 @@ import { SimpleEventDispatcher, ISimpleEvent } from 'strongly-typed-events';
 const Client = require('lc-client');
 
 // Custom modules
-import {SearchData} from '../classes/connections/searchData';
+import { SearchData } from '../classes/connections/searchData';
+import { Utils } from '../classes/utils/utils';
 
 export interface IRouteService {
     onQueryResult: ISimpleEvent<any>;
@@ -60,7 +61,8 @@ export class RouteService implements IRouteService {
             let result = false;
 
             resultStream.once('result',  (path) => {
-                searchData.departureTime = new Date(new Date(path[0].departureTime).getTime() + 60000);
+                console.log(searchData.departureTime);
+                searchData.departureTime = new Date(new Date(path[0].departureTime).valueOf() + 60000);
                 paths.push(path);
                 self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
                 this._onQueryResult.dispatch(path);
@@ -115,7 +117,8 @@ export class RouteService implements IRouteService {
         searchData = searchData.toJSON();
         return new Promise((resolve, reject) => {
             // console.log(searchData);
-
+            // Time of server is GMT+1 ??
+            searchData.departureTime = new Date(new Date(searchData.departureTime).valueOf() - Utils.getHoursValue(1));
             this.continuousQuery(searchData, resolve);
         });
     }
