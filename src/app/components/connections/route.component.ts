@@ -17,11 +17,11 @@ export class Route {
 
     constructor() {}
 
-    toScore(val: number) {
+    private toScore(val: number) {
         return (Math.round(val * 2) / 2);
     }
 
-    toPercentage(val) {
+    private toPercentage(val) {
         return Math.round(val * 100);
     }
 
@@ -29,17 +29,17 @@ export class Route {
         return ('0' + number).slice(-2);
     }
 
-    toTime(val) {
+    private toTime(val) {
         const date = new Date(val);
         return `${this.formatNumber(date.getHours())}:${this.formatNumber(date.getMinutes())}`;
     }
 
-    toUTCTime(val) {
+    private toUTCTime(val) {
         const date = new Date(val);
         return `${this.formatNumber(date.getUTCHours())}:${this.formatNumber(date.getUTCMinutes())}`;
     }
 
-    getSliderValue() {
+    private getSliderValue() {
         return this.toScore(this.qoe.getQoE() * 10) * 10;
     }
 

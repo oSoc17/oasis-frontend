@@ -1,6 +1,6 @@
 <md-expansion-panel>
     <md-expansion-panel-header>
-        <mat-panel-title><i class="mdi mdi-train"></i>{{ toTime(qoe.departureTime.valueOf()) }}</mat-panel-title>
+        <mat-panel-title><i class="mdi mdi-train"></i>&nbsp;&nbsp;{{ toTime(qoe.departureTime.valueOf()) }} - {{ toTime(qoe.arrivalTime.valueOf()) }}</mat-panel-title>
         <mat-panel-description><strong class="black-text">{{ toScore(qoe.getQoE()*10).toFixed(1) }} </strong> / 10
             <div class="bar-container valign-wrapper">
                 <md-progress-bar
@@ -15,8 +15,14 @@
             <p class="route-subheader">{{ language.getMessage('avgTravelTime') }}</p>
         </div>
         <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toUTCTime(qoe.getAvgDelay().value.valueOf()) }}</h1>
-            <p class="route-subheader">{{ language.getMessage('avgDelay') }}</p>
+            <!--<h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toUTCTime(qoe.getAvgDelay().value.valueOf()) }}</h1>-->
+            <h1 class="route-header grey-text"><i class="mdi mdi-av-timer"></i> --:--</h1>
+            <p class="route-subheader grey-text">{{ language.getMessage('avgDelay') }}</p>
+        </div>
+        <div class="col m4">
+            <!--<h1 class="route-header"><i class="mdi mdi-chart-line"></i> {{ qoe.getDelayConsistency().value.valueOf() }}</h1>-->
+            <h1 class="route-header grey-text"><i class="mdi mdi-chart-line"></i> --:--</h1>
+            <p class="route-subheader grey-text">{{ language.getMessage('delayConsistency') }}</p>
         </div>
         <div class="col m4">
             <h1 class="route-header"><i class="mdi mdi-transit-transfer"></i> {{ qoe.getAvgChangesAmount().value }}</h1>
@@ -26,14 +32,7 @@
             <h1 class="route-header"><i class="mdi mdi-av-timer"></i> {{ toUTCTime(qoe.getAvgChangeTime().value.valueOf()) }}</h1>
             <p class="route-subheader">{{ language.getMessage('changeTime') }}</p>
         </div>
-        <div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-chart-line"></i> {{ qoe.getDelayConsistency().value.valueOf() }}</h1>
-            <p class="route-subheader">{{ language.getMessage('delayConsistency') }}</p>
-        </div>
-        <!--<div class="col m4">
-            <h1 class="route-header"><i class="mdi mdi-train"></i> {{ toUTCTime(qoe.getAvgTravelTime().value.valueOf()) }}</h1>
-            <p class="route-subheader">{{ language.getMessage('avgTravelTime') }}</p>
-        </div>-->
+        <!--
         <div class="col m4">
             <h1 class="route-header"><i class="mdi mdi-chart-histogram"></i> {{  60 / qoe.getNumberOfRoutesWithinHour().value }}</h1>
             <p class="route-subheader">{{ language.getMessage('routesPerHour') }}</p>
@@ -46,5 +45,6 @@
             <h1 class="route-header"><i class="mdi mdi-coin"></i> {{ qoe.getPrice().value }}</h1>
             <p class="route-subheader">{{ language.getMessage('price') }}</p>
         </div>
+        -->
     </div>
 </md-expansion-panel>

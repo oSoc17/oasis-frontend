@@ -10,14 +10,17 @@ export class QoE implements IQoE {
     private routeHistory: RouteHistory;
     private userPreferences: IUserPreferences;
     private _departureTime: Date;
+    private _arrivalTime: Date;
 
     constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
         this.routeHistory = routeHistory;
         this.userPreferences = preference;
         if (routeHistory.routes.length > 0) {
             this._departureTime = routeHistory.routes[0].departureTime;
+            this._arrivalTime = routeHistory.routes[0].arrivalTime;
         } else {
             this._departureTime = new Date(0);
+            this._arrivalTime = new Date(0);
         }
     }
 
@@ -26,6 +29,13 @@ export class QoE implements IQoE {
      */
     public get departureTime(): Date {
         return this._departureTime;
+    }
+
+    /**
+     * get Arrival time of this connection
+     */
+    public get arrivalTime(): Date {
+        return this._arrivalTime;
     }
 
     /**
@@ -190,14 +200,14 @@ export class QoE implements IQoE {
      */
     public getQoE(): number {
         let sum = 0;
-        sum += this.getAvgTravelTime().score;
+        // sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
         sum += this.getAvgChangesAmount().score;
         sum += this.getDelayConsistency().score;
         sum += this.getAvgDelay().score;
-        sum += this.getNumberOfMissedConnections().score;
-        sum += this.getNumberOfRoutesWithinHour().score;
-        sum += this.getPrice().score;
+        // sum += this.getNumberOfMissedConnections().score;
+        // sum += this.getNumberOfRoutesWithinHour().score;
+        // sum += this.getPrice().score;
 
         return sum;
     }
