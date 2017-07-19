@@ -69,4 +69,8 @@ export class Options {
     AppModule.options.reset();
     location.reload();
   }
+
+  private goBack() {
+      AppComponent.goBack();
+  }
 }
