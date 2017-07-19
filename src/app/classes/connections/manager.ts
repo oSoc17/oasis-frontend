@@ -62,6 +62,10 @@ export class Manager {
         return this.routeService.queryPeriod(searchDataList);
     }
 
+    stop() {
+        this.routeService.stop();
+    }
+
     /**
      * Returns the eventhandler for Query Results
      */

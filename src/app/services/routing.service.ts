@@ -20,6 +20,7 @@ export class RouteService implements IRouteService {
     private _onHttpRequest;
     private _onHttpResponse;
     private _onComplete;
+    private stopcondition; boolean;
 
     /**
      * Constructor to create a routing service instance
@@ -32,6 +33,7 @@ export class RouteService implements IRouteService {
         this._onHttpRequest = new SimpleEventDispatcher<any>();
         this._onHttpResponse = new SimpleEventDispatcher<any>();
         this._onComplete = new SimpleEventDispatcher<any>();
+        this.stopcondition = false;
     }
 
     /**
@@ -53,13 +55,10 @@ export class RouteService implements IRouteService {
 
         if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
             console.log('Total connections processed ', dataCount);
-
             return cb(paths);
         }
-
         this.planner.query(searchData, (resultStream, source) => {
             let result = false;
-
             resultStream.once('result',  (path) => {
                 console.log(searchData.departureTime);
                 searchData.departureTime = new Date(new Date(path[0].departureTime).valueOf() + 60000);
@@ -98,6 +97,9 @@ export class RouteService implements IRouteService {
                 // HTTP Respons
                 httpResponses++;
                 self._onHttpResponse.dispatch(httpResponses);
+                if (this.stopcondition) {
+                    source.close();
+                }
                 // console.log(source);
                 // console.log(require('events').EventEmitter.listenerCount(source, 'response'));
                 if (result) {
@@ -130,7 +132,9 @@ export class RouteService implements IRouteService {
     public queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any>  {
         const promiselist = [];
         searchDataList.forEach(searchData => {
-             promiselist.push(this.query(searchData));
+            const query = this.query(searchData);
+            promiselist.push(query);
+
         });
             Promise.all(promiselist).then((res) => {
                 this._onComplete.dispatch(res);
@@ -177,6 +181,10 @@ export class RouteService implements IRouteService {
      */
     public get onHttpResponse(): ISimpleEvent<number> {
         return this._onHttpResponse.asEvent();
+    }
+
+    public stop() {
+        this.stopcondition = true;
     }
 
     /**
