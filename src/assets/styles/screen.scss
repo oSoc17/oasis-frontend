@@ -46,3 +46,6 @@ input:not([type]):focus:not([readonly]), input[type=time]:not(.browser-default):
     min-width: 50px !important;
     padding: 0 5px;
 }
+a i {
+    display: inline;
+}
