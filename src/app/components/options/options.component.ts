@@ -69,4 +69,4 @@ export class Options {
     AppModule.options.reset();
     location.reload();
   }
-}
+}*/]}
