@@ -8,6 +8,7 @@
     "errNoStations": "Please fill in a departure and arrival station",
     "errNoTime": "Please select a time",
     "errNoDays": "Please select at least a day of the week",
+    "errWrongStations" : "Stations should be chosen from the dropdown list",
     "fillEntireSearchForm": "Please fill in the entire search form",
     "noConnections": "No connections found.",
     "details": "Details",
