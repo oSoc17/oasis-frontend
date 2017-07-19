@@ -37,6 +37,7 @@ export class Manager {
                     return qoe.addRoute(route);
                 }
             }
+            console.log(result);
             const routeHistory = new RouteHistory([route]);
             this._qoeList.push(new QoE(routeHistory, new UserPreferences()));
             this._qoeList.sort((a, b) => {
@@ -53,7 +54,7 @@ export class Manager {
      * @param searchDataList datalist to query
      * @param deploycheck wether or not deployment should be checked (default: true)
      */
-    getQoE(searchDataList: SearchData[], deploycheck: boolean = true): ISimpleEvent<any> {
+    public getQoE(searchDataList: SearchData[], deploycheck: boolean = true): ISimpleEvent<any> {
         // console.log(searchDataList);
         this.onDataUpdate.subscribe(e => this._dataCount++);
         this.onHttpRequest.subscribe(e => this._httpRequests++);

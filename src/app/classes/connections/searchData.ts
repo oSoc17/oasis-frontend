@@ -58,8 +58,8 @@ export class SearchData {
             'arrivalStop': this.arrStation,
             'departureStop': this.depStation,
             'latestDepartTime': inAnHour,
-            'departureTime': datetime,
-            'minimumTransferTime': transferTime
+            'departureTime': datetime
+            /*,'minimumTransferTime': transferTime - Currently not working */
         };
 
         return json;

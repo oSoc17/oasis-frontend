@@ -67,7 +67,8 @@ export class RouteService implements IRouteService {
                 result = true;
             });
 
-            resultStream.on('data', () => {
+            resultStream.on('data', (data) => {
+                // console.log(data);
                 // Processed connections
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
