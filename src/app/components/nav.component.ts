@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { Language } from '../classes/userData/language';
 
 @Component({
     selector: 'nav-root',
@@ -8,6 +9,8 @@ import { AppComponent } from './app.component';
 })
 
 export class NavComponent {
+    language: Language = new Language();
+
     constructor() { }
 
     private clickSettings() {

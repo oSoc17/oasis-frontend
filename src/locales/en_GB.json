@@ -8,6 +8,7 @@
     "errNoStations": "Please fill in a departure and arrival station",
     "errNoTime": "Please select a time",
     "errNoDays": "Please select at least a day of the week",
+    "errWrongStations" : "Stations should be chosen from the dropdown list",
     "fillEntireSearchForm": "Please fill in the entire search form",
     "noConnections": "No connections found.",
     "details": "Details",
@@ -39,6 +40,7 @@
     "avgTravelTime_tooltip": "Avarage time between departure and arrival.",
     "missedConnections_tooltip": "The avarage chance that you will miss the change of train. Often influenced by delays.",
     "recents": "Recent",
-    "resetOptions": "Reset",
-    "basedOn": "Based on XX record(s)"
+    "basedOn": "Based on XX record(s)",
+    "now": "now",
+    "resetOptions": "Reset"
 }
