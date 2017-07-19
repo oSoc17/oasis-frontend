@@ -53,13 +53,13 @@ export class SearchData {
     toJSON(): any {
         const datetime = Utils.combineTimeAndDate(this.travelTime, this.travelDate);
         const inAnHour = new Date(datetime.getTime() + Utils.getHoursValue(1));
-        const fifteenMins = new Date(15 * 60 * 1000);
+        const transferTime = 180;
         const json = {
             'arrivalStop': this.arrStation,
             'departureStop': this.depStation,
             'latestDepartTime': inAnHour,
             'departureTime': datetime,
-            'minimumTransferTime': fifteenMins
+            'minimumTransferTime': transferTime
         };
 
         return json;

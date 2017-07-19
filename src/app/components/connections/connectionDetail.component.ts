@@ -15,6 +15,9 @@ export class ConnectionDetail {
 
     constructor() {}
 
+    /**
+     * Go back one page
+     */
     goBack() {
         AppComponent.goBack();
     }
