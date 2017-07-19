@@ -4,7 +4,8 @@ import { SimpleEventDispatcher, ISimpleEvent } from 'strongly-typed-events';
 const Client = require('lc-client');
 
 // Custom modules
-import {SearchData} from '../classes/connections/searchData';
+import { SearchData } from '../classes/connections/searchData';
+import { Utils } from '../classes/utils/utils';
 
 export interface IRouteService {
     onQueryResult: ISimpleEvent<any>;
@@ -19,6 +20,7 @@ export class RouteService implements IRouteService {
     private _onHttpRequest;
     private _onHttpResponse;
     private _onComplete;
+    private stopcondition; boolean;
 
     /**
      * Constructor to create a routing service instance
@@ -31,6 +33,7 @@ export class RouteService implements IRouteService {
         this._onHttpRequest = new SimpleEventDispatcher<any>();
         this._onHttpResponse = new SimpleEventDispatcher<any>();
         this._onComplete = new SimpleEventDispatcher<any>();
+        this.stopcondition = false;
     }
 
     /**
@@ -52,22 +55,21 @@ export class RouteService implements IRouteService {
 
         if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
             console.log('Total connections processed ', dataCount);
-
             return cb(paths);
         }
-
         this.planner.query(searchData, (resultStream, source) => {
             let result = false;
-
             resultStream.once('result',  (path) => {
-                searchData.departureTime = new Date(new Date(path[0].departureTime).getTime() + 60000);
+                console.log(searchData.departureTime);
+                searchData.departureTime = new Date(new Date(path[0].departureTime).valueOf() + 60000);
                 paths.push(path);
                 self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
                 this._onQueryResult.dispatch(path);
                 result = true;
             });
 
-            resultStream.on('data', () => {
+            resultStream.on('data', (data) => {
+                // console.log(data);
                 // Processed connections
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
@@ -95,6 +97,9 @@ export class RouteService implements IRouteService {
                 // HTTP Respons
                 httpResponses++;
                 self._onHttpResponse.dispatch(httpResponses);
+                if (this.stopcondition) {
+                    source.close();
+                }
                 // console.log(source);
                 // console.log(require('events').EventEmitter.listenerCount(source, 'response'));
                 if (result) {
@@ -114,7 +119,8 @@ export class RouteService implements IRouteService {
         searchData = searchData.toJSON();
         return new Promise((resolve, reject) => {
             // console.log(searchData);
-
+            // Time of server is GMT+1 ??
+            searchData.departureTime = new Date(new Date(searchData.departureTime).valueOf() - Utils.getHoursValue(1));
             this.continuousQuery(searchData, resolve);
         });
     }
@@ -126,7 +132,9 @@ export class RouteService implements IRouteService {
     public queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any>  {
         const promiselist = [];
         searchDataList.forEach(searchData => {
-             promiselist.push(this.query(searchData));
+            const query = this.query(searchData);
+            promiselist.push(query);
+
         });
             Promise.all(promiselist).then((res) => {
                 this._onComplete.dispatch(res);
@@ -173,6 +181,10 @@ export class RouteService implements IRouteService {
      */
     public get onHttpResponse(): ISimpleEvent<number> {
         return this._onHttpResponse.asEvent();
+    }
+
+    public stop() {
+        this.stopcondition = true;
     }
 
     /**

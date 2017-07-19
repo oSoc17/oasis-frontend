@@ -2,8 +2,8 @@
   "searchHeader": "Bereken uw tripscore",
   "showAlts": "Bereken tripscore",
   "time": "Tijdstip",
-  "departure": "Vertrek",
-  "destination": "Bestemming",
+  "departure": "Van",
+  "destination": "Naar",
   "errEqualStations": "Vertrek- en eindstation kunnen niet hetzelfde zijn",
   "errNoStations": "Er moet zowel een vertrek- en eindstation gekozen zijn",
   "errNoTime": "Selecteer een tijd",
@@ -38,5 +38,6 @@
   "changeTime_tooltip": "De gemiddelde tijd wachtend op de trein waarop je moet overstappen",
   "avgTravelTime_tooltip": "De gemiddelde reistijd",
   "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen",
-  "recents": "Recent"
+  "recents": "Recent",
+  "resetOptions": "Reset"
 }

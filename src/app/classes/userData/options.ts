@@ -16,12 +16,20 @@ export class Options {
     recents: Recent[] = [];
 
     /**
+     * Checks if the browser used by the user supports localstorage
+     */
+    private checkLocalStorage() {
+        return (typeof localStorage !== 'undefined');
+    }
+
+    /**
      * Saves the options and some userData
      */
     public save(): boolean {
-        if (typeof localStorage !== 'undefined') {
+        if (this.checkLocalStorage()) {
             localStorage.setItem('Options', JSON.stringify(this));
             // console.log(JSON.stringify(this));
+            alert('Options saved!');
             return true;
         }
         return false;
@@ -31,7 +39,7 @@ export class Options {
      * Loads the options and some userData
      */
     public load(): boolean {
-        if (typeof localStorage !== 'undefined') {
+        if (this.checkLocalStorage()) {
             const options: Options = JSON.parse(localStorage.getItem('Options'));
             if (options) {
                 this.language = options.language;
@@ -49,6 +57,15 @@ export class Options {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Resets the qoe parameters
+     */
+    public reset() {
+        const emptyOptions = new Options();
+        this.qoeParameters = emptyOptions.qoeParameters;
+        this.save();
     }
 
     /**

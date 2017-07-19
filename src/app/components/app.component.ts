@@ -15,21 +15,37 @@ export class AppComponent {
     private static currPage = 0;
     private static prevPage = 0;
 
+    /**
+     * change current page
+     * @param number page ID
+     */
     public static setPage(number) {
-        // TODO: Insert check if page exists
         if (number <= 3) {
             AppComponent.prevPage = AppComponent.currPage;
             AppComponent.currPage = number;
         }
     }
 
+    /**
+     * Go back 1 screen
+     */
     public static goBack() {
         AppComponent.setPage(AppComponent.prevPage);
     }
 
+    /**
+     * Get the currently shown page
+     */
+    public static getPage() {
+        return AppComponent.currPage;
+    }
+
     constructor() { }
 
-    getPage() {
+    /**
+     * Get the currently shown page
+     */
+    private getPage() {
         return AppComponent.currPage;
     }
 }
