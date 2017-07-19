@@ -41,5 +41,7 @@
   "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen",
   "recents": "Recent",
   "now": "nu",
-  "resetOptions": "Reset"
+  "resetOptions": "Reset",
+  "preferences": "Voorkeuren",
+  "prefExplenation": "De volgende opties bepalen hoeveel elke variabele meegerekend wordt bij het berekenen van jouw tripscore. Hoe belangrijker je een variabele vindt, hoe zwaarder die wordt meegerekend."
 }
