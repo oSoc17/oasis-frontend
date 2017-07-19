@@ -38,28 +38,26 @@ export class UserPreferences implements IUserPreferences {
      * Rescale all user options to in total become 100%
      */
     private rescale() {
-        const total = this.avgChangesAmount + this.avgChangeTime
-            + this.avgDelay + this.avgTravelTime
-            + this.delayConsistency + this.numberOfMissedConnections
-            + this.numberOfRoutesWithinHour + this.price;
+        const total = this.avgChangesAmount + this.avgChangeTime + this.avgDelay + this.delayConsistency;
         if (total) {
             this.avgDelay /= total;
             this.avgChangesAmount /= total;
             this.avgChangeTime /= total;
             this.delayConsistency /= total;
-            this.avgTravelTime /= total;
-            this.numberOfRoutesWithinHour /= total;
-            this.numberOfMissedConnections /= total;
-            this.price /= total;
+            // this.avgTravelTime /= total;
+            // this.numberOfRoutesWithinHour /= total;
+            // this.numberOfMissedConnections /= total;
+            // this.price /= total;
         } else {
-            this.avgDelay = 0.125;
-            this.avgChangesAmount = 0.125;
-            this.avgChangeTime = 0.125;
-            this.delayConsistency = 0.125;
-            this.avgTravelTime = 0.125;
-            this.numberOfRoutesWithinHour = 0.125;
-            this.numberOfMissedConnections = 0.125;
-            this.price = 0.125;
+            const max = 4;
+            this.avgDelay = 1 / max;
+            this.avgChangesAmount =  1 / max;
+            this.avgChangeTime =  1 / max;
+            this.delayConsistency = 1 / max;
+            // this.avgTravelTime =  1 / max;
+            // this.numberOfRoutesWithinHour =  1 / max;
+            // this.numberOfMissedConnections =  1 / max;
+            // this.price =  1 / max;
         }
     }
 

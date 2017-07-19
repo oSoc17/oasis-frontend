@@ -190,14 +190,14 @@ export class QoE implements IQoE {
      */
     public getQoE(): number {
         let sum = 0;
-        sum += this.getAvgTravelTime().score;
+        // sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
         sum += this.getAvgChangesAmount().score;
         sum += this.getDelayConsistency().score;
         sum += this.getAvgDelay().score;
-        sum += this.getNumberOfMissedConnections().score;
-        sum += this.getNumberOfRoutesWithinHour().score;
-        sum += this.getPrice().score;
+        // sum += this.getNumberOfMissedConnections().score;
+        // sum += this.getNumberOfRoutesWithinHour().score;
+        // sum += this.getPrice().score;
 
         return sum;
     }
