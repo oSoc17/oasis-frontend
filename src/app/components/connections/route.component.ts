@@ -79,4 +79,11 @@ export class Route {
         return Math.round(this.qoe.getQoE() * 10);
 
     }
+
+    /**
+     * Return time string for a date value
+     */
+    private toTime(val: number) {
+        return Utils.timeStringFromDate(new Date(val));
+    }
 }
