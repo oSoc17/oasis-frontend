@@ -4,13 +4,13 @@ import { Recent } from './recent';
 export class Options {
     language = 'en_GB';
     qoeParameters = {
-        avgDelay: 90,
-        avgChangesAmount: 85,
-        avgChangeTime: 85,
-        delayConsistency: 90,
+        avgDelay: 6,
+        avgChangesAmount: 2,
+        avgChangeTime: 5,
+        delayConsistency: 0,
         avgTravelTime: 65,
         numberOfRoutesWithinHour: 70,
-        numberOfMissedConnections: 85,
+        numberOfMissedConnections: 1,
         price: 78
     };
     recents: Recent[] = [];
