@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import {MdSnackBar} from '@angular/material';
 import { AppModule } from '../../app.module';
 
 import { Language } from '../../classes/userData/language';
@@ -11,10 +11,13 @@ import { AppComponent } from '../app.component';
 })
 
 export class Options {
-  language = new Language();
+  private language;
+  private slider;
+  constructor(public snackBar: MdSnackBar) {
+    this.language = new Language();
 
-  // Array with all the sliders and their properties
-  slider = [
+    // Array with all the sliders and their properties
+    this.slider = [
     {
       name: this.language.getMessage('delay'),
       tooltip: this.language.getMessage('delay_tooltip'),
@@ -62,12 +65,18 @@ export class Options {
       tooltip: this.language.getMessage('price_tooltip'),
       value: AppModule.options.qoeParameters['price'],
       id: 'price'
-    }
+    }*/
   ];
+  }
 
   private resetOptions() {
     AppModule.options.reset();
     location.reload();
   }
-}*/]}
-
+  private goBack() {
+    location.reload();
+    this.snackBar.open('Saved!', '', {
+      duration: 1000
+    })
+  }
+}
