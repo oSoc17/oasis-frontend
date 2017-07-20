@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Language } from '../../classes/userData/language';
-import { utils } from "protractor";
+import { Language } from '../../classes/userData/language'
+import { Utils } from '../../classes/utils/utils';
 
 @Component({
     selector: 'traveltime',
@@ -9,7 +9,7 @@ import { utils } from "protractor";
 
 export class TravelTime {
     language: Language = new Language;
-    selectedTime = (new Date()).getHours() + ':' + (new Date()).getMinutes();
+    selectedTime = Utils.zeroPad(new Date().getHours(), 2) + ':' + Utils.zeroPad(new Date().getMinutes(), 2);
     selectedType = 'depart';
 
     constructor() {}
@@ -21,7 +21,10 @@ export class TravelTime {
         // console.log(this.selectedTime);
     }
 
+    /**
+     *  set the selected time to now
+     */
     setNow() {
-        this.selectedTime =  (new Date()).getHours() + ':' + (new Date()).getMinutes();
+        this.selectedTime = Utils.zeroPad(new Date().getHours(), 2) + ':' + Utils.zeroPad(new Date().getMinutes(), 2);
     }
 }
