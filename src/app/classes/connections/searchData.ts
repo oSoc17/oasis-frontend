@@ -54,13 +54,16 @@ export class SearchData {
     toJSON(): any {
         const datetime = Utils.combineTimeAndDate(this.travelTime, this.travelDate);
         const inAnHour = new Date(datetime.valueOf() + Utils.getHoursValue(1));
-        const transferTime = 180;
+        // Set transferTime to 6 minutes
+        const transferTime = 6;
+        const searchTimeOut = 300000; // Set timeout to 5 minute
         const json = {
             'arrivalStop': this.arrStation,
             'departureStop': this.depStation,
             'latestDepartTime': inAnHour,
-            'departureTime': datetime
-            /*,'minimumTransferTime': transferTime - Currently not working */
+            'departureTime': datetime,
+            'minimumTransferTime': transferTime,
+            'searchTimeOut': searchTimeOut
         };
 
         return json;
