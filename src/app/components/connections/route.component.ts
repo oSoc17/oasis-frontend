@@ -1,9 +1,12 @@
+// Node modules
 import { Component, Input } from '@angular/core';
-import { Language } from '../../classes/userData/language';
-
-import { QoE } from '../../classes/connections/qoe';
 import { MdIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+
+// Custom modules
+import { Utils } from '../../classes/utils/utils';
+import { Language } from '../../classes/userData/language';
+import { QoE } from '../../classes/connections/qoe';
 
 @Component({
     selector: 'route',
@@ -23,18 +26,21 @@ export class Route {
             .addSvgIcon('consistency', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/consistency.svg'));
     }
 
+    /**
+     * generates an array of all subscores responsible for the QoE calculations
+     */
     private getSubScores() {
         if (this.qoe) {
             return [{
                 name: this.language.getMessage('avgTravelTime'),
                 tooltip: this.language.getMessage('travelTime_tooltip') + '\n\nfoo',
-                value: this.toUTCTime(this.qoe.getAvgTravelTime().value.valueOf()),
+                value: Utils.toUTCTime(this.qoe.getAvgTravelTime().value.valueOf()),
                 icon: 'travel_time'
             },
             {
                 name: this.language.getMessage('delay'),
                 tooltip: this.language.getMessage('delay_tooltip'),
-                value: this.toUTCTime(this.qoe.getAvgDelay().value.valueOf()),
+                value: Utils.toUTCTime(this.qoe.getAvgDelay().value.valueOf()),
                 icon: 'delay',
             },
             {
@@ -52,38 +58,25 @@ export class Route {
             {
                 name: this.language.getMessage('changeTime'),
                 tooltip: this.language.getMessage('changeTime_tooltip'),
-                value: this.qoe.getAvgChangesAmount().value ? this.toUTCTime(this.qoe.getAvgChangeTime().value.valueOf()) : '--:--',
+                value: this.qoe.getAvgChangesAmount().value ? Utils.toUTCTime(this.qoe.getAvgChangeTime().value.valueOf()) : '--:--',
                 icon: 'hop_wait'
             }];
 
         }
     }
 
+    /**
+     * Generate the "based on x connections" string
+     */
     public get basedOn(): string{
         return this.language.getMessage('basedOn').replace('XX', this.qoe.amount + '');
     }
 
-    private toPercentage(val) {
-        return Math.round(val * 100);
-    }
-
-    private formatNumber(number) {
-        return ('0' + number).slice(-2);
-    }
-
-    private toTime(val) {
-        const date = new Date(val);
-        return `${this.formatNumber(date.getHours())}:${this.formatNumber(date.getMinutes())}`;
-    }
-
-    private toUTCTime(val) {
-        const date = new Date(val);
-        return `${this.formatNumber(date.getUTCHours())}:${this.formatNumber(date.getUTCMinutes())}`;
-    }
-
+    /**
+     * return the presented QoE score
+     */
     private getScore() {
         return Math.round(this.qoe.getQoE() * 10);
 
     }
-
 }

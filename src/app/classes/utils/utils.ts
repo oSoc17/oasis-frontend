@@ -8,6 +8,23 @@ export class Utils {
     }
 
     /**
+     * Convert to UTC time string
+     * @param val date value
+     */
+    public static toUTCTime(val) {
+        const date = new Date(val);
+        return `${Utils.zeroPad(date.getUTCHours(), 2)}:${Utils.zeroPad(date.getUTCMinutes(), 2)}`;
+    }
+
+    /**
+     * convert value to percentage
+     * @param val value 0-1
+     */
+    public static toPercentage(val) {
+        return Math.round(val * 100);
+    }
+
+    /**
      * Format the date in a defined style
      * @param date the date that needs formatting
      * @param typeStyle the style it should be formatted in defaults to Belgian
