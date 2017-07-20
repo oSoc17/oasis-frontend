@@ -8,6 +8,7 @@
   "errNoStations": "Er moet zowel een vertrek- en eindstation gekozen zijn",
   "errNoTime": "Selecteer een tijd",
   "errNoDays": "Selecteer een dag van de week",
+  "errWrongStations" : "Gelieve de stations uit de lijst te kiezen",
   "fillEntireSearchForm": "Gelieve het formulier volledig in te vullen.",
   "noConnections": "Geen verbinding gevonden.",
   "details": "Details",
@@ -39,5 +40,9 @@
   "avgTravelTime_tooltip": "De gemiddelde reistijd",
   "missedConnections_tooltip": "De kans op het missen van een overstap dankeij vertragingen",
   "recents": "Recent",
-  "resetOptions": "Reset"
+  "basedOn": "Gebaseerd op XX record(s)",
+  "now": "nu",
+  "resetOptions": "Reset",
+  "preferences": "Voorkeuren",
+  "prefExplenation": "De volgende opties bepalen hoeveel elke variabele meegerekend wordt bij het berekenen van jouw tripscore. Hoe belangrijker je een variabele vindt, hoe zwaarder die wordt meegerekend."
 }

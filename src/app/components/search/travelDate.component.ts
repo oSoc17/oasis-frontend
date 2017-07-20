@@ -9,6 +9,10 @@ import { Language } from '../../classes/userData/language';
 })
 
 export class TravelDate {
-    selectedDay: number = null;
+    selectedDay: number = ((new Date()).getDay() + 6) % 7;
     language = new Language();
+
+    setNow() {
+        this.selectedDay = ((new Date()).getDay() + 6) % 7;
+    }
 }

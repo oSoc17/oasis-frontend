@@ -18,6 +18,7 @@ export class StationList implements OnInit {
     stationCtrl: FormControl;
     filteredStations: any;
     stations: any;
+    inputValue: string;
 
     /**
      * Constructor, load in all stations
@@ -44,12 +45,12 @@ export class StationList implements OnInit {
      * @param val the value to filter on
      */
     filterStations(val: string) {
+        this.inputValue = val;
         if (val) {
             const filtered = this.stations.filter(s => s.standardname.toLowerCase().indexOf(val.toLowerCase()) === 0);
             if (filtered.length > 0 &&
                     filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
                 this.selectedStation = filtered[0];
-                // console.log(this.selectedStation);
             }
             return filtered;
         }

@@ -1,6 +1,6 @@
 <md-expansion-panel>
     <md-expansion-panel-header>
-        <mat-panel-title><i class="mdi mdi-train"></i>{{ toTime(qoe.departureTime.valueOf()) }}</mat-panel-title>
+        <mat-panel-title><i class="mdi mdi-train"></i>&nbsp;&nbsp;{{ toTime(qoe.departureTime.valueOf()) }} - {{ toTime(qoe.arrivalTime.valueOf()) }}</mat-panel-title>
         <mat-panel-description><strong class="black-text">{{ toScore(qoe.getQoE()*10).toFixed(1) }} </strong> / 10
             <div class="bar-container valign-wrapper">
                 <md-progress-bar
@@ -9,6 +9,7 @@
             </div>
         </mat-panel-description>
     </md-expansion-panel-header>
+    <span class="basedOn"> {{ basedOn }}</span>
     <div class="row">
         <div class="col m4" *ngFor="let subScore of getSubScores()">
             <h1 class="route-header"><i class="mdi mdi-{{subScore.icon}}"></i> {{ subScore.value }}</h1>

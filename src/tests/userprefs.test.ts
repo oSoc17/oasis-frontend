@@ -23,11 +23,11 @@ describe('testing UserPrreferences constructor', () => {
     const tot =  prefs.weight_AvgChangesAmount
                      + prefs.weight_AvgChangeTime
                      + prefs.avgDelay
-                     + prefs.weight_AvgTravelTime
+                     // + prefs.weight_AvgTravelTime
                      + prefs.weight_DelayConsistency
-                     + prefs.weight_NumberOfMissedConnections
-                     + prefs.weight_NumberOfRoutesWithinHour
-                     + prefs.weight_Price;
+                     // + prefs.weight_NumberOfMissedConnections
+                     // + prefs.weight_NumberOfRoutesWithinHour
+                     // + prefs.weight_Price;
         it('should total to 1', () => {
             expect(Math.round(tot)).toEqual(1);
         });
