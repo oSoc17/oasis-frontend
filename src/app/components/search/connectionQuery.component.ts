@@ -49,8 +49,10 @@ export class ConnectionQuery {
         } else if (this.travelDate.selectedDay === null) {
             this.error = this.language.getMessage('errNoDays');
         } else {
+            console.log(arriveSt);
+            console.log(departSt);
             this.searchData = [];
-            this.searchData = SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'],
+            this.searchData = SearchData.createPeriodicList(departSt['id'], arriveSt['id'],
                 this.travelTime.selectedTime, Utils.getLatest(this.travelDate.selectedDay), 'departureTime', 14);
             AppComponent.searchData = this.searchData;
             AppComponent.searchString = {
