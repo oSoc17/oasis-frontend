@@ -37,6 +37,10 @@
                     "variables": ["departureTime"]
                 }
             ]
+        },
+        {
+            "name": "stationsserver",
+            "uri": "http://api.tripscore.eu:8080/station"
         }
     ]
 }

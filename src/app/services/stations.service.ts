@@ -10,7 +10,7 @@
 
 
  export class StationService {
-    private uri = config.servers[0].uri;
+    private uri = config.servers[3].uri;
     private requestOptions = new RequestOptions({
         headers: new Headers({'Accept': 'application/json'}),
         responseType: ResponseContentType.Json,
@@ -31,7 +31,7 @@
         responseType: ResponseContentType.Json,
         params: myParams
         });
-        return this.http.get(`http://localhost:3000/station`, options)
+        return this.http.get(this.uri, options)
             .toPromise()
             .then((response) => response.json())
             .catch(this.handleError);
