@@ -11,7 +11,7 @@ import { SearchData } from './../classes/connections/searchData';
 
 export class AppComponent {
     public static searchData: SearchData[];
-    public static searchString: string;
+    public static searchString: any;
     private static currPage = 0;
     private static prevPage = 0;
 
