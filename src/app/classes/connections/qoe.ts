@@ -56,6 +56,13 @@ export class QoE implements IQoE {
     }
 
     /**
+     * The amount of connections in a route
+     */
+    public get amount() {
+        return this.routeHistory.routes.length;
+    }
+
+    /**
      * Add a route to the routehistory
      */
     public addRoute(route: Route) {
@@ -219,9 +226,5 @@ export class QoE implements IQoE {
         // sum += this.getPrice().score;
 
         return sum * sum; // power for more contrast
-    }
-
-    public get amount() {
-        return this.routeHistory.routes.length;
     }
 }
