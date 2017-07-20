@@ -22,7 +22,8 @@
 <h3 *ngIf="error">ERROR: {{ error }}</h3>
 
 <div *ngIf="!loading && !error">
-  
-    <h5 class="center-align">{{ searchString }}</h5>
+
+    <h5 class="center-align">{{ searchString.stations }}</h5>
+    <p  class="center-align">{{ searchString.time }}</p>
     <route *ngFor="let i of qoeList" [qoe]='i'></route>
 </div>
