@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
 import { IRailService } from '../../services/iRail.service';
+import { MdInputContainer } from '@angular/material';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class StationList implements OnInit {
     filteredStations: any;
     stations: any;
     inputValue: string;
+    @ViewChild(MdInputContainer) mdInput: MdInputContainer;
+    @Output() notifyParent: EventEmitter<any> = new EventEmitter();
 
     /**
      * Constructor, load in all stations
@@ -55,5 +58,19 @@ export class StationList implements OnInit {
             return filtered;
         }
         return this.stations;
+    }
+
+    /**
+     * Grabs focus
+     */
+    focus() {
+        this.mdInput._focusInput();
+    }
+
+    /**
+     * Requests parent to focus the next field
+     */
+    requestFocusNext() {
+        this.notifyParent.emit(null);
     }
 }
