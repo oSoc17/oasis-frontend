@@ -15,14 +15,27 @@ export class TimeChoiceComponent {
     @Input('id') id: string;
     @Input('tooltip') tooltip: string;
     @Input('unit') unit: string;
+    @Input('min') min: number;
+    @Input('max') max: number;
 
     /**
      * Changes the weight of a qoe parameter
      * @param val a percentage value
      */
     changeVal(val) {
-        console.log(`id: ${this.id} val: ${this.time}`);
-        AppModule.options.qoeParameters[this.id] = val;
+        if (val === null) {
+            this.time = AppModule.options.qoeParameters[this.id];
+            return;
+        }
+        if (val > this.max) {
+            this.time =  this.max;
+        } else if (val < this.min) {
+            this.time = this.min;
+        } else {
+            this.time = val;
+        }
+        //console.log(`id: ${this.id} val: ${this.time}`);
+        AppModule.options.qoeParameters[this.id] = this.time;
         AppModule.options.save();
     }
 }

@@ -4,7 +4,7 @@
 <md-slider style="width: 20em" min="0" max="60" value="{{ time }}" [(ngModel)]="time" [thumb-label]="true" (change)="changeVal(time)"></md-slider>
 <md-input-container>
     <label>
-        <input style="width: 1.5em; text-align: center;" class="browser-default" mdInput min="0" max="60" value="10" [(ngModel)]="time" type="number" required>
+        <input style="width: 1.5em; text-align: center;" class="browser-default" mdInput [min]="min" [max]="max" value="10" [(ngModel)]="time" (change)="changeVal(time)" type="number" required>
         {{ unit }}
     </label>
 </md-input-container>

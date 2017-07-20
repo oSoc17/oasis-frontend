@@ -21,6 +21,8 @@ export class Options {
         value: AppModule.options.qoeParameters['AvgDelay'],
         id: 'AvgDelay',
         unit: this.language.getMessage('minutes'),
+        min: 0,
+        max: 60,
     };
     delayConsistency = {
         name: this.language.getMessage('delayConsistency'),
@@ -28,6 +30,8 @@ export class Options {
         value: AppModule.options.qoeParameters['delayConsistency'],
         id: 'delayConsistency',
         unit: this.language.getMessage('minutes'),
+        min: 0,
+        max: 60,
     };
     hops = {
         name: this.language.getMessage('amountOfChanges'),
@@ -35,6 +39,8 @@ export class Options {
         value: AppModule.options.qoeParameters['avgChangesAmount'],
         id: 'avgChangesAmount',
         unit: this.language.getMessage('minutes'),
+        min: 0,
+        max: 60,
     };
     hopWaitingTime = {
         name: this.language.getMessage('changeTime'),
@@ -42,6 +48,8 @@ export class Options {
         value: AppModule.options.qoeParameters['avgChangeTime'],
         id: 'avgChangeTime',
         unit: this.language.getMessage('minutes'),
+        min: 0,
+        max: 60,
     };
     missedHops = {
         name: this.language.getMessage('optMissedConnections'),
@@ -49,6 +57,8 @@ export class Options {
         value: AppModule.options.qoeParameters['numberOfMissedConnections'],
         id: 'numberOfMissedConnections',
         unit: this.language.getMessage('minutes'),
+        min: 0,
+        max: 60,
     };
     crowdedness = {
         name: this.language.getMessage('price'),
@@ -56,6 +66,8 @@ export class Options {
         value: AppModule.options.qoeParameters['price'],
         id: 'price',
         unit: this.language.getMessage('minutes'),
+        min: 0,
+        max: 60,
     };
     price = {
         name: this.language.getMessage('price'),
@@ -63,6 +75,8 @@ export class Options {
         value: AppModule.options.qoeParameters['price'],
         id: 'price',
         unit: this.language.getMessage('minutes'),
+        min: 0,
+        max: 60,
     };
 
     private resetOptions() {

@@ -16,6 +16,9 @@ import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdAutocompleteModule, MaterialModule, MdInputModule, MdProgressSpinnerModule } from '@angular/material';
 
+/* Custom form validation*/
+import { CustomFormsModule } from 'ng2-validation'
+
 /* custom classes */
 import { Options } from './classes/userData/options';
 
@@ -25,6 +28,7 @@ import { Options } from './classes/userData/options';
     BrowserModule,
     HttpModule,
     FormsModule,
+    CustomFormsModule,
     ReactiveFormsModule,
     MaterialModule,
     MdAutocompleteModule,
