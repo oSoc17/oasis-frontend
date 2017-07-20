@@ -5,12 +5,15 @@ import { IUserPreferences } from '../../interfaces/iUserPreferences';
 import { RouteHistory } from './routeHistory';
 import { Route } from './route';
 import { Calc } from '../utils/calc';
+import { AppModule } from '../../app.module';
 
 export class QoE implements IQoE {
     private routeHistory: RouteHistory;
     private userPreferences: IUserPreferences;
     private _departureTime: Date;
     private _arrivalTime: Date;
+    private _weight = 1.0 / 4;
+    public prefs = AppModule.options.qoeParameters;
 
     constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
         this.routeHistory = routeHistory;
@@ -64,12 +67,12 @@ export class QoE implements IQoE {
      */
     public getAvgDelay(): any {
         const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000; // in minutes
-        const weight: number = this.userPreferences.weight_AvgDelay;
+        const weight: number = this._weight;
         /**
          *  < 6: on schedule (100%)
          *  > 60: worst case (0%) -> not based on real evidence
          */
-        const score = weight * Calc.linearInterpolatePercentage(delay, 60, 6);
+        const score = weight * Calc.linearInterpolatePercentage(delay, 120, this.prefs['avgDelay']);
         return {
             score: score,
             value: this.routeHistory.getAvgDelay() // Date
@@ -81,12 +84,12 @@ export class QoE implements IQoE {
      */
     public getAvgChangesAmount(): any {
         const changes: number = this.routeHistory.getAvgChangesAmount();
-        const weight: number = this.userPreferences.weight_AvgChangesAmount;
+        const weight: number = this._weight;
         /**
          *  = 0: best case (100%)
          *  > 3: worst case (0%) -> not based on real evidence
          */
-        const score: number = weight * Calc.linearInterpolatePercentage(changes, 3, 0);
+        const score: number = weight * Calc.linearInterpolatePercentage(changes, 6, this.prefs['avgChangesAmount']);
         return {
             score: score,
             value: changes
@@ -97,7 +100,7 @@ export class QoE implements IQoE {
      * get the average time per change of all routes inside routeHistory
      */
     public getAvgChangeTime(): any {
-        const weight: number = this.userPreferences.weight_AvgChangeTime;
+        const weight: number = this._weight;
         const changeTime: number = new Date(this.routeHistory.getAvgChangeTime()).valueOf() / 60000; // in minutes
         if ((this.routeHistory.getAvgChangesAmount() < 1)) {
             return {
@@ -111,7 +114,7 @@ export class QoE implements IQoE {
              *  > 15: worst case (0%) -> not based on real evidence
              */
             const scoreLower = Calc.linearInterpolatePercentage(changeTime, 2.5, 4.5);
-            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 15, 4.5);
+            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, this.prefs['avgChangeTime'], 4.5);
             const score: number = weight * (changeTime < 4.5 ? scoreLower : scoreUpper);
             return {
                 score: score,
@@ -127,12 +130,12 @@ export class QoE implements IQoE {
         const stdDev: number = this.routeHistory.getDelayConsistency().valueOf();
         const avg: number = this.routeHistory.getAvgDelay().valueOf();
         const cov: number = avg ? stdDev / avg : 0; // coefficient of variation
-        const weight: number = this.userPreferences.weight_DelayConsistency;
+        const weight: number = this._weight;
         /**
          *  < 0.21: on schedule (100%)
          *  > 0.75: mostly delayed (0%)
          */
-        const score = weight * Calc.linearInterpolatePercentage(cov, 0.75, 0.21);
+        const score = weight * Calc.linearInterpolatePercentage(cov, 1, 0.21 + 3 * this.prefs['delayConsistency']);
         return {
             score: score,
             value: this.routeHistory.getDelayConsistency() // Date
@@ -144,7 +147,7 @@ export class QoE implements IQoE {
      */
     public getAvgTravelTime(): any {
         const travelTime: number = this.routeHistory.getAvgTravelTime().valueOf() / 60000; // in minutes
-        const weight: number = this.userPreferences.weight_AvgTravelTime;
+        const weight: number = this._weight;
         /**
          *  < 0: perfect (100%)
          *  > 120: long trip (0%) -> note based on real evidence
@@ -162,7 +165,7 @@ export class QoE implements IQoE {
     public getNumberOfRoutesWithinHour(): any {
         // TODO: update this to work.
         const period = 30; // minutes between trips, generated
-        const weight: number = this.userPreferences.weight_NumberOfRoutesWithinHour;
+        const weight: number = this._weight;
         /**
          *  < 5: very frequent (100%)
          *  > 60: poor frequency (0%)
@@ -179,8 +182,8 @@ export class QoE implements IQoE {
      */
     public getNumberOfMissedConnections(): any {
         const missedConnections = this.routeHistory.getChangeMissedChance();
-        const weight: number = this.userPreferences.weight_NumberOfMissedConnections;
-        const score = weight * Calc.linearInterpolatePercentage(missedConnections, 3, 0);
+        const weight: number = this._weight;
+        const score = weight * Calc.linearInterpolatePercentage(missedConnections, this.prefs['numberOfMissedConnections'], 0);
         return {
             score: score,
             value: missedConnections // Generated
@@ -193,7 +196,7 @@ export class QoE implements IQoE {
     public getPrice(): any {
         const price = 5;
         const priceRatio = price / (this.routeHistory.getAvgTravelTime().valueOf() / 60000);
-        const weight: number = this.userPreferences.weight_Price;
+        const weight: number = this._weight;
         const score = weight * Calc.linearInterpolatePercentage(priceRatio, 3, 0);
         return {
             score: score,
@@ -215,7 +218,7 @@ export class QoE implements IQoE {
         // sum += this.getNumberOfRoutesWithinHour().score;
         // sum += this.getPrice().score;
 
-        return sum * sum;
+        return sum * sum; // power for more contrast
     }
 
     public get amount() {
