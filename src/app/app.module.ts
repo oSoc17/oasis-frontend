@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 /* Components */
 import { Components } from './components.module';
@@ -22,6 +23,11 @@ import { CustomFormsModule } from 'ng2-validation'
 /* custom classes */
 import { Options } from './classes/userData/options';
 
+const appRoutes: Routes = [
+  { path: '**', redirectTo: '' }
+];
+
+
 @NgModule({
   declarations: Components.components,
   imports: [
@@ -33,7 +39,10 @@ import { Options } from './classes/userData/options';
     MaterialModule,
     MdAutocompleteModule,
     BrowserAnimationsModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    RouterModule.forRoot(
+      appRoutes
+    )
   ],
   providers: Services.providers,
   bootstrap: [ AppComponent ]

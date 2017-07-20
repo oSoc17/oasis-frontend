@@ -40,9 +40,11 @@
     "avgTravelTime_tooltip": "Avarage time between departure and arrival.",
     "missedConnections_tooltip": "The avarage chance that you will miss the change of train. Often influenced by delays.",
     "recents": "Recent",
+    "basedOn": "Based on XX record(s)",
     "now": "now",
     "resetOptions": "Reset",
     "preferences": "Preferences",
     "prefExplenation": "The following options determine how much each variable is counted when calculating your tripscore. The more important you desegnate an item, the heavier it wil weigh in the final score.",
-    "minutes": "min"
+    "minutes": "min",
+    "hops": "hops"
 }

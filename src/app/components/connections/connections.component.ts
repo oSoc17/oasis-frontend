@@ -38,11 +38,12 @@ export class Connections implements OnInit {
         // This improves performance
         setInterval(() => {
             this.ref.detectChanges();
-            if ((this.dataCount > 2000 || this.httpResponses > 1500) && this.qoeList.length === 0) {
-                this.finished = true;
-                this.manager.stop();
-                this.error = 'routing timed out';
-            }
+            // timeout handled by lc-client now
+            // if ((this.dataCount > 2000 || this.httpResponses > 1500) && this.qoeList.length === 0) {
+            //     this.finished = true;
+            //     this.manager.stop()
+            //     this.error = 'routing timed out';
+            // }
         }, 100);
     }
 

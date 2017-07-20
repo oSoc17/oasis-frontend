@@ -1,15 +1,15 @@
 <h5>{{ name }} <md-icon class="grey-text" mdTooltip="{{ tooltip }}">help_outline</md-icon></h5>
 <md-button-toggle-group value="{{ choice }}">
     <md-button-toggle value="0" (click)="changeVal(0)" md-icon-button color="accent">
-        <md-icon>train</md-icon>
+        <md-icon class="multiple-choice-icon" svgIcon="test">test</md-icon>
     </md-button-toggle>
     <md-button-toggle value="1" (click)="changeVal(1)" md-icon-button color="accent">
-        <md-icon>tram</md-icon>
+        <md-icon class="multiple-choice-icon">tram</md-icon>
     </md-button-toggle>
     <md-button-toggle value="2" (click)="changeVal(2)" md-icon-button color="accent">
-        <md-icon>directions_bus</md-icon>
+        <md-icon class="multiple-choice-icon">directions_bus</md-icon>
     </md-button-toggle>
     <md-button-toggle value="3" (click)="changeVal(3)" md-icon-button color="accent">
-        <md-icon>airplanemode_active</md-icon>
+        <md-icon class="multiple-choice-icon">airplanemode_active</md-icon>
     </md-button-toggle>
 </md-button-toggle-group>

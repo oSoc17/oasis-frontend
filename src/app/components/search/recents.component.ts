@@ -14,7 +14,7 @@ import { Recent } from '../../classes/userData/recent';
 
 export class Recents {
     language: Language = new Language();
-    recents: Recent[] = AppModule.options.recents;
+    recents: Recent[] = AppModule.options.recents.slice().reverse();
 
     constructor() {
     }

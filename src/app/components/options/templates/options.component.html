@@ -1,3 +1,4 @@
+<h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
 <h1>{{ language.getMessage('options') }}</h1>
 <button class="btn waves-effect waves-light" type="submit" name="action"
                     (click)='resetOptions()'>
@@ -6,6 +7,7 @@
 <languagechooser></languagechooser>
 <h2>{{ language.getMessage('preferences') }}</h2>
 <p>{{ language.getMessage('prefExplenation') }}</p>
-<!--qoe-slider *ngFor="let sl of slider" [tooltip]= "sl.tooltip" [name]="sl.name" [percentage]="sl.value" [id]="sl.id"></qoe-slider-->
 <time-choice [tooltip]="delay.tooltip" [name]="delay.name" [time]="delay.value" [id]="delay.id" [unit]="delay.unit" [min]="delay.min" [max]="delay.max"></time-choice>
-<multiple-choice [tooltip]="delay.tooltip" [name]="delay.name" [choice]="delay.value" [id]="delay.id"></multiple-choice>
+<multiple-choice [tooltip]="delayConsistency.tooltip" [name]="delayConsistency.name" [choice]="delayConsistency.value" [id]="delayConsistency.id"></multiple-choice>
+<time-choice [tooltip]="hops.tooltip" [name]="hops.name" [time]="hops.value" [id]="hops.id" [unit]="hops.unit" [min]="hops.min" [max]="hops.max"></time-choice>
+<time-choice [tooltip]="hopWaitingTime.tooltip" [name]="hopWaitingTime.name" [time]="hopWaitingTime.value" [id]="hopWaitingTime.id" [unit]="hopWaitingTime.unit" [min]="hopWaitingTime.min" [max]="hopWaitingTime.max"></time-choice>

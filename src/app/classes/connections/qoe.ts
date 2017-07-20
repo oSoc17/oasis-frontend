@@ -10,14 +10,17 @@ export class QoE implements IQoE {
     private routeHistory: RouteHistory;
     private userPreferences: IUserPreferences;
     private _departureTime: Date;
+    private _arrivalTime: Date;
 
     constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
         this.routeHistory = routeHistory;
         this.userPreferences = preference;
         if (routeHistory.routes.length > 0) {
             this._departureTime = routeHistory.routes[0].departureTime;
+            this._arrivalTime = routeHistory.routes[0].arrivalTime;
         } else {
             this._departureTime = new Date(0);
+            this._arrivalTime = new Date(0);
         }
     }
 
@@ -26,6 +29,13 @@ export class QoE implements IQoE {
      */
     public get departureTime(): Date {
         return this._departureTime;
+    }
+
+    /**
+     * get Arrival time of this connection
+     */
+    public get arrivalTime(): Date {
+        return this._arrivalTime;
     }
 
     /**
@@ -87,20 +97,27 @@ export class QoE implements IQoE {
      * get the average time per change of all routes inside routeHistory
      */
     public getAvgChangeTime(): any {
-        const changeTime: number = this.routeHistory.getAvgChangeTime().valueOf() / 60000; // in minutes
         const weight: number = this.userPreferences.weight_AvgChangeTime;
-        /**
-         *  < 3: impossible (0%)
-         *  = 7: best case (100%) -> not based on real evidence
-         *  > 20: worst case (0%) -> not based on real evidence
-         */
-        const scoreLower = Calc.linearInterpolatePercentage(changeTime, 3, 7);
-        const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 20, 7);
-        const score: number = weight * (changeTime < 7 ? scoreLower : scoreUpper);
-        return {
-            score: score,
-            value: this.routeHistory.getAvgChangeTime() // Date
-        };
+        const changeTime: number = new Date(this.routeHistory.getAvgChangeTime()).valueOf() / 60000; // in minutes
+        if ((this.routeHistory.getAvgChangesAmount() < 1)) {
+            return {
+                score: weight * 1,
+                value: this.routeHistory.getAvgChangeTime() // Date
+            };
+        } else {
+            /**
+             *  < 3: impossible (0%)
+             *  = 7: best case (100%) -> not based on real evidence
+             *  > 20: worst case (0%) -> not based on real evidence
+             */
+            const scoreLower = Calc.linearInterpolatePercentage(changeTime, 3, 7);
+            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 20, 7);
+            const score: number = weight * (changeTime < 7 ? scoreLower : scoreUpper);
+            return {
+                score: score,
+                value: this.routeHistory.getAvgChangeTime() // Date
+            };
+        }
     }
 
     /**
@@ -161,7 +178,6 @@ export class QoE implements IQoE {
      * get the amount of connection you can possibly miss due to delays
      */
     public getNumberOfMissedConnections(): any {
-        // TODO: modify lc-client
         const missedConnections = this.routeHistory.getChangeMissedChance();
         const weight: number = this.userPreferences.weight_NumberOfMissedConnections;
         const score = weight * Calc.linearInterpolatePercentage(missedConnections, 3, 0);
@@ -190,15 +206,19 @@ export class QoE implements IQoE {
      */
     public getQoE(): number {
         let sum = 0;
-        sum += this.getAvgTravelTime().score;
+        // sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
         sum += this.getAvgChangesAmount().score;
         sum += this.getDelayConsistency().score;
         sum += this.getAvgDelay().score;
-        sum += this.getNumberOfMissedConnections().score;
-        sum += this.getNumberOfRoutesWithinHour().score;
-        sum += this.getPrice().score;
+        // sum += this.getNumberOfMissedConnections().score;
+        // sum += this.getNumberOfRoutesWithinHour().score;
+        // sum += this.getPrice().score;
 
         return sum;
+    }
+
+    public get amount() {
+        return this.routeHistory.routes.length;
     }
 }

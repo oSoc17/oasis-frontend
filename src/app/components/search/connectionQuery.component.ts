@@ -40,7 +40,6 @@ export class ConnectionQuery {
         const stationList = this.depStation.stations;
         const arrInputValue = this.arrStation.inputValue;
         const depInputValue = this.depStation.inputValue;
-        console.log(arriveSt.standardname);
         if (!(arriveSt && departSt)) {
             this.error = this.language.getMessage('errNoStations');
         } else if (!stationList.some(x => x.standardname.toLowerCase() === arrInputValue.toLowerCase()) ||
@@ -57,7 +56,10 @@ export class ConnectionQuery {
             this.searchData = SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'],
                 this.travelTime.selectedTime, Utils.getLatest(this.travelDate.selectedDay), 'departureTime', 14);
             AppComponent.searchData = this.searchData;
-            AppComponent.searchString = departSt.standardname + ' - ' + arriveSt.standardname;
+            AppComponent.searchString = {
+                stations: departSt.standardname + ' - ' + arriveSt.standardname,
+                time: this.travelTime.selectedTime + ' ' + this.language.getMessage('weekdays')[this.travelDate.selectedDay]
+            };
             AppModule.options.addRecent(new Recent(this.searchData, departSt.standardname, arriveSt.standardname,
                 this.travelTime.selectedTime, this.travelDate.selectedDay));
             AppModule.options.save();
