@@ -97,14 +97,14 @@ export class QoE implements IQoE {
      * get the average time per change of all routes inside routeHistory
      */
     public getAvgChangeTime(): any {
-        if (!this.getAvgChangesAmount()) {
+        const weight: number = this.userPreferences.weight_AvgChangeTime;
+        const changeTime: number = new Date(this.routeHistory.getAvgChangeTime()).valueOf() / 60000; // in minutes
+        if ((this.routeHistory.getAvgChangesAmount() < 1)) {
             return {
-                score: 1,
+                score: weight * 1,
                 value: this.routeHistory.getAvgChangeTime() // Date
             };
         } else {
-            const changeTime: number = this.routeHistory.getAvgChangeTime().valueOf() / 60000; // in minutes
-            const weight: number = this.userPreferences.weight_AvgChangeTime;
             /**
              *  < 3: impossible (0%)
              *  = 7: best case (100%) -> not based on real evidence
@@ -178,7 +178,6 @@ export class QoE implements IQoE {
      * get the amount of connection you can possibly miss due to delays
      */
     public getNumberOfMissedConnections(): any {
-        // TODO: modify lc-client
         const missedConnections = this.routeHistory.getChangeMissedChance();
         const weight: number = this.userPreferences.weight_NumberOfMissedConnections;
         const score = weight * Calc.linearInterpolatePercentage(missedConnections, 3, 0);
