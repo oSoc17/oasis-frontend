@@ -14,8 +14,6 @@ import { AppModule } from "../../app.module";
 export class Route {
     language: Language = new Language();
     @Input() qoe: QoE;
-    sliderValue = 0;
-
     constructor() {
     }
 
@@ -59,10 +57,6 @@ export class Route {
         return this.language.getMessage('basedOn').replace('XX', this.qoe.amount + '');
     }
 
-    private toScore(val: number) {
-        return (Math.round(val * 2) / 2);
-    }
-
     private toPercentage(val) {
         return Math.round(val * 100);
     }
@@ -81,8 +75,9 @@ export class Route {
         return `${this.formatNumber(date.getUTCHours())}:${this.formatNumber(date.getUTCMinutes())}`;
     }
 
-    private getSliderValue() {
-        return this.toScore(this.qoe.getQoE() * 10) * 10;
+    private getScore() {
+        return Math.round(this.qoe.getQoE() * 10);
+
     }
 
 }
