@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Language } from '../../classes/userData/language'
 import { Utils } from '../../classes/utils/utils';
+import { MdInputContainer } from '@angular/material';
 
 @Component({
     selector: 'traveltime',
@@ -11,6 +12,7 @@ export class TravelTime {
     language: Language = new Language;
     selectedTime = Utils.zeroPad(new Date().getHours(), 2) + ':' + Utils.zeroPad(new Date().getMinutes(), 2);
     selectedType = 'depart';
+    @ViewChild(MdInputContainer) mdInput: MdInputContainer;
 
     constructor() {}
 
@@ -26,5 +28,12 @@ export class TravelTime {
      */
     setNow() {
         this.selectedTime = Utils.zeroPad(new Date().getHours(), 2) + ':' + Utils.zeroPad(new Date().getMinutes(), 2);
+    }
+
+    /**
+     * Grabs focus
+     */
+    focus() {
+        this.mdInput._focusInput();
     }
 }

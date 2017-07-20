@@ -49,3 +49,9 @@ input:not([type]):focus:not([readonly]), input[type=time]:not(.browser-default):
 a i {
     display: inline;
 }
+.link {
+    text-decoration: underline;
+}
+nav ul a {
+    padding: 0 10px;
+}

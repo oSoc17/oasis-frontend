@@ -1,5 +1,5 @@
 
-<button md-button [mdMenuTriggerFor]="langmenu">{{ currentLanguage }}</button>
+<a [mdMenuTriggerFor]="langmenu"><i class="mdi mdi-earth hide-on-med-and-up" mdTooltip="{{ language.getMessage('language') }}"></i><span class="hide-on-small-only">{{ currentLanguage }}</span></a>
 <md-menu #langmenu="mdMenu">
   <button md-menu-item *ngFor="let lang of languages" (click)='onSelect(lang)'>{{ lang['name'] }}</button>
 </md-menu>
