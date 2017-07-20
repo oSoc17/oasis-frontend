@@ -1,4 +1,4 @@
-<h4>{{ language.getMessage('language') }}</h4>
+
 <button md-button [mdMenuTriggerFor]="langmenu">{{ currentLanguage }}</button>
 <md-menu #langmenu="mdMenu">
   <button md-menu-item *ngFor="let lang of languages" (click)='onSelect(lang)'>{{ lang['name'] }}</button>

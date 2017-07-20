@@ -4,7 +4,6 @@
                     (click)='resetOptions()'>
     {{ language.getMessage('resetOptions') }}
 </button>
-<languagechooser></languagechooser>
 <h2>{{ language.getMessage('preferences') }}</h2>
 <p>{{ language.getMessage('prefExplenation') }}</p>
 <time-choice [tooltip]="delay.tooltip" [name]="delay.name" [time]="delay.value" [id]="delay.id" [unit]="delay.unit" [min]="delay.min" [max]="delay.max"></time-choice>
