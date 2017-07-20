@@ -84,9 +84,9 @@ export class QoE implements IQoE {
         const weight: number = this.userPreferences.weight_AvgChangesAmount;
         /**
          *  = 0: best case (100%)
-         *  > 4: worst case (0%) -> not based on real evidence
+         *  > 3: worst case (0%) -> not based on real evidence
          */
-        const score: number = weight * Calc.linearInterpolatePercentage(changes, 4, 0);
+        const score: number = weight * Calc.linearInterpolatePercentage(changes, 3, 0);
         return {
             score: score,
             value: changes
@@ -107,12 +107,12 @@ export class QoE implements IQoE {
         } else {
             /**
              *  < 3: impossible (0%)
-             *  = 7: best case (100%) -> not based on real evidence
-             *  > 20: worst case (0%) -> not based on real evidence
+             *  = 5: best case (100%) -> not based on real evidence
+             *  > 15: worst case (0%) -> not based on real evidence
              */
-            const scoreLower = Calc.linearInterpolatePercentage(changeTime, 3, 7);
-            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 20, 7);
-            const score: number = weight * (changeTime < 7 ? scoreLower : scoreUpper);
+            const scoreLower = Calc.linearInterpolatePercentage(changeTime, 3, 5);
+            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 15, 5);
+            const score: number = weight * (changeTime < 5 ? scoreLower : scoreUpper);
             return {
                 score: score,
                 value: this.routeHistory.getAvgChangeTime() // Date
@@ -215,7 +215,7 @@ export class QoE implements IQoE {
         // sum += this.getNumberOfRoutesWithinHour().score;
         // sum += this.getPrice().score;
 
-        return sum;
+        return sum * sum;
     }
 
     public get amount() {
