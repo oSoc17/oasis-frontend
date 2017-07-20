@@ -25,6 +25,7 @@ export class ConnectionQuery {
     @ViewChild(TravelTime) travelTime: TravelTime;
     @ViewChild(TravelDate) travelDate: TravelDate;
     @ViewChild(Recents) recents: Recents;
+    @ViewChild('calculate') calculate;
     searchData: SearchData[];
     error: string;
     language: Language = new Language();
@@ -64,6 +65,17 @@ export class ConnectionQuery {
                 this.travelTime.selectedTime, this.travelDate.selectedDay));
             AppModule.options.save();
             AppComponent.setPage(1);
+        }
+    }
+
+    /**
+     * Requests parent to focus the next field
+     */
+    focusNext(evt) {
+        if (evt === 'depature') {
+            this.arrStation.focus();
+        } else if (evt === 'arrival') {
+            this.travelTime.focus();
         }
     }
 }
