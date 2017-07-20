@@ -69,8 +69,8 @@ export class QoE implements IQoE {
         const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000; // in minutes
         const weight: number = this._weight;
         /**
-         *  < 6: on schedule (100%)
-         *  > 60: worst case (0%) -> not based on real evidence
+         *  < userpref: on schedule (100%)
+         *  > 120: worst case (0%)
          */
         const score = weight * Calc.linearInterpolatePercentage(delay, 120, this.prefs['avgDelay']);
         return {
@@ -86,8 +86,8 @@ export class QoE implements IQoE {
         const changes: number = this.routeHistory.getAvgChangesAmount();
         const weight: number = this._weight;
         /**
-         *  = 0: best case (100%)
-         *  > 3: worst case (0%) -> not based on real evidence
+         *  < userpref: best case (100%)
+         *  > 6: worst case (0%)
          */
         const score: number = weight * Calc.linearInterpolatePercentage(changes, 6, this.prefs['avgChangesAmount']);
         return {
@@ -111,10 +111,10 @@ export class QoE implements IQoE {
             /**
              *  < 2.5: impossible (0%)
              *  = 4.5: best case (100%)
-             *  > 15: worst case (0%) -> not based on real evidence
+             *  > userpref: worst case (0%)
              */
-            const scoreLower = Calc.linearInterpolatePercentage(changeTime, 2.5, 4.5);
-            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, this.prefs['avgChangeTime'], 4.5);
+            const scoreLower = Calc.linearInterpolatePercentage(changeTime, 2.5, this.prefs['avgChangeTime']);
+            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 120, this.prefs['avgChangeTime']);
             const score: number = weight * (changeTime < 4.5 ? scoreLower : scoreUpper);
             return {
                 score: score,
@@ -132,8 +132,8 @@ export class QoE implements IQoE {
         const cov: number = avg ? stdDev / avg : 0; // coefficient of variation
         const weight: number = this._weight;
         /**
-         *  < 0.21: on schedule (100%)
-         *  > 0.75: mostly delayed (0%)
+         *  < userpref: on schedule (100%)
+         *  > 1: mostly delayed (0%)
          */
         const score = weight * Calc.linearInterpolatePercentage(cov, 1, 0.21 + 3 * this.prefs['delayConsistency']);
         return {
