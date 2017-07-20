@@ -23,6 +23,5 @@ export class LanguageChooser {
     this.currentLanguage = this.language.toName(tag);
     AppModule.options.language = this.language.setLanguage(tag);
     AppModule.options.save();
-    location.reload();
   }
 }
