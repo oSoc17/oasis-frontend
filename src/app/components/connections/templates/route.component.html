@@ -1,12 +1,12 @@
 <md-expansion-panel>
     <md-expansion-panel-header>
         <mat-panel-title><i class="mdi mdi-train"></i>&nbsp;&nbsp;{{ toTime(qoe.departureTime.valueOf()) }} - {{ toTime(qoe.arrivalTime.valueOf()) }}</mat-panel-title>
-        <mat-panel-description><strong class="black-text">{{ toScore(qoe.getQoE()*10).toFixed(1) }} </strong> / 10
-            <div class="bar-container valign-wrapper">
-                <md-progress-bar
-                    [value]="getSliderValue()">
-                </md-progress-bar>
-            </div>
+        <mat-panel-description>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 1 ? 'star' : getScore() < 1 ? 'star-outline' : 'star-half'}}"></i>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 3 ? 'star' : getScore() < 3 ? 'star-outline' : 'star-half'}}"></i>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 5 ? 'star' : getScore() < 5 ? 'star-outline' : 'star-half'}}"></i>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 7 ? 'star' : getScore() < 7 ? 'star-outline' : 'star-half'}}"></i>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 9 ? 'star' : getScore() < 9 ? 'star-outline' : 'star-half'}}"></i>
         </mat-panel-description>
     </md-expansion-panel-header>
     <div class="row">

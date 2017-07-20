@@ -4,7 +4,6 @@
                     (click)='resetOptions()'>
     {{ language.getMessage('resetOptions') }}
 </button>
-<languagechooser></languagechooser>
 <h2>{{ language.getMessage('preferences') }}</h2>
 <p>{{ language.getMessage('prefExplenation') }}</p>
 <qoe-slider *ngFor="let sl of slider" [tooltip]= "sl.tooltip" [name]="sl.name" [percentage]="sl.value" [id]="sl.id"></qoe-slider>
