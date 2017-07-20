@@ -17,6 +17,10 @@ export class Route {
 
     constructor() {}
 
+    private get basedOn(): string{
+        return this.language.getMessage('basedOn').replace('XX', this.qoe.amount + '');
+    }
+
     private toScore(val: number) {
         return (Math.round(val * 2) / 2);
     }
