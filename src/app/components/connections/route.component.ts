@@ -48,7 +48,7 @@ export class Route {
             {
                 name: this.language.getMessage('changeTime'),
                 tooltip: this.language.getMessage('changeTime_tooltip'),
-                value: this.toUTCTime(this.qoe.getAvgChangeTime().value.valueOf()),
+                value: this.qoe.getAvgChangesAmount().value ? this.toUTCTime(this.qoe.getAvgChangeTime().value.valueOf()) : '--:--',
                 icon: 'transit-transfer'
             }];
 
