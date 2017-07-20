@@ -6,4 +6,17 @@
 </button>
 <h2>{{ language.getMessage('preferences') }}</h2>
 <p>{{ language.getMessage('prefExplenation') }}</p>
-<qoe-slider *ngFor="let sl of slider" [tooltip]= "sl.tooltip" [name]="sl.name" [percentage]="sl.value" [id]="sl.id"></qoe-slider>
+<div class="row">
+    <div class="col l6 s12">
+        <time-choice [tooltip]="delay.tooltip()" [name]="delay.name()" [time]="delay.value" [id]="delay.id" [unit]="delay.unit()" [min]="delay.min" [max]="delay.max"></time-choice>
+        <multiple-choice [tooltip]="delayConsistency.tooltip()" [name]="delayConsistency.name()" [id]="delayConsistency.id" [choice]="delayConsistency.value" [icons]="delayConsistency.icons"></multiple-choice>
+    </div>
+    <div class="col l6 s12">
+        <time-choice [tooltip]="hops.tooltip()" [name]="hops.name()" [time]="hops.value" [id]="hops.id" [unit]="hops.unit()" [min]="hops.min" [max]="hops.max"></time-choice>
+        <time-choice [tooltip]="hopWaitingTime.tooltip()" [name]="hopWaitingTime.name()" [time]="hopWaitingTime.value" [id]="hopWaitingTime.id" [unit]="hopWaitingTime.unit()" [min]="hopWaitingTime.min" [max]="hopWaitingTime.max"></time-choice>
+    </div>
+</div>
+<!--time-choice [tooltip]="hopsMissed.tooltip" [name]="hopsMissed.name" [time]="hopsMissed.value" [id]="hopsMissed.id" [unit]="hopsMissed.unit" [min]="hopsMissed.min" [max]="hopsMissed.max"></time-choice>
+<multiple-choice [tooltip]="crowdedness.tooltip" [name]="crowdedness.name" [choice]="crowdedness.value" [id]="crowdedness.id"></multiple-choice>
+<multiple-choice [tooltip]="price.tooltip" [name]="price.name" [choice]="price.value" [id]="price.id"></multiple-choice-->
+
