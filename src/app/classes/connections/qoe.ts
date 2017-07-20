@@ -97,20 +97,27 @@ export class QoE implements IQoE {
      * get the average time per change of all routes inside routeHistory
      */
     public getAvgChangeTime(): any {
-        const changeTime: number = this.routeHistory.getAvgChangeTime().valueOf() / 60000; // in minutes
-        const weight: number = this.userPreferences.weight_AvgChangeTime;
-        /**
-         *  < 3: impossible (0%)
-         *  = 7: best case (100%) -> not based on real evidence
-         *  > 20: worst case (0%) -> not based on real evidence
-         */
-        const scoreLower = Calc.linearInterpolatePercentage(changeTime, 3, 7);
-        const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 20, 7);
-        const score: number = weight * (changeTime < 7 ? scoreLower : scoreUpper);
-        return {
-            score: score,
-            value: this.routeHistory.getAvgChangeTime() // Date
-        };
+        if (!this.getAvgChangesAmount()) {
+            return {
+                score: 1,
+                value: this.routeHistory.getAvgChangeTime() // Date
+            };
+        } else {
+            const changeTime: number = this.routeHistory.getAvgChangeTime().valueOf() / 60000; // in minutes
+            const weight: number = this.userPreferences.weight_AvgChangeTime;
+            /**
+             *  < 3: impossible (0%)
+             *  = 7: best case (100%) -> not based on real evidence
+             *  > 20: worst case (0%) -> not based on real evidence
+             */
+            const scoreLower = Calc.linearInterpolatePercentage(changeTime, 3, 7);
+            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 20, 7);
+            const score: number = weight * (changeTime < 7 ? scoreLower : scoreUpper);
+            return {
+                score: score,
+                value: this.routeHistory.getAvgChangeTime() // Date
+            };
+        }
     }
 
     /**
@@ -212,7 +219,7 @@ export class QoE implements IQoE {
         return sum;
     }
 
-    public get amount(){
+    public get amount() {
         return this.routeHistory.routes.length;
     }
 }
