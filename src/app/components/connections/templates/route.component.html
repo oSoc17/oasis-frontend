@@ -14,7 +14,9 @@
             <span class="basedOn"> {{ basedOn }}</span>
         </div>
         <div class="col m4" *ngFor="let subScore of getSubScores()">
-            <h1 class="route-header"><i class="mdi mdi-{{subScore.icon}}"></i> {{ subScore.value }}</h1>
+            <h1 class="route-header">
+                <md-icon class="score-icon" svgIcon="{{subScore.icon}}"></md-icon> {{ subScore.value }}
+            </h1>
             <p class="route-subheader">{{ subScore.name }}<!--<md-icon class="grey-text small" >help_outline</md-icon>--></p>
         </div>
     </div>

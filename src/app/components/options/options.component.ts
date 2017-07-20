@@ -37,6 +37,7 @@ export class Options {
             tooltip: () => this.language.getMessage('delayConsistency_tooltip'),
             value: AppModule.options.qoeParameters['delayConsistency'],
             id: 'delayConsistency',
+            icons: ['consistency0', 'consistency1', 'consistency2', 'consistency3']
         };
         this.hops = {
             name: () => this.language.getMessage('amountOfChanges'),
