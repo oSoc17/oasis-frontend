@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import 'rxjs/add/operator/startWith';
@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map';
 
 import { IRailService } from '../../services/iRail.service';
 import { StationService} from '../../services/stations.service';
- import { Http } from '@angular/http';
+import { Http } from '@angular/http';
+import { MdInputContainer } from '@angular/material';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class StationList implements OnInit {
     inputValue: string;
     stationservice: StationService;
     qresults;
+    @ViewChild(MdInputContainer) mdInput: MdInputContainer;
+    @Output() notifyParent: EventEmitter<any> = new EventEmitter();
 
     /**
      * Constructor, load in all stations
@@ -65,6 +68,7 @@ export class StationList implements OnInit {
         }
         return this.stations;
     }
+
     querystations(val: string) {
         this.inputValue = val;
         if (val && val.length > 3) {
@@ -74,5 +78,18 @@ export class StationList implements OnInit {
         } else {
             this.qresults = [];
         }
+
+    /**
+     * Grabs focus
+     */
+    focus() {
+        this.mdInput._focusInput();
+    }
+
+    /**
+     * Requests parent to focus the next field
+     */
+    requestFocusNext() {
+        this.notifyParent.emit(null);
     }
 }

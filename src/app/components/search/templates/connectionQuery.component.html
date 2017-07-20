@@ -3,9 +3,9 @@
     <div class='col l7 m12 s12 connquery'>
         <md-card>
             <label>{{ language.getMessage('departure') }}</label>
-            <stationlist #departure></stationlist>
+            <stationlist #departure (notifyParent)="focusNext('depature')"></stationlist>
             <label>{{ language.getMessage('destination') }}</label>
-            <stationlist #arrival></stationlist>
+            <stationlist #arrival (notifyParent)="focusNext('arrival')"></stationlist>
             <div class="row">
                 <div class="col l6 m6 s12">
                     <label class="display-block">{{ language.getMessage('time') }}</label>
