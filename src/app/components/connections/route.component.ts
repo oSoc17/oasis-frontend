@@ -55,7 +55,7 @@ export class Route {
         }
     }
 
-    private get basedOn(): string{
+    public get basedOn(): string{
         return this.language.getMessage('basedOn').replace('XX', this.qoe.amount + '');
     }
 

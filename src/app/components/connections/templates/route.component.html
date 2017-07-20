@@ -9,8 +9,10 @@
             </div>
         </mat-panel-description>
     </md-expansion-panel-header>
-    <span class="basedOn"> {{ basedOn }}</span>
     <div class="row">
+        <div class="col l12 m12 s12">
+            <span class="basedOn"> {{ basedOn }}</span>
+        </div>
         <div class="col m4" *ngFor="let subScore of getSubScores()">
             <h1 class="route-header"><i class="mdi mdi-{{subScore.icon}}"></i> {{ subScore.value }}</h1>
             <p class="route-subheader">{{ subScore.name }}<!--<md-icon class="grey-text small" >help_outline</md-icon>--></p>
