@@ -5,6 +5,8 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
 import { IRailService } from '../../services/iRail.service';
+import { StationService} from '../../services/stations.service';
+ import { Http } from '@angular/http';
 
 
 @Component({
@@ -19,19 +21,26 @@ export class StationList implements OnInit {
     filteredStations: any;
     stations: any;
     inputValue: string;
+    stationservice: StationService;
+    qresults;
 
     /**
      * Constructor, load in all stations
      * @param iRailService iRail service instance
      */
-    constructor(iRailService: IRailService) {
+    constructor(iRailService: IRailService, http: Http) {
+        this.stationservice = new StationService(http)
         iRailService.getAllStations().then((data) => {
             this.stations = (data as any).station;
         }).catch(e => console.log(e));
         this.stationCtrl = new FormControl();
-        this.filteredStations = this.stationCtrl.valueChanges
-            .startWith(null)
-            .map(station => this.filterStations(station));
+        this.stationCtrl.valueChanges.subscribe((val) => {
+            this.querystations(val);
+        });
+        // this.filteredStations = this.stationCtrl.valueChanges
+        //     .startWith(null)
+        //     .map(station => this.querystations(station));
+        this.filteredStations = this.qresults;
         // this.stationCtrl.valueChanges.toPromise().then(val => console.log(val)).catch(e => console.log(e))
     }
 
@@ -55,5 +64,15 @@ export class StationList implements OnInit {
             return filtered;
         }
         return this.stations;
+    }
+    querystations(val: string) {
+        this.inputValue = val;
+        if (val && val.length > 3) {
+              this.stationservice.queryStations(val).then((res) => {
+                 this.qresults = res;
+              });
+        } else {
+            this.qresults = [];
+        }
     }
 }
