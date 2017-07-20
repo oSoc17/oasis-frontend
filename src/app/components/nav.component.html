@@ -3,8 +3,9 @@
         <a id="logo-container" href="/" class="brand-logo">tripscore</a>
 
       <ul class="right">
+        <li><languagechooser></languagechooser></li>
         <li (click)='clickSettings()'>
-          <a><i class="mdi mdi-account-check" mdTooltip="Preferences"></i></a>
+          <a><i class="mdi mdi-account-check" mdTooltip="{{ language.getMessage('preferences') }}"></i></a>
         </li>
       </ul>
     </div>

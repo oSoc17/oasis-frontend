@@ -74,7 +74,7 @@ export class Options {
     location.reload();
   }
   private goBack() {
-    location.reload();
+    AppComponent.goBack();
     this.snackBar.open('Saved!', '', {
       duration: 1000
     })

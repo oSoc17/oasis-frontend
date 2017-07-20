@@ -76,7 +76,9 @@ export class RouteService implements IRouteService {
                 if (result) {
                     if (result) {
                         for (const event of resultStream._events.data) {
-                            source.removeListener('data', event);
+                            if (event) {
+                                source.removeListener('data', event);
+                            }
                         }
                     }
                 }
@@ -88,7 +90,9 @@ export class RouteService implements IRouteService {
                 self._onHttpRequest.dispatch(httpRequests);
                 if (result) {
                     for (const event of source._events.request) {
-                        source.removeListener('request', event);
+                        if (event) {
+                            source.removeListener('request', event);
+                        }
                     }
                 }
             });
@@ -104,7 +108,9 @@ export class RouteService implements IRouteService {
                 // console.log(require('events').EventEmitter.listenerCount(source, 'response'));
                 if (result) {
                     for (const event of source._events.response) {
-                        source.removeListener('response', event);
+                        if (event) {
+                            source.removeListener('response', event);
+                        }
                     }
                 }
             });
@@ -119,7 +125,6 @@ export class RouteService implements IRouteService {
         searchData = searchData.toJSON();
         return new Promise((resolve, reject) => {
             // console.log(searchData);
-            // Time of server is GMT+1 ??
             searchData.departureTime = new Date(new Date(searchData.departureTime).valueOf() - Utils.getHoursValue(1));
             this.continuousQuery(searchData, resolve);
         });
@@ -136,9 +141,11 @@ export class RouteService implements IRouteService {
             promiselist.push(query);
 
         });
-            Promise.all(promiselist).then((res) => {
-                this._onComplete.dispatch(res);
-            });
+
+        Promise.all(promiselist).then((res) => {
+            this._onComplete.dispatch(res);
+        });
+
         return this._onQueryResult;
 
         // Test event handlers

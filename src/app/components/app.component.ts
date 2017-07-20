@@ -11,7 +11,7 @@ import { SearchData } from './../classes/connections/searchData';
 
 export class AppComponent {
     public static searchData: SearchData[];
-    public static searchString: string;
+    public static searchString: any;
     private static currPage = 0;
     private static prevPage = 0;
 
@@ -21,7 +21,9 @@ export class AppComponent {
      */
     public static setPage(number) {
         if (number <= 3) {
-            AppComponent.prevPage = AppComponent.currPage;
+            if (AppComponent.currPage !== 2) {
+                AppComponent.prevPage = AppComponent.currPage;
+            }
             AppComponent.currPage = number;
         }
     }

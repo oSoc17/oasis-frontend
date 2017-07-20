@@ -1,19 +1,21 @@
 <md-expansion-panel>
     <md-expansion-panel-header>
         <mat-panel-title><i class="mdi mdi-train"></i>&nbsp;&nbsp;{{ toTime(qoe.departureTime.valueOf()) }} - {{ toTime(qoe.arrivalTime.valueOf()) }}</mat-panel-title>
-        <mat-panel-description><strong class="black-text">{{ toScore(qoe.getQoE()*10).toFixed(1) }} </strong> / 10
-            <div class="bar-container valign-wrapper">
-                <md-progress-bar
-                    [value]="getSliderValue()">
-                </md-progress-bar>
-            </div>
+        <mat-panel-description>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 1 ? 'star' : getScore() < 1 ? 'star-outline' : 'star-half'}}"></i>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 3 ? 'star' : getScore() < 3 ? 'star-outline' : 'star-half'}}"></i>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 5 ? 'star' : getScore() < 5 ? 'star-outline' : 'star-half'}}"></i>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 7 ? 'star' : getScore() < 7 ? 'star-outline' : 'star-half'}}"></i>
+            <i class="teal-text text-lighten-2 mdi mdi-{{ getScore() > 9 ? 'star' : getScore() < 9 ? 'star-outline' : 'star-half'}}"></i>
         </mat-panel-description>
     </md-expansion-panel-header>
-    <span class="basedOn"> {{ basedOn }}</span>
     <div class="row">
+        <div class="col l12 m12 s12">
+            <span class="basedOn"> {{ basedOn }}</span>
+        </div>
         <div class="col m4" *ngFor="let subScore of getSubScores()">
             <h1 class="route-header"><i class="mdi mdi-{{subScore.icon}}"></i> {{ subScore.value }}</h1>
-            <p class="route-subheader">{{ subScore.name }}<md-icon class="grey-text small" >help_outline</md-icon></p>
+            <p class="route-subheader">{{ subScore.name }}<!--<md-icon class="grey-text small" >help_outline</md-icon>--></p>
         </div>
     </div>
 </md-expansion-panel>
