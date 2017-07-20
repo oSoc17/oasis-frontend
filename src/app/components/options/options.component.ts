@@ -25,6 +25,12 @@ export class Options {
       id: 'AvgDelay',
     },
     {
+        name: this.language.getMessage('delayConsistency'),
+        tooltip: this.language.getMessage('delayConsistency_tooltip'),
+        value: AppModule.options.qoeParameters['delayConsistency'],
+        id: 'delayConsistency'
+    },
+    {
       name: this.language.getMessage('amountOfChanges'),
       tooltip: this.language.getMessage('amountOfChanges_tooltip'),
       value: AppModule.options.qoeParameters['avgChangesAmount'],
@@ -35,13 +41,7 @@ export class Options {
       tooltip: this.language.getMessage('changeTime_tooltip'),
       value: AppModule.options.qoeParameters['avgChangeTime'],
       id: 'avgChangeTime'
-    },
-    {
-      name: this.language.getMessage('delayConsistency'),
-      tooltip: this.language.getMessage('delayConsistency_tooltip'),
-      value: AppModule.options.qoeParameters['delayConsistency'],
-      id: 'delayConsistency'
-    },
+    }/*,
     {
       name: this.language.getMessage('travelTime'),
       tooltip: this.language.getMessage('travelTime_tooltip'),

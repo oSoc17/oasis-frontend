@@ -40,7 +40,6 @@ export class ConnectionQuery {
         const stationList = this.depStation.stations;
         const arrInputValue = this.arrStation.inputValue;
         const depInputValue = this.depStation.inputValue;
-        console.log(arriveSt.standardname);
         if (!(arriveSt && departSt)) {
             this.error = this.language.getMessage('errNoStations');
         } else if (!stationList.some(x => x.standardname.toLowerCase() === arrInputValue.toLowerCase()) ||
