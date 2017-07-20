@@ -3,7 +3,7 @@
 </md-input-container>
 
 <md-autocomplete #auto="mdAutocomplete">
-  <md-option *ngFor="let station of filteredStations | async" [value]="station.standardname"
+  <md-option *ngFor="let station of qresults" [value]="station.standardname"
                   (click)="filterStations(station.standardname);requestFocusNext()">
     {{ station.standardname }}
   </md-option>
