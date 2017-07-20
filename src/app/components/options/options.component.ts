@@ -24,65 +24,65 @@ export class Options {
     constructor(public snackBar: MdSnackBar) {
         this.language = new Language();
         this.delay = {
-            name: this.language.getMessage('delay'),
-            tooltip: this.language.getMessage('delay_tooltip'),
+            name: () => this.language.getMessage('delay'),
+            tooltip: () => this.language.getMessage('delay_tooltip'),
             value: AppModule.options.qoeParameters['AvgDelay'],
             id: 'AvgDelay',
-            unit: this.language.getMessage('minutes'),
+            unit: () => this.language.getMessage('minutes'),
             min: 0,
             max: 60,
         };
         this.delayConsistency = {
-            name: this.language.getMessage('delayConsistency'),
-            tooltip: this.language.getMessage('delayConsistency_tooltip'),
+            name: () => this.language.getMessage('delayConsistency'),
+            tooltip: () => this.language.getMessage('delayConsistency_tooltip'),
             value: AppModule.options.qoeParameters['delayConsistency'],
             id: 'delayConsistency',
-            unit: this.language.getMessage('minutes'),
+            unit: () =>  this.language.getMessage('minutes'),
             min: 0,
             max: 60,
         };
         this.hops = {
-            name: this.language.getMessage('amountOfChanges'),
-            tooltip: this.language.getMessage('amountOfChanges_tooltip'),
+            name: () => this.language.getMessage('amountOfChanges'),
+            tooltip: () => this.language.getMessage('amountOfChanges_tooltip'),
             value: AppModule.options.qoeParameters['avgChangesAmount'],
             id: 'avgChangesAmount',
-            unit: this.language.getMessage('hops'),
+            unit: () => this.language.getMessage('hops'),
             min: 0,
             max: 3,
         };
         this.hopWaitingTime = {
-            name: this.language.getMessage('changeTime'),
-            tooltip: this.language.getMessage('changeTime_tooltip'),
+            name: () => this.language.getMessage('changeTime'),
+            tooltip: () => this.language.getMessage('changeTime_tooltip'),
             value: AppModule.options.qoeParameters['avgChangeTime'],
             id: 'avgChangeTime',
-            unit: this.language.getMessage('minutes'),
+            unit: () => this.language.getMessage('minutes'),
             min: 0,
             max: 60,
         };
         this.hopsMissed = {
-            name: this.language.getMessage('optMissedConnections'),
-            tooltip: this.language.getMessage('missedConnections_tooltip'),
+            name: () => this.language.getMessage('optMissedConnections'),
+            tooltip: () => this.language.getMessage('missedConnections_tooltip'),
             value: AppModule.options.qoeParameters['numberOfMissedConnections'],
             id: 'numberOfMissedConnections',
-            unit: '%',
+            unit: () => '%',
             min: 0,
             max: 100,
         };
         this.crowdedness = {
-            name: this.language.getMessage('price'),
-            tooltip: this.language.getMessage('price_tooltip'),
+            name: () => this.language.getMessage('price'),
+            tooltip: () => this.language.getMessage('price_tooltip'),
             value: AppModule.options.qoeParameters['price'],
             id: 'price',
-            unit: this.language.getMessage('minutes'),
+            unit: () => this.language.getMessage('minutes'),
             min: 0,
             max: 60,
         };
         this.price = {
-            name: this.language.getMessage('price'),
-            tooltip: this.language.getMessage('price_tooltip'),
+            name: () => this.language.getMessage('price'),
+            tooltip: () => this.language.getMessage('price_tooltip'),
             value: AppModule.options.qoeParameters['price'],
             id: 'price',
-            unit: this.language.getMessage('minutes'),
+            unit: () => this.language.getMessage('minutes'),
             min: 0,
             max: 60,
         };
