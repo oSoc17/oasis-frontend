@@ -4,8 +4,8 @@ import { AppModule } from '../../app.module';
 
 @Component({
     selector: 'time-choice',
-    templateUrl: './templates/timeChoice.component.html',
-    styleUrls: ['./styles/timeChoice.component.scss']
+    templateUrl: './templates/sliderChoice.html',
+    styleUrls: ['./styles/sliderChoice.component.scss']
 })
 
 export class TimeChoiceComponent {

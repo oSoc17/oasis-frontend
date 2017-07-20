@@ -10,7 +10,7 @@ import { LanguageChooser } from './components/options/languagechooser.component'
 import { ConnectionDetail } from './components/connections/connectionDetail.component';
 import { NavComponent } from './components/nav.component';
 import { QoESliderComponent } from './components/options/qoeSlider.component';
-import { TimeChoiceComponent } from './components/options/timeChoice.component';
+import { TimeChoiceComponent } from './components/options/sliderChoice';
 import { MultipleChoiceComponent } from './components/options/mutipleChoice.components';
 import { Recents } from './components/search/recents.component';
 import { Route } from './components/connections/route.component';

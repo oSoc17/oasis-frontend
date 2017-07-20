@@ -37,9 +37,6 @@ export class Options {
             tooltip: () => this.language.getMessage('delayConsistency_tooltip'),
             value: AppModule.options.qoeParameters['delayConsistency'],
             id: 'delayConsistency',
-            unit: () =>  this.language.getMessage('minutes'),
-            min: 0,
-            max: 60,
         };
         this.hops = {
             name: () => this.language.getMessage('amountOfChanges'),
@@ -73,18 +70,12 @@ export class Options {
             tooltip: () => this.language.getMessage('price_tooltip'),
             value: AppModule.options.qoeParameters['price'],
             id: 'price',
-            unit: () => this.language.getMessage('minutes'),
-            min: 0,
-            max: 60,
         };
         this.price = {
             name: () => this.language.getMessage('price'),
             tooltip: () => this.language.getMessage('price_tooltip'),
             value: AppModule.options.qoeParameters['price'],
             id: 'price',
-            unit: () => this.language.getMessage('minutes'),
-            min: 0,
-            max: 60,
         };
     }
 
