@@ -65,7 +65,7 @@ export class Options {
       tooltip: this.language.getMessage('price_tooltip'),
       value: AppModule.options.qoeParameters['price'],
       id: 'price'
-    }
+    }*/
   ];
   }
 
