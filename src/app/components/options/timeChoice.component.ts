@@ -34,7 +34,7 @@ export class TimeChoiceComponent {
         } else {
             this.time = val;
         }
-        //console.log(`id: ${this.id} val: ${this.time}`);
+        // console.log(`id: ${this.id} val: ${this.time}`);
         AppModule.options.qoeParameters[this.id] = this.time;
         AppModule.options.save();
     }

@@ -19,12 +19,10 @@ export class MultipleChoiceComponent {
      * @param val a percentage value
      */
     changeVal(val) {
+        this.choice = val;
         console.log(`id: ${this.id} val: ${this.choice}`);
-        AppModule.options.qoeParameters[this.id] = val;
+        AppModule.options.qoeParameters[this.id] = this.choice;
         AppModule.options.save();
     }
 
-    isSelected(val) {
-        return val === this.choice;
-    }
 }
