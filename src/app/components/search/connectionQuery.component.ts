@@ -38,14 +38,10 @@ export class ConnectionQuery {
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;
-        const stationList = this.depStation.stations;
         const arrInputValue = this.arrStation.inputValue;
         const depInputValue = this.depStation.inputValue;
         if (!(arriveSt && departSt)) {
             this.error = this.language.getMessage('errNoStations');
-        } else if (!stationList.some(x => x.standardname.toLowerCase() === arrInputValue.toLowerCase()) ||
-                    !stationList.some(x => x.standardname.toLowerCase() === depInputValue.toLowerCase())) {
-            this.error = this.language.getMessage('errWrongStations');
         } else if ( arriveSt.id === departSt.id) {
             this.error = this.language.getMessage('errEqualStations');
         } else if (this.travelTime.selectedTime === '') {
@@ -53,8 +49,10 @@ export class ConnectionQuery {
         } else if (this.travelDate.selectedDay === null) {
             this.error = this.language.getMessage('errNoDays');
         } else {
+            console.log(arriveSt);
+            console.log(departSt);
             this.searchData = [];
-            this.searchData = SearchData.createPeriodicList(departSt['@id'], arriveSt['@id'],
+            this.searchData = SearchData.createPeriodicList(departSt['id'], arriveSt['id'],
                 this.travelTime.selectedTime, Utils.getLatest(this.travelDate.selectedDay), 'departureTime', 14);
             AppComponent.searchData = this.searchData;
             AppComponent.searchString = {
