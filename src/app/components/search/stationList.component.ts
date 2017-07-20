@@ -70,7 +70,6 @@ export class StationList implements OnInit {
             if (this.lastQuery && val.indexOf(this.lastQuery) === 0) {
                 // We already queried using this filter
                 // Filter this locally.
-                console.log('filter locally');
                 return this.filterStations(val);
             }
             if (val.length > 3) {
