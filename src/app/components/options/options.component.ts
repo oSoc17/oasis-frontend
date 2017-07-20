@@ -64,9 +64,9 @@ export class Options {
             tooltip: this.language.getMessage('missedConnections_tooltip'),
             value: AppModule.options.qoeParameters['numberOfMissedConnections'],
             id: 'numberOfMissedConnections',
-            unit: this.language.getMessage('minutes'),
+            unit: '%',
             min: 0,
-            max: 60,
+            max: 100,
         };
         this.crowdedness = {
             name: this.language.getMessage('price'),

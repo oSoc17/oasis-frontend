@@ -7,3 +7,11 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance:textfield !important;
 }
+
+.slider-choice-slider {
+  width: 20em;
+}
+.slider-choice-input {
+  width: 1.5em;
+  text-align: center;
+}
