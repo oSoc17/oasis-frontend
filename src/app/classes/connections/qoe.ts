@@ -106,13 +106,13 @@ export class QoE implements IQoE {
             };
         } else {
             /**
-             *  < 3: impossible (0%)
-             *  = 5: best case (100%) -> not based on real evidence
+             *  < 2.5: impossible (0%)
+             *  = 4.5: best case (100%)
              *  > 15: worst case (0%) -> not based on real evidence
              */
-            const scoreLower = Calc.linearInterpolatePercentage(changeTime, 3, 5);
-            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 15, 5);
-            const score: number = weight * (changeTime < 5 ? scoreLower : scoreUpper);
+            const scoreLower = Calc.linearInterpolatePercentage(changeTime, 2.5, 4.5);
+            const scoreUpper = Calc.linearInterpolatePercentage(changeTime, 15, 4.5);
+            const score: number = weight * (changeTime < 4.5 ? scoreLower : scoreUpper);
             return {
                 score: score,
                 value: this.routeHistory.getAvgChangeTime() // Date
