@@ -1,18 +1,15 @@
-/**
- * Julian still has to make the linked connections endpoint to get stations
- * TODO: Make this once Julian's done
- * Maybe make an intermediate server we can query
- */
+// Node modules
+import { Injectable } from '@angular/core';
+import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } from '@angular/http';
 
- import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } from '@angular/http';
+// Config
+const config = require('../../config.json');
 
- const config = require('../../config.json');
-
-
- export class StationService {
+@Injectable()
+export class StationService {
     private uri = config.servers[3].uri;
     private requestOptions = new RequestOptions({
-        headers: new Headers({'Accept': 'application/json'}),
+        headers: new Headers({ 'Accept': 'application/json' }),
         responseType: ResponseContentType.Json,
         params: new URLSearchParams('')
     });
@@ -23,17 +20,17 @@
         return Promise.reject(error.message || error);
     }
 
-     public queryStations(query: string): Promise<any> {
+    public queryStations(query: string): Promise<any> {
         const myParams = new URLSearchParams();
         myParams.append('q', query);
         const options = new RequestOptions({
-        headers: new Headers({'Accept': 'application/json'}),
-        responseType: ResponseContentType.Json,
-        params: myParams
+            headers: new Headers({ 'Accept': 'application/json' }),
+            responseType: ResponseContentType.Json,
+            params: myParams
         });
         return this.http.get(this.uri, options)
             .toPromise()
             .then((response) => response.json())
             .catch(this.handleError);
     }
- }
+}

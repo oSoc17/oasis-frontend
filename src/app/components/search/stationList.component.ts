@@ -1,14 +1,12 @@
+// Node modules
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
+import { MdInputContainer } from '@angular/material';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
-import { IRailService } from '../../services/iRail.service';
-import { StationService} from '../../services/stations.service';
-import { Http } from '@angular/http';
-import { MdInputContainer } from '@angular/material';
-
+// Custom modules
+import { StationService } from '../../services/stations.service';
 
 @Component({
     selector: 'stationlist',
@@ -29,28 +27,21 @@ export class StationList implements OnInit {
 
     /**
      * Constructor, load in all stations
-     * @param iRailService iRail service instance
+     * @param http iRail service instance
      */
-    constructor(iRailService: IRailService, http: Http) {
-        this.stationservice = new StationService(http)
-        iRailService.getAllStations().then((data) => {
-            this.stations = (data as any).station;
-        }).catch(e => console.log(e));
+    constructor(stationService: StationService) {
+        this.stationservice = stationService;
         this.stationCtrl = new FormControl();
         this.stationCtrl.valueChanges.subscribe((val) => {
             this.querystations(val);
         });
-        // this.filteredStations = this.stationCtrl.valueChanges
-        //     .startWith(null)
-        //     .map(station => this.querystations(station));
         this.filteredStations = this.qresults;
-        // this.stationCtrl.valueChanges.toPromise().then(val => console.log(val)).catch(e => console.log(e))
     }
 
     /**
      * Component initialised
      */
-    ngOnInit() {}
+    ngOnInit() { }
 
     /**
      * filter stations on value change
@@ -61,7 +52,7 @@ export class StationList implements OnInit {
         if (val) {
             const filtered = this.stations.filter(s => s.standardname.toLowerCase().indexOf(val.toLowerCase()) === 0);
             if (filtered.length > 0 &&
-                    filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
+                filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
                 this.selectedStation = filtered[0];
             }
             return filtered;
@@ -69,15 +60,20 @@ export class StationList implements OnInit {
         return this.stations;
     }
 
+    /**
+     *
+     * @param val
+     */
     querystations(val: string) {
         this.inputValue = val;
         if (val && val.length > 3) {
-              this.stationservice.queryStations(val).then((res) => {
-                 this.qresults = res;
-              });
+            this.stationservice.queryStations(val).then((res) => {
+                this.qresults = res;
+            });
         } else {
             this.qresults = [];
         }
+    }
 
     /**
      * Grabs focus
