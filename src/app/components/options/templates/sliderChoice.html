@@ -1,0 +1,10 @@
+<h5>{{ name }}
+    <md-icon class="grey-text" mdTooltip="{{ tooltip }}">help_outline</md-icon>
+</h5>
+<md-slider class="slider-choice-slider" min="{{ min }}" max="{{ max }}" value="{{ time }}" [(ngModel)]="time" [thumb-label]="true" (change)="changeVal(time)"></md-slider>
+<md-input-container>
+    <label>
+        <input class="slider-choice-input browser-default" mdInput [min]="min" [max]="max" value="{{ time }}" [(ngModel)]="time" (change)="changeVal(time)" type="number" required>
+        {{ unit }}
+    </label>
+</md-input-container>
