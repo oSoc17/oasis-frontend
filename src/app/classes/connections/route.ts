@@ -72,7 +72,7 @@ export class Route {
             let changesAmount = 0;
             // console.log('connections: ' + this.connections.length);
             for (let i = 0; i < this.connections.length - 1; i++) {
-                if (this.connections[i].gtfstrip !== this.connections[i + 1].gtfstrip) {
+                if (this.connections[i]['gtfs:trip'] !== this.connections[i + 1]['gtfs:trip']) {
                     changesAmount++;
                 }
             }
@@ -90,9 +90,10 @@ export class Route {
             let changeAmount = 0;
             let sumChangeTime = 0;
             for (let i = 0; i < this.connections.length - 1; i++) {
-                if (this.connections[i].gtfstrip !== this.connections[i + 1].gtfstrip) {
+                if (this.connections[i]['gtfs:trip'] !== this.connections[i + 1]['gtfs:trip']) {
                     changeAmount++;
-                    sumChangeTime += this.connections[i + 1].departureTime.valueOf() - this.connections[i].arrivalTime.valueOf();
+                    sumChangeTime += this.connections[i + 1].departureTime.valueOf() -
+                                this.connections[i].arrivalTime.valueOf();
                 }
             }
             if (changeAmount) {
