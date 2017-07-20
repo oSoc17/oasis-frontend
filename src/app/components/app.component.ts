@@ -21,7 +21,9 @@ export class AppComponent {
      */
     public static setPage(number) {
         if (number <= 3) {
-            AppComponent.prevPage = AppComponent.currPage;
+            if (AppComponent.currPage !== 2) {
+                AppComponent.prevPage = AppComponent.currPage;
+            }
             AppComponent.currPage = number;
         }
     }
