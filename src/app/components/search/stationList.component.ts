@@ -17,11 +17,11 @@ import { StationService } from '../../services/stations.service';
 export class StationList implements OnInit {
     selectedStation = null;
     stationCtrl: FormControl;
-    filteredStations: any;
-    stations: any;
     inputValue: string;
     stationservice: StationService;
-    qresults;
+    qresults: any[];
+    stations: any[];
+    lastQuery: string;
     @ViewChild(MdInputContainer) mdInput: MdInputContainer;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
 
@@ -35,7 +35,6 @@ export class StationList implements OnInit {
         this.stationCtrl.valueChanges.subscribe((val) => {
             this.querystations(val);
         });
-        this.filteredStations = this.qresults;
     }
 
     /**
@@ -55,23 +54,34 @@ export class StationList implements OnInit {
                 filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
                 this.selectedStation = filtered[0];
             }
+            this.qresults = filtered;
             return filtered;
         }
-        return this.stations;
+        return this.qresults;
     }
 
     /**
-     *
-     * @param val
+     * This function queries the tripscore API for stations
+     * @param val the search query (station name)
      */
     querystations(val: string) {
         this.inputValue = val;
-        if (val && val.length > 3) {
-            this.stationservice.queryStations(val).then((res) => {
-                this.qresults = res;
-            });
-        } else {
-            this.qresults = [];
+        if (val) {
+            if (this.lastQuery && val.indexOf(this.lastQuery) === 0) {
+                // We already queried using this filter
+                // Filter this locally.
+                console.log('filter locally');
+                return this.filterStations(val);
+            }
+            if (val.length > 3) {
+                this.stationservice.queryStations(val).then((res) => {
+                    this.qresults = res;
+                    this.stations = this.qresults;
+                    this.lastQuery = val;
+                });
+            } else {
+                this.qresults = [];
+            }
         }
     }
 
