@@ -8,7 +8,7 @@
   "errNoStations": "Er moet zowel een vertrek- en eindstation gekozen zijn",
   "errNoTime": "Selecteer een tijd",
   "errNoDays": "Selecteer een dag van de week",
-  "errWrongStations" : "Gelieve de stations uit de lijst te kiezen",
+  "errWrongStations": "Gelieve de stations uit de lijst te kiezen",
   "fillEntireSearchForm": "Gelieve het formulier volledig in te vullen.",
   "noConnections": "Geen verbinding gevonden.",
   "details": "Details",
@@ -32,8 +32,16 @@
   "travelTime": "Reistijd",
   "optMissedConnections": "Gemiste connecties",
   "price": "Prijs",
-  "weekdays": ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"],
-  "delay_tooltip":"Maximum aantal minuten vertraging die u aanvaardbaar vindt. Trips met meer vertraging dan aanvaardbaar krijgen een lagere score.",
+  "weekdays": [
+    "Maandag",
+    "Dinsdag",
+    "Woensdag",
+    "Donderdag",
+    "Vrijdag",
+    "Zaterdag",
+    "Zondag"
+  ],
+  "delay_tooltip": "Maximum aantal minuten vertraging die u aanvaardbaar vindt. Trips met meer vertraging dan aanvaardbaar krijgen een lagere score.",
   "amountOfChanges_tooltip": "Het gemiddeld aantal keer je moet overstappen. Trips met meer overstappen dan uw voorkeur krijgen een lagere score.",
   "delayConsistency_tooltip": "Minimum consistentie van vertragingen. Willekeurige vertragingen verlagen de trip score.",
   "changeTime_tooltip": "Gemiddelde tijd die u moet wachten wanneer u moet overstappen. Hogere wachttijden verlagen de trip score.",
@@ -46,5 +54,6 @@
   "preferences": "Voorkeuren",
   "prefExplenation": "De volgende opties bepalen hoeveel elke variabele meegerekend wordt bij het berekenen van jouw tripscore. Hoe belangrijker je een variabele vindt, hoe zwaarder die wordt meegerekend.",
   "minutes": "min",
-  "hops": "overstappen"
+  "hops": "overstappen",
+  "errStationServer": "Stations bevinden zich niet in hetzelfde land/regio"
 }

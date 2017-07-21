@@ -8,7 +8,7 @@
     "errNoStations": "Please fill in a departure and arrival station",
     "errNoTime": "Please select a time",
     "errNoDays": "Please select at least a day of the week",
-    "errWrongStations" : "Stations should be chosen from the dropdown list",
+    "errWrongStations": "Stations should be chosen from the dropdown list",
     "fillEntireSearchForm": "Please fill in the entire search form",
     "noConnections": "No connections found.",
     "details": "Details",
@@ -32,8 +32,16 @@
     "travelTime": "Travel time",
     "optMissedConnections": "Missed connections",
     "price": "Price",
-    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    "delay_tooltip":"Maximum amount of minutes that you consider an acceptable delay. Any amount above your preference will reduce the trip score.",
+    "weekdays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ],
+    "delay_tooltip": "Maximum amount of minutes that you consider an acceptable delay. Any amount above your preference will reduce the trip score.",
     "amountOfChanges_tooltip": "Average amount of times you need to change vehicle. Any amount above your preference will reduce the trip score.",
     "delayConsistency_tooltip": "Minimum consistency you expect for delays. Anomalies will reduce trip score.",
     "changeTime_tooltip": "Average time spent waiting when you need to change vehicles. Any amount above your preference will reduce the trip score.",
@@ -46,5 +54,6 @@
     "preferences": "Preferences",
     "prefExplenation": "The following options determine how much each variable is counted when calculating your tripscore. The more important you desegnate an item, the heavier it wil weigh in the final score.",
     "minutes": "min",
-    "hops": "hops"
+    "hops": "hops",
+    "errStationServer": "Stations are not in the same region/country"
 }

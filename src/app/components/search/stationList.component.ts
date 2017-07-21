@@ -6,7 +6,7 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
 // Custom modules
-import { StationService } from '../../services/stations.service';
+import { TripscoreService } from '../../services/tripscore.service';
 
 @Component({
     selector: 'stationlist',
@@ -18,7 +18,7 @@ export class StationList implements OnInit {
     selectedStation = null;
     stationCtrl: FormControl;
     inputValue: string;
-    stationservice: StationService;
+    tripscoreService: TripscoreService;
     qresults: any[];
     stations: any[];
     lastQuery: string;
@@ -29,8 +29,8 @@ export class StationList implements OnInit {
      * Constructor, load in all stations
      * @param http iRail service instance
      */
-    constructor(stationService: StationService) {
-        this.stationservice = stationService;
+    constructor(tripscoreService: TripscoreService) {
+        this.tripscoreService = tripscoreService;
         this.stationCtrl = new FormControl();
         this.stationCtrl.valueChanges.subscribe((val) => {
             this.querystations(val);
@@ -73,7 +73,7 @@ export class StationList implements OnInit {
                 return this.filterStations(val);
             }
             if (val.length > 3) {
-                this.stationservice.queryStations(val).then((res) => {
+                this.tripscoreService.queryStations(val).then((res) => {
                     this.qresults = res;
                     this.stations = this.qresults;
                     this.lastQuery = val;

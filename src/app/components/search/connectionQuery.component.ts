@@ -1,17 +1,18 @@
+// Node modules
 import { Component, ViewChild } from '@angular/core';
 
+// Custom modules
 import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
-
 import { SearchData } from '../../classes/connections/searchData';
 import { Language } from '../../classes/userData/language';
 import { Utils } from '../../classes/utils/utils';
-
 import { AppComponent } from '../app.component';
 import { Recents } from './recents.component';
 import { AppModule } from '../../app.module';
 import { Recent } from '../../classes/userData/recent';
+import { ServerConfig } from '../../classes/utils/serverConfig';
 
 @Component({
     selector: 'connectionquery',
@@ -40,8 +41,10 @@ export class ConnectionQuery {
         const departSt = this.depStation.selectedStation;
         const arrInputValue = this.arrStation.inputValue;
         const depInputValue = this.depStation.inputValue;
-        if (!(arriveSt && departSt)) {
+        if (!(arriveSt && departSt && departSt['id'] && arriveSt['id'])) {
             this.error = this.language.getMessage('errNoStations');
+        } else if (!ServerConfig.equalUris(arriveSt['id'], departSt['id'])) {
+            this.error = this.language.getMessage('errStationServer');
         } else if ( arriveSt.id === departSt.id) {
             this.error = this.language.getMessage('errEqualStations');
         } else if (this.travelTime.selectedTime === '') {
