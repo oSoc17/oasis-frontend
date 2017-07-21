@@ -1,2 +1,2 @@
-<h4>{{ name }}</h4>
+<h4 #tt="mdTooltip" [mdTooltip]="tooltip" [mdTooltipShowDelay]="0" (click)="tt.show()" (mouseenter)="tt.show()">{{ name }} <md-icon class="grey-text">help_outline</md-icon></h4>
 <md-slider min="0" max="100" step="1" value="{{ percentage }}" [(ngModel)]="percentage" [thumb-label]="true" (change)="changeVal(percentage)"></md-slider>

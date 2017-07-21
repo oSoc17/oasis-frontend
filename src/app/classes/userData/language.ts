@@ -1,4 +1,5 @@
-import { AppModule } from '../app.module';
+// Custom modules
+import { AppModule } from '../../app.module';
 
 export class Language {
     public static language = 'en_GB';
@@ -9,17 +10,23 @@ export class Language {
         }
     }
 
+    /**
+     * returns all language data for the currently loaded language.
+     */
     getLanguageData(): string {
-        // returns locales/[currentLanguage].json
         try {
-            const language = require(`../../locales/${Language.language}.json`);
+            const language = require(`../../../locales/${Language.language}.json`);
             return language;
         } catch (e) {
-            console.log(e);
+            // console.log(e);
             return null;
         }
     }
 
+    /**
+     * Returns a message of a language filtered by key
+     * @param key the key value defined for the message
+     */
     getMessage(key: string): string {
         // returns message in current language
         const lang = this.getLanguageData();
@@ -29,17 +36,23 @@ export class Language {
         return null;
     }
 
+    /**
+     * Returns the value of languages.json
+     */
     getLanguages(): string[] {
-        // returns locales/languages.json
         try {
-            const file = require('../../locales/languages.json');
+            const file = require('../../../locales/languages.json');
             return file['languages'];
         } catch (e) {
-            console.log(e);
+            // console.log(e);
             return null;
         }
     }
 
+    /**
+     * Checks if a language exists and sets it accordingly
+     * @param tag The language tag lang_COUNTRY - ISO
+     */
     setLanguage(tag: string) {
         // checks if language appears in locales/languages.json and selects if so
         const languages = this.getLanguages();
@@ -51,8 +64,11 @@ export class Language {
         }
     }
 
+    /**
+     * Return the ISO tag of the given language
+     * @param name the language's name
+     */
     toTag(name: string): string {
-        // returns ISO tag for a language name
         const languages: string[] = this.getLanguages();
         for (const pair of languages) {
             if (pair['name'] === name) {
@@ -62,6 +78,10 @@ export class Language {
         return null;
     }
 
+    /**
+     * Returns the name of the language if any is found
+     * @param tag the ISO tag of the laguage
+     */
     toName(tag: string): string {
         // returns a readable name for the language ISO tag
         const languages: string[] = this.getLanguages();

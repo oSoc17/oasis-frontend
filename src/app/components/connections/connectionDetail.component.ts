@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Language } from '../../classes/language';
+import { Language } from '../../classes/userData/language';
 
 import { AppComponent } from '../app.component';
 
@@ -15,6 +15,9 @@ export class ConnectionDetail {
 
     constructor() {}
 
+    /**
+     * Go back one page
+     */
     goBack() {
         AppComponent.goBack();
     }

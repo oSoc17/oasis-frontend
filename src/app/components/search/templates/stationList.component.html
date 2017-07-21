@@ -1,10 +1,10 @@
 <md-input-container class="stationList">
-  <input mdInput placeholder="Station" [mdAutocomplete]="auto" [formControl]="stationCtrl"  >
+  <input class="browser-default" mdInput [mdAutocomplete]="auto" [formControl]="stationCtrl"  >
 </md-input-container>
 
 <md-autocomplete #auto="mdAutocomplete">
-  <md-option *ngFor="let station of filteredStations | async" [value]="station.standardname" 
-                  (click)="filterStations(station.standardname)">
+  <md-option *ngFor="let station of qresults" [value]="station.standardname"
+                  (click)="filterStations(station.standardname);requestFocusNext()">
     {{ station.standardname }}
   </md-option>
 </md-autocomplete>

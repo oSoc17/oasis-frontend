@@ -1,24 +1,5 @@
-/**
- * formats date object into DD/MM/YYY string
- */
-export function formatDate(date: Date): string {
-    return zeroPad(date.getDate(), 2) + '/' + zeroPad(date.getMonth() + 1, 2) + '/' + zeroPad(date.getFullYear(), 4);
-}
-
-export function GetLatest(dayOfWeek: number) {
-    const d = new Date();
-    const day = d.getDay();
-    d.setDate(d.getDate() - day + dayOfWeek);
-    return d;
-}
-
-/**
- * returns string of number of the specified width (or larger), padded with leading zeroes
- */
-export function zeroPad(num: number, width: number): string {
-    const zero = width - num.toString().length + 1;
-    return Array(+(zero > 0 && zero)).join('0') + num;
-}
+// Custom modules
+import { Utils } from '../utils/utils';
 
 export class SearchData {
     public depStation: string; // id of departure station
@@ -26,6 +7,8 @@ export class SearchData {
     public travelTime: string; // travel time in HH:MM
     public travelDate: string; // travel date in DD/MM/YYYY
     public timeType: string;   // either 'depart' or 'arrival'
+    public latestDepartTime: Date;
+    public departureTime: Date;
 
     /**
      * returns a list of SearchData objects where the travelDate is split according to the provided parameters
@@ -41,17 +24,19 @@ export class SearchData {
     public static createPeriodicList(depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number = 5,
                                      goesForward: boolean = false): SearchData[] {
         const dataList = [];
+        // console.log('period: ', period, ' amount: ', amount);
         const calcdate = new Date(Date.parse(startDate));
         if (!goesForward) {
             period = -period;
         }
-        let dateString = formatDate(calcdate);
+        let dateString = Utils.formatDate(calcdate);
         dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
         for (let i = 1; i < amount; i++) {
             calcdate.setDate(calcdate.getDate() + period);
-            dateString = formatDate(calcdate);
+            dateString = Utils.formatDate(calcdate);
             dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
         }
+        console.log(dataList);
         return dataList;
     }
 
@@ -63,28 +48,23 @@ export class SearchData {
         this.timeType = timeType;
     }
 
+    /**
+     * convert the searchData object into a queryable object
+     */
     toJSON(): any {
-        const hour = Number(this.travelTime.split(':')[0]);
-        const min = Number(this.travelTime.split(':')[1]);
-        const day = Number(this.travelDate.split('/')[0]);
-        const month = Number(this.travelDate.split('/')[1]) - 1;
-        const year = Number(this.travelDate.split('/')[2]);
-        const datetime = new Date(year, month, day, hour, min).toISOString();
+        const datetime = Utils.combineTimeAndDate(this.travelTime, this.travelDate);
+        const inAnHour = new Date(datetime.valueOf() + Utils.getHoursValue(1));
+        // Set transferTime to 6 minutes
+        const transferTime = 6;
+        const searchTimeOut = 300000; // Set timeout to 5 minute
         const json = {
             'arrivalStop': this.arrStation,
-            'departureStop': this.depStation
+            'departureStop': this.depStation,
+            'latestDepartTime': inAnHour,
+            'departureTime': datetime,
+            'minimumTransferTime': transferTime,
+            'searchTimeOut': searchTimeOut
         };
-
-        json['departureTime'] = datetime;
-
-        /* TODO: Make arrivalTime possible with lc-client update
-        switch (this.timeType) {
-            case 'arrival':
-                json['arrivalTime'] = datetime;
-                break;
-            default:
-                json['departureTime'] = datetime;
-        }*/
 
         return json;
     }

@@ -1,6 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { Language } from '../classes/userData/language';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
     selector: 'nav-root',
@@ -8,11 +10,23 @@ import { AppComponent } from './app.component';
 })
 
 export class NavComponent {
-    constructor() { }
+    language: Language = new Language();
 
-    clickSettings() {
-        console.log('open settings');
+    constructor(public snackBar: MdSnackBar) { }
 
-        AppComponent.setPage(2);
+    private clickSettings() {
+        // console.log('open settings');
+        if (AppComponent.getPage() === 2) {
+            this.goBack();
+            this.snackBar.open('Saved!', '', {
+                duration: 500
+            });
+        } else {
+            AppComponent.setPage(2);
+        }
+    }
+
+    private goBack() {
+        AppComponent.goBack();
     }
 }

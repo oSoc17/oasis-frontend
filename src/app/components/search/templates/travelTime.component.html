@@ -1,5 +1,10 @@
+<!--
 <input type="radio" name="timeType" [(ngModel)]="selectedType" value="depart" class="timeType" (change)='changeType()' id="departType" checked>
 <label for="departType">{{ language.getMessage('departure') }}</label>
 <input type="radio" name="timeType" [(ngModel)]="selectedType" value="arrival" class="timeType" (change)='changeType()' id="arrivalType">
 <label for="arrivalType">{{ language.getMessage('destination') }}</label>
-<input type="time" class="time timepicker" [(ngModel)]="selectedTime" (change)='changeTime()' />
+-->
+<md-input-container>
+    <input mdInput type="time" class="time timepicker browser-default " [(ngModel)]="selectedTime" (change)='changeTime()' />
+</md-input-container>
+<button md-button class="button-small" (click)="setNow()">{{ language.getMessage('now').toUpperCase() }}</button>

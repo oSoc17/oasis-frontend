@@ -1,6 +1,7 @@
-import {IUserPreferences} from '../interfaces/iUserPreferences'
-import { Options } from 'app/classes/options';
-import { AppModule } from '../app.module';
+// Custom modules
+import { IUserPreferences } from '../../interfaces/iUserPreferences'
+import { Options } from './options';
+import { AppModule } from '../../app.module';
 
 export class UserPreferences implements IUserPreferences {
     private options: Options = AppModule.options;
@@ -19,6 +20,9 @@ export class UserPreferences implements IUserPreferences {
         this.rescale();
     }
 
+    /**
+     * Set all variables based on the user options
+     */
     private setAll() {
         this.avgDelay = this.options.qoeParameters.avgDelay;
         this.avgChangesAmount = this.options.qoeParameters.avgChangesAmount;
@@ -30,75 +34,100 @@ export class UserPreferences implements IUserPreferences {
         this.price = this.options.qoeParameters.price;
     }
 
+    /**
+     * Rescale all user options to in total become 100%
+     */
     private rescale() {
-        const total = this.avgChangesAmount + this.avgChangeTime
-            + this.avgDelay + this.avgTravelTime
-            + this.delayConsistency + this.numberOfMissedConnections
-            + this.numberOfRoutesWithinHour + this.price;
+        const total = this.avgChangesAmount + this.avgChangeTime + this.avgDelay + this.delayConsistency;
         if (total) {
             this.avgDelay /= total;
             this.avgChangesAmount /= total;
             this.avgChangeTime /= total;
             this.delayConsistency /= total;
-            this.avgTravelTime /= total;
-            this.numberOfRoutesWithinHour /= total;
-            this.numberOfMissedConnections /= total;
-            this.price /= total;
+            // this.avgTravelTime /= total;
+            // this.numberOfRoutesWithinHour /= total;
+            // this.numberOfMissedConnections /= total;
+            // this.price /= total;
         } else {
-            this.avgDelay = 0.125;
-            this.avgChangesAmount = 0.125;
-            this.avgChangeTime = 0.125;
-            this.delayConsistency = 0.125;
-            this.avgTravelTime = 0.125;
-            this.numberOfRoutesWithinHour = 0.125;
-            this.numberOfMissedConnections = 0.125;
-            this.price = 0.125;
+            const max = 4;
+            this.avgDelay = 1 / max;
+            this.avgChangesAmount =  1 / max;
+            this.avgChangeTime =  1 / max;
+            this.delayConsistency = 1 / max;
+            // this.avgTravelTime =  1 / max;
+            // this.numberOfRoutesWithinHour =  1 / max;
+            // this.numberOfMissedConnections =  1 / max;
+            // this.price =  1 / max;
         }
     }
 
-    get weight_AvgDelay() {
+    /**
+     * Rescale and return the weight of avgDelay
+     */
+    public get weight_AvgDelay() {
         this.setAll();
         this.rescale();
         return this.avgDelay;
     }
 
-    get weight_AvgChangesAmount() {
+    /**
+     * Rescale and return the weight of avgChangesAmount
+     */
+    public get weight_AvgChangesAmount() {
         this.setAll();
         this.rescale();
         return this.avgChangesAmount;
     }
 
-    get weight_AvgChangeTime() {
+    /**
+     * Rescale and return the weight of AvgChangeTime
+     */
+    public get weight_AvgChangeTime() {
         this.setAll();
         this.rescale();
         return this.avgChangeTime;
     }
 
-    get weight_DelayConsistency() {
+    /**
+     * Rescale and return the weight of DelayConsistency
+     */
+    public get weight_DelayConsistency() {
         this.setAll();
         this.rescale();
         return this.delayConsistency;
     }
 
-    get weight_AvgTravelTime() {
+    /**
+     * Rescale and return the weight of AvgTravelTime
+     */
+    public get weight_AvgTravelTime() {
         this.setAll();
         this.rescale();
         return this.avgTravelTime;
     }
 
-    get weight_NumberOfRoutesWithinHour() {
+    /**
+     * Rescale and return the weight of NumberOfRoutesWithinHour
+     */
+    public get weight_NumberOfRoutesWithinHour() {
         this.setAll();
         this.rescale();
         return this.numberOfRoutesWithinHour;
     }
 
-    get weight_NumberOfMissedConnections() {
+    /**
+     * Rescale and return the weight of NumberOfMissedConnections
+     */
+    public get weight_NumberOfMissedConnections() {
         this.setAll();
         this.rescale();
         return this.numberOfMissedConnections;
     }
 
-    get weight_Price() {
+    /**
+     * Rescale and return the weight of Price
+     */
+    public get weight_Price() {
         this.setAll();
         this.rescale();
         return this.price;

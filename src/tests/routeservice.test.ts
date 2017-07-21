@@ -1,9 +1,8 @@
 import { RouteService } from '../app/services/routing.service';
-import { RouteMockService } from '../app/services/routing.mock.service';
-import { SearchData } from '../app/classes/searchData';
+import { SearchData } from '../app/classes/connections/searchData';
 import 'rxjs/add/operator/toPromise';
 
-describe('RoutingMockService test', () => {
+/*describe('RoutingMockService test', () => {
     it('RoutingMockService#query()', (done) => {
         const routeService = new RouteMockService();
         routeService.query().then((connections) => {
@@ -18,7 +17,7 @@ describe('RoutingMockService test', () => {
             done();
         }).catch(e => done.fail(e));
     }, 5000);
-});
+});*/
 
 describe('RoutingService test', () => {
     it('RoutingService#query()', (done) => {
@@ -26,9 +25,18 @@ describe('RoutingService test', () => {
         const searchData = new SearchData('http://irail.be/stations/NMBS/008892007',
             'http://irail.be/stations/NMBS/008812005', '11:35', '10/07/2017', 'departureTime');
 
-        routeService.query(searchData).then((connections) => {
+        routeService.query(searchData);
+
+        routeService.onQueryResult.subscribe((connections) => {
             expect(connections).toEqual(jasmine.any(Array));
             connections.forEach((connection) => {
+                if (connection.arrivalStop === undefined || connection.arrivalTime === undefined ||
+                        connection.departureStop === undefined || connection.departureTime === undefined ||
+                        connection['http://vocab.gtfs.org/terms#trip'] === undefined) {
+                    console.log('some connection property is undefined');
+                    console.log(connection);
+                }
+
                 expect(connection.arrivalStop).toBeDefined();
                 expect(connection.arrivalTime).toBeDefined();
                 expect(connection.departureStop).toBeDefined();
@@ -36,7 +44,7 @@ describe('RoutingService test', () => {
                 expect(connection['http://vocab.gtfs.org/terms#trip']).toBeDefined();
             });
             done();
-        }).catch(e => done.fail(e));
+        });
     }, 15000);
 });
 

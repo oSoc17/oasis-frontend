@@ -1,18 +1,31 @@
-<section class='connquery card-panel'>
-  <h4>{{ language.getMessage('searchHeader') }}</h4>
-  <label>{{ language.getMessage('departure') }}</label><stationlist #departure></stationlist>
-  <label>{{ language.getMessage('destination') }}</label><stationlist #arrival></stationlist>
+<div class='row'>
+    <h4>{{ language.getMessage('searchHeader') }}</h4>
+    <div class='col l7 m12 s12 connquery'>
+        <md-card>
+            <label>{{ language.getMessage('departure') }}</label>
+            <stationlist #departure (notifyParent)="focusNext('depature')"></stationlist>
+            <label>{{ language.getMessage('destination') }}</label>
+            <stationlist #arrival (notifyParent)="focusNext('arrival')"></stationlist>
+            <div class="row">
+                <div class="col l6 m6 s12">
+                    <label class="display-block">{{ language.getMessage('time') }}</label>
+                    <traveltime></traveltime>
+                </div>
+                <div class="col l6 m6 s12">
+                    <label class="display-block label-margin">{{ language.getMessage('date') }}</label>
+                    <traveldate></traveldate>
+                </div>
+            </div>
 
-  <label>{{ language.getMessage('time') }}</label>
-  <traveltime></traveltime>
+            <p class="red-text">{{ error }}</p>
+            <button class="btn waves-effect waves-light" type="submit" name="action"
+                    (click)='clickCalculate()'>
+                {{ language.getMessage('showAlts') }}
+            </button>
 
-  <label>{{ language.getMessage('date') }}</label>
-  <traveldate></traveldate>
-
-  <p>{{ error }}</p>
-  <button class="btn waves-effect waves-light" type="submit" name="action" (click)='clickCalculate()'>
-    {{ language.getMessage('showAlts') }}
-    <i class="mdi mdi-send"></i>
-  </button>
-  <div class="clearfix"></div>
-</section>
+        </md-card>
+    </div>
+    <div class="col l5 m12 s12">
+        <recents></recents>
+    </div>
+</div>
