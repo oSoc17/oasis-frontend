@@ -7,7 +7,7 @@ const config = require('../../config.json');
 
 @Injectable()
 export class TripscoreService {
-    private uri = config.servers["tripscoreAPI"].uri;
+    private uri = config.servers['tripscoreAPI'].uri;
     private requestOptions = new RequestOptions({
         headers: new Headers({ 'Accept': 'application/json' }),
         responseType: ResponseContentType.Json,
@@ -36,7 +36,7 @@ export class TripscoreService {
             responseType: ResponseContentType.Json,
             params: myParams
         });
-        return this.http.get(this.uri, options)
+        return this.http.get(`${this.uri}/station`, options)
             .toPromise()
             .then((response) => response.json())
             .catch(this.handleError);
@@ -54,7 +54,7 @@ export class TripscoreService {
             responseType: ResponseContentType.Json,
             params: myParams
         });
-        return this.http.get(this.uri, options)
+        return this.http.get(`${this.uri}/station`, options)
             .toPromise()
             .then((response) => response.json())
             .catch(this.handleError);
