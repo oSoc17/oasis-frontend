@@ -26,8 +26,8 @@ export class Options {
         this.delay = {
             name: () => this.language.getMessage('delay'),
             tooltip: () => this.language.getMessage('delay_tooltip'),
-            value: AppModule.options.qoeParameters['AvgDelay'],
-            id: 'AvgDelay',
+            value: AppModule.options.qoeParameters['avgDelay'],
+            id: 'avgDelay',
             unit: () => this.language.getMessage('minutes'),
             min: 0,
             max: 60,
