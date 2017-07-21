@@ -16,9 +16,8 @@ import { UserPreferencesMock } from '../mocks/userprefs.mock';
 import { UserPreferences } from '../userData/userprefs';
 
 export class Manager {
-    private static config = require('../../../config.json');
     // private entryPoints = this.config.servers.reduce((array, server) => array.concat(server.uri), []);
-    private entryPoints = Manager.config.entrypoints;
+    private entryPoints: [string];
     private routeService: RouteService;
     private _qoeList: QoE[] = [];
 
@@ -26,7 +25,8 @@ export class Manager {
     private _httpRequests = 0;
     private _httpResponses = 0;
 
-    constructor() {
+    constructor(entrypoints: [string]) {
+        this.entryPoints = entrypoints;
         if (!this.routeService) {
             this.routeService = new RouteService(this.entryPoints);
         }

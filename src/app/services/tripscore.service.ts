@@ -6,8 +6,8 @@ import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } f
 const config = require('../../config.json');
 
 @Injectable()
-export class StationService {
-    private uri = config.servers[3].uri;
+export class TripscoreService {
+    private uri = config.servers["tripscoreAPI"].uri;
     private requestOptions = new RequestOptions({
         headers: new Headers({ 'Accept': 'application/json' }),
         responseType: ResponseContentType.Json,

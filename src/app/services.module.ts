@@ -1,7 +1,6 @@
 /* Services */
-import { IRailService  } from './services/iRail.service';
-import { StationService } from './services/stations.service';
+import { TripscoreService } from './services/tripscore.service';
 
 export class Services {
-    public static providers = [ IRailService, StationService ];
+    public static providers = [ TripscoreService];
 }
