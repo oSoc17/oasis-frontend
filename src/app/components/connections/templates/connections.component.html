@@ -1,26 +1,29 @@
-<mz-spinner
-  [color]="'blue'"
-  [size]="'big'" *ngIf="loading">
-</mz-spinner>
+<md-chip-list class="rt-updates">
+    <md-chip class="mat-chip mat-accent mat-chip-selected">Connections processed: {{ dataCount }}</md-chip>
+    <md-chip class="mat-chip mat-accent mat-chip-selected">HTTP Requests: {{ httpRequests }}</md-chip>
+    <md-chip class="mat-chip mat-accent mat-chip-selected">HTTP Responses: {{ httpResponses }}</md-chip>
+  </md-chip-list>
 
-<h3>{{ error }}</h3>
+<div *ngIf="!finished && !error">
+  <section _ngcontent-c23="" class="example-section">
+    <md-progress-bar _ngcontent-c23="" aria-valuemax="100" aria-valuemin="0" class="example-margin mat-progress-bar mat-primary" role="progressbar" _nghost-c22="" aria-valuenow="50" mode="indeterminate">
+      <div _ngcontent-c22="" class="mat-progress-bar-background mat-progress-bar-element">
+      </div>
+      <div _ngcontent-c22="" class="mat-progress-bar-buffer mat-progress-bar-element">
+      </div>
+      <div _ngcontent-c22="" class="mat-progress-bar-primary mat-progress-bar-fill mat-progress-bar-element" style="transform: scaleX(0.5);">
+      </div>
+      <div _ngcontent-c22="" class="mat-progress-bar-secondary mat-progress-bar-fill mat-progress-bar-element" style="transform: scaleX(0.5);">
+      </div>
+    </md-progress-bar>
+  </section>
+</div>
+<h5 *ngIf="error || !loading"><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
+<h3 *ngIf="error">ERROR: {{ error }}</h3>
 
 <div *ngIf="!loading && !error">
-  <h5><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
-  <section class="row">
-    <aside class="col s3">
-      <h5>{{ language.getMessage('departure') }}</h5>
-    </aside>
-    <aside class="col s3">
-      <h5>{{ language.getMessage('destination') }}</h5>
-    </aside>
-    <aside class="col s4">
-      <h5>{{ language.getMessage('qualityofexperience') }}</h5>
-    </aside>
-    <aside class="col s2"></aside>
-  </section>
-  <connection></connection>
-  <connection></connection>
-  <connection></connection>
-  <connection></connection>
+
+    <h5 class="center-align">{{ searchString.stations }}</h5>
+    <p  class="center-align">{{ searchString.time }}</p>
+    <route *ngFor="let i of qoeList" [qoe]='i'></route>
 </div>

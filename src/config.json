@@ -3,6 +3,9 @@
         "ttl": 0,
         "deleteInterval": 0
     },
+    "entrypoints": [
+      "http://belgium.linkedconnections.org/sncb/connections"
+    ],
     "servers": [
         {
             "name": "iRail",
@@ -34,6 +37,10 @@
                     "variables": ["departureTime"]
                 }
             ]
+        },
+        {
+            "name": "stationsserver",
+            "uri": "http://api.tripscore.eu:8080/station"
         }
     ]
 }

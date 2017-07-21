@@ -1,7 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ConnectionQuery } from './search/connectionQuery.component';
+
+import { SearchData } from './../classes/connections/searchData';
 
 @Component({
     selector: 'app-root',
@@ -9,11 +10,44 @@ import { ConnectionQuery } from './search/connectionQuery.component';
 })
 
 export class AppComponent {
-    constructor(private router: Router) { }
+    public static searchData: SearchData[];
+    public static searchString: any;
+    private static currPage = 0;
+    private static prevPage = 0;
 
-    requestConnections(data) {
-        console.log('Received data => Redirect');
-        console.log(data);
-        this.router.navigate(['connections']).then(e => console.log(e)).catch(e => console.log(e));
+    /**
+     * change current page
+     * @param number page ID
+     */
+    public static setPage(number) {
+        if (number <= 3) {
+            if (AppComponent.currPage !== 2) {
+                AppComponent.prevPage = AppComponent.currPage;
+            }
+            AppComponent.currPage = number;
+        }
+    }
+
+    /**
+     * Go back 1 screen
+     */
+    public static goBack() {
+        AppComponent.setPage(AppComponent.prevPage);
+    }
+
+    /**
+     * Get the currently shown page
+     */
+    public static getPage() {
+        return AppComponent.currPage;
+    }
+
+    constructor() { }
+
+    /**
+     * Get the currently shown page
+     */
+    private getPage() {
+        return AppComponent.currPage;
     }
 }

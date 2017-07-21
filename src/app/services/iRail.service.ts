@@ -1,40 +1,58 @@
+// Node Modules
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Headers, Http, ResponseContentType, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-/* Saved Stations */
+// Saved dummydata
 const stationsData = require('../../dummydata/stations.json');
 const config = require('../../config.json');
 
-import { SearchData } from '../classes/searchData';
+// Custom modules
+import { SearchData } from '../classes/connections/searchData';
+import { Utils } from '../classes/utils/utils';
 
 @Injectable()
 export class IRailService {
     private uri = config.servers[0].uri;
-    private options = new RequestOptions({
+    private requestOptions = new RequestOptions({
         headers: new Headers({'Accept': 'application/json'}),
         responseType: ResponseContentType.Json
     });
 
-    constructor(private http: Http, private router: Router) { }
+    constructor(private http: Http) { }
 
+    /**
+     * Handle an error in a proper way
+     * @param error the error to handle
+     */
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
     }
 
-    fakeReply(data: any): Promise<any> {
+    /**
+     * Do a reply in the form as a promise which is delayed by a few seconds
+     * @param data an object you expect as a reply
+     * @param delay the amount of delay to set in milliseconds - defaulted to 1 second
+     */
+    public fakeReply(data: any, delay: number = Utils.getSecondsValue(1)): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
-                console.log(data);
-                resolve(data);
+                // console.log(data);
+                setTimeout(() => {
+                    resolve(data);
+                }, delay);
             } catch (e) {
                 reject(e);
             }
         });
     }
 
-    filterStations(stations: any, query: string): Promise<any> {
+    /**
+     * Filter the stations based on a searchQuery
+     * @param stations an array of station objects
+     * @param query a part of a station name
+     */
+    public filterStations(stations: any, query: string): Promise<any> {
         return new Promise((resolve, reject) => {
             resolve(stations.filter((curr) => {
                 const names = [curr.standardname.toLowerCase(), curr.name.toLowerCase()];
@@ -45,7 +63,11 @@ export class IRailService {
         });
     }
 
-    getStations(query: string): Promise<any> {
+    /**
+     * Get all stations from the server or cache and filter it
+     * @param query the name or part of a name of the station
+     */
+    public getStations(query: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this.getAllStations().then((data) => {
                 return(this.filterStations(data, query));
@@ -53,7 +75,10 @@ export class IRailService {
         });
     }
 
-    getAllStations(): Promise<any> {
+    /**
+     * return all stations
+     */
+    public getAllStations(): Promise<any> {
         /*return this.http.get(`${this.iRailUrl}/stations?format=json`, this.options)
             .toPromise()
             .then((response) => response.json())
@@ -63,9 +88,13 @@ export class IRailService {
         return this.fakeReply(stationsData);
     }
 
-    /* DATE FORMAT: DD/MM/YYYY */
-    /* TIME FORMAT: HH:MM */
-    getRoutesReadable(query: SearchData): Promise<any> {
+    /**
+     * convert searchData to be able to query iRail and execute the actual query
+     * DATE FORMAT: DD/MM/YYYY
+     * TIME FORMAT: HH:MM
+     * @param query a searchData instance
+     */
+    public getRoutesReadable(query: SearchData): Promise<any> {
         let date = query.travelDate;
         let time = query.travelTime;
         date = new Date(date).toLocaleDateString('en-GB');
@@ -75,14 +104,18 @@ export class IRailService {
         return this.getRoutes(new SearchData(query.depStation, query.arrStation, time, date, query.timeType));
     }
 
-    getRoutes(query: SearchData): Promise<any> {
+    /**
+     * Query the iRail API to get a route from searchData instance
+     * @param query a searchData instance
+     */
+    public getRoutes(query: SearchData): Promise<any> {
       const params = new URLSearchParams();
       params.paramsMap = new Map([['to', [query.arrStation]], ['from', [query.depStation]],
                             ['time', [query.travelTime]], ['timeSel', [query.timeType]],
                             ['date', [query.travelDate]], ['format', ['json']]]);
         const options = new RequestOptions();
-        options.headers = this.options.headers;
-        options.responseType = this.options.responseType;
+        options.headers = this.requestOptions.headers;
+        options.responseType = this.requestOptions.responseType;
         options.search = params;
 
         return new Promise((resolve, reject) => {

@@ -1,1 +1,6 @@
-<input type="date" (input)="changeDate(value)" class="departDate" [(ngModel)]="selectedDate" />
+<md-select [(ngModel)]="selectedDay">
+    <md-option *ngFor="let day of language.getMessage('weekdays'); let i = index" [value]="i">
+        {{ day }}
+    </md-option>
+</md-select>
+<button md-button class="button-small" (click)="setNow()">{{ language.getMessage('now').toUpperCase() }}</button>

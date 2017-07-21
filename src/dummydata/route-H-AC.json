@@ -1,0 +1,200 @@
+[
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008896149",
+        "arrivalTime": "2017-07-13T13:05:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008896115",
+        "departureTime": "2017-07-13T13:01:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:00:00.000Z#1499950860000889611588____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": null
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008892106",
+        "arrivalTime": "2017-07-13T13:15:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008896149",
+        "departureTime": "2017-07-13T13:06:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:00:00.000Z#1499951160000889614988____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:00:00.000Z#1499950860000889611588____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008892080",
+        "arrivalTime": "2017-07-13T13:18:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008892106",
+        "departureTime": "2017-07-13T13:15:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:10:00.000Z#1499951700000889210688____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:00:00.000Z#1499951160000889614988____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008892007",
+        "arrivalTime": "2017-07-13T13:23:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008892080",
+        "departureTime": "2017-07-13T13:18:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:10:00.000Z#1499951880000889208088____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:10:00.000Z#1499951700000889210688____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008893179",
+        "arrivalTime": "2017-07-13T13:33:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008892007",
+        "departureTime": "2017-07-13T13:26:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:20:00.000Z#1499952360000889200788____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:10:00.000Z#1499951880000889208088____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008893120",
+        "arrivalTime": "2017-07-13T13:35:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008893179",
+        "departureTime": "2017-07-13T13:33:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:30:00.000Z#1499952780000889317988____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:20:00.000Z#1499952360000889200788____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894151",
+        "arrivalTime": "2017-07-13T13:45:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008893120",
+        "departureTime": "2017-07-13T13:37:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:30:00.000Z#1499953020000889312088____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:30:00.000Z#1499952780000889317988____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894201",
+        "arrivalTime": "2017-07-13T13:49:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894151",
+        "departureTime": "2017-07-13T13:45:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:40:00.000Z#1499953500000889415188____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:30:00.000Z#1499953020000889312088____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894425",
+        "arrivalTime": "2017-07-13T13:55:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894201",
+        "departureTime": "2017-07-13T13:51:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:50:00.000Z#1499953860000889420188____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:40:00.000Z#1499953500000889415188____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894433",
+        "arrivalTime": "2017-07-13T13:56:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894425",
+        "departureTime": "2017-07-13T13:55:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:50:00.000Z#1499954100000889442588____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:50:00.000Z#1499953860000889420188____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894508",
+        "arrivalTime": "2017-07-13T13:59:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894433",
+        "departureTime": "2017-07-13T13:56:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:50:00.000Z#1499954160000889443388____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:50:00.000Z#1499954100000889442588____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894714",
+        "arrivalTime": "2017-07-13T14:04:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894508",
+        "departureTime": "2017-07-13T14:01:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:00:00.000Z#1499954460000889450888____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T13:50:00.000Z#1499954160000889443388____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894748",
+        "arrivalTime": "2017-07-13T14:07:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894714",
+        "departureTime": "2017-07-13T14:04:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:00:00.000Z#1499954640000889471488____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:00:00.000Z#1499954460000889450888____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894755",
+        "arrivalTime": "2017-07-13T14:07:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894748",
+        "departureTime": "2017-07-13T14:07:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:00:00.000Z#1499954820000889474888____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:00:00.000Z#1499954640000889471488____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008894821",
+        "arrivalTime": "2017-07-13T14:09:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894755",
+        "departureTime": "2017-07-13T14:07:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/82",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:00:00.000Z#1499954820000889475588____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:00:00.000Z#1499954820000889474888____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008821196",
+        "arrivalTime": "2017-07-13T14:30:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008894821",
+        "departureTime": "2017-07-13T14:25:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/139",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A046%3A%3A8894201%3A8821006%3A11%3A1642%3A20171208",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:20:00.000Z#1499955900000889482188____%3A046%3A%3A8894201%3A8821006%3A11%3A1642%3A20171208",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:00:00.000Z#1499954820000889475588____%3A007%3A%3A8896008%3A8821006%3A20%3A1623%3A20170713"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008821121",
+        "arrivalTime": "2017-07-13T14:36:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008821196",
+        "departureTime": "2017-07-13T14:31:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/139",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A046%3A%3A8894201%3A8821006%3A11%3A1642%3A20171208",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:30:00.000Z#1499956260000882119688____%3A046%3A%3A8894201%3A8821006%3A11%3A1642%3A20171208",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:20:00.000Z#1499955900000889482188____%3A046%3A%3A8894201%3A8821006%3A11%3A1642%3A20171208"
+    },
+    {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://semweb.mmlab.be/ns/linkedconnections#Connection",
+        "arrivalStop": "http://irail.be/stations/NMBS/008821006",
+        "arrivalTime": "2017-07-13T14:42:00.000Z",
+        "departureStop": "http://irail.be/stations/NMBS/008821121",
+        "departureTime": "2017-07-13T14:38:00.000Z",
+        "http://vocab.gtfs.org/terms#route": "http://irail.be/routes/139",
+        "http://vocab.gtfs.org/terms#trip": "http://irail.be/trips/88____%3A046%3A%3A8894201%3A8821006%3A11%3A1642%3A20171208",
+        "@id": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:30:00.000Z#1499956680000882112188____%3A046%3A%3A8894201%3A8821006%3A11%3A1642%3A20171208",
+        "previous": "http://belgium.linkedconnections.org/sncb/connections?departureTime=2017-07-13T14:30:00.000Z#1499956260000882119688____%3A046%3A%3A8894201%3A8821006%3A11%3A1642%3A20171208"
+    }
+]

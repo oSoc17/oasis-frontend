@@ -1,12 +1,17 @@
-import { Component, Input, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
 
 import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
 import { TravelDate } from './travelDate.component';
 
-import { SearchData } from '../../classes/searchData';
-import { Language } from '../../classes/language';
+import { SearchData } from '../../classes/connections/searchData';
+import { Language } from '../../classes/userData/language';
+import { Utils } from '../../classes/utils/utils';
+
+import { AppComponent } from '../app.component';
+import { Recents } from './recents.component';
+import { AppModule } from '../../app.module';
+import { Recent } from '../../classes/userData/recent';
 
 @Component({
     selector: 'connectionquery',
@@ -19,23 +24,56 @@ export class ConnectionQuery {
     @ViewChild('arrival') arrStation: StationList;
     @ViewChild(TravelTime) travelTime: TravelTime;
     @ViewChild(TravelDate) travelDate: TravelDate;
-    @Output() routeUpdated = new EventEmitter();
-    searchData: SearchData;
+    @ViewChild(Recents) recents: Recents;
+    @ViewChild('calculate') calculate;
+    searchData: SearchData[];
     error: string;
     language: Language = new Language();
 
-    constructor(private router: Router) {}
+    constructor() {}
 
+    /**
+     * Request connections and process them
+     */
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;
-        if (arriveSt.id === departSt.id) {
+        const arrInputValue = this.arrStation.inputValue;
+        const depInputValue = this.depStation.inputValue;
+        if (!(arriveSt && departSt)) {
+            this.error = this.language.getMessage('errNoStations');
+        } else if ( arriveSt.id === departSt.id) {
             this.error = this.language.getMessage('errEqualStations');
+        } else if (this.travelTime.selectedTime === '') {
+            this.error = this.language.getMessage('errNoTime');
+        } else if (this.travelDate.selectedDay === null) {
+            this.error = this.language.getMessage('errNoDays');
         } else {
-            this.searchData = new SearchData(departSt.id, arriveSt.id, this.travelTime.selectedTime,
-                                    this.travelDate.selectedDate, this.travelTime.selectedType);
+            console.log(arriveSt);
+            console.log(departSt);
+            this.searchData = [];
+            this.searchData = SearchData.createPeriodicList(departSt['id'], arriveSt['id'],
+                this.travelTime.selectedTime, Utils.getLatest(this.travelDate.selectedDay), 'departureTime', 14);
+            AppComponent.searchData = this.searchData;
+            AppComponent.searchString = {
+                stations: departSt.standardname + ' - ' + arriveSt.standardname,
+                time: this.travelTime.selectedTime + ' ' + this.language.getMessage('weekdays')[this.travelDate.selectedDay]
+            };
+            AppModule.options.addRecent(new Recent(this.searchData, departSt.standardname, arriveSt.standardname,
+                this.travelTime.selectedTime, this.travelDate.selectedDay));
+            AppModule.options.save();
+            AppComponent.setPage(1);
+        }
+    }
 
-            this.router.navigate(['/connections', this.searchData]);
+    /**
+     * Requests parent to focus the next field
+     */
+    focusNext(evt) {
+        if (evt === 'depature') {
+            this.arrStation.focus();
+        } else if (evt === 'arrival') {
+            this.travelTime.focus();
         }
     }
 }

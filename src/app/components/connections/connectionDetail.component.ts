@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Location } from '@angular/common';
+import { Language } from '../../classes/userData/language';
 
-import { Language } from '../../classes/language';
+import { AppComponent } from '../app.component';
 
 @Component({
     selector: 'connectiondetail',
@@ -13,9 +13,12 @@ export class ConnectionDetail {
     train = 'P23412';
     language: Language = new Language();
 
-    constructor(private location: Location) {}
+    constructor() {}
 
+    /**
+     * Go back one page
+     */
     goBack() {
-        this.location.back();
+        AppComponent.goBack();
     }
 }
