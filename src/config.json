@@ -18,7 +18,7 @@
     "servers": {
         "tripscoreAPI": {
             "name": "stationsserver",
-            "uri": "http://api.tripscore.eu:8080/station"
+            "uri": "https://api.tripscore.eu"
         }
     }
 }

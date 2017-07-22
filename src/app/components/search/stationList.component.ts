@@ -72,15 +72,15 @@ export class StationList implements OnInit {
                 // Filter this locally.
                 return this.filterStations(val);
             }
-            if (val.length > 3) {
-                this.tripscoreService.queryStations(val).then((res) => {
-                    this.qresults = res;
-                    this.stations = this.qresults;
+
+            this.tripscoreService.queryStations(val).then((res) => {
+                this.qresults = res.stations;
+                this.stations = this.qresults;
+                // If there is a next page keep getting results from server
+                if (!res.nextPage) {
                     this.lastQuery = val;
-                });
-            } else {
-                this.qresults = [];
-            }
+                }
+            });
         }
     }
 
