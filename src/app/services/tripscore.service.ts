@@ -56,7 +56,7 @@ export class TripscoreService {
         });
         return this.http.get(`${this.uri}/station`, options)
             .toPromise()
-            .then((response) => response.json())
+            .then((response) => response.json().stations)
             .catch(this.handleError);
     }
 }
