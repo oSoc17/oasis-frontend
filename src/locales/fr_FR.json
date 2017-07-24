@@ -49,7 +49,7 @@
     "avgTravelTime_tooltip": "Temps de trajet total moyen.",
     "missedConnections_tooltip": "Le pourcentage de chances de rater un changement de train. Souvent influencé par les retards.",
     "recents": "Récent",
-    "basedOn": "Sur base de XX enregistrement(s)",
+    "basedOn": "Sur base de XX semaine(s)",
     "now": "maintenant",
     "resetOptions": "Réinitialiser",
     "preferences": "Préférences",

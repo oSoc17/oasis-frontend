@@ -48,7 +48,7 @@
     "changeTime_tooltip": "Media de tiempo que acepta esperar cuando necesite realizar un transbordo. Cualquier valor por encima de su preferencia reducirá la puntuación del viaje",
     "avgTravelTime_tooltip": "Media de tiempo entre la salida y la llegada",
     "missedConnections_tooltip": "Media de la posibilidad de perder la conexión en el transbordo. Influenciado por los retrasos",
-    "basedOn": "Basado en XX registro(s)",
+    "basedOn": "Basado en XX semana(s)",
     "now": "ahora",
     "resetOptions": "Reset",
     "preferences": "Preferencias",
