@@ -6,6 +6,8 @@
   <md-option *ngFor="let station of qresults" [value]="station.standardname"
                   (click)="filterStations(station.standardname);requestFocusNext()"> {{ station.standardname }}
       <img src='{{ imgstart + station.company + ".png" }}' class="line-end-img"/>
+      <md-icon *ngIf='station.type === "train"' class="line-end-img">train</md-icon>
+      <md-icon *ngIf='station.type === "bus"' class="line-end-img">directions_bus</md-icon>
   </md-option>
                 
 </md-autocomplete>
