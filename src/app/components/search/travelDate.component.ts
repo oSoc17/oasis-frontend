@@ -9,13 +9,13 @@ import { Language } from '../../classes/userData/language';
 })
 
 export class TravelDate {
-    selectedDay: number = ((new Date()).getDay() + 6) % 7;
+    selectedDay: number = (new Date()).getDay(); // weekday index starting at sunday (0)
     language = new Language();
 
     /**
      * Sets the traveldate to the current pc's date
      */
     setNow() {
-        this.selectedDay = ((new Date()).getDay() + 6) % 7;
+        this.selectedDay = (new Date()).getDay();
     }
 }

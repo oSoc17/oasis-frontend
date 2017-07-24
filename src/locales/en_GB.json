@@ -34,13 +34,13 @@
     "optMissedConnections": "Missed connections",
     "price": "Price",
     "weekdays": [
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday",
-        "Sunday"
+        "Saturday"
     ],
     "delay_tooltip": "Maximum amount of minutes that you consider an acceptable delay. Any amount above your preference will reduce the trip score.",
     "amountOfChanges_tooltip": "Average amount of times you need to change vehicle. Any amount above your preference will reduce the trip score.",
