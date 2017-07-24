@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, NgZone } from '@angular/core';
 
 import { AppComponent } from '../app.component';
 import { SearchData } from '../../classes/connections/searchData';
@@ -33,7 +33,7 @@ export class Connections implements OnInit {
     httpRequests = 0;
     httpResponses = 0;
 
-    constructor(private ref: ChangeDetectorRef) {
+    constructor(private zone: NgZone) {
         if (AppComponent.searchData) {
             const searchQuery = AppComponent.searchData[0];
             if (ServerConfig.equalUris(searchQuery.depStation, searchQuery.arrStation)) {
@@ -41,11 +41,11 @@ export class Connections implements OnInit {
                 const entrypoint = ServerConfig.getServerByStation(AppComponent.searchData[0].depStation);
                 this.manager = new Manager(entrypoint);
                 this.qoeList = this.manager.qoeList;
-                // This improves performance
-                setInterval(() => {
-                    this.ref.detectChanges();
-                    // timeout handled by lc-client now
-                }, 100);
+                this.manager.getRouteListener.subscribe(() => {
+                    this.zone.run(() => {
+                        console.log('Refresh connections');
+                    });
+                });
                 return;
             }
         }
