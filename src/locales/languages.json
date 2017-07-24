@@ -2,8 +2,6 @@
 "languages": [
   {"name": "English", "tag": "en_GB"},
   {"name": "Nederlands", "tag": "nl_BE"},
-  {"name": "Español", "tag": "es_ES"},
-  {"name": "Français", "tag": "fr_FR"}
-
+  {"name": "Español", "tag": "es_ES"}
 ]
 }
