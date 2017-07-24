@@ -31,13 +31,13 @@ export class Manager {
             this.routeService = new RouteService(this.entryPoints);
         }
         this.routeService.onQueryResult.subscribe((result) => {
-            const route = new Route(result);
+            const route = new Route(result.map(con => new Connection(con)));
             for (const qoe of this._qoeList) {
                 if (qoe.departureTime.toTimeString() === route.departureTime.toTimeString()) {
                     return qoe.addRoute(route);
                 }
             }
-            console.log(result);
+            // console.log(result);
             const routeHistory = new RouteHistory([route]);
             this._qoeList.push(new QoE(routeHistory, new UserPreferences()));
             this._qoeList.sort((a, b) => {
