@@ -22,6 +22,7 @@ export class StationList implements OnInit {
     qresults: any[];
     stations: any[];
     lastQuery: string;
+    imgstart = 'assets/img/';
     @ViewChild(MdInputContainer) mdInput: MdInputContainer;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
 
