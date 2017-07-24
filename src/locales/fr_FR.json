@@ -34,13 +34,13 @@
     "optMissedConnections": "Correspondances ratées",
     "price": "Prix",
     "weekdays": [
+        "Dimanche",
         "Lundi",
         "Mardi",
         "Mercredi",
         "Jeudi",
         "Vendredi",
-        "Samedi",
-        "Dimanche"
+        "Samedi"
     ],
     "delay_tooltip": "Temps d'attente maximum (en minutes) entre les correspondances. Une attente plus longue que votre préférence réduira le tripscore.",
     "amountOfChanges_tooltip": "Nombre moyen de correspondances. Un nombre supérieur à votre préférence réduira le tripscore.",

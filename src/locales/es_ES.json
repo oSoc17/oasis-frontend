@@ -34,13 +34,13 @@
     "optMissedConnections": "Conexiones perdidas",
     "price": "Precio",
     "weekdays": [
+        "Domingo",
         "Lunes",
         "Martes",
         "Miércoles",
         "Jueves",
         "Viernes",
-        "Sábado",
-        "Domingo"
+        "Sábado"
     ],
     "delay_tooltip": "Máxima cantidad de minutos que considere aceptable en un retraso. Cualquier retraso por encima de su preferencia reducirá la puntuación del viaje",
     "amountOfChanges_tooltip": "Media de las veces que se necesitará realizar transbordo. Cualquier valor por encima de su prefrencia reducirá la puntuación del viaje",
