@@ -52,7 +52,7 @@ export class RouteService implements IRouteService {
             // reject('Invalid latestDepartTime!');
             return console.log('Invalid latestDepartTime!');
         }
-
+      
         /*if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
             console.log('Total connections processed ', dataCount);
             return cb(paths);

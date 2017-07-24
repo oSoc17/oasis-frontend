@@ -27,7 +27,8 @@
   "missedConnections": "Mogelijks gemiste connecties",
   "options": "Instellingen",
   "language": "Taal",
-  "delay": "Aanvaardbare vertraging",
+  "delay": "Vertraging",
+  "delay_title": "Aanvaardbare vertraging",
   "amountOfChanges": "Aantal overstappen",
   "travelTime": "Reistijd",
   "optMissedConnections": "Gemiste connecties",
@@ -55,5 +56,10 @@
   "prefExplenation": "De volgende opties bepalen hoeveel elke variabele meegerekend wordt bij het berekenen van jouw tripscore. Hoe belangrijker je een variabele vindt, hoe zwaarder die wordt meegerekend.",
   "minutes": "min",
   "hops": "overstappen",
-  "errStationServer": "Stations bevinden zich niet in hetzelfde land/regio"
+  "errStationServer": "Stations bevinden zich niet in hetzelfde land/regio",
+  "licence": "© 2017 MIT",
+  "references": ["Leer meer over dit project op "," of "],
+  "conn_proc": "Verbindingen verwerkt: ",
+  "http_req": "HTTP Requests: ",
+  "http_res": "HTTP Responses: "
 }

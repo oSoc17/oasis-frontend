@@ -25,8 +25,14 @@ body {
     flex-direction: column;
 }
 
-app-root {
+main {
     flex: 1 0 auto;
+}
+
+app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 input:not([type]), input[type=time]:not(.browser-default) {
