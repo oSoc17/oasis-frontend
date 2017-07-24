@@ -17,7 +17,11 @@ export class Connection {
         this.arrivalStop = GraphItemJson['arrivalStop'];
         this.departureTime = new Date(Date.parse(GraphItemJson['departureTime']));
         this.arrivalTime = new Date(Date.parse(GraphItemJson['arrivalTime']));
-        this.gtfstrip = GraphItemJson['http://vocab.gtfs.org/terms#trip'];
+        if (GraphItemJson['http://vocab.gtfs.org/terms#trip'] !== undefined) {
+            this.gtfstrip = GraphItemJson['http://vocab.gtfs.org/terms#trip'];
+        }else {
+            this.gtfstrip = GraphItemJson['gtfs:trip'];
+        }
         this.gtfsroute = GraphItemJson['http://vocab.gtfs.org/terms#route'];
 
         if (GraphItemJson['departureDelay']) {

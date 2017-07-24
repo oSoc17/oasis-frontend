@@ -31,7 +31,7 @@ export class Manager {
             this.routeService = new RouteService(this.entryPoints);
         }
         this.routeService.onQueryResult.subscribe((result) => {
-            const route = new Route(result);
+            const route = new Route(result.map(con => new Connection(con)));
             for (const qoe of this._qoeList) {
                 if (qoe.departureTime.toTimeString() === route.departureTime.toTimeString()) {
                     return qoe.addRoute(route);
