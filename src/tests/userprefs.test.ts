@@ -2,6 +2,9 @@ import {UserPreferencesMock} from '../app/classes/mocks/userprefs.mock';
 import {IUserPreferences} from '../app/interfaces/iUserPreferences';
 import {UserPreferences} from '../app/classes/userData/userprefs';
 
+/**
+ * Testing UserPreferences interface class
+ */
 describe('testing UserPreferences interface class', () => {
     let prefs: IUserPreferences;
         prefs = new UserPreferencesMock();
@@ -18,7 +21,10 @@ describe('testing UserPreferences interface class', () => {
         });
 });
 
-describe('testing UserPrreferences constructor', () => {
+/**
+ * Testing UserPreferences constructor
+ */
+describe('testing UserPreferences constructor', () => {
     const prefs = new UserPreferences();
     const tot =  prefs.weight_AvgChangesAmount
                      + prefs.weight_AvgChangeTime

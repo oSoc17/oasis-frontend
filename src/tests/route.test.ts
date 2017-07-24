@@ -1,14 +1,18 @@
 import { Route } from '../app/classes/connections/route';
 import { Connection } from '../app/classes/connections/connection';
 
-/* Constructor test */
+/**
+ * Check if route constructor works
+ */
 describe('Route.ts constructor', () => {
     it('object should be created', () => {
         const route = new Route([]);
     });
 });
 
-/* Connections test */
+/**
+ * Checks if route connections are handled properly
+ */
 describe('Route.ts connections', () => {
     it('Connection should be added to array connections', () => {
         // setup
@@ -30,7 +34,9 @@ describe('Route.ts connections', () => {
     });
 });
 
-/* totalTravelTime test */
+/**
+ * Check if totaltraveltime is as expected
+ */
 describe('Route.ts totalTravelTime()', () => {
     it('Should return 20 minutes', () => {
         // setup
@@ -57,7 +63,9 @@ describe('Route.ts totalTravelTime()', () => {
     });
 });
 
-/* getInterMediateStopsAmount test */
+/**
+ * Checks if amount of intermediate stops are correct
+ */
 describe('Route.ts getInterMediateStopsAmount()', () => {
     it('Should return 1 intermediate stop', () => {
         // setup
@@ -83,7 +91,9 @@ describe('Route.ts getInterMediateStopsAmount()', () => {
     });
 });
 
-/* getChangesAmount test */
+/**
+ * Checks if amount of changes is correct
+ */
 describe('Route.ts getChangesAmount()', () => {
     it('Should return 1 change', () => {
         // setup
@@ -108,7 +118,9 @@ describe('Route.ts getChangesAmount()', () => {
     });
 });
 
-/* getAvgChangeTime test */
+/**
+ * Checks if average change time is correct
+ */
 describe('Route.ts getAvgChangeTime()', () => {
     it('Should return 1 change', () => {
         // setup
@@ -133,7 +145,9 @@ describe('Route.ts getAvgChangeTime()', () => {
     });
 });
 
-/* getDelay test */
+/**
+ * Check if delays are properly returned
+ */
 describe('Route.ts getDelay()', () => {
     it('Should return 3 minutes', () => {
         // setup
@@ -158,24 +172,26 @@ describe('Route.ts getDelay()', () => {
     });
 });
 
-/* missed train test */
+/**
+ * Checks if route module returns missed changes correctly
+ */
 describe('Route.ts getChangesMissed()', () => {
-    const startOnTime = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
-                                            + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
-                                            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
-                                            + ' "arrivalDelay": "3"}'));
+    const startOnTime = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop":'
+            + '"B", "departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
+            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
+            + ' "arrivalDelay": "3"}'));
     const endOnTime = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
-                                            + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
-                                            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "1",'
-                                            + ' "arrivalDelay": "10"}'));
+            + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
+            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "1",'
+            + ' "arrivalDelay": "10"}'));
     const startLate = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
-                                            + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
-                                            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
-                                            + ' "arrivalDelay": "30"}'));
+            + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
+            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
+            + ' "arrivalDelay": "30"}'));
     const endLate = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
-                                            + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
-                                            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "30",'
-                                            + ' "arrivalDelay": "10"}'));
+            + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
+            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "30",'
+            + ' "arrivalDelay": "10"}'));
     const r1 = new Route([startOnTime, endOnTime]);
     const r2 = new Route([startLate, endOnTime]);
     const r3 = new Route([startLate, endLate]);

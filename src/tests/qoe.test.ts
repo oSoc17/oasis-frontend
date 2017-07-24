@@ -6,7 +6,9 @@ import { Route } from '../app/classes/connections/route';
 import { SearchData} from '../app/classes/connections/searchData';
 import {Manager} from '../app/classes/connections/manager';
 
-/* Constructor test */
+/**
+ * Test QoE constructor
+ */
 describe('QoE.ts constructor', () => {
   it('object should be created', () => {
     // setup
@@ -18,7 +20,9 @@ describe('QoE.ts constructor', () => {
   });
 });
 
-/* RuntimeError test */
+/**
+ * Check for runtime errors
+ */
 describe('QoE.ts', () => {
   it('should just run', () => {
     // setup

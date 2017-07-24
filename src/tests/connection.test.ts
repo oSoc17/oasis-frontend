@@ -1,5 +1,8 @@
 import { Connection } from '../app/classes/connections/connection';
 
+/**
+ * Tests if connection class constructor works without any errors
+ */
 describe('Connection.ts: Connection class constructor test', () => {
     // setup
     const dummyjson = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710"'
@@ -51,6 +54,9 @@ describe('Connection.ts: Connection class constructor test', () => {
 
 });
 
+/**
+ * Checks if departuredelays are processed properly by the constructor
+ */
 describe('Connection.ts: Connection class constructor test', () => {
     // setup
     const dummyjson = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710"'
@@ -66,7 +72,5 @@ describe('Connection.ts: Connection class constructor test', () => {
     it('departureDelay should be 10', () => {
         expect(connection.departureDelay.getMinutes()).toEqual(10);
     });
-
-
 });
 
