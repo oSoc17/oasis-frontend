@@ -20,7 +20,7 @@ export class QoE implements IQoE {
         this.userPreferences = preference;
         if (routeHistory.routes.length > 0) {
             this._departureTime = routeHistory.routes[0].departureTime;
-            this._arrivalTime = routeHistory.routes[0].arrivalTime;
+            this._arrivalTime = new Date(this._departureTime.valueOf() + this.routeHistory.getAvgTravelTime().valueOf());
         } else {
             this._departureTime = new Date(0);
             this._arrivalTime = new Date(0);
