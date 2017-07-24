@@ -14,6 +14,7 @@ import { TimeChoiceComponent } from './components/options/sliderChoice';
 import { MultipleChoiceComponent } from './components/options/mutipleChoice.components';
 import { Recents } from './components/search/recents.component';
 import { Route } from './components/connections/route.component';
+import { FooterComponent } from "./components/footer.component";
 
 export class Components {
     public static components = [
@@ -31,6 +32,7 @@ export class Components {
         TimeChoiceComponent,
         MultipleChoiceComponent,
         Recents,
-        Route
+        Route,
+        FooterComponent
     ];
 }

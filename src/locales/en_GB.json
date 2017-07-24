@@ -27,7 +27,8 @@
     "missedConnections": "Possibly missed connections due to delays",
     "options": "Options",
     "language": "Language",
-    "delay": "Acceptable delay",
+    "delay": "Delay",
+    "delay_title": "Acceptable delay",
     "amountOfChanges": "Hops needed",
     "travelTime": "Travel time",
     "optMissedConnections": "Missed connections",
@@ -55,5 +56,10 @@
     "prefExplenation": "The following options determine how much each variable is counted when calculating your tripscore. The more important you desegnate an item, the heavier it wil weigh in the final score.",
     "minutes": "min",
     "hops": "hops",
-    "errStationServer": "Stations are not in the same region/country"
+    "errStationServer": "Stations are not in the same region/country",
+    "licence": "© 2017 MIT",
+    "references": ["Learn more about the project on "," or "],
+    "conn_proc": "Connections processed: ",
+    "http_req": "HTTP Requests: ",
+    "http_res": "HTTP Responses: "
 }

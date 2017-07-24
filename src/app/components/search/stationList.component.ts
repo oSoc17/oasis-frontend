@@ -23,6 +23,11 @@ export class StationList implements OnInit {
     stations: any[];
     lastQuery: string;
     imgstart = 'assets/img/';
+    transportTypes = [{type: 'bus', icon: 'directions_bus'},
+                    {type: 'emt-bus', icon: 'location_city'},
+                    {type: 'metro', icon: 'subway'},
+                    {type: 'tram', icon: 'tram'},
+                    {type: 'train', icon: 'train'}]
     @ViewChild(MdInputContainer) mdInput: MdInputContainer;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
 

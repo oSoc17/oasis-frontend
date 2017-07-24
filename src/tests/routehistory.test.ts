@@ -97,8 +97,7 @@ describe('routeHistory.ts getDelayConsistency()', () => {
             'A%3A8841004%3A8884335%3A52%3A1247%3A20170710","gtfs:route": "http://irail.be/routes/51"}';
         const json1 = JSON.parse(dummyjson1);
         const c1 = new Connection(json1);
-        const route1 = new Route([]);
-        route1.connections.push(c1);
+
 
         const dummyjson2 = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A201707' +
             '10","@type": "Connection","departureStop": "http://irail.be/stations/NMBS/008814340","arrivalStop": "http:' +
@@ -107,13 +106,13 @@ describe('routeHistory.ts getDelayConsistency()', () => {
             '52%3A1247%3A20170710","gtfs:route": "http://irail.be/routes/51"}';
         const json2 = JSON.parse(dummyjson2);
         const c2 = new Connection(json2);
-        const route2 = new Route([]);
-        route2.connections.push(c2);
+        const route1 = new Route([c1, c2]);
+        const route2 = new Route([c2, c1]);
         const array = [route1, route2];
         const routeHistory = new RouteHistory(array);
 
         // assertion
-        expect(routeHistory.getDelayConsistency().valueOf()).to.equal(150000);
+        expect(routeHistory.getDelayConsistency().valueOf()).toBe(150000);
 
     });
 });
