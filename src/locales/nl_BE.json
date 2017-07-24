@@ -34,13 +34,13 @@
   "optMissedConnections": "Gemiste connecties",
   "price": "Prijs",
   "weekdays": [
+    "Zondag",
     "Maandag",
     "Dinsdag",
     "Woensdag",
     "Donderdag",
     "Vrijdag",
-    "Zaterdag",
-    "Zondag"
+    "Zaterdag"
   ],
   "delay_tooltip": "Maximum aantal minuten vertraging die u aanvaardbaar vindt. Trips met meer vertraging dan aanvaardbaar krijgen een lagere score.",
   "amountOfChanges_tooltip": "Het gemiddeld aantal keer je moet overstappen. Trips met meer overstappen dan uw voorkeur krijgen een lagere score.",
