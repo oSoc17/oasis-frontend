@@ -25,7 +25,10 @@ export class Recents {
      */
     onClick(recent: Recent) {
         AppComponent.searchData = recent.searchData;
-        AppComponent.searchString = recent.depStationReadable + ' - ' + recent.arrStationReadable;
+        AppComponent.searchString = {
+            stations: recent.depStationReadable + ' - ' + recent.arrStationReadable,
+            time: recent.travelTimeReadable + ' ' + this.language.getMessage('weekdays')[recent.travelDay]
+        };
         AppComponent.setPage(1);
     }
 }

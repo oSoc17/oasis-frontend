@@ -21,8 +21,7 @@
 <h5 *ngIf="error || !loading"><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
 <h3 *ngIf="error">ERROR: {{ error }}</h3>
 
-<div *ngIf="!loading && !error">
-
+<div>
     <h5 class="center-align">{{ searchString.stations }}</h5>
     <p  class="center-align">{{ searchString.time }}</p>
     <route *ngFor="let i of qoeList" [qoe]='i'></route>
