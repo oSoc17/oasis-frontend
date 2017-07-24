@@ -49,24 +49,13 @@ export class RouteService implements IRouteService {
         const self = this;
 
         if (!searchData.latestDepartTime) {
-            // reject('Invalid latestDepartTime!');
             return console.log('Invalid latestDepartTime!');
         }
-      
-        /*if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
-            console.log('Total connections processed ', dataCount);
-            return cb(paths);
-        }*/
 
         this.planner.timespanQuery(searchData, (resultStream, source) => {
             let result = false;
             resultStream.on('result',  (path) => {
-                console.log('depart:', searchData.departureTime);
-                console.log('latest depart:', searchData.latestDepartTime);
                 paths.push(path);
-                // Old recursive way
-                // searchData.departureTime = new Date(new Date(path[0].departureTime).valueOf() + 60000);
-                // self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
                 this._onQueryResult.dispatch(path);
                 result = true;
             });
