@@ -1,6 +1,9 @@
 import { SearchData } from '../app/classes/connections/searchData';
 import { Utils } from '../app/classes/utils/utils';
 
+/**
+ * Test if this returns last monday
+ */
 it('should give last monday', () => {
     let s: SearchData[] = [];
     const days = {'0': true, '1': false}

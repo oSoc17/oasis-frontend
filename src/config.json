@@ -3,40 +3,26 @@
         "ttl": 0,
         "deleteInterval": 0
     },
-    "entrypoints": [
-      "http://belgium.linkedconnections.org/sncb/connections"
-    ],
-    "servers": [
-        {
-            "name": "iRail",
-            "uri": "http://api.irail.be"
+    "stationUris": {
+        "irail.be/stations/NMBS/": "belgium_sncb",
+        "madrid.linkedconnections.org/crtm/stops/": "madrid_crtm",
+        "belgium.linkedconnections.org/delijn/stops/": "belgium_delijn"
+    },
+    "entrypoints": {
+        "belgium_sncb": {
+            "uri": "http://belgium.linkedconnections.org/sncb/connections"
         },
-        {
-            "name":"linkedconnections-Belgium",
-            "uri":"http://belgium.linkedconnections.org",
-            "types":[
-                {
-                    "name": "sncb-schedule",
-                    "path": "/sncb/connections",
-                    "variables": ["departureTime"]
-                },
-                {
-                    "name": "delijn-schedule",
-                    "path": "/delijn/connections",
-                    "variables": ["departureTime"]
-                }
-            ]
+        "belgium_delijn": {
+            "uri": "http://belgium.linkedconnections.org/delijn/connections"
         },
-        {
-            "name": "linkedconnections-Madrid",
-            "uri":"http://madrid.linkedconnections.org",
-            "types":[
-                {
-                    "name": "crtm-schedule",
-                    "path": "/crtm/connections",
-                    "variables": ["departureTime"]
-                }
-            ]
+        "madrid_crtm": {
+            "uri": "http://madrid.linkedconnections.org/crtm/connections"
         }
-    ]
+    },
+    "servers": {
+        "tripscoreAPI": {
+            "name": "stationsserver",
+            "uri": "https://api.tripscore.eu"
+        }
+    }
 }

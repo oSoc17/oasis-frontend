@@ -7,6 +7,7 @@ import { Language } from '../../classes/userData/language';
 import { Manager } from '../../classes/connections/manager';
 import { QoE } from '../../classes/connections/qoe';
 import { Route } from '../../classes/connections/route';
+import { ServerConfig } from '../../classes/utils/serverConfig';
 
 @Component({
     selector: 'connections',
@@ -33,18 +34,22 @@ export class Connections implements OnInit {
     httpResponses = 0;
 
     constructor(private ref: ChangeDetectorRef) {
-        this.manager = new Manager();
-        this.qoeList = this.manager.qoeList;
-        // This improves performance
-        setInterval(() => {
-            this.ref.detectChanges();
-            // timeout handled by lc-client now
-            // if ((this.dataCount > 2000 || this.httpResponses > 1500) && this.qoeList.length === 0) {
-            //     this.finished = true;
-            //     this.manager.stop()
-            //     this.error = 'routing timed out';
-            // }
-        }, 100);
+        if (AppComponent.searchData) {
+            const searchQuery = AppComponent.searchData[0];
+            if (ServerConfig.equalUris(searchQuery.depStation, searchQuery.arrStation)) {
+                console.log(AppComponent.searchData[0].depStation);
+                const entrypoint = ServerConfig.getServerByStation(AppComponent.searchData[0].depStation);
+                this.manager = new Manager(entrypoint);
+                this.qoeList = this.manager.qoeList;
+                // This improves performance
+                setInterval(() => {
+                    this.ref.detectChanges();
+                    // timeout handled by lc-client now
+                }, 100);
+                return;
+            }
+        }
+        AppComponent.setPage(0);
     }
 
     /**

@@ -14,6 +14,9 @@ export class NavComponent {
 
     constructor(public snackBar: MdSnackBar) { }
 
+    /**
+     * Handles the click on settings icon
+     */
     private clickSettings() {
         // console.log('open settings');
         if (AppComponent.getPage() === 2) {
@@ -26,6 +29,9 @@ export class NavComponent {
         }
     }
 
+    /**
+     * Goes back one page
+     */
     private goBack() {
         AppComponent.goBack();
     }

@@ -12,6 +12,9 @@ export class TravelDate {
     selectedDay: number = ((new Date()).getDay() + 6) % 7;
     language = new Language();
 
+    /**
+     * Sets the traveldate to the current pc's date
+     */
     setNow() {
         this.selectedDay = ((new Date()).getDay() + 6) % 7;
     }

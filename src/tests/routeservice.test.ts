@@ -19,6 +19,9 @@ import 'rxjs/add/operator/toPromise';
     }, 5000);
 });*/
 
+/**
+ * Tests routingservice
+ */
 describe('RoutingService test', () => {
     it('RoutingService#query()', (done) => {
         const routeService = new RouteService(['http://belgium.linkedconnections.org/sncb/connections']);
@@ -48,6 +51,9 @@ describe('RoutingService test', () => {
     }, 15000);
 });
 
+/**
+ * SearchData create datalist test
+ */
 describe('SearchData create datalist test', () => {
     const routeService = new RouteService(['http://belgium.linkedconnections.org/sncb/connections']);
     const searchDataList = SearchData.createPeriodicList('http://irail.be/stations/NMBS/008892007'

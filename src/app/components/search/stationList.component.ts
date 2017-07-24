@@ -1,12 +1,12 @@
+// Node modules
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
+import { MdInputContainer } from '@angular/material';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
-import { IRailService } from '../../services/iRail.service';
-import { MdInputContainer } from '@angular/material';
-
+// Custom modules
+import { TripscoreService } from '../../services/tripscore.service';
 
 @Component({
     selector: 'stationlist',
@@ -17,31 +17,30 @@ import { MdInputContainer } from '@angular/material';
 export class StationList implements OnInit {
     selectedStation = null;
     stationCtrl: FormControl;
-    filteredStations: any;
-    stations: any;
     inputValue: string;
+    tripscoreService: TripscoreService;
+    qresults: any[];
+    stations: any[];
+    lastQuery: string;
     @ViewChild(MdInputContainer) mdInput: MdInputContainer;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
 
     /**
      * Constructor, load in all stations
-     * @param iRailService iRail service instance
+     * @param http iRail service instance
      */
-    constructor(iRailService: IRailService) {
-        iRailService.getAllStations().then((data) => {
-            this.stations = (data as any).station;
-        }).catch(e => console.log(e));
+    constructor(tripscoreService: TripscoreService) {
+        this.tripscoreService = tripscoreService;
         this.stationCtrl = new FormControl();
-        this.filteredStations = this.stationCtrl.valueChanges
-            .startWith(null)
-            .map(station => this.filterStations(station));
-        // this.stationCtrl.valueChanges.toPromise().then(val => console.log(val)).catch(e => console.log(e))
+        this.stationCtrl.valueChanges.subscribe((val) => {
+            this.querystations(val);
+        });
     }
 
     /**
      * Component initialised
      */
-    ngOnInit() {}
+    ngOnInit() { }
 
     /**
      * filter stations on value change
@@ -52,12 +51,37 @@ export class StationList implements OnInit {
         if (val) {
             const filtered = this.stations.filter(s => s.standardname.toLowerCase().indexOf(val.toLowerCase()) === 0);
             if (filtered.length > 0 &&
-                    filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
+                filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
                 this.selectedStation = filtered[0];
             }
+            this.qresults = filtered;
             return filtered;
         }
-        return this.stations;
+        return this.qresults;
+    }
+
+    /**
+     * This function queries the tripscore API for stations
+     * @param val the search query (station name)
+     */
+    querystations(val: string) {
+        this.inputValue = val;
+        if (val) {
+            if (this.lastQuery && val.indexOf(this.lastQuery) === 0) {
+                // We already queried using this filter
+                // Filter this locally.
+                return this.filterStations(val);
+            }
+
+            this.tripscoreService.queryStations(val).then((res) => {
+                this.qresults = res.stations;
+                this.stations = this.qresults;
+                // If there is a next page keep getting results from server
+                if (!res.nextPage) {
+                    this.lastQuery = val;
+                }
+            });
+        }
     }
 
     /**
