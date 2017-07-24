@@ -30,6 +30,8 @@ export class ConnectionQuery {
     searchData: SearchData[];
     error: string;
     language: Language = new Language();
+    company: string;
+    transportType: string;
 
     constructor() {}
 
@@ -64,6 +66,13 @@ export class ConnectionQuery {
                 this.travelTime.selectedTime, this.travelDate.selectedDay));
             AppModule.options.save();
             AppComponent.setPage(1);
+        }
+    }
+
+    stationSelected(selected) {
+        if (selected && selected['company'] && selected['type']) {
+            this.company = selected['company'];
+            this.transportType = selected['type'];
         }
     }
 

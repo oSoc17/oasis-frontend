@@ -11,12 +11,8 @@ import {Manager} from '../app/classes/connections/manager';
  */
 describe('QoE.ts constructor', () => {
   it('object should be created', () => {
-    // setup
-    const mockedRoute: Route = mock(Route);
-    const routes: Route[] = [instance(mockedRoute)];
-    const routeHistory: RouteHistory = new RouteHistory(routes);
     // execution
-    const qoe = new QoE(routeHistory, new UserPreferencesMock);
+    const qoe = new QoE(new RouteHistory([]), new UserPreferencesMock);
   });
 });
 

@@ -1,5 +1,5 @@
 // Node modules
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MdInputContainer } from '@angular/material';
 import 'rxjs/add/operator/startWith';
@@ -30,6 +30,9 @@ export class StationList implements OnInit {
                     {type: 'train', icon: 'train'}]
     @ViewChild(MdInputContainer) mdInput: MdInputContainer;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
+    @Output() valueChange: EventEmitter<any> = new EventEmitter();
+    @Input() type: string;
+    @Input() company: string;
 
     /**
      * Constructor, load in all stations
@@ -59,10 +62,15 @@ export class StationList implements OnInit {
             if (filtered.length > 0 &&
                 filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
                 this.selectedStation = filtered[0];
+                if (this.selectedStation) {
+                    console.log('emit stationselect')
+                    this.valueChange.emit(this.selectedStation);
+                }
             }
             this.qresults = filtered;
             return filtered;
         }
+        this.filterTypeCompany(this.stations);
         return this.qresults;
     }
 
@@ -73,6 +81,13 @@ export class StationList implements OnInit {
     querystations(val: string) {
         this.inputValue = val;
         if (val) {
+            if (this.qresults) {
+                 this.qresults.forEach(res => {
+                    if (res.standardname === val) {
+                        this.lastQuery = val;
+                    }
+                });
+            }
             if (this.lastQuery && val.indexOf(this.lastQuery) === 0) {
                 // We already queried using this filter
                 // Filter this locally.
@@ -86,7 +101,18 @@ export class StationList implements OnInit {
                 if (!res.nextPage) {
                     this.lastQuery = val;
                 }
+                this.filterTypeCompany(this.stations);
             });
+        }
+    }
+
+    filterTypeCompany(results) {
+        if (this.type && this.company) {
+            this.stations = this.stations.filter(station => {
+                return (station.type === this.type && station.company === this.company);
+            });
+            this.qresults = this.stations;
+            return results;
         }
     }
 
