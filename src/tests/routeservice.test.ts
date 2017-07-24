@@ -32,21 +32,21 @@ describe('RoutingService test', () => {
 
         routeService.onQueryResult.subscribe((connections) => {
             expect(connections).toEqual(jasmine.any(Array));
-            console.log(connections);
-            // connections.forEach((connection) => {
-            //     if (connection.arrivalStop === undefined || connection.arrivalTime === undefined ||
-            //             connection.departureStop === undefined || connection.departureTime === undefined ||
-            //             connection['http://vocab.gtfs.org/terms#trip'] === undefined) {
-            //         // console.log('some connection property is undefined');
-            //         // console.log(connection);
-            //     }
+            connections.forEach((connection) => {
+                if (connection.arrivalStop === undefined || connection.arrivalTime === undefined ||
+                        connection.departureStop === undefined || connection.departureTime === undefined ||
+                        connection['http://vocab.gtfs.org/terms#trip'] === undefined) {
+                    // console.log('some connection property is undefined');
+                    // console.log(connection);
+                }
 
-            //     expect(connection.arrivalStop).toBeDefined();
-            //     expect(connection.arrivalTime).toBeDefined();
-            //     expect(connection.departureStop).toBeDefined();
-            //     expect(connection.departureTime).toBeDefined();
-            //     expect(connection['http://vocab.gtfs.org/terms#trip']).toBeDefined();
-            // });
+                expect(connection.arrivalStop).toBeDefined();
+                expect(connection.arrivalTime).toBeDefined();
+                expect(connection.departureStop).toBeDefined();
+                expect(connection.departureTime).toBeDefined();
+                // some confusion regarding 'gtfs:trip' and 'http://vocab.gtfs.org/terms#trip'
+                // expect(connection['gtfs:trip']).toBeDefined();
+            });
             done();
         });
     }, 15000);
