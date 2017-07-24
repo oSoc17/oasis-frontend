@@ -53,19 +53,27 @@ export class RouteService implements IRouteService {
             return console.log('Invalid latestDepartTime!');
         }
 
-        if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
+        /*if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
             console.log('Total connections processed ', dataCount);
             return cb(paths);
-        }
-        this.planner.query(searchData, (resultStream, source) => {
+        }*/
+
+        this.planner.timespanQuery(searchData, (resultStream, source) => {
             let result = false;
-            resultStream.once('result',  (path) => {
-                console.log(searchData.departureTime);
-                searchData.departureTime = new Date(new Date(path[0].departureTime).valueOf() + 60000);
+            resultStream.on('result',  (path) => {
+                console.log('depart:', searchData.departureTime);
+                console.log('latest depart:', searchData.latestDepartTime);
                 paths.push(path);
-                self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
+                // Old recursive way
+                // searchData.departureTime = new Date(new Date(path[0].departureTime).valueOf() + 60000);
+                // self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
                 this._onQueryResult.dispatch(path);
                 result = true;
+            });
+
+            resultStream.once('end',  (path) => {
+                console.log('Stream has ended');
+                return cb(paths);
             });
 
             resultStream.on('data', (data) => {
