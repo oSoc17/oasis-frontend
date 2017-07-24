@@ -49,7 +49,7 @@
   "avgTravelTime_tooltip": "De gemiddelde reistijd.",
   "missedConnections_tooltip": "De kans op het missen van een overstap dankzij vertragingen.",
   "recents": "Recent",
-  "basedOn": "Gebaseerd op XX record(s)",
+  "basedOn": "Gebaseerd op XX week/weken",
   "now": "nu",
   "resetOptions": "Standaardinstellingen",
   "preferences": "Voorkeuren",

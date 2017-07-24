@@ -49,7 +49,7 @@
     "avgTravelTime_tooltip": "Average time between departure and arrival.",
     "missedConnections_tooltip": "The average chance that you will miss the change of train. Often influenced by delays.",
     "recents": "Recent",
-    "basedOn": "Based on XX record(s)",
+    "basedOn": "Based on XX week(s)",
     "now": "now",
     "resetOptions": "Reset",
     "preferences": "Preferences",
