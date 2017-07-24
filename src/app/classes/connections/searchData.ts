@@ -36,7 +36,7 @@ export class SearchData {
             dateString = Utils.formatDate(calcdate);
             dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
         }
-        console.log(dataList);
+        // console.log(dataList);
         return dataList;
     }
 

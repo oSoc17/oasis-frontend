@@ -54,13 +54,13 @@ export class RouteService implements IRouteService {
         }
 
         if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
-            console.log('Total connections processed ', dataCount);
+            // console.log('Total connections processed ', dataCount);
             return cb(paths);
         }
         this.planner.query(searchData, (resultStream, source) => {
             let result = false;
             resultStream.once('result',  (path) => {
-                console.log(searchData.departureTime);
+                // console.log(searchData.departureTime);
                 searchData.departureTime = new Date(new Date(path[0].departureTime).valueOf() + 60000);
                 paths.push(path);
                 self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);

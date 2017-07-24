@@ -36,8 +36,8 @@ describe('RoutingService test', () => {
                 if (connection.arrivalStop === undefined || connection.arrivalTime === undefined ||
                         connection.departureStop === undefined || connection.departureTime === undefined ||
                         connection['http://vocab.gtfs.org/terms#trip'] === undefined) {
-                    console.log('some connection property is undefined');
-                    console.log(connection);
+                    // console.log('some connection property is undefined');
+                    // console.log(connection);
                 }
 
                 expect(connection.arrivalStop).toBeDefined();

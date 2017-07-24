@@ -37,7 +37,7 @@ export class Manager {
                     return qoe.addRoute(route);
                 }
             }
-            console.log(result);
+            // console.log(result);
             const routeHistory = new RouteHistory([route]);
             this._qoeList.push(new QoE(routeHistory, new UserPreferences()));
             this._qoeList.sort((a, b) => {
