@@ -4,7 +4,8 @@
 
 <md-autocomplete #auto="mdAutocomplete">
   <md-option *ngFor="let station of qresults" [value]="station.standardname"
-                  (click)="filterStations(station.standardname);requestFocusNext()">
-    {{ station.standardname }} <span class="line-end">{{ station.company }}</span>
+                  (click)="filterStations(station.standardname);requestFocusNext()"> {{ station.standardname }}
+      <img src='{{ imgstart + station.company + ".png" }}' class="line-end-img"/>
   </md-option>
+                
 </md-autocomplete>
