@@ -52,7 +52,7 @@ export class Route {
             {
                 name: this.language.getMessage('amountOfChanges'),
                 tooltip: this.language.getMessage('amountOfChanges_tooltip'),
-                value: this.qoe.getAvgChangesAmount().value,
+                value: Math.round(this.qoe.getAvgChangesAmount().value),
                 icon: 'hops'
             },
             {
