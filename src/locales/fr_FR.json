@@ -55,5 +55,10 @@
     "prefExplenation": "Les options suivantes déterminent à quel point chaque variable influence le tripscore. Plus vous désignez un objet comme important, plus il pèsera lourd dans le score final.",
     "minutes": "min",
     "hops": "correspondances",
-    "errStationServer": "Les gares ne sont pas dans la même région ou dans le même pays."
+    "errStationServer": "Les gares ne sont pas dans la même région ou dans le même pays.",
+    "licence": "© 2017 MIT",
+    "references": ["En savoir plus sur ce projet sur "," ou "],
+    "conn_proc": "Connexions traitées: ",
+    "http_req": "Requêtes HTTP: ",
+    "http_res": "Réponses HTTP: "
 }

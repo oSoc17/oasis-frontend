@@ -54,5 +54,10 @@
     "prefExplenation": "Las siguientes opciones determinan la influencia de cada variable cuando se calcula su tripscore. Cuanto más importante sea una variable para usted, más influirá en la puntuación final de los viajes",
     "minutes": "min",
     "hops": "Transbordos",
-    "errStationServer": "Las estaciones no están en la misma región/país"
+    "errStationServer": "Las estaciones no están en la misma región/país",
+    "licence": "© 2017 MIT",
+    "references": ["Más información sobre este proyecto en "," o "],
+    "conn_proc": "Conexiones procesadas: ",
+    "http_req": "HTTP Requests: ",
+    "http_res": "HTTP Responses: "
 }
