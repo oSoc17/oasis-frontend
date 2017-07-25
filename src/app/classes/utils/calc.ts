@@ -57,8 +57,8 @@ export class Calc {
     /**
      * returns the ratio of a given value between a max and a min
      * @param value the value to calculate ratio from
-     * @param min the minimum value
-     * @param max the maximum value
+     * @param min the minimum value (which will rescale to 0)
+     * @param max the maximum value (which will rescale to 1)
      */
     public static linearInterpolatePercentage(value: number, min: number, max: number): number {
         if (max === min) {

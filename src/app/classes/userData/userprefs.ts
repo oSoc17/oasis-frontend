@@ -3,6 +3,9 @@ import { IUserPreferences } from '../../interfaces/iUserPreferences'
 import { Options } from './options';
 import { AppModule } from '../../app.module';
 
+/**
+ * this class is deprecated, use options instead
+ */
 export class UserPreferences implements IUserPreferences {
     private options: Options = AppModule.options;
 

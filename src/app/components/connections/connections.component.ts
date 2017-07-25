@@ -1,12 +1,12 @@
+// Node modules
 import { Component, Input, OnInit, NgZone } from '@angular/core';
 
+// Custom modules
 import { AppComponent } from '../app.component';
 import { SearchData } from '../../classes/connections/searchData';
 import { Language } from '../../classes/userData/language';
-
 import { Manager } from '../../classes/connections/manager';
 import { QoE } from '../../classes/connections/qoe';
-import { Route } from '../../classes/connections/route';
 import { ServerConfig } from '../../classes/utils/serverConfig';
 
 @Component({
@@ -15,6 +15,9 @@ import { ServerConfig } from '../../classes/utils/serverConfig';
     styleUrls: ['./styles/connections.component.scss']
 })
 
+/**
+ * A list of route components provided with the search string and interactive loading chips
+ */
 export class Connections implements OnInit {
     loading: any = true;
     finished: any = false;

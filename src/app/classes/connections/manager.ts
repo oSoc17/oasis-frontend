@@ -8,12 +8,11 @@ import { SearchData } from './searchData';
 import { Connection } from './connection';
 import { RouteHistory } from './routeHistory';
 import { Utils } from '../utils/utils';
-
+import { UserPreferences } from '../userData/userprefs';
 import { RouteService } from '../../services/routing.service';
 
 /* Mocks */
 import { UserPreferencesMock } from '../mocks/userprefs.mock';
-import { UserPreferences } from '../userData/userprefs';
 
 export class Manager {
     // private entryPoints = this.config.servers.reduce((array, server) => array.concat(server.uri), []);
