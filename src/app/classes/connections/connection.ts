@@ -3,8 +3,8 @@ export class Connection {
     type: string; // type of linked data fragment: should be 'Connection'
     departureStop: string; // URI of the departure stop
     arrivalStop: string; // URI of the arrival stop
-    departureTime: Date; // ISO 8601 timestamp for depature
-    arrivalTime: Date; // ISO 8601 timestamp for arrival
+    departureTime: Date; // Date object for depature
+    arrivalTime: Date; // Date object for arrival
     departureDelay: Date = new Date(0); // delay for depature
     arrivalDelay: Date = new Date(0); // delay for arrival
     gtfstrip: string; // trip URI, read https://developers.google.com/transit/gtfs/reference/ for route vs trip
