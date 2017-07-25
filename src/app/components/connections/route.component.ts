@@ -86,7 +86,6 @@ export class Route {
         const count = changes.length;
         for (let i = 0; i < count; i++) {
             this.tripScoreService.searchStation(changes[i].station).then((response) => {
-                // console.log(response);
                 changes[i].stationName = response[0].standardname;
                 if (i === count - 1) {
                     this.changes = changes;
