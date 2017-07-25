@@ -91,7 +91,7 @@ export class QoE implements IQoE {
      * get the average delay of all routes inside routeHistory
      */
     public getAvgDelay(): any {
-        const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000; // in minutes
+        const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000.0; // in minutes
         const weight: number = this._weight;
         /**
          *  < userpref: on schedule (100%)
@@ -152,18 +152,18 @@ export class QoE implements IQoE {
      * get the consistency of the delays over all routes inside routeHistory
      */
     public getDelayConsistency(): any {
-        const stdDev: number = this.routeHistory.getDelayConsistency().valueOf();
-        const avg: number = this.routeHistory.getAvgDelay().valueOf();
+        const stdDev: number = this.routeHistory.getDelayConsistency().valueOf(); // stdDev in ms
+        const avg: number = this.routeHistory.getAvgDelay().valueOf(); // avg in ms
         const cov: number = avg ? stdDev / avg : 0; // coefficient of variation
         const weight: number = this._weight;
         /**
          *  < userpref: on schedule (100%)
          *  > 1: mostly delayed (0%)
          */
-        const score = weight * Calc.linearInterpolatePercentage(cov, 1, 0.21 + 3 * this.prefs['delayConsistency']);
+        const score = Calc.linearInterpolatePercentage(cov, 1, this.prefs['delayConsistency'] / 4);
         return {
-            score: score,
-            value: this.routeHistory.getDelayConsistency() // Date
+            score: weight * score,
+            value: score * 100
         };
     }
 
