@@ -31,6 +31,7 @@ export class TripscoreService {
     public queryStations(query: string): Promise<any> {
         const myParams = new URLSearchParams();
         myParams.append('q', query);
+        myParams.append('children', 'false');
         const options = new RequestOptions({
             headers: new Headers({ 'Accept': 'application/json' }),
             responseType: ResponseContentType.Json,
