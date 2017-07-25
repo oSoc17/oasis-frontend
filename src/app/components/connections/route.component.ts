@@ -16,6 +16,9 @@ import { TripscoreService } from '../../services/tripscore.service';
     styleUrls: ['./styles/route.component.scss']
 })
 
+/**
+ * A single dropdown card used to display the global score and subscores of one route and it's historic data
+ */
 export class Route {
     language: Language = new Language();
     @Input() qoe: QoE;
@@ -33,7 +36,7 @@ export class Route {
     }
 
     /**
-     * generates an array of all subscores responsible for the QoE calculations
+     * Generate an array of all subscores responsible for the QoE calculations
      */
     private getSubScores() {
         if (this.qoe) {
@@ -100,7 +103,7 @@ export class Route {
     }
 
     /**
-     * return the presented QoE score
+     * Return the presented score as an integer in [0, 10]
      */
     private getScore() {
         return Math.round(this.qoe.getQoE() * 10);

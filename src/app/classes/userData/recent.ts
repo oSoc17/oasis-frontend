@@ -25,6 +25,14 @@ export class Recent {
             recentJson.travelTimeReadable, recentJson.travelDay);
     }
 
+    /**
+     * constructs the Recent objects
+     * @param searchData the latest SearchData instance
+     * @param depStationReadable standardname of departure station
+     * @param arrStationReadable standardname of arrival station
+     * @param travelTimeReadable traveltime in hh:mm format
+     * @param travelDay index of the queried day (starts at sunday = 0)
+     */
     constructor(searchData, depStationReadable, arrStationReadable, travelTimeReadable, travelDay) {
         this.searchData = searchData;
         this.depStationReadable = depStationReadable;

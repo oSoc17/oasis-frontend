@@ -1,10 +1,11 @@
 // Custom Modules
-import { IQoE } from '../../interfaces/iQoE';
-import { IUserPreferences } from '../../interfaces/iUserPreferences';
 import { RouteHistory } from './routeHistory';
 import { Route } from './route';
 import { Calc } from '../utils/calc';
 import { AppModule } from '../../app.module';
+
+// Interfaces
+import { IQoE } from '../../interfaces/iQoE';
 
 export class QoE implements IQoE {
     private routeHistory: RouteHistory;
@@ -15,9 +16,8 @@ export class QoE implements IQoE {
 
     /**
      * @param routeHistory a route and it's historic data
-     * @param preference deprecated
      */
-    constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
+    constructor(routeHistory: RouteHistory) {
         this.routeHistory = routeHistory;
         if (routeHistory.routes.length > 0) {
             this._departureTime = routeHistory.routes[0].departureTime;
@@ -33,11 +33,11 @@ export class QoE implements IQoE {
      */
     public getQoE(): number {
         let sum = 0;
-        // sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
         sum += this.getAvgChangesAmount().score;
         sum += this.getDelayConsistency().score;
         sum += this.getAvgDelay().score;
+        // sum += this.getAvgTravelTime().score;
         // sum += this.getNumberOfMissedConnections().score;
         // sum += this.getNumberOfRoutesWithinHour().score;
         // sum += this.getPrice().score;

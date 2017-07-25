@@ -1,5 +1,4 @@
 import { QoE } from '../app/classes/connections/qoe';
-import { UserPreferencesMock } from '../app/classes/mocks/userprefs.mock';
 import { RouteHistory } from '../app/classes/connections/routeHistory';
 import { instance, mock, when } from 'ts-mockito';
 import { Route } from '../app/classes/connections/route';
@@ -12,7 +11,7 @@ import {Manager} from '../app/classes/connections/manager';
 describe('QoE.ts constructor', () => {
   it('object should be created', () => {
     // execution
-    const qoe = new QoE(new RouteHistory([]), new UserPreferencesMock);
+    const qoe = new QoE(new RouteHistory([]));
   });
 });
 
@@ -28,7 +27,7 @@ describe('QoE.ts', () => {
     when(mockedRouteHistory.getDelayConsistency()).thenReturn(new Date(0));
     when(mockedRouteHistory.getAvgChangeTime()).thenReturn(new Date(0));
     when(mockedRouteHistory.getAvgTravelTime()).thenReturn(new Date(0));
-    const qoe = new QoE(new RouteHistory([]), new UserPreferencesMock);
+    const qoe = new QoE(new RouteHistory([]));
     // execution
     expect(qoe.getAvgChangesAmount().score).toEqual(jasmine.any(Number));
     expect(qoe.getAvgDelay().score).toEqual(jasmine.any(Number));

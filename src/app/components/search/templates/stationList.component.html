@@ -3,11 +3,13 @@
 </md-input-container>
 
 <md-autocomplete #auto="mdAutocomplete" >
-  <md-option *ngFor="let station of qresults" [value]="station.standardname" (onselect)="filterStations(station.standardname);requestFocusNext()"> {{ station.standardname }}
+  <md-option *ngFor="let station of qresults"
+             [value]="station.standardname"
+             (onselect)="filterStations(station.standardname);requestFocusNext()">
+      {{ station.standardname }}
       <img src='{{ imgstart + station.company + ".png" }}' class="line-end-img"/>
       <span *ngFor="let ttype of transportTypes" >
         <md-icon  *ngIf='station.type == ttype.type' class="line-end-img">{{ ttype.icon }}</md-icon>
       </span>
   </md-option>
-                
 </md-autocomplete>

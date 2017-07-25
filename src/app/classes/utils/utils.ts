@@ -1,6 +1,6 @@
 export class Utils {
     /**
-     * Convert a date object into a time string
+     * Convert a Date object into a time string in HH:MM format, based on the current timezone
      * @param date the date to extract the time string from
      */
     public static timeStringFromDate(date: Date): string {
@@ -8,7 +8,7 @@ export class Utils {
     }
 
     /**
-     * Convert to UTC time string
+     * Convert date value (in milliseconds) to UTC time string in HH:MM format, regardless the current timezone
      * @param val date value
      */
     public static toUTCTime(val: number) {
@@ -41,7 +41,7 @@ export class Utils {
     }
 
     /**
-     * Add 0's to a number untill it matches the wished pattern
+     * Add 0's to a number until it matches the wished pattern
      * @param num the original number
      * @param width the wished length of the result with 0's added
      */
