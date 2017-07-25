@@ -1,3 +1,6 @@
+/**
+ * Interface for QoE class, used for mocking
+ */
 export interface IQoE {
 
     getAvgDelay(): any
