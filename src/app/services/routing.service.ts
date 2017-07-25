@@ -71,11 +71,12 @@ export class RouteService implements IRouteService {
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
                 if (result) {
-                    if (result) {
-                        for (const event of resultStream._events.data) {
-                            if (event) {
-                                source.removeListener('data', event);
-                            }
+                    if (!resultStream._events.data) {
+                        return;
+                    }
+                    for (const event of resultStream._events.data) {
+                        if (event) {
+                            source.removeListener('data', event);
                         }
                     }
                 }
@@ -86,6 +87,9 @@ export class RouteService implements IRouteService {
                 httpRequests++;
                 self._onHttpRequest.dispatch(httpRequests);
                 if (result) {
+                    if (!source._events.request) {
+                        return;
+                    }
                     for (const event of source._events.request) {
                         if (event) {
                             source.removeListener('request', event);
@@ -104,6 +108,9 @@ export class RouteService implements IRouteService {
                 // console.log(source);
                 // console.log(require('events').EventEmitter.listenerCount(source, 'response'));
                 if (result) {
+                    if (!source._events.response) {
+                        return;
+                    }
                     for (const event of source._events.response) {
                         if (event) {
                             source.removeListener('response', event);

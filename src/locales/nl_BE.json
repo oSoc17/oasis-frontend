@@ -57,7 +57,7 @@
   "minutes": "min",
   "hops": "overstappen",
   "errStationServer": "Stations bevinden zich niet in hetzelfde land/regio",
-  "licence": "© 2017 MIT",
+  "licence": "© 2017 OASIS - licensed under MIT",
   "references": ["Leer meer over dit project op "," of "],
   "conn_proc": "Verbindingen verwerkt: ",
   "http_req": "HTTP Requests: ",

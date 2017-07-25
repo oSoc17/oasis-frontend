@@ -57,7 +57,7 @@
     "minutes": "min",
     "hops": "hops",
     "errStationServer": "Stations are not in the same region/country",
-    "licence": "© 2017 MIT",
+    "licence": "© 2017 OASIS - licensed under MIT",
     "references": ["Learn more about the project on "," or "],
     "conn_proc": "Connections processed: ",
     "http_req": "HTTP Requests: ",

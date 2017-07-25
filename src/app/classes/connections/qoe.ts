@@ -203,4 +203,11 @@ export class QoE implements IQoE {
     getNumberOfRoutesWithinHour() {
         throw new Error('Method not implemented.');
     }
+
+    /**
+     * Returns an array of changes
+     */
+    public getChanges() {
+        return this.routeHistory.getChanges();
+    }
 }
