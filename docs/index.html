@@ -1,1 +1,137 @@
-<h1>hello wrold!</h1>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>tripscore</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" rel="stylesheet">
+    <style type="text/css">
+        .logo {
+            height: 30px;
+            padding-top: 10px;
+            width: auto;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            text-transform: uppercase;
+            font-size: 2rem;
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-size: 2rem;
+        }
+
+        body {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            min-height: 100vh;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        main {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+        }
+
+        app-root {
+            min-height: 100vh;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        input:not([type]),
+        input[type=time]:not(.browser-default) {
+            margin: 0;
+            border-bottom: none;
+            height: 1rem;
+        }
+
+        input:not([type]):focus:not([readonly]),
+        input[type=time]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: none;
+            box-shadow: none;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .button-small {
+            min-width: 50px !important;
+            padding: 0 5px;
+        }
+
+        a i {
+            display: inline;
+        }
+
+        .link {
+            text-decoration: underline;
+        }
+
+        nav ul a {
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <app-root class="grey lighten-4" ng-version="4.3.1">
+        <nav-root>
+            <nav class="light-blue lighten-1" role="navigation">
+                <div class="nav-wrapper container">
+                    <a class="brand-logo" href="/" id="logo-container">tripscore</a>
+                    <ul class="right">
+                    </ul>
+                </div>
+            </nav>
+        </nav-root>
+        <main class="section" id="index-banner">
+            <div class="container">
+                <h1>ABOUT</h1>
+                <p>Lorem ipsum dolor sit amet, ea esse honestatis suscipiantur usu, esse adhuc postulant his an. Vel adhuc summo
+                    ad, an justo animal sapientem pri. Accusam luptatum rationibus ex pri. His in facilis recteque, ne sea
+                    dico alterum hendrerit. No his paulo semper tractatos, in suas tantas usu, ne suas debitis mei. Ignota
+                    nemore laboramus in sit, vim cu graeci regione. Eam id quod illum reformidans, eam in denique commune
+                    iracundia. Novum dolorem ceteros nam cu, ut constituam consectetuer vis, usu ne autem velit malorum.
+                    Ei tibique copiosae mei, sea ut saepe doming.
+                </p>
+            </div>
+        </main>
+        <app-footer>
+            <footer class="page-footer light-blue lighten-1">
+                <section class="container">
+                    <p class="white-text">
+                        Learn more about the project on
+                        <a class="white-text link" href="https://oasis.team/" target="_blank">OASIS.team</a> or
+                        <a class="white-text link" href="https://github.com/oSoc17/oasis-frontend/" target="_blank">GitHub <i class="mdi mdi-github-circle"></i></a></p>
+                </section>
+                <section class="footer-copyright light-blue lighten-1">
+                    <section class="container">
+                        <p class="white-text text-lighten-3">© 2017 MIT</p>
+                    </section>
+                </section>
+            </footer>
+        </app-footer>
+    </app-root>
+
+</html>
