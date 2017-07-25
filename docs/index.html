@@ -165,13 +165,16 @@
         .three-cols p {
             margin: 0 20px
         }
-        .subtxt{
+
+        .subtxt {
             text-align: center;
         }
-        .banner-container{
+
+        .banner-container {
             height: 300px;
         }
-        #index-banner{
+
+        #index-banner {
             background-image: url('./images/tripscore-01.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -180,21 +183,43 @@
             height: 300px;
             position: absolute;
         }
-        .section{
+
+        .section {
             margin: 0;
             padding: 0;
         }
-        .back-half{
+
+        .back-half {
             background-color: rgb(41, 182, 246);
             height: 25%;
             width: 100%;
             position: absolute;
         }
-        #first-title{
+
+        #first-title {
             margin-top: 0;
         }
-        .page-footer{
+
+        .page-footer {
             margin-top: 30px;
+        }
+
+        .sponsor-logo {
+            display: block;
+            width: 100px;
+        }
+
+        .sponsor-list {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .hipster-icon{
+            width: 40%;
+            display: block;
+            border-radius: 50%;
+            margin: 0 auto;
         }
     </style>
 
@@ -205,7 +230,7 @@
         <nav-root>
             <nav class="light-blue lighten-1 nomargin" role="navigation">
                 <div class="nav-wrapper container">
-                    <a class="brand-logo" href="/" id="logo-container">tripscore</a>
+                    <a class="brand-logo" href="http://tripscore.eu" id="logo-container">tripscore</a>
                     <ul class="right">
                     </ul>
                 </div>
@@ -223,28 +248,34 @@
                             <h1 id='first-title'>Concept</h1>
                         </header>
                         <main class="three-cols">
-                            <p>
-                                What if you could know beforehand which trains are more prone to delays, crowdedness or other inconveniences? Based on your
-                                personal preferences you could easily pick whichever train suits your needs the most. Guess
-                                what: that’s exactly what #OASIS_team at #oSoc17 has done with their online application tripscore.
-                            </p>
-
-
-                            <p>
-                                You can choose what makes commuting more enjoyable to you and then look at how suitable certain trains or buses are for you.
-                                It takes your personal preferences such as punctuality, frequency and the waiting time between
-                                trains into account. Then evaluates trips and gives them a score for every aspect and a score
-                                for the trip as a whole. Now you can start comparing trips to find the most suitable for
-                                you.
-                            </p>
-
-
-                            <p>
-                                How can we make this dream come true? Open Data! The more data is published by your public transport providers, the more
-                                quality of experience aspects (delays, fare prices, frequency, …) we can take into account.
-                                Using this data we match existing service qualities to your expectations and predict your
-                                tripscore so you can pick the right train, tram or bus.
-                            </p>
+                            <div>
+                                <img class="hipster-icon" src="./images/trainicon.png">
+                                <p>
+                                    What if you could know beforehand which trains are more prone to delays, crowdedness or other inconveniences? Based on your
+                                    personal preferences you could easily pick whichever train suits your needs the most.
+                                    Guess what: that’s exactly what #OASIS_team at #oSoc17 has done with their online application
+                                    tripscore.
+                                </p>
+                            </div>
+                            <div>
+                                <img class="hipster-icon" src="./images/seaticon.png">
+                                <p>
+                                    You can choose what makes commuting more enjoyable to you and then look at how suitable certain trains or buses are for you.
+                                    It takes your personal preferences such as punctuality, frequency and the waiting time
+                                    between trains into account. Then evaluates trips and gives them a score showing each
+                                    aspect that contributed to the whole trip. Now you can start comparing trips to find
+                                    the most suitable for you.
+                                </p>
+                            </div>
+                            <div>
+                                <img class="hipster-icon" src="./images/travel_time.svg">
+                                <p>
+                                    How can we make this dream come true? Open Data! The more data is published by your public transport providers, the more
+                                    quality of experience aspects (delays, fare prices, frequency, …) we can take into account.
+                                    Using this data we match existing service qualities to your expectations and predict
+                                    your tripscore so you can pick the right train, tram or bus.
+                                </p>
+                            </div>
                         </main>
                     </section>
                     <section>
@@ -295,22 +326,28 @@
                                     <p class="student-twitter"><a href="https://twitter.com/pietercolpaert" target="_blank">Twitter</a></p>
                                     <p class="student-linkedin"><a href="http://be.linkedin.com/in/pcolpaert" target="_blank">LinkedIn</a></p>
                                 </li>
+                                <li>
+                                    <img src="./images/david.png" alt="David Chaves Fraga">
+                                    <p class="student-name">David Chaves Fraga</p>
+                                    <p class="student-twitter"><a href="https://twitter.com/dchavesf" target="_blank">Twitter</a></p>
+                                    <p class="student-linkedin"><a href="https://www.linkedin.com/in/david-chaves-fraga-190a1185" target="_blank">LinkedIn</a></p>
+                                </li>
                             </ul>
                             <div class="three-cols">
-                            <p>
-                                Open Summer of Code is a 4-week summer programme that provides Belgian based students the training, network and support necessary
-                                to transform open innovation projects into powerful real-world services. In July 2017 40
-                                students worked in teams on 10 different open innovation projects provided by partnering
-                                organisations, companies and governments. The goal is to complete these projects by the end
-                                of the programme and turn them into real-world products and services.
-                            </p>
-                            <p>
-                                OASIS is a team working towards Open Applications for Semantically Interoperable Services Together, Ghent and the region
-                                of Madrid have initiated an innovative action that will increase the accessibility of public
-                                services and public transport. To do this, they collaborate to publish linked open data.
-                            </p>
+                                <p>
+                                    Open Summer of Code is a 4-week summer programme that provides Belgian based students the training, network and support necessary
+                                    to transform open innovation projects into powerful real-world services. In July 2017
+                                    40 students worked in teams on 10 different open innovation projects provided by partnering
+                                    organisations, companies and governments. The goal is to complete these projects by the
+                                    end of the programme and turn them into real-world products and services.
+                                </p>
+                                <p>
+                                    OASIS is a team working towards Open Applications for Semantically Interoperable Services Together, Ghent and the region
+                                    of Madrid have initiated an innovative action that will increase the accessibility of
+                                    public services and public transport. To do this, they collaborate to publish linked
+                                    open data.
+                                </p>
                             </div>
-
                         </main>
                     </section>
                 </main>
@@ -324,9 +361,20 @@
                         <a class="white-text link" href="https://oasis.team/" target="_blank">OASIS.team</a> or
                         <a class="white-text link" href="https://github.com/oSoc17/oasis-frontend/" target="_blank">GitHub <i class="mdi mdi-github-circle"></i></a></p>
                 </section>
+                <section class="container">
+                    <ul class="sponsor-list">
+                        <li><a href="#"><img class="sponsor-logo" src="./images/crtm.png"></a></li>
+                        <li><a href="#"><img class="sponsor-logo" src="./images/gent.png"></a></li>
+                        <li><a href="#"><img class="sponsor-logo" src="./images/imec.png"></a></li>
+                        <li><a href="#"><img class="sponsor-logo" src="./images/OASIS-white.png"></a></li>
+                        <li><a href="#"><img class="sponsor-logo" src="./images/oeg-logo.jpg"></a></li>
+                        <li><a href="#"><img class="sponsor-logo" src="./images/osoc17-square.png"></a></li>
+                        <li><a href="#"><img class="sponsor-logo" src="./images/victor.png"></a></li>
+                    </ul>
+                </section>
                 <section class="footer-copyright light-blue lighten-1">
                     <section class="container">
-                        <p class="white-text text-lighten-3">© 2017 MIT</p>
+                        <p class="white-text text-lighten-3">© 2017 OASIS - licensed under MIT</p>
                     </section>
                 </section>
             </footer>
