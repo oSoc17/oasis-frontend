@@ -86,7 +86,6 @@ export class RouteService implements IRouteService {
             connectionsStream.on('data', (data) => {
                 data['arrivalStop'] = this.findParent(data['arrivalStop']);
                 data['departureStop'] = this.findParent(data['departureStop']);
-                console.log(data);
             });
 
             source.on('request', () => {
