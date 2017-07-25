@@ -81,13 +81,6 @@ export class StationList implements OnInit {
     querystations(val: string) {
         this.inputValue = val;
         if (val) {
-            if (this.qresults) {
-                 this.qresults.forEach(res => {
-                    if (res.standardname === val) {
-                        this.lastQuery = val;
-                    }
-                });
-            }
             if (this.lastQuery && val.indexOf(this.lastQuery) === 0) {
                 // We already queried using this filter
                 // Filter this locally.
@@ -103,7 +96,17 @@ export class StationList implements OnInit {
                 }
                 this.filterTypeCompany(this.stations);
             });
+        }else {
+            this.type = null;
+            this.company = null;
         }
+        if (this.qresults) {
+                 this.qresults.forEach(res => {
+                    if (res.standardname === val) {
+                        this.lastQuery = val;
+                    }
+                });
+            }
     }
 
     filterTypeCompany(results) {
