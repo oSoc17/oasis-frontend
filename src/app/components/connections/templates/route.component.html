@@ -10,6 +10,12 @@
         <div class="col l12 m12 s12">
             <span class="basedOn"> {{ basedOn }}</span>
         </div>
+        <div *ngIf="changes">
+            <span>Changes</span>
+            <div *ngFor="let change of changes">
+                <strong><p *ngIf="change.stationName">{{ change.stationName }}</p></strong>
+            </div>
+        </div>
         <div class="col m4" *ngFor="let subScore of getSubScores()">
             <h1 class="route-header">
                 <md-icon class="score-icon" svgIcon="{{subScore.icon}}"></md-icon> {{ subScore.value }}

@@ -7,6 +7,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Utils } from '../../classes/utils/utils';
 import { Language } from '../../classes/userData/language';
 import { QoE } from '../../classes/connections/qoe';
+import { Change } from '../../classes/connections/change';
+import { TripscoreService } from '../../services/tripscore.service';
 
 @Component({
     selector: 'route',
@@ -20,8 +22,11 @@ import { QoE } from '../../classes/connections/qoe';
 export class Route {
     language: Language = new Language();
     @Input() qoe: QoE;
+    changes: Change[];
+    tripScoreService: TripscoreService;
 
-    constructor(iconReg: MdIconRegistry, sanitizer: DomSanitizer) {
+    constructor(iconReg: MdIconRegistry, sanitizer: DomSanitizer, tripScoreService: TripscoreService) {
+        this.tripScoreService = tripScoreService;
         iconReg.addSvgIcon('delay', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/delay.svg'))
             .addSvgIcon('hop_missed', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/hop_missed.svg'))
             .addSvgIcon('hop_wait', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/hop_wait.svg'))
@@ -35,6 +40,7 @@ export class Route {
      */
     private getSubScores() {
         if (this.qoe) {
+            this.getChanges();
             return [{
                 name: this.language.getMessage('avgTravelTime'),
                 tooltip: this.language.getMessage('travelTime_tooltip') + '\n\nfoo',
@@ -66,6 +72,26 @@ export class Route {
                 icon: 'hop_wait'
             }];
 
+        }
+    }
+
+    /**
+     * Gets an array of all the changes
+     */
+    private getChanges() {
+        if (this.changes) {
+            return;
+        }
+        const changes = this.qoe.getChanges();
+        const count = changes.length;
+        for (let i = 0; i < count; i++) {
+            this.tripScoreService.searchStation(changes[i].station).then((response) => {
+                console.log(response);
+                changes[i].stationName = response[0].standardname;
+                if (i === count - 1) {
+                    this.changes = changes;
+                }
+            }).catch (e => console.log(e));
         }
     }
 

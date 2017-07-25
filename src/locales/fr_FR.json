@@ -57,7 +57,7 @@
     "minutes": "min",
     "hops": "correspondances",
     "errStationServer": "Les gares ne sont pas dans la même région ou dans le même pays.",
-    "licence": "© 2017 MIT",
+    "licence": "© 2017 OASIS - licensed under MIT",
     "references": ["En savoir plus sur ce projet sur "," ou "],
     "conn_proc": "Connexions traitées: ",
     "http_req": "Requêtes HTTP: ",
