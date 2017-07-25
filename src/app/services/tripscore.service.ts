@@ -7,6 +7,7 @@ const config = require('../../config.json');
 
 @Injectable()
 export class TripscoreService {
+    private static stationIDs: any = {};
     private uri = config.servers['tripscoreAPI'].uri;
     private requestOptions = new RequestOptions({
         headers: new Headers({ 'Accept': 'application/json' }),
@@ -55,9 +56,24 @@ export class TripscoreService {
             responseType: ResponseContentType.Json,
             params: myParams
         });
-        return this.http.get(`${this.uri}/station`, options)
-            .toPromise()
-            .then((response) => response.json().stations)
-            .catch(this.handleError);
+        if (TripscoreService.stationIDs[id]) {
+            return new Promise((resolve, reject) => {
+                // Set timeout to emulate server lag and to prevent extreme hanging of the app
+                setTimeout(() => {
+                    resolve(TripscoreService.stationIDs[id]);
+                }, 100);
+            });
+        } else {
+            return this.http.get(`${this.uri}/station`, options)
+                .toPromise()
+                .then((response: any) => {
+                    const stations = response.json().stations;
+                    if (stations && stations[0]) {
+                        TripscoreService.stationIDs[stations[0]['id']] = stations;
+                    }
+                    return stations;
+                })
+                .catch(this.handleError);
+        }
     }
 }
