@@ -158,7 +158,7 @@ describe('Route.ts getDelay()', () => {
         const json2 = JSON.parse('{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170' +
         '711","@type": "Connection","departureStop": "http://irail.be/stations/NMBS/008814357","arrivalStop": "http://i' +
         'rail.be/stations/NMBS/008814358","departureTime": "2017-07-10T09:42:00.000Z","arrivalTime": "2017-07-10T09:50:' +
-        '00.000Z", "arrivalDelay":3,"gtfs:trip": "http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247' +
+        '00.000Z", "arrivalDelay":180,"gtfs:trip": "http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247' +
         '%3A20170711","gtfs:route": "http://irail.be/routes/51"}');
         const c2 = new Connection(json2);
         const route = new Route([]);
@@ -176,20 +176,20 @@ describe('Route.ts getDelay()', () => {
 describe('Route.ts getChangesMissed()', () => {
     const startOnTime = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop":'
             + '"B", "departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
-            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
-            + ' "arrivalDelay": "3"}'));
+            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": 120,'
+            + ' "arrivalDelay": 180}'));
     const endOnTime = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
             + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
-            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "1",'
-            + ' "arrivalDelay": "10"}'));
+            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": 60,'
+            + ' "arrivalDelay": 600}'));
     const startLate = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
             + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
-            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": "2",'
-            + ' "arrivalDelay": "30"}'));
+            + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": 120,'
+            + ' "arrivalDelay": 1800}'));
     const endLate = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
             + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
-            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": "30",'
-            + ' "arrivalDelay": "10"}'));
+            + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": 1800,'
+            + ' "arrivalDelay": 600}'));
     const r1 = new Route([startOnTime, endOnTime]);
     const r2 = new Route([startLate, endOnTime]);
     const r3 = new Route([startLate, endLate]);
