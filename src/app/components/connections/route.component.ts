@@ -7,6 +7,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Utils } from '../../classes/utils/utils';
 import { Language } from '../../classes/userData/language';
 import { QoE } from '../../classes/connections/qoe';
+import { Change } from '../../classes/connections/change';
+import { TripscoreService } from '../../services/tripscore.service';
 
 @Component({
     selector: 'route',
@@ -14,10 +16,17 @@ import { QoE } from '../../classes/connections/qoe';
     styleUrls: ['./styles/route.component.scss']
 })
 
+/**
+ * A single dropdown card used to display the global score and subscores of one route and it's historic data
+ */
 export class Route {
     language: Language = new Language();
     @Input() qoe: QoE;
-    constructor(iconReg: MdIconRegistry, sanitizer: DomSanitizer) {
+    changes: Change[];
+    tripScoreService: TripscoreService;
+
+    constructor(iconReg: MdIconRegistry, sanitizer: DomSanitizer, tripScoreService: TripscoreService) {
+        this.tripScoreService = tripScoreService;
         iconReg.addSvgIcon('delay', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/delay.svg'))
             .addSvgIcon('hop_missed', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/hop_missed.svg'))
             .addSvgIcon('hop_wait', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/hop_wait.svg'))
@@ -27,10 +36,11 @@ export class Route {
     }
 
     /**
-     * generates an array of all subscores responsible for the QoE calculations
+     * Generate an array of all subscores responsible for the QoE calculations
      */
     private getSubScores() {
         if (this.qoe) {
+            this.getChanges();
             return [{
                 name: this.language.getMessage('avgTravelTime'),
                 tooltip: this.language.getMessage('travelTime_tooltip') + '\n\nfoo',
@@ -40,13 +50,13 @@ export class Route {
             {
                 name: this.language.getMessage('delay'),
                 tooltip: this.language.getMessage('delay_tooltip'),
-                value: Utils.toUTCTime(this.qoe.getAvgDelay().value.valueOf()),
+                value: this.qoe.getAvgDelay().value.valueOf() / 60000.0 + this.language.getMessage('minutes'),
                 icon: 'delay',
             },
             {
                 name: this.language.getMessage('delayConsistency'),
                 tooltip: this.language.getMessage('delayConsistency_tooltip'),
-                value: this.qoe.getDelayConsistency().value.valueOf(),
+                value: this.qoe.getDelayConsistency().value + '%',
                 icon: 'consistency'
             },
             {
@@ -66,6 +76,26 @@ export class Route {
     }
 
     /**
+     * Gets an array of all the changes
+     */
+    private getChanges() {
+        if (this.changes) {
+            return;
+        }
+        const changes = this.qoe.getChanges();
+        const count = changes.length;
+        for (let i = 0; i < count; i++) {
+            this.tripScoreService.searchStation(changes[i].station).then((response) => {
+                // console.log(response);
+                changes[i].stationName = response[0].standardname;
+                if (i === count - 1) {
+                    this.changes = changes;
+                }
+            }).catch (e => console.log(e));
+        }
+    }
+
+    /**
      * Generate the "based on x connections" string
      */
     public get basedOn(): string{
@@ -73,7 +103,7 @@ export class Route {
     }
 
     /**
-     * return the presented QoE score
+     * Return the presented score as an integer in [0, 10]
      */
     private getScore() {
         return Math.round(this.qoe.getQoE() * 10);

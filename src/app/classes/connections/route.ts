@@ -107,16 +107,32 @@ export class Route {
     }
 
     /**
+     * Returns an array of changes
+     */
+    public getChanges() {
+        const changes = [];
+        for (let i = 1; i < this.connections.length; i++) {
+            const previous = this.connections[i - 1];
+            const current = this.connections[i];
+            if (previous['gtfstrip'] !== current['gtfstrip']) {
+                const changeObj = {
+                    from: previous['gtfstrip'],
+                    to: current['gtfstrip'],
+                    station: current['departureStop']
+                };
+                changes.push(changeObj);
+            }
+        }
+        return changes;
+    }
+
+    /**
      * get the last arrival delay of the route
      */
     public get delay(): Date {
         // TODO: is the delay only defined by the last arrivalDelay? What about missed changes due to delays?
-        if (this.connections.length > 1) {
-            if (this.connections[this.connections.length - 1].arrivalDelay) {
-                return this.connections[this.connections.length - 1].arrivalDelay;
-            } else {
-                return new Date(0);
-            }
+        if (this.connections) {
+            return this.connections[this.connections.length - 1].arrivalDelay;
         }
         // console.log('List of connections is empty');
         return new Date(0);

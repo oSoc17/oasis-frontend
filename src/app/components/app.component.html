@@ -4,9 +4,8 @@
     <!-- Current page: {{ getPage() }} -->
     <div class="container">
             <connectionquery *ngIf="getPage() == 0"></connectionquery>
-            <connections *ngIf="getPage() == 1"></connections>
+            <routes *ngIf="getPage() == 1"></routes>
             <options *ngIf="getPage() == 2"></options>
-            <connectiondetail *ngIf="getPage() == 3"></connectiondetail>
     </div>
 </main>
 <app-footer></app-footer>

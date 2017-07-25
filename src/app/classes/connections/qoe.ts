@@ -1,10 +1,11 @@
 // Custom Modules
-import { IQoE } from '../../interfaces/iQoE';
-import { IUserPreferences } from '../../interfaces/iUserPreferences';
 import { RouteHistory } from './routeHistory';
 import { Route } from './route';
 import { Calc } from '../utils/calc';
 import { AppModule } from '../../app.module';
+
+// Interfaces
+import { IQoE } from '../../interfaces/iQoE';
 
 export class QoE implements IQoE {
     private routeHistory: RouteHistory;
@@ -15,9 +16,8 @@ export class QoE implements IQoE {
 
     /**
      * @param routeHistory a route and it's historic data
-     * @param preference deprecated
      */
-    constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
+    constructor(routeHistory: RouteHistory) {
         this.routeHistory = routeHistory;
         if (routeHistory.routes.length > 0) {
             this._departureTime = routeHistory.routes[0].departureTime;
@@ -33,11 +33,11 @@ export class QoE implements IQoE {
      */
     public getQoE(): number {
         let sum = 0;
-        // sum += this.getAvgTravelTime().score;
         sum += this.getAvgChangeTime().score;
         sum += this.getAvgChangesAmount().score;
         sum += this.getDelayConsistency().score;
         sum += this.getAvgDelay().score;
+        // sum += this.getAvgTravelTime().score;
         // sum += this.getNumberOfMissedConnections().score;
         // sum += this.getNumberOfRoutesWithinHour().score;
         // sum += this.getPrice().score;
@@ -91,7 +91,7 @@ export class QoE implements IQoE {
      * get the average delay of all routes inside routeHistory
      */
     public getAvgDelay(): any {
-        const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000; // in minutes
+        const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000.0; // in minutes
         const weight: number = this._weight;
         /**
          *  < userpref: on schedule (100%)
@@ -152,18 +152,18 @@ export class QoE implements IQoE {
      * get the consistency of the delays over all routes inside routeHistory
      */
     public getDelayConsistency(): any {
-        const stdDev: number = this.routeHistory.getDelayConsistency().valueOf();
-        const avg: number = this.routeHistory.getAvgDelay().valueOf();
+        const stdDev: number = this.routeHistory.getDelayConsistency().valueOf(); // stdDev in ms
+        const avg: number = this.routeHistory.getAvgDelay().valueOf(); // avg in ms
         const cov: number = avg ? stdDev / avg : 0; // coefficient of variation
         const weight: number = this._weight;
         /**
          *  < userpref: on schedule (100%)
          *  > 1: mostly delayed (0%)
          */
-        const score = weight * Calc.linearInterpolatePercentage(cov, 1, 0.21 + 3 * this.prefs['delayConsistency']);
+        const score = Calc.linearInterpolatePercentage(cov, 1, this.prefs['delayConsistency'] / 4);
         return {
-            score: score,
-            value: this.routeHistory.getDelayConsistency() // Date
+            score: weight * score,
+            value: score * 100
         };
     }
 
@@ -202,5 +202,12 @@ export class QoE implements IQoE {
      */
     getNumberOfRoutesWithinHour() {
         throw new Error('Method not implemented.');
+    }
+
+    /**
+     * Returns an array of changes
+     */
+    public getChanges() {
+        return this.routeHistory.getChanges();
     }
 }
