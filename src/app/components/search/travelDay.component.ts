@@ -5,15 +5,15 @@ import { Component } from '@angular/core';
 import { Language } from '../../classes/userData/language';
 
 @Component({
-    selector: 'traveldate',
-    templateUrl: './templates/travelDate.component.html',
+    selector: 'travelday',
+    templateUrl: './templates/travelDay.component.html',
     styleUrls: ['./styles/travelDate.component.scss']
 })
 
 /**
  * A form combobox to select a day of the week
  */
-export class TravelDate {
+export class TravelDay {
     selectedDay: number = (new Date()).getDay(); // weekday index starting at sunday (0)
     language = new Language();
 

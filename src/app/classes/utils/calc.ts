@@ -62,7 +62,8 @@ export class Calc {
      */
     public static linearInterpolatePercentage(value: number, min: number, max: number): number {
         if (max === min) {
-            throw Error('max & min can\'t be the same');
+            console.error('can\'t interpolate when max and min are the same value');
+            return 0.5;
         }
         return Calc.clipPercentage((value - min) / (max - min));
     }

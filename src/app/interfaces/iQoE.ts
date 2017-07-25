@@ -19,6 +19,6 @@ export interface IQoE {
 
     getPrice(): any
 
-    getQoE(weights): any
+    getQoE(): number
 
 }
