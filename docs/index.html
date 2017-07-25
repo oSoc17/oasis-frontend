@@ -2,10 +2,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>tripscore</title>
-
+    <title>tripscore-about</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" rel="stylesheet">
     <style type="text/css">
         .logo {
@@ -17,6 +15,7 @@
         h1 {
             text-transform: uppercase;
             font-size: 2.5rem;
+            text-align: center;
         }
 
         h2 {
@@ -142,7 +141,7 @@
         .students-gallery li .student-linkedin a {
             vertical-align: baseline;
             padding: 5px 10px;
-            background-color: rgb(41,182,246);
+            background-color: rgb(41, 182, 246);
             color: #FFF;
             font-size: 0.9em;
             text-decoration: none;
@@ -150,9 +149,27 @@
 
         .students-gallery li .student-twitter a:hover,
         .students-gallery li .student-linkedin a:hover {
-            background-color: rgb(41,182,246);
+            background-color: rgb(41, 182, 246);
         }
     </style>
+    <style>
+        @media (min-width: 1280px) {
+            .three-cols {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+        }
+
+        .three-cols p {
+            margin: 0 20px
+        }
+        .subtxt{
+            text-align: center;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -171,14 +188,16 @@
                 <main>
                     <section>
                         <header>
-                            <h2>Concept</h2>
+                            <h1>Concept</h1>
                         </header>
-                        <main>
+                        <main class="three-cols">
                             <p>
                                 What if you could know beforehand which trains are more prone to delays, crowdedness or other inconveniences? Based on your
                                 personal preferences you could easily pick whichever train suits your needs the most. Guess
                                 what: that’s exactly what #OASIS_team at #oSoc17 has done with their online application tripscore.
                             </p>
+
+
                             <p>
                                 You can choose what makes commuting more enjoyable to you and then look at how suitable certain trains or buses are for you.
                                 It takes your personal preferences such as punctuality, frequency and the waiting time between
@@ -186,6 +205,8 @@
                                 for the trip as a whole. Now you can start comparing trips to find the most suitable for
                                 you.
                             </p>
+
+
                             <p>
                                 How can we make this dream come true? Open Data! The more data is published by your public transport providers, the more
                                 quality of experience aspects (delays, fare prices, frequency, …) we can take into account.
@@ -196,15 +217,15 @@
                     </section>
                     <section>
                         <header>
-                            <h2>Team</h2>
+                            <h1>Team</h1>
                         </header>
                         <main>
-                            <p>
+                            <p class="subtxt">
                                 tripscore was created by the OASIS team at the Open Summer of Code 2017.
                             </p>
                             <ul class="students-gallery">
                                 <li>
-                                    <img src="images/bruno.jpg" alt="Bruno Haspeslagh">
+                                    <img src="./images/bruno.jpg" alt="Bruno Haspeslagh">
                                     <p class="student-name">Bruno Haspeslagh</p>
                                     <p class="student-twitter"><a href="https://twitter.com/HaspeslaghBruno" target="_blank">Twitter</a></p>
                                 </li>
@@ -230,26 +251,33 @@
                                     <img src="./images/robrecht.jpg" alt="Robrecht Meersman">
                                     <p class="student-name">Robrecht Meersman</p>
                                 </li>
+                                <li>
+                                    <img src="./images/julian.jpg" alt="Julian Rojas">
+                                    <p class="student-name">Julian Rojas</p>
+                                    <p class="student-twitter"><a href="https://twitter.com/julianr1987" target="_blank">Twitter</a></p>
+                                    <p class="student-linkedin"><a href="https://www.linkedin.com/in/julianrojas87" target="_blank">LinkedIn</a></p>
+                                </li>
+                                <li>
+                                    <img src="./images/pieter.jpg" alt="Pieter Colpaert">
+                                    <p class="student-name">Pieter Colpaert</p>
+                                    <p class="student-twitter"><a href="https://twitter.com/pietercolpaert" target="_blank">Twitter</a></p>
+                                    <p class="student-linkedin"><a href="http://be.linkedin.com/in/pcolpaert" target="_blank">LinkedIn</a></p>
+                                </li>
                             </ul>
+                            <div class="three-cols">
                             <p>
                                 Open Summer of Code is a 4-week summer programme that provides Belgian based students the training, network and support necessary
-                                to transform open innovation projects into powerful real-world services. In July 2017 40 students
-                                worked in teams on 10 different open innovation projects provided by partnering organisations,
-                                companies and governments. The goal is to complete these projects by the end of the programme
-                                and turn them into real-world products and services.
+                                to transform open innovation projects into powerful real-world services. In July 2017 40
+                                students worked in teams on 10 different open innovation projects provided by partnering
+                                organisations, companies and governments. The goal is to complete these projects by the end
+                                of the programme and turn them into real-world products and services.
                             </p>
                             <p>
-                                OASIS is a team working towards Open Applications for Semantically Interoperable Services
-                                Together, Ghent and the region of Madrid have initiated an innovative action that will increase
-                                the accessibility of public services and public transport. To do this, they collaborate
-                                to publish linked open data.</p>
-                        </main>
-                    </section>
-                    <section>
-                        <header>
-                            <h2>Future</h2>
-                        </header>
-                        <main>
+                                OASIS is a team working towards Open Applications for Semantically Interoperable Services Together, Ghent and the region
+                                of Madrid have initiated an innovative action that will increase the accessibility of public
+                                services and public transport. To do this, they collaborate to publish linked open data.
+                            </p>
+                            </div>
 
                         </main>
                     </section>
