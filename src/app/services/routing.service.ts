@@ -83,6 +83,7 @@ export class RouteService implements IRouteService {
             });
 
             source.on('request', () => {
+                console.log(source._events);
                 // HTTP Request
                 httpRequests++;
                 self._onHttpRequest.dispatch(httpRequests);
