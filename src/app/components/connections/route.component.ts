@@ -50,7 +50,7 @@ export class Route {
             {
                 name: this.language.getMessage('delay'),
                 tooltip: this.language.getMessage('delay_tooltip'),
-                value: this.qoe.getAvgDelay().value.valueOf() / 60000.0 + this.language.getMessage('minutes'),
+                value: this.qoe.getAvgDelay().value.valueOf() / 60000.0 + ' ' + this.language.getMessage('minutes'),
                 icon: 'delay',
             },
             {
