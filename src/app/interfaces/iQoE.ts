@@ -1,3 +1,6 @@
+/**
+ * Interface for QoE class, used for mocking
+ */
 export interface IQoE {
 
     getAvgDelay(): any
@@ -16,6 +19,6 @@ export interface IQoE {
 
     getPrice(): any
 
-    getQoE(weights): any
+    getQoE(): number
 
 }

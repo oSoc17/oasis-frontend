@@ -1,3 +1,6 @@
+/**
+ * this interface is deprecated, use options instead
+ */
 export interface IUserPreferences {
     weight_AvgDelay: number
     weight_AvgChangesAmount: number

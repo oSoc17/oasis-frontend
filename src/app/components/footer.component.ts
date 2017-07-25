@@ -1,5 +1,7 @@
+// Node modules
 import { Component } from '@angular/core';
 
+// Custom modules
 import { Language } from '../classes/userData/language';
 
 @Component({
@@ -7,6 +9,9 @@ import { Language } from '../classes/userData/language';
     templateUrl: './footer.component.html'
 })
 
+/**
+ * Footer containing licence and more-info
+ */
 export class FooterComponent {
     language: Language = new Language();
 

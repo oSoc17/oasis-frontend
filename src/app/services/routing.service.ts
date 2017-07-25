@@ -154,7 +154,7 @@ export class RouteService implements IRouteService {
         return this._onQueryResult;
 
         // Test event handlers
-        /*this.onDataUpdate.subscribe(dataCount => console.log(`Connections processed: ${dataCount}`));
+        /*this.onDataUpdate.subscribe(dataCount => console.log(`Routes processed: ${dataCount}`));
         this.onHttpRequest.subscribe(httpRequests => console.log(`HTTP Requests: ${httpRequests}`));
         this.onHttpResponse.subscribe(httpResponses => console.log(`HTTP Responses: ${httpResponses}`));
         this.onQueryResult.subscribe(queryResult => console.log(`HTTP Responses: ${queryResult}`));*/
