@@ -1,4 +1,7 @@
+// Custom modules
 import { RouteHistory } from '../connections/routeHistory';
+
+// Interfaces
 import { IQoE } from '../../interfaces/iQoE';
 
 export class QoEMock implements IQoE {
@@ -11,63 +14,63 @@ export class QoEMock implements IQoE {
 
     getAvgDelay(): any {
         return {
-            score: '3',
-            value: '4'
+            score: 0.3,
+            value: new Date()
         }
     }
 
     getAvgChangesAmount(): any {
         return {
-            score: '0',
-            value: '1'
+            score: 0,
+            value: 1
         }
     }
 
     getAvgChangeTime(): any {
         return {
-            score: '0',
-            value: '00:12'
+            score: 0,
+            value: new Date()
         }
     }
 
     getDelayConsistency(): any {
         return {
-            score: '',
-            value: '00:02'
+            score: 0.5,
+            value: 0.75
         }
     }
 
     getAvgTravelTime(): any {
         return {
-            score: '0',
-            value: '00:53'
+            score: 1,
+            value: new Date()
         }
     }
 
     getNumberOfRoutesWithinHour(): any {
         return {
-            score: '2',
-            value: '8'
+            score: 0.7,
+            value: 2
         }
     }
 
     getNumberOfMissedConnections(): any {
         return {
-            score: '2',
-            value: ''
+            score: 0.2,
+            value: 1
         }
     }
 
     getPrice(): any {
         return {
-            score: '2',
-            value: ''
+            score: 0.2,
+            value: 5
         }
     }
 
-    getQoE(weights: any): any {
+    getQoE(): any {
         return {
-            score: '10'
+            score: 0.85
         }
     }
 

@@ -4,7 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 // Custom modules
 import { StationList } from './stationList.component';
 import { TravelTime } from './travelTime.component';
-import { TravelDate } from './travelDate.component';
+import { TravelDay } from './travelDay.component';
 import { SearchData } from '../../classes/connections/searchData';
 import { Language } from '../../classes/userData/language';
 import { Utils } from '../../classes/utils/utils';
@@ -27,7 +27,7 @@ export class ConnectionQuery {
     @ViewChild('departure') depStation: StationList;
     @ViewChild('arrival') arrStation: StationList;
     @ViewChild(TravelTime) travelTime: TravelTime;
-    @ViewChild(TravelDate) travelDate: TravelDate;
+    @ViewChild(TravelDay) travelDate: TravelDay;
     @ViewChild(Recents) recents: Recents;
     @ViewChild('calculate') calculate;
     searchData: SearchData[];

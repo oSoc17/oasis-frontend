@@ -10,15 +10,15 @@ import { QoE } from '../../classes/connections/qoe';
 import { ServerConfig } from '../../classes/utils/serverConfig';
 
 @Component({
-    selector: 'connections',
-    templateUrl: './templates/connections.component.html',
+    selector: 'routes',
+    templateUrl: './templates/routes.component.html',
     styleUrls: ['./styles/connections.component.scss']
 })
 
 /**
  * A list of route components provided with the search string and interactive loading chips
  */
-export class Connections implements OnInit {
+export class Routes implements OnInit {
     loading: any = true;
     finished: any = false;
     searchData: SearchData[];
