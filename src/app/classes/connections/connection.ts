@@ -5,8 +5,8 @@ export class Connection {
     arrivalStop: string; // URI of the arrival stop
     departureTime: Date; // ISO 8601 timestamp for depature
     arrivalTime: Date; // ISO 8601 timestamp for arrival
-    departureDelay: Date = new Date(0); // delay in minutes for depature
-    arrivalDelay: Date = new Date(0); // delay in minutes for arrival
+    departureDelay: Date = new Date(0); // delay for depature
+    arrivalDelay: Date = new Date(0); // delay for arrival
     gtfstrip: string; // trip URI, read https://developers.google.com/transit/gtfs/reference/ for route vs trip
     gtfsroute: string; // route URI, read https://developers.google.com/transit/gtfs/reference/ for route vs trip
 
@@ -30,13 +30,13 @@ export class Connection {
             this.gtfstrip = GraphItemJson['gtfs:trip'];
         }
         this.gtfsroute = GraphItemJson['http://vocab.gtfs.org/terms#route'];
-        // if there is no delay property, set it to 0
+        // if there is a delay property, set it
         if (GraphItemJson['departureDelay']) {
-            this.departureDelay.setMinutes(GraphItemJson['departureDelay']);
+            this.departureDelay.setSeconds(GraphItemJson['departureDelay']);
         }
-        // if there is no delay property, set it to 0
+        // if there is a delay property, set it
         if (GraphItemJson['arrivalDelay']) {
-            this.arrivalDelay.setMinutes(GraphItemJson['arrivalDelay']);
+            this.arrivalDelay.setSeconds(GraphItemJson['arrivalDelay']);
         }
     }
 }
