@@ -106,6 +106,9 @@ export class StationList implements OnInit {
                 }
                 this.filterTypeCompany(this.stations);
             });
+        }else {
+            console.log('im empty');
+            this.valueChange.emit('');
         }
     }
 
