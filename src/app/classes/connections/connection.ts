@@ -18,6 +18,7 @@ export class Connection {
      *                      'arrivalDelay'
      */
     constructor(GraphItemJson: any) {
+        console.log(GraphItemJson);
         this.id = GraphItemJson['@id'];
         this.type = GraphItemJson['@type'];
         this.departureStop = GraphItemJson['departureStop'];
