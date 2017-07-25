@@ -14,6 +14,9 @@ import { TripscoreService } from '../../services/tripscore.service';
     styleUrls: ['./styles/stationList.component.scss']
 })
 
+/**
+ * A form input field with autocomplete for stations
+ */
 export class StationList implements OnInit {
     selectedStation = null;
     stationCtrl: FormControl;

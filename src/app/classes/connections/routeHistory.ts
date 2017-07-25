@@ -40,6 +40,13 @@ export class RouteHistory {
     }
 
     /**
+     * Returns an array of changes
+     */
+    public getChanges() {
+        return this.routes[0].getChanges();
+    }
+
+    /**
      * get the average delay duration over the historic data array
      */
     public getAvgDelay(): Date {

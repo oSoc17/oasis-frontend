@@ -107,6 +107,26 @@ export class Route {
     }
 
     /**
+     * Returns an array of changes
+     */
+    public getChanges() {
+        const changes = [];
+        for (let i = 1; i < this.connections.length; i++) {
+            const previous = this.connections[i - 1];
+            const current = this.connections[i];
+            if (previous['gtfstrip'] !== current['gtfstrip']) {
+                const changeObj = {
+                    from: previous['gtfstrip'],
+                    to: current['gtfstrip'],
+                    station: current['departureStop']
+                };
+                changes.push(changeObj);
+            }
+        }
+        return changes;
+    }
+
+    /**
      * get the last arrival delay of the route
      */
     public get delay(): Date {

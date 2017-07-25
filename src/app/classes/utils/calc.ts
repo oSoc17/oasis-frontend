@@ -57,12 +57,13 @@ export class Calc {
     /**
      * returns the ratio of a given value between a max and a min
      * @param value the value to calculate ratio from
-     * @param min the minimum value
-     * @param max the maximum value
+     * @param min the minimum value (which will rescale to 0)
+     * @param max the maximum value (which will rescale to 1)
      */
     public static linearInterpolatePercentage(value: number, min: number, max: number): number {
         if (max === min) {
-            throw Error('max & min can\'t be the same');
+            console.error('can\'t interpolate when max and min are the same value');
+            return 0.5;
         }
         return Calc.clipPercentage((value - min) / (max - min));
     }

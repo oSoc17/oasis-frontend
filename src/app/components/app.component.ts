@@ -1,7 +1,7 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+// Node modules
+import { Component } from '@angular/core';
 
-import { ConnectionQuery } from './search/connectionQuery.component';
-
+// Custom modules
 import { SearchData } from './../classes/connections/searchData';
 
 @Component({

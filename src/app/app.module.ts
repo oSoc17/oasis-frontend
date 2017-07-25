@@ -20,7 +20,7 @@ import { MdAutocompleteModule, MaterialModule, MdInputModule, MdProgressSpinnerM
 /* Custom form validation*/
 import { CustomFormsModule } from 'ng2-validation'
 
-/* custom classes */
+/* Custom classes */
 import { Options } from './classes/userData/options';
 
 const appRoutes: Routes = [
