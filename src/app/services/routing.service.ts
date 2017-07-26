@@ -69,6 +69,7 @@ export class RouteService implements IRouteService {
             resultStream.on('data', (data) => {
                 // console.log(data);
                 // Processed connections
+                console.log('data!!');
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
                 if (result) {
@@ -84,8 +85,8 @@ export class RouteService implements IRouteService {
             });
 
             connectionsStream.on('data', (data) => {
-                data['arrivalStop'] = this.findParent(data['arrivalStop']);
-                data['departureStop'] = this.findParent(data['departureStop']);
+                /*data['arrivalStop'] = this.findParent(data['arrivalStop']);
+                data['departureStop'] = this.findParent(data['departureStop']);*/
             });
 
             source.on('request', () => {

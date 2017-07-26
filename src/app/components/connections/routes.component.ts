@@ -1,5 +1,6 @@
 // Node modules
 import { Component, Input, OnInit, NgZone } from '@angular/core';
+import { ISimpleEvent } from 'strongly-typed-events';
 
 // Custom modules
 import { AppComponent } from '../app.component';
@@ -30,6 +31,7 @@ export class Routes implements OnInit {
     manager: Manager;
     qoeList: QoE[];
     searchString = AppComponent.searchString;
+    @Input() pageChange: ISimpleEvent<number>;
 
     // Interactive loading
     dataCount = 0;
@@ -40,7 +42,7 @@ export class Routes implements OnInit {
         if (AppComponent.searchData) {
             const searchQuery = AppComponent.searchData[0];
             if (ServerConfig.equalUris(searchQuery.depStation, searchQuery.arrStation)) {
-                //console.log(AppComponent.searchData[0].depStation);
+                // console.log(AppComponent.searchData[0].depStation);
                 const entrypoint = ServerConfig.getServerByStation(AppComponent.searchData[0].depStation);
                 this.manager = new Manager(entrypoint);
                 this.qoeList = this.manager.qoeList;
@@ -59,17 +61,25 @@ export class Routes implements OnInit {
      * Triggers when the component initializes
      */
     ngOnInit(): void {
+        this.finished = false;
         // this.searchData = JSON.parse(this.route.params['_value']);
         if (AppComponent.searchData) {
             this.searchData = AppComponent.searchData;
             const onQueryResult = this.manager.getQoE(this.searchData);
-            onQueryResult.subscribe((result) => {this.loading = false; });
+            onQueryResult.subscribe((result) => { this.loading = false; });
             this.manager.onDataUpdate.subscribe(e => this.dataCount = this.manager.dataCount);
             this.manager.onHttpRequest.subscribe(e => this.httpRequests = this.manager.httpRequests);
             this.manager.onHttpResponse.subscribe(e => this.httpResponses = this.manager.httpResponses);
             this.manager.onComplete.subscribe(e => this.finished = true);
         } else {
             AppComponent.setPage(0);
+        }
+        if (this.pageChange) {
+            this.pageChange.subscribe(e => {
+                console.log('kill manager!!! :)');
+                this.finished = true;
+                this.manager = null;
+            });
         }
     }
 
