@@ -86,7 +86,7 @@ export class Options {
     }
 
     private goBack() {
-        AppComponent.goBack();
+        AppComponent.setPage(0);
         this.snackBar.open('Saved!', '', {
             duration: 1000
         })
