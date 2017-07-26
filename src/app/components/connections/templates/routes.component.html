@@ -6,16 +6,7 @@
 
 <div *ngIf="!finished && !error">
   <section _ngcontent-c23="" class="example-section">
-    <md-progress-bar _ngcontent-c23="" aria-valuemax="100" aria-valuemin="0" class="example-margin mat-progress-bar mat-primary" role="progressbar" _nghost-c22="" aria-valuenow="50" mode="indeterminate">
-      <div _ngcontent-c22="" class="mat-progress-bar-background mat-progress-bar-element">
-      </div>
-      <div _ngcontent-c22="" class="mat-progress-bar-buffer mat-progress-bar-element">
-      </div>
-      <div _ngcontent-c22="" class="mat-progress-bar-primary mat-progress-bar-fill mat-progress-bar-element" style="transform: scaleX(0.5);">
-      </div>
-      <div _ngcontent-c22="" class="mat-progress-bar-secondary mat-progress-bar-fill mat-progress-bar-element" style="transform: scaleX(0.5);">
-      </div>
-    </md-progress-bar>
+    <md-progress-bar mode="indeterminate"></md-progress-bar>
   </section>
 </div>
 <h5 *ngIf="error || !loading"><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>

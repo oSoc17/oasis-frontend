@@ -25,7 +25,7 @@ export class NavComponent {
     private clickSettings() {
         // console.log('open settings');
         if (AppComponent.getPage() === 2) {
-            this.goBack();
+            AppComponent.setPage(0);
             this.snackBar.open('Saved!', '', {
                 duration: 500
             });

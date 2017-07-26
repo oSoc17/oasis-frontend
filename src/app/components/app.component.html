@@ -4,7 +4,7 @@
     <!-- Current page: {{ getPage() }} -->
     <div class="container">
             <connectionquery *ngIf="getPage() == 0"></connectionquery>
-            <routes *ngIf="getPage() == 1"></routes>
+            <routes *ngIf="getPage() == 1" [pageChange]="pageChangeEvent"></routes>
             <options *ngIf="getPage() == 2"></options>
     </div>
 </main>
