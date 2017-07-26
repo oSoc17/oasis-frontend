@@ -1,6 +1,8 @@
 import { Language } from '../app/classes/userData/language';
 
-/* setLanguage test right language */
+/**
+ * Check if setlang sets settings to correct language
+ */
 describe('language.ts setLanguage()', () => {
     it('should set language to nl_BE', () => {
         const l: Language = new Language();
@@ -9,7 +11,9 @@ describe('language.ts setLanguage()', () => {
     });
 });
 
-/* setLanguage test wrong language */
+/**
+ * Tests if setlang handles incorrect languages
+ */
 describe('language.ts setLanguage()', () => {
     it('should keep language to nl_BE', () => {
         const l: Language = new Language();

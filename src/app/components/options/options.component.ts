@@ -24,7 +24,7 @@ export class Options {
     constructor(public snackBar: MdSnackBar) {
         this.language = new Language();
         this.delay = {
-            name: () => this.language.getMessage('delay'),
+            name: () => this.language.getMessage('delay_title'),
             tooltip: () => this.language.getMessage('delay_tooltip'),
             value: AppModule.options.qoeParameters['avgDelay'],
             id: 'avgDelay',

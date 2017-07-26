@@ -12,6 +12,27 @@ export class Calc {
     }
 
     /**
+     * Calculate a median based on the number array
+     * @param values an array filled with numbers to calc median from
+     */
+    public static median(values: number[]): number {
+        const amount = values.length;
+        if (amount) {
+            const sorted = values.sort();
+            if (amount % 2) {
+                // odd
+                const middle = Math.floor(amount / 2);
+                return sorted[middle];
+            } else {
+                // even
+                const middle = amount / 2;
+                return (sorted[middle - 1] + sorted[middle]) / 2;
+            }
+        }
+        return 0;
+    }
+
+    /**
      * Recalculate the average based on the old average, total amount of values and a newly added value
      * @param oldAverage the average we need to recalculate
      * @param newValue the new value added to the average
@@ -57,12 +78,13 @@ export class Calc {
     /**
      * returns the ratio of a given value between a max and a min
      * @param value the value to calculate ratio from
-     * @param min the minimum value
-     * @param max the maximum value
+     * @param min the minimum value (which will rescale to 0)
+     * @param max the maximum value (which will rescale to 1)
      */
     public static linearInterpolatePercentage(value: number, min: number, max: number): number {
         if (max === min) {
-            throw Error('max & min can\'t be the same');
+            console.error('can\'t interpolate when max and min are the same value');
+            return 0.5;
         }
         return Calc.clipPercentage((value - min) / (max - min));
     }
