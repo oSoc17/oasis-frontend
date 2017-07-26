@@ -1,5 +1,7 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+// Node modules
+import { Component } from '@angular/core';
 
+// Custom modules
 import { AppComponent } from './app.component';
 import { Language } from '../classes/userData/language';
 import {MdSnackBar} from '@angular/material';
@@ -9,11 +11,17 @@ import {MdSnackBar} from '@angular/material';
     templateUrl: './nav.component.html'
 })
 
+/**
+ * Navbar containing language select and options button
+ */
 export class NavComponent {
     language: Language = new Language();
 
     constructor(public snackBar: MdSnackBar) { }
 
+    /**
+     * Handles the click on settings icon
+     */
     private clickSettings() {
         // console.log('open settings');
         if (AppComponent.getPage() === 2) {
@@ -26,6 +34,9 @@ export class NavComponent {
         }
     }
 
+    /**
+     * Goes back one page
+     */
     private goBack() {
         AppComponent.goBack();
     }

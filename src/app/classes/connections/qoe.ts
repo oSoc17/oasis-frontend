@@ -1,30 +1,48 @@
 // Custom Modules
-import { IQoE } from '../../interfaces/iQoE';
-import { IUserPreferences } from '../../interfaces/iUserPreferences';
-
 import { RouteHistory } from './routeHistory';
 import { Route } from './route';
 import { Calc } from '../utils/calc';
 import { AppModule } from '../../app.module';
 
+// Interfaces
+import { IQoE } from '../../interfaces/iQoE';
+
 export class QoE implements IQoE {
     private routeHistory: RouteHistory;
-    private userPreferences: IUserPreferences;
     private _departureTime: Date;
     private _arrivalTime: Date;
-    private _weight = 1.0 / 4;
-    public prefs = AppModule.options.qoeParameters;
+    private _weight = 1.0 / 4; // depends on how many scores the getQoE() contains
+    public prefs = AppModule.options.qoeParameters; // user preferences
 
-    constructor(routeHistory: RouteHistory, preference: IUserPreferences) {
+    /**
+     * @param routeHistory a route and it's historic data
+     */
+    constructor(routeHistory: RouteHistory) {
         this.routeHistory = routeHistory;
-        this.userPreferences = preference;
         if (routeHistory.routes.length > 0) {
             this._departureTime = routeHistory.routes[0].departureTime;
-            this._arrivalTime = routeHistory.routes[0].arrivalTime;
+            this._arrivalTime = new Date(this._departureTime.valueOf() + routeHistory.getAvgTravelTime().valueOf());
         } else {
             this._departureTime = new Date(0);
             this._arrivalTime = new Date(0);
         }
+    }
+
+    /**
+     * get the total Quality Of Experience score
+     */
+    public getQoE(): number {
+        let sum = 0;
+        sum += this.getAvgChangeTime().score;
+        sum += this.getAvgChangesAmount().score;
+        sum += this.getDelayConsistency().score;
+        sum += this.getAvgDelay().score;
+        // sum += this.getAvgTravelTime().score;
+        // sum += this.getNumberOfMissedConnections().score;
+        // sum += this.getNumberOfRoutesWithinHour().score;
+        // sum += this.getPrice().score;
+
+        return sum * sum; // power for more contrast
     }
 
     /**
@@ -73,7 +91,7 @@ export class QoE implements IQoE {
      * get the average delay of all routes inside routeHistory
      */
     public getAvgDelay(): any {
-        const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000; // in minutes
+        const delay: number = this.routeHistory.getAvgDelay().valueOf() / 60000.0; // in minutes
         const weight: number = this._weight;
         /**
          *  < userpref: on schedule (100%)
@@ -111,7 +129,7 @@ export class QoE implements IQoE {
         const changeTime: number = new Date(this.routeHistory.getAvgChangeTime()).valueOf() / 60000; // in minutes
         if ((this.routeHistory.getAvgChangesAmount() < 1)) {
             return {
-                score: weight * 1,
+                score: weight,
                 value: this.routeHistory.getAvgChangeTime() // Date
             };
         } else {
@@ -134,18 +152,18 @@ export class QoE implements IQoE {
      * get the consistency of the delays over all routes inside routeHistory
      */
     public getDelayConsistency(): any {
-        const stdDev: number = this.routeHistory.getDelayConsistency().valueOf();
-        const avg: number = this.routeHistory.getAvgDelay().valueOf();
+        const stdDev: number = this.routeHistory.getDelayConsistency().valueOf(); // stdDev in ms
+        const avg: number = this.routeHistory.getAvgDelay().valueOf(); // avg in ms
         const cov: number = avg ? stdDev / avg : 0; // coefficient of variation
         const weight: number = this._weight;
         /**
          *  < userpref: on schedule (100%)
          *  > 1: mostly delayed (0%)
          */
-        const score = weight * Calc.linearInterpolatePercentage(cov, 1, 0.21 + 3 * this.prefs['delayConsistency']);
+        const score = Calc.linearInterpolatePercentage(cov, 1, this.prefs['delayConsistency'] / 4);
         return {
-            score: score,
-            value: this.routeHistory.getDelayConsistency() // Date
+            score: weight * score,
+            value: score * 100
         };
     }
 
@@ -153,34 +171,9 @@ export class QoE implements IQoE {
      * get the average travel time/duration over all routes inside routeHistory
      */
     public getAvgTravelTime(): any {
-        const travelTime: number = this.routeHistory.getAvgTravelTime().valueOf() / 60000; // in minutes
-        const weight: number = this._weight;
-        /**
-         *  < 0: perfect (100%)
-         *  > 120: long trip (0%) -> note based on real evidence
-         */
-        const score = weight * Calc.linearInterpolatePercentage(travelTime, 120, 0);
         return {
-            score: score,
+            score: null,
             value: this.routeHistory.getAvgTravelTime() // Date
-        };
-    }
-
-    /**
-     * get the number of routes per hour heading this direction
-     */
-    public getNumberOfRoutesWithinHour(): any {
-        // TODO: update this to work.
-        const period = 30; // minutes between trips, generated
-        const weight: number = this._weight;
-        /**
-         *  < 5: very frequent (100%)
-         *  > 60: poor frequency (0%)
-         */
-        const score = weight * Calc.linearInterpolatePercentage(period, 60, 5);
-        return {
-            score: score,
-            value: period // Generated
         };
     }
 
@@ -201,30 +194,20 @@ export class QoE implements IQoE {
      * get the average price per travel
      */
     public getPrice(): any {
-        const price = 5;
-        const priceRatio = price / (this.routeHistory.getAvgTravelTime().valueOf() / 60000);
-        const weight: number = this._weight;
-        const score = weight * Calc.linearInterpolatePercentage(priceRatio, 3, 0);
-        return {
-            score: score,
-            value: price // Generated
-        };
+        return null;
     }
 
     /**
-     * get the total Quality Of Experience score
+     * get the amount of routes within an hour
      */
-    public getQoE(): number {
-        let sum = 0;
-        // sum += this.getAvgTravelTime().score;
-        sum += this.getAvgChangeTime().score;
-        sum += this.getAvgChangesAmount().score;
-        sum += this.getDelayConsistency().score;
-        sum += this.getAvgDelay().score;
-        // sum += this.getNumberOfMissedConnections().score;
-        // sum += this.getNumberOfRoutesWithinHour().score;
-        // sum += this.getPrice().score;
+    getNumberOfRoutesWithinHour() {
+        throw new Error('Method not implemented.');
+    }
 
-        return sum * sum; // power for more contrast
+    /**
+     * Returns an array of changes
+     */
+    public getChanges() {
+        return this.routeHistory.getChanges();
     }
 }
