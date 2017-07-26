@@ -26,11 +26,11 @@ export class StationList implements OnInit {
     stations: any[];
     lastQuery: string;
     imgstart = 'assets/img/';
-    transportTypes = [{type: 'bus', icon: 'directions_bus'},
-                    {type: 'emt-bus', icon: 'location_city'},
-                    {type: 'metro', icon: 'subway'},
-                    {type: 'tram', icon: 'tram'},
-                    {type: 'train', icon: 'train'}]
+    transportTypes = [{ type: 'bus', icon: 'directions_bus' },
+    { type: 'emt-bus', icon: 'location_city' },
+    { type: 'metro', icon: 'subway' },
+    { type: 'tram', icon: 'tram' },
+    { type: 'train', icon: 'train' }]
     @ViewChild(MdInputContainer) mdInput: MdInputContainer;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
     @Output() valueChange: EventEmitter<any> = new EventEmitter();
@@ -61,19 +61,18 @@ export class StationList implements OnInit {
     filterStations(val: string) {
         this.inputValue = val;
         if (val) {
-            const filtered = this.stations.filter(s => s.standardname.toLowerCase().indexOf(val.toLowerCase()) === 0);
+            const filtered = this.stations.filter(s => s.standardname.toLowerCase().indexOf(val.toLowerCase()) >= 0);
             if (filtered.length > 0 &&
                 filtered[0].standardname.toLowerCase().indexOf(val.toLowerCase()) === 0) {
                 this.selectedStation = filtered[0];
                 if (this.selectedStation) {
-                    console.log('emit stationselect')
+                    // Emit that station has been selected, for station combining depart and arrival and company/type lock
                     this.valueChange.emit(this.selectedStation);
                 }
             }
             this.qresults = filtered;
             return filtered;
         }
-        this.filterTypeCompany(this.stations);
         return this.qresults;
     }
 
@@ -83,43 +82,35 @@ export class StationList implements OnInit {
      */
     querystations(val: string) {
         this.inputValue = val;
-        if (val) {
-            if (this.qresults) {
-                 this.qresults.forEach(res => {
-                    if (res.standardname === val) {
-                        this.lastQuery = val;
-                    }
-                });
-            }
-            if (this.lastQuery && val.indexOf(this.lastQuery) === 0) {
-                // We already queried using this filter
-                // Filter this locally.
-                return this.filterStations(val);
-            }
 
-            this.tripscoreService.queryStations(val).then((res) => {
-                this.qresults = res.stations;
-                this.stations = this.qresults;
-                // If there is a next page keep getting results from server
-                if (!res.nextPage) {
+        if (val === '') {
+            // Clears selected station and emits the valueChange event for type & company lock
+            this.selectedStation = null;
+            this.valueChange.emit(this.selectedStation);
+        }
+
+        if (this.qresults) {
+            this.qresults.forEach(res => {
+                if (res.standardname === val) {
                     this.lastQuery = val;
                 }
-                this.filterTypeCompany(this.stations);
             });
-        }else {
-            console.log('im empty');
-            this.valueChange.emit('');
         }
-    }
 
-    filterTypeCompany(results) {
-        if (this.type && this.company) {
-            this.stations = this.stations.filter(station => {
-                return (station.type === this.type && station.company === this.company);
-            });
-            this.qresults = this.stations;
-            return results;
+        if (this.lastQuery && val.toLowerCase().indexOf(this.lastQuery.toLowerCase()) === 0) {
+            // We already queried using this filter
+            // Filter this locally.
+            return this.filterStations(val);
         }
+
+        this.tripscoreService.queryStations(val, this.company, this.type).then((res) => {
+            this.qresults = res.stations;
+            this.stations = this.qresults;
+            // If there is a next page keep getting results from server
+            if (!res.nextPage) {
+                this.lastQuery = val;
+            }
+        });
     }
 
     /**
