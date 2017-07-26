@@ -18,25 +18,25 @@ export class RouteHistory {
     }
 
     /**
-     * get the avg Travel duration of the historic array
+     * get the median travel duration of the historic array
      */
     public getAvgTravelTime(): Date {
         const data: number[] = [];
         for (const route of this.routes) {
             data.push(route.totalTravelTime.valueOf());
         }
-        return new Date(Calc.avg(data));
+        return new Date(Calc.median(data));
     }
 
     /**
-     * get the average amount of changes over the historic data array
+     * get the median amount of changes over the historic data array
      */
     public getAvgChangesAmount(): number {
         const data: number[] = [];
         for (const route of this.routes) {
             data.push(route.changesAmount);
         }
-        return Calc.avg(data);
+        return Calc.median(data);
     }
 
     /**

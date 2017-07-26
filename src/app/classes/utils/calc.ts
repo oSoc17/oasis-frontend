@@ -12,6 +12,24 @@ export class Calc {
     }
 
     /**
+     * Calculate a median based on the number array
+     * @param values an array filled with numbers to calc median from
+     */
+    public static median(values: number[]): number {
+        const amount = values.length;
+        const sorted = values.sort();
+        if (amount % 2) {
+            // odd
+            const middle = Math.ceil(amount / 2);
+            return sorted[middle];
+        } else {
+            // even
+            const middle = amount / 2;
+            return (sorted[middle - 1] + sorted[middle]) / 2;
+        }
+    }
+
+    /**
      * Recalculate the average based on the old average, total amount of values and a newly added value
      * @param oldAverage the average we need to recalculate
      * @param newValue the new value added to the average
