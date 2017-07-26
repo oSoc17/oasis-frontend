@@ -50,7 +50,7 @@ export class Options {
                     for (const recent of options.recents) {
                         this.recents.push(Recent.fromJson(recent));
                     }
-                    console.log(this.recents);
+                    // console.log(this.recents);
                 }
             }
             // console.log(JSON.stringify(this));

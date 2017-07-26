@@ -6,6 +6,7 @@ const Client = require('lc-client');
 // Custom modules
 import { SearchData } from '../classes/connections/searchData';
 import { Utils } from '../classes/utils/utils';
+const parentTree = require('../../parentTree.json');
 
 export interface IRouteService {
     onQueryResult: ISimpleEvent<any>;
@@ -49,23 +50,20 @@ export class RouteService implements IRouteService {
         const self = this;
 
         if (!searchData.latestDepartTime) {
-            // reject('Invalid latestDepartTime!');
             return console.log('Invalid latestDepartTime!');
         }
 
-        if (searchData.departureTime.valueOf() + 60000 > searchData.latestDepartTime.valueOf()) {
-            console.log('Total connections processed ', dataCount);
-            return cb(paths);
-        }
-        this.planner.query(searchData, (resultStream, source) => {
+        this.planner.timespanQuery(searchData, (resultStream, source, connectionsStream) => {
             let result = false;
-            resultStream.once('result',  (path) => {
-                console.log(searchData.departureTime);
-                searchData.departureTime = new Date(new Date(path[0].departureTime).valueOf() + 60000);
+            resultStream.on('result',  (path) => {
                 paths.push(path);
-                self.continuousQuery(searchData, cb, paths, dataCount, httpRequests, httpResponses);
                 this._onQueryResult.dispatch(path);
                 result = true;
+            });
+
+            resultStream.once('end',  (path) => {
+                console.log('Stream has ended');
+                return cb(paths);
             });
 
             resultStream.on('data', (data) => {
@@ -74,14 +72,20 @@ export class RouteService implements IRouteService {
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
                 if (result) {
-                    if (result) {
-                        for (const event of resultStream._events.data) {
-                            if (event) {
-                                source.removeListener('data', event);
-                            }
+                    if (!resultStream._events.data) {
+                        return;
+                    }
+                    for (const event of resultStream._events.data) {
+                        if (event) {
+                            source.removeListener('data', event);
                         }
                     }
                 }
+            });
+
+            connectionsStream.on('data', (data) => {
+                /*data['arrivalStop'] = this.findParent(data['arrivalStop']);
+                data['departureStop'] = this.findParent(data['departureStop']);*/
             });
 
             source.on('request', () => {
@@ -89,6 +93,9 @@ export class RouteService implements IRouteService {
                 httpRequests++;
                 self._onHttpRequest.dispatch(httpRequests);
                 if (result) {
+                    if (!source._events.request) {
+                        return;
+                    }
                     for (const event of source._events.request) {
                         if (event) {
                             source.removeListener('request', event);
@@ -107,6 +114,9 @@ export class RouteService implements IRouteService {
                 // console.log(source);
                 // console.log(require('events').EventEmitter.listenerCount(source, 'response'));
                 if (result) {
+                    if (!source._events.response) {
+                        return;
+                    }
                     for (const event of source._events.response) {
                         if (event) {
                             source.removeListener('response', event);
@@ -130,6 +140,14 @@ export class RouteService implements IRouteService {
         });
     }
 
+    private findParent(uri: string) {
+        const parent = parentTree[uri];
+        if (parent) {
+            return parent;
+        }
+        return uri;
+    }
+
     /**
      * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
      * @param searchDataList list of SearchData objects
@@ -149,7 +167,7 @@ export class RouteService implements IRouteService {
         return this._onQueryResult;
 
         // Test event handlers
-        /*this.onDataUpdate.subscribe(dataCount => console.log(`Connections processed: ${dataCount}`));
+        /*this.onDataUpdate.subscribe(dataCount => console.log(`Routes processed: ${dataCount}`));
         this.onHttpRequest.subscribe(httpRequests => console.log(`HTTP Requests: ${httpRequests}`));
         this.onHttpResponse.subscribe(httpResponses => console.log(`HTTP Responses: ${httpResponses}`));
         this.onQueryResult.subscribe(queryResult => console.log(`HTTP Responses: ${queryResult}`));*/

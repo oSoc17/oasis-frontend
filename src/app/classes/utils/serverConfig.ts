@@ -16,8 +16,8 @@ export class ServerConfig {
      * @param compareTo the uri to compare to
      */
     public static equalUris(uri: string, compareTo: string) {
-        let domain = uri.match(/^(http|https):\/\/(.*)\//g)[0];
-        let compare = compareTo.match(/^(http|https):\/\/(.*)\//g)[0];
+        const domain = uri.match(/^(http|https):\/\/(.*)\//g)[0];
+        const compare = compareTo.match(/^(http|https):\/\/(.*)\//g)[0];
         console.log(domain, compare);
         if (domain && compare && domain === compare) {
             return true;
@@ -35,6 +35,6 @@ export class ServerConfig {
         if (stations[domain]) {
             return ServerConfig.getServer(stations[domain]);
         }
-        return [""];
+        return [''];
     }
 }

@@ -8,12 +8,7 @@ import { SearchData } from './searchData';
 import { Connection } from './connection';
 import { RouteHistory } from './routeHistory';
 import { Utils } from '../utils/utils';
-
 import { RouteService } from '../../services/routing.service';
-
-/* Mocks */
-import { UserPreferencesMock } from '../mocks/userprefs.mock';
-import { UserPreferences } from '../userData/userprefs';
 
 export class Manager {
     // private entryPoints = this.config.servers.reduce((array, server) => array.concat(server.uri), []);
@@ -31,15 +26,15 @@ export class Manager {
             this.routeService = new RouteService(this.entryPoints);
         }
         this.routeService.onQueryResult.subscribe((result) => {
-            const route = new Route(result);
+            const route = new Route(result.map(con => new Connection(con)));
             for (const qoe of this._qoeList) {
                 if (qoe.departureTime.toTimeString() === route.departureTime.toTimeString()) {
                     return qoe.addRoute(route);
                 }
             }
-            console.log(result);
+            // console.log(result);
             const routeHistory = new RouteHistory([route]);
-            this._qoeList.push(new QoE(routeHistory, new UserPreferences()));
+            this._qoeList.push(new QoE(routeHistory));
             this._qoeList.sort((a, b) => {
                 const aTime = (Utils.dateFromTime(a.departureTime.getHours(), a.departureTime.getMinutes()));
                 const bTime = (Utils.dateFromTime(b.departureTime.getHours(), b.departureTime.getMinutes()));

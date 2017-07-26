@@ -4,21 +4,25 @@
         "deleteInterval": 0
     },
     "stationUris": {
-        "irail.be/stations/NMBS/": "belgium",
-        "madrid.linkedconnections.org/crtm/stops/": "madrid"
+        "irail.be/stations/NMBS/": "belgium_sncb",
+        "madrid.linkedconnections.org/crtm/stops/": "madrid_crtm",
+        "belgium.linkedconnections.org/delijn/stops/": "belgium_delijn"
     },
     "entrypoints": {
-        "belgium": {
+        "belgium_sncb": {
             "uri": "http://belgium.linkedconnections.org/sncb/connections"
         },
-        "madrid": {
+        "belgium_delijn": {
+            "uri": "http://belgium.linkedconnections.org/delijn/connections"
+        },
+        "madrid_crtm": {
             "uri": "http://madrid.linkedconnections.org/crtm/connections"
         }
     },
     "servers": {
         "tripscoreAPI": {
             "name": "stationsserver",
-            "uri": "http://api.tripscore.eu"
+            "uri": "https://api.tripscore.eu"
         }
     }
 }

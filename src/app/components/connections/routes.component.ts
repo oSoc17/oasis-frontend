@@ -1,21 +1,24 @@
-import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+// Node modules
+import { Component, Input, OnInit, NgZone } from '@angular/core';
 
+// Custom modules
 import { AppComponent } from '../app.component';
 import { SearchData } from '../../classes/connections/searchData';
 import { Language } from '../../classes/userData/language';
-
 import { Manager } from '../../classes/connections/manager';
 import { QoE } from '../../classes/connections/qoe';
-import { Route } from '../../classes/connections/route';
 import { ServerConfig } from '../../classes/utils/serverConfig';
 
 @Component({
-    selector: 'connections',
-    templateUrl: './templates/connections.component.html',
+    selector: 'routes',
+    templateUrl: './templates/routes.component.html',
     styleUrls: ['./styles/connections.component.scss']
 })
 
-export class Connections implements OnInit {
+/**
+ * A list of route components provided with the search string and interactive loading chips
+ */
+export class Routes implements OnInit {
     loading: any = true;
     finished: any = false;
     searchData: SearchData[];
@@ -33,19 +36,19 @@ export class Connections implements OnInit {
     httpRequests = 0;
     httpResponses = 0;
 
-    constructor(private ref: ChangeDetectorRef) {
+    constructor(private zone: NgZone) {
         if (AppComponent.searchData) {
             const searchQuery = AppComponent.searchData[0];
             if (ServerConfig.equalUris(searchQuery.depStation, searchQuery.arrStation)) {
-                console.log(AppComponent.searchData[0].depStation);
+                //console.log(AppComponent.searchData[0].depStation);
                 const entrypoint = ServerConfig.getServerByStation(AppComponent.searchData[0].depStation);
                 this.manager = new Manager(entrypoint);
                 this.qoeList = this.manager.qoeList;
-                // This improves performance
-                setInterval(() => {
-                    this.ref.detectChanges();
-                    // timeout handled by lc-client now
-                }, 100);
+                this.manager.getRouteListener.subscribe(() => {
+                    this.zone.run(() => {
+                        // console.log('Refresh connections');
+                    });
+                });
                 return;
             }
         }

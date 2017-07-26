@@ -3,17 +3,17 @@ import { AppComponent } from './components/app.component';
 import { StationList } from './components/search/stationList.component';
 import { ConnectionQuery } from './components/search/connectionQuery.component';
 import { TravelTime } from './components/search/travelTime.component';
-import { TravelDate } from './components/search/travelDate.component';
-import { Connections } from './components/connections/connections.component';
+import { TravelDay } from './components/search/travelDay.component';
+import { Routes } from './components/connections/routes.component';
 import { Options } from './components/options/options.component';
 import { LanguageChooser } from './components/options/languagechooser.component';
-import { ConnectionDetail } from './components/connections/connectionDetail.component';
 import { NavComponent } from './components/nav.component';
 import { QoESliderComponent } from './components/options/qoeSlider.component';
 import { TimeChoiceComponent } from './components/options/sliderChoice';
 import { MultipleChoiceComponent } from './components/options/mutipleChoice.components';
 import { Recents } from './components/search/recents.component';
 import { Route } from './components/connections/route.component';
+import { FooterComponent } from './components/footer.component';
 
 export class Components {
     public static components = [
@@ -21,16 +21,16 @@ export class Components {
         StationList,
         ConnectionQuery,
         TravelTime,
-        TravelDate,
-        Connections,
+        TravelDay,
+        Routes,
         Options,
         LanguageChooser,
-        ConnectionDetail,
         NavComponent,
         QoESliderComponent,
         TimeChoiceComponent,
         MultipleChoiceComponent,
         Recents,
-        Route
+        Route,
+        FooterComponent
     ];
 }

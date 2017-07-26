@@ -1,7 +1,7 @@
 <md-chip-list class="rt-updates">
-    <md-chip class="mat-chip mat-accent mat-chip-selected">Connections processed: {{ dataCount }}</md-chip>
-    <md-chip class="mat-chip mat-accent mat-chip-selected">HTTP Requests: {{ httpRequests }}</md-chip>
-    <md-chip class="mat-chip mat-accent mat-chip-selected">HTTP Responses: {{ httpResponses }}</md-chip>
+    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('conn_proc') }}{{ dataCount }}</md-chip>
+    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('http_req') }}{{ httpRequests }}</md-chip>
+    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('http_res') }}{{ httpResponses }}</md-chip>
   </md-chip-list>
 
 <div *ngIf="!finished && !error">
@@ -21,8 +21,7 @@
 <h5 *ngIf="error || !loading"><a href="#" (click)=(goBack())>< {{ language.getMessage('back') }}</a></h5>
 <h3 *ngIf="error">ERROR: {{ error }}</h3>
 
-<div *ngIf="!loading && !error">
-
+<div>
     <h5 class="center-align">{{ searchString.stations }}</h5>
     <p  class="center-align">{{ searchString.time }}</p>
     <route *ngFor="let i of qoeList" [qoe]='i'></route>
