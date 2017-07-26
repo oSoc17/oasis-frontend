@@ -50,13 +50,13 @@ export class Route {
             {
                 name: this.language.getMessage('delay'),
                 tooltip: this.language.getMessage('delay_tooltip'),
-                value: Utils.toUTCTime(this.qoe.getAvgDelay().value.valueOf()),
+                value: this.qoe.getAvgDelay().value.valueOf() / 60000.0 + ' ' + this.language.getMessage('minutes'),
                 icon: 'delay',
             },
             {
                 name: this.language.getMessage('delayConsistency'),
                 tooltip: this.language.getMessage('delayConsistency_tooltip'),
-                value: this.qoe.getDelayConsistency().value.valueOf(),
+                value: this.qoe.getDelayConsistency().value + '%',
                 icon: 'consistency'
             },
             {
@@ -86,7 +86,6 @@ export class Route {
         const count = changes.length;
         for (let i = 0; i < count; i++) {
             this.tripScoreService.searchStation(changes[i].station).then((response) => {
-                console.log(response);
                 changes[i].stationName = response[0].standardname;
                 if (i === count - 1) {
                     this.changes = changes;

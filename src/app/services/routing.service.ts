@@ -6,6 +6,7 @@ const Client = require('lc-client');
 // Custom modules
 import { SearchData } from '../classes/connections/searchData';
 import { Utils } from '../classes/utils/utils';
+const parentTree = require('../../parentTree.json');
 
 export interface IRouteService {
     onQueryResult: ISimpleEvent<any>;
@@ -52,7 +53,7 @@ export class RouteService implements IRouteService {
             return console.log('Invalid latestDepartTime!');
         }
 
-        this.planner.timespanQuery(searchData, (resultStream, source) => {
+        this.planner.timespanQuery(searchData, (resultStream, source, connectionsStream) => {
             let result = false;
             resultStream.on('result',  (path) => {
                 paths.push(path);
@@ -80,6 +81,11 @@ export class RouteService implements IRouteService {
                         }
                     }
                 }
+            });
+
+            connectionsStream.on('data', (data) => {
+                data['arrivalStop'] = this.findParent(data['arrivalStop']);
+                data['departureStop'] = this.findParent(data['departureStop']);
             });
 
             source.on('request', () => {
@@ -132,6 +138,14 @@ export class RouteService implements IRouteService {
             searchData.departureTime = new Date(new Date(searchData.departureTime).valueOf() - Utils.getHoursValue(1));
             this.continuousQuery(searchData, resolve);
         });
+    }
+
+    private findParent(uri: string) {
+        const parent = parentTree[uri];
+        if (parent) {
+            return parent;
+        }
+        return uri;
     }
 
     /**
