@@ -33,3 +33,20 @@ describe('calc.ts stdDev', () => {
         expect(i).toBeCloseTo(12.298996142875);
     });
 });
+
+/**
+ * Calculate median
+ */
+describe('calc.ts median odd amount', () => {
+    it('should return 23', () => {
+        const i = Calc.median([10, 2, 38, 23, 38, 23, 21]);
+        expect(i).toBe(23);
+    });
+});
+
+describe('calc.ts median even amount', () => {
+    it('should return 22', () => {
+        const i = Calc.median([10, 2, 38, 38, 23, 21]);
+        expect(i).toBe(22);
+    });
+});
