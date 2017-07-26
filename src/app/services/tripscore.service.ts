@@ -29,9 +29,17 @@ export class TripscoreService {
      * Gets an array of stations from the api
      * @param query name string
      */
-    public queryStations(query: string): Promise<any> {
+    public queryStations(query: string, company: string, type: string): Promise<any> {
         const myParams = new URLSearchParams();
-        myParams.append('q', query);
+        if (query) {
+            myParams.append('q', query);
+        }
+        if (company) {
+            myParams.append('company', company);
+        }
+        if (type) {
+            myParams.append('type', type);
+        }
         myParams.append('children', 'false');
         const options = new RequestOptions({
             headers: new Headers({ 'Accept': 'application/json' }),

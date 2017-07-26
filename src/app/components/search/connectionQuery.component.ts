@@ -35,7 +35,6 @@ export class ConnectionQuery {
     language: Language = new Language();
     company: string;
     transportType: string;
-    companylock: boolean[] = [false, false];
 
     constructor() {}
 
@@ -83,15 +82,13 @@ export class ConnectionQuery {
      * @param selected an object with a 'company' and 'type' attribute
      */
     stationSelected(selected, nr) {
-        console.log('stationselected');
         if (selected && selected['company'] && selected['type']) {
-            this.companylock[nr] = true;
             this.company = selected['company'];
             this.transportType = selected['type'];
-        }else {
-            this.companylock[nr] = false;
         }
-        if (!this.companylock[0] && !this.companylock[1]) {
+        const arriveSt = this.arrStation.selectedStation;
+        const departSt = this.depStation.selectedStation;
+        if (!arriveSt && !departSt) {
             this.company = null;
             this.transportType = null;
         }
