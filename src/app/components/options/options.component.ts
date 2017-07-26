@@ -20,6 +20,7 @@ export class Options {
     private hopsMissed;
     private crowdedness;
     private price;
+    private mConnectionChance;
 
     constructor(public snackBar: MdSnackBar) {
         this.language = new Language();
@@ -78,6 +79,15 @@ export class Options {
             value: AppModule.options.qoeParameters['price'],
             id: 'price',
         };
+        this.mConnectionChance = {
+            name: () => this.language.getMessage('missedConnections'),
+            tooltip: () => this.language.getMessage('missedConnections_tooltip'),
+            value: AppModule.options.qoeParameters['numberOfMissedConnections'],
+            id: 'missedconnections',
+            unit: () => '%',
+            min: 0,
+            max: 100,
+        }
     }
 
     private resetOptions() {
