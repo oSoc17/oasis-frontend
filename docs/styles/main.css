@@ -190,11 +190,6 @@ nav ul a {
     margin-top: 30px;
 }
 
-.partner-logo {
-    display: block;
-    height: 30px;
-}
-
 .partner-list {
     display: flex;
     flex-direction: row;
@@ -209,9 +204,9 @@ nav ul a {
     display: block;
 }
 
-.partner-list img {
-    width: 100px;
-    height: 80px;
+.partner-list .partner-logo {
+    display: block;
+    height: 40px;
 }
 
 .hipster-icon {
