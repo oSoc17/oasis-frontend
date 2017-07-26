@@ -209,6 +209,11 @@ nav ul a {
     display: block;
 }
 
+.sponsor-list li a img {
+    width: 100px;
+    height: 80px;
+}
+
 .hipster-icon {
     width: 40%;
     display: block;
