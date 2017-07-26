@@ -11,7 +11,7 @@ export class QoE implements IQoE {
     private routeHistory: RouteHistory;
     private _departureTime: Date;
     private _arrivalTime: Date;
-    private _weight = 1.0 / 4; // depends on how many scores the getQoE() contains
+    private _weight = 1.0 / 5; // depends on how many scores the getQoE() contains
     public prefs = AppModule.options.qoeParameters; // user preferences
 
     /**
@@ -38,7 +38,7 @@ export class QoE implements IQoE {
         sum += this.getDelayConsistency().score;
         sum += this.getAvgDelay().score;
         // sum += this.getAvgTravelTime().score;
-        // sum += this.getNumberOfMissedConnections().score;
+        sum += this.getNumberOfMissedConnections().score;
         // sum += this.getNumberOfRoutesWithinHour().score;
         // sum += this.getPrice().score;
 
@@ -183,7 +183,8 @@ export class QoE implements IQoE {
     public getNumberOfMissedConnections(): any {
         const missedConnections = this.routeHistory.getChangeMissedChance();
         const weight: number = this._weight;
-        const score = weight * Calc.linearInterpolatePercentage(missedConnections, this.prefs['numberOfMissedConnections'], 0);
+        const score =  weight * (1 -
+        Calc.linearInterpolatePercentage(missedConnections, 0 , this.prefs['numberOfMissedConnections'] / 100));
         return {
             score: score,
             value: missedConnections // Generated

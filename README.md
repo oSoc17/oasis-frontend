@@ -1,14 +1,16 @@
-# OASIS front-end (v0.0.0)
+# [Tripscore](http://tripscore.eu) (v0.0.0)
+The analytical tool that measures the quality of experience of public transport services.
+
 ### Status
 [![Build Status](https://travis-ci.org/oSoc17/oasis-frontend.png)](https://travis-ci.org/oSoc17/oasis-frontend)
 [![Build Status](https://david-dm.org/osoc17/oasis-frontend.svg)](https://david-dm.org/osoc17/oasis-frontend)
-### Contributing
-Please read the [Contribution guidelines](https://github.com/oSoc17/oasis-frontend/blob/develop/CONTRIBUTING.md) before committing any code!
-## About
-Together, Ghent and the region of Madrid have initiated an innovative action that will increase the accessibility of public services and public transport. To do this, they will collaborate to publish linked open data. Both cities are experienced publishers of open data, and together they will prove that new technologies (such as the “Semantic Web”) can lead to economies of scale, such as the creation of cross-country applications.  
 
-The proof of concept is a small app in which a user can fill in the route he usually takes to work/home. The product will show the **quality of experience** of the trip, compared to trains that depart earlier or later, within a predefined timespan.  
-The applications uses linked open data from the iRail API, combined with historical data.
+## About
+Together, Ghent and the region of Madrid have initiated an innovative action that will increase the accessibility of public services and public transport. To do this, they collaborate to publish linked open data. Both cities are experienced publishers of open data, and together they prove that new technologies (such as the “Semantic Web”) can lead to economies of scale, such as the creation of cross-country applications.  
+
+[Team OASIS](https://oasis.team/) has build a proof of concept webapp that shows the **quality of experience** score or [tripscore](http://tripscore.eu) of trips on a certain day within a timespan of two hours. The score itself is based on your personal preferences such as maximum acceptable delay or maximum acceptable amount of hops. Travellers can now make an informed decision on when and which train, tram or bus to take.
+
+The applications uses linked open data in the form of [Linked Connections](http://linkedconnections.org/) which uses both static and historical data.
 
 ## Installation
 ### Requirements
@@ -34,3 +36,9 @@ Build the app for uploading it to the browser
 ```
 $ npm run build
 ```
+
+## Contributing
+Please make sure to follow the [contribution guidelines](https://github.com/oSoc17/oasis-frontend/blob/develop/CONTRIBUTING.md).
+
+## License
+This code is copyrighted by [OASIS](https://oasis.team/) and released under the MIT license.
