@@ -1,4 +1,4 @@
-# [Tripscore](http://tripscore.eu) (v0.0.0)
+# [Tripscore](http://tripscore.eu) (v1.0.0)
 The analytical tool that measures the quality of experience of public transport services.
 
 ### Status
@@ -39,6 +39,16 @@ $ npm run build
 
 ## Contributing
 Please make sure to follow the [contribution guidelines](https://github.com/oSoc17/oasis-frontend/blob/develop/CONTRIBUTING.md).
+#### Contributors
+* Jasper De Moor [@DeMoorJasper](https://github.com/DeMoorJasper)
+* Israel Ketema Elefenh
+* Bruno Haspeslagh [@BrunoHaspeslagh](https://github.com/BrunoHaspeslagh)
+* Robrecht Meersman [@RobrechtM](https://github.com/RobrechtM)
+* Pieter-Jan Vandenberghe [@Buccaneer](https://github.com/Buccaneer)
+* David Chaves [@dachafra](https://github.com/dachafra)
+* Pieter Colpaert [@pietercolpaert](https://github.com/pietercolpaert)
+* Julian Rojas [@julianrojas](https://github.com/julianrojas)
+
 
 ## License
 This code is copyrighted by [OASIS](https://oasis.team/) and released under the MIT license.
