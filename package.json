@@ -1,7 +1,7 @@
 {
   "name": "oasis-frontend",
-  "version": "0.0.0",
-  "license": "ALL RIGHTS RESERVED",
+  "version": "1.0.0",
+  "license": "MIT",
   "main": "./src/main.ts",
   "scripts": {
     "start": "ng serve --open",
@@ -9,6 +9,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "bugs": {
+    "url" : "https://github.com/oSoc17/oasis-frontend/issues"
+  },
+  "repository" :
+  { 
+    "type" : "git",
+    "url" : "https://github.com/oSoc17/oasis-frontend.git"
   },
   "dependencies": {
     "@angular/animations": "^4.2.6",
