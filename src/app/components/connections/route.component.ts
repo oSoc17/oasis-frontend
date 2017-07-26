@@ -32,7 +32,7 @@ export class Route {
             .addSvgIcon('hop_wait', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/hop_wait.svg'))
             .addSvgIcon('hops', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/hops.svg'))
             .addSvgIcon('travel_time', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/travel_time.svg'))
-            .addSvgIcon('missed', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/travel_time.svg'))
+            .addSvgIcon('missed', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/missecconnection.svg'))
             .addSvgIcon('consistency', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/consistency.svg'));
     }
 
@@ -75,10 +75,9 @@ export class Route {
             {
                 name: this.language.getMessage('missedConnections'),
                 tooltip: this.language.getMessage('missedConnections_tooltip'),
-                val: this.qoe.getNumberOfMissedConnections().value + '%',
+                value: this.qoe.getNumberOfMissedConnections().value + '%',
                 icon: 'missed'
             }];
-
         }
     }
 
