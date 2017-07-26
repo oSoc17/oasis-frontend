@@ -190,33 +190,38 @@ nav ul a {
     margin-top: 30px;
 }
 
-.sponsor-logo {
+.partner-logo {
     display: block;
     height: 30px;
 }
 
-.sponsor-list {
+.partner-list {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-.sponsor-list a{
+.partner-list a{
     display: block;
     width: 100%;
 }
-.sponsor-list li{
+.partner-list li{
     display: block;
 }
 
-.sponsor-list li a img {
+.partner-list img {
     width: 100px;
     height: 80px;
 }
 
 .hipster-icon {
     width: 40%;
+    height: 100px;
     display: block;
-    border-radius: 50%;
-    margin: 0 auto;
+    /** border-radius: 50%; */
+    margin: 0 auto 20px auto;
+}
+
+.text-column {
+    text-align: justify;
 }
