@@ -17,16 +17,19 @@ export class Calc {
      */
     public static median(values: number[]): number {
         const amount = values.length;
-        const sorted = values.sort();
-        if (amount % 2) {
-            // odd
-            const middle = Math.ceil(amount / 2);
-            return sorted[middle];
-        } else {
-            // even
-            const middle = amount / 2;
-            return (sorted[middle - 1] + sorted[middle]) / 2;
+        if (amount) {
+            const sorted = values.sort();
+            if (amount % 2) {
+                // odd
+                const middle = Math.floor(amount / 2);
+                return sorted[middle];
+            } else {
+                // even
+                const middle = amount / 2;
+                return (sorted[middle - 1] + sorted[middle]) / 2;
+            }
         }
+        return 0;
     }
 
     /**
