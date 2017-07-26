@@ -192,7 +192,7 @@ nav ul a {
 
 .sponsor-logo {
     display: block;
-    width: 100px;
+    height: 30px;
 }
 
 .sponsor-list {
@@ -200,6 +200,13 @@ nav ul a {
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+.sponsor-list a{
+    display: block;
+    width: 100%;
+}
+.sponsor-list li{
+    display: block;
 }
 
 .hipster-icon {
