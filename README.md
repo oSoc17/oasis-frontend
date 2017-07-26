@@ -1,4 +1,4 @@
-# [Tripscore](http://tripscore.eu) (v0.0.0)
+# [Tripscore](http://tripscore.eu) (v1.0.0)
 The analytical tool that measures the quality of experience of public transport services.
 
 ### Status
