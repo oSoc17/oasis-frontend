@@ -47,7 +47,7 @@ Please make sure to follow the [contribution guidelines](https://github.com/oSoc
 * Pieter-Jan Vandenberghe [@Buccaneer](https://github.com/Buccaneer)
 * David Chaves [@dachafra](https://github.com/dachafra)
 * Pieter Colpaert [@pietercolpaert](https://github.com/pietercolpaert)
-* Julian Rojas [@julianrojas](https://github.com/julianrojas)
+* Julian Rojas [@julianrojas87](https://github.com/julianrojas87)
 
 
 ## License
