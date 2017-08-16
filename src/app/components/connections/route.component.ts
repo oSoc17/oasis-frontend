@@ -51,7 +51,7 @@ export class Route {
             {
                 name: this.language.getMessage('delay'),
                 tooltip: this.language.getMessage('delay_tooltip'),
-                value: this.qoe.getAvgDelay().value.valueOf() / 60000.0 + ' ' + this.language.getMessage('minutes'),
+                value: Number(this.qoe.getAvgDelay().value.valueOf() / 60000.0).toFixed(2) + ' ' + this.language.getMessage('minutes'),
                 icon: 'delay',
             },
             {
@@ -75,7 +75,7 @@ export class Route {
             {
                 name: this.language.getMessage('missedConnections'),
                 tooltip: this.language.getMessage('missedConnections_tooltip'),
-                value: this.qoe.getNumberOfMissedConnections().value + '%',
+                value: Number(this.qoe.getNumberOfMissedConnections().value).toFixed(1) + '%',
                 icon: 'missed'
             }];
         }

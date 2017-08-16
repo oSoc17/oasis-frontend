@@ -68,7 +68,7 @@ export class ConnectionQuery {
         } else {
             this.searchData = [];
             this.searchData = SearchData.createPeriodicList(departSt['id'], arriveSt['id'],
-                this.travelTime.selectedTime, Utils.getLatest(this.travelDate.selectedDay), 'departureTime', 14);
+                this.travelTime.selectedTime, Utils.getLatest(this.travelDate.selectedDay), 'departureTime', 1);
             AppComponent.searchData = this.searchData;
             AppComponent.searchString = {
                 stations: departSt.standardname + ' - ' + arriveSt.standardname,

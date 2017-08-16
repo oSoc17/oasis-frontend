@@ -50,7 +50,6 @@ export class Manager {
      * @param deploycheck wether or not deployment should be checked (default: true)
      */
     public getQoE(searchDataList: SearchData[], deploycheck: boolean = true): ISimpleEvent<any> {
-        // console.log(searchDataList);
         this.onDataUpdate.subscribe(e => this._dataCount++);
         this.onHttpRequest.subscribe(e => this._httpRequests++);
         this.onHttpResponse.subscribe(e => this._httpResponses++);

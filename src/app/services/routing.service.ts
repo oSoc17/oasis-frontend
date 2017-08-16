@@ -67,9 +67,9 @@ export class RouteService implements IRouteService {
             });
 
             resultStream.on('data', (data) => {
-                // console.log(data);
+                //console.log(data);
                 // Processed connections
-                console.log('data!!');
+                //console.log('data!!');
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
                 if (result) {
@@ -135,7 +135,6 @@ export class RouteService implements IRouteService {
     query(searchData: SearchData): Promise<any> {
         searchData = searchData.toJSON();
         return new Promise((resolve, reject) => {
-            // console.log(searchData);
             searchData.departureTime = new Date(new Date(searchData.departureTime).valueOf() - Utils.getHoursValue(1));
             this.continuousQuery(searchData, resolve);
         });

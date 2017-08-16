@@ -21,7 +21,7 @@ export class SearchData {
      * @param amount amount of SearchDataObjects wanted (default = 5)
      * @param goesForward wether or not the days should be added instead of removed to the startdate (default = false)
      */
-    public static createPeriodicList(depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number = 5,
+    public static createPeriodicList(depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number = 10,
                                      goesForward: boolean = false): SearchData[] {
         const dataList = [];
         // console.log('period: ', period, ' amount: ', amount);
