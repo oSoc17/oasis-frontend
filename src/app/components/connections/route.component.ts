@@ -49,15 +49,15 @@ export class Route {
                 icon: 'travel_time'
             },
             {
-                name: this.language.getMessage('delay'),
+                name: this.language.getMessage('avgDelay'),
                 tooltip: this.language.getMessage('delay_tooltip'),
-                value: Number(this.qoe.getAvgDelay().value.valueOf() / 60000.0).toFixed(2) + ' ' + this.language.getMessage('minutes'),
+                value: this.formatDelay(this.qoe.getAvgDelay().value.valueOf()),
                 icon: 'delay',
             },
             {
                 name: this.language.getMessage('delayConsistency'),
                 tooltip: this.language.getMessage('delayConsistency_tooltip'),
-                value: this.qoe.getDelayConsistency().value + '%',
+                value: Math.round(this.qoe.getDelayConsistency().value) + '%',
                 icon: 'consistency'
             },
             {
@@ -75,9 +75,18 @@ export class Route {
             {
                 name: this.language.getMessage('missedConnections'),
                 tooltip: this.language.getMessage('missedConnections_tooltip'),
-                value: Number(this.qoe.getNumberOfMissedConnections().value).toFixed(1) + '%',
+                value: Math.round(this.qoe.getNumberOfMissedConnections().value) + '%',
                 icon: 'missed'
             }];
+        }
+    }
+
+    private formatDelay(delay: number): string {
+        let date = new Date(delay);
+        if ((delay / 60000.0) < 1) {
+            return date.getSeconds() + ' ' + this.language.getMessage('seconds');
+        } else {
+            return date.getMinutes() + ' ' + this.language.getMessage('minutes') + ' ' + date.getSeconds() + ' ' + this.language.getMessage('seconds');
         }
     }
 
@@ -90,20 +99,20 @@ export class Route {
         }
         const changes = this.qoe.getChanges();
         const count = changes.length;
-        for (let i = 0; i < count; i++) {
+        for (let i = 0; i < count; i++) {
             this.tripScoreService.searchStation(changes[i].station).then((response) => {
                 changes[i].stationName = response[0].standardname;
                 if (i === count - 1) {
                     this.changes = changes;
                 }
-            }).catch (e => console.log(e));
+            }).catch(e => console.log(e));
         }
     }
 
     /**
      * Generate the "based on x connections" string
      */
-    public get basedOn(): string{
+    public get basedOn(): string {
         return this.language.getMessage('basedOn').replace('XX', this.qoe.amount + '');
     }
 

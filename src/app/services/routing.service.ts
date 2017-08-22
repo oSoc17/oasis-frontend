@@ -28,7 +28,7 @@ export class RouteService implements IRouteService {
      * @param entryPoints example: ['http://belgianrail.linkedconnections.org/']
      */
     constructor(entryPoints: [string]) {
-        this.planner = new Client({'entrypoints': entryPoints});
+        this.planner = new Client({'entrypoints': entryPoints, 'version': new Date()});
         this._onQueryResult = new SimpleEventDispatcher<any>();
         this._onDataUpdate = new SimpleEventDispatcher<any>();
         this._onHttpRequest = new SimpleEventDispatcher<any>();
@@ -67,9 +67,7 @@ export class RouteService implements IRouteService {
             });
 
             resultStream.on('data', (data) => {
-                //console.log(data);
                 // Processed connections
-                //console.log('data!!');
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
                 if (result) {

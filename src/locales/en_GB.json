@@ -55,6 +55,7 @@
     "preferences": "Preferences",
     "prefExplenation": "The following options determine how much each variable is counted when calculating your tripscore. The more important you designate an item, the heavier it will weigh in the final score.",
     "minutes": "min",
+    "seconds": "sec",
     "hops": "hops",
     "errStationServer": "Stations are not in the same region/country",
     "licence": "© 2017 OASIS - licensed under MIT",

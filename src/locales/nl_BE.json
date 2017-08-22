@@ -55,6 +55,7 @@
   "preferences": "Voorkeuren",
   "prefExplenation": "De volgende opties bepalen hoeveel elke variabele meegerekend wordt bij het berekenen van jouw tripscore. Hoe belangrijker je een variabele vindt, hoe zwaarder die doorweegt.",
   "minutes": "min",
+  "seconds": "sec",
   "hops": "overstappen",
   "errStationServer": "Stations bevinden zich niet in hetzelfde land/regio",
   "licence": "© 2017 OASIS - gelicentieerd onder MIT",
