@@ -28,7 +28,8 @@ export class RouteService implements IRouteService {
      * @param entryPoints example: ['http://belgianrail.linkedconnections.org/']
      */
     constructor(entryPoints: [string]) {
-        this.planner = new Client({'entrypoints': entryPoints, 'version': new Date()});
+        let config = { 'entrypoints': entryPoints, 'options': { headers: { 'Accept-Datetime': new Date().toString() } } };
+        this.planner = new Client(config);
         this._onQueryResult = new SimpleEventDispatcher<any>();
         this._onDataUpdate = new SimpleEventDispatcher<any>();
         this._onHttpRequest = new SimpleEventDispatcher<any>();
@@ -55,13 +56,13 @@ export class RouteService implements IRouteService {
 
         this.planner.timespanQuery(searchData, (resultStream, source, connectionsStream) => {
             let result = false;
-            resultStream.on('result',  (path) => {
+            resultStream.on('result', (path) => {
                 paths.push(path);
                 this._onQueryResult.dispatch(path);
                 result = true;
             });
 
-            resultStream.once('end',  (path) => {
+            resultStream.once('end', (path) => {
                 console.log('Stream has ended');
                 return cb(paths);
             });
@@ -150,7 +151,7 @@ export class RouteService implements IRouteService {
      * Does a query for each of the SearchData objects in searchDataList. promise resolves when all queries resolve.
      * @param searchDataList list of SearchData objects
      */
-    public queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any>  {
+    public queryPeriod(searchDataList: SearchData[]): ISimpleEvent<any> {
         const promiselist = [];
         searchDataList.forEach(searchData => {
             const query = this.query(searchData);
