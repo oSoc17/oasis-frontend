@@ -49,7 +49,7 @@
     "avgTravelTime_tooltip": "Average time between departure and arrival.",
     "missedConnections_tooltip": "The average chance that you are willing to risk missing the change of train.",
     "recents": "Recent",
-    "basedOn": "Based on XX day(s)",
+    "basedOn": "Based on XX weeks(s)",
     "now": "now",
     "resetOptions": "Reset",
     "preferences": "Preferences",
