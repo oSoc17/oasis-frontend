@@ -18,7 +18,6 @@ export class Language {
             const language = require(`../../../locales/${Language.language}.json`);
             return language;
         } catch (e) {
-            // console.log(e);
             return null;
         }
     }
@@ -44,7 +43,6 @@ export class Language {
             const file = require('../../../locales/languages.json');
             return file['languages'];
         } catch (e) {
-            // console.log(e);
             return null;
         }
     }

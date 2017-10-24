@@ -18,7 +18,6 @@ export class ServerConfig {
     public static equalUris(uri: string, compareTo: string) {
         const domain = uri.match(/^(http|https):\/\/(.*)\//g)[0];
         const compare = compareTo.match(/^(http|https):\/\/(.*)\//g)[0];
-        console.log(domain, compare);
         if (domain && compare && domain === compare) {
             return true;
         }

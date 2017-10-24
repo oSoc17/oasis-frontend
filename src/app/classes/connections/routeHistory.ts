@@ -88,10 +88,8 @@ export class RouteHistory {
         let changes = 0;
         for (const route of this.routes) {
             missed += route.getChangesMissed();
-            // console.log('missed', missed);
             changes += route.changesAmount;
         }
-        // console.log(missed + ' / ' + changes);
         // Divide by 0 check... - there are no changes...
         return changes > 0 ? missed / changes : 0;
     }

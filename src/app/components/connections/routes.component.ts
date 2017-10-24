@@ -42,7 +42,6 @@ export class Routes implements OnInit {
         if (AppComponent.searchData) {
             const searchQuery = AppComponent.searchData[0];
             if (ServerConfig.equalUris(searchQuery.depStation, searchQuery.arrStation)) {
-                // console.log(AppComponent.searchData[0].depStation);
                 const entrypoint = ServerConfig.getServerByStation(AppComponent.searchData[0].depStation);
                 this.manager = new Manager(entrypoint);
                 this.qoeList = this.manager.qoeList;
@@ -76,7 +75,6 @@ export class Routes implements OnInit {
         }
         if (this.pageChange) {
             this.pageChange.subscribe(e => {
-                console.log('kill manager!!! :)');
                 this.finished = true;
                 this.manager = null;
             });

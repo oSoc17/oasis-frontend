@@ -20,7 +20,6 @@ export class Recent {
             searchData.push(new SearchData(search.departureStop, search.arrivalStop,
                 Utils.timeStringFromDate(search.departureTime), Utils.formatDate(search.departureTime), 'departure'));
         }
-        // console.log(searchData);
         return new Recent(searchData, recentJson.depStationReadable, recentJson.arrStationReadable,
             recentJson.travelTimeReadable, recentJson.travelDay);
     }

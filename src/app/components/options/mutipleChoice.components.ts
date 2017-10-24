@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { AppModule } from '../../app.module';
 import { MdIconRegistry } from '@angular/material';
-import { DomSanitizer } from "@angular/platform-browser";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'multiple-choice',
@@ -31,7 +31,6 @@ export class MultipleChoiceComponent {
      */
     changeVal(val) {
         this.choice = val;
-        console.log(`id: ${this.id} val: ${this.choice}`);
         AppModule.options.qoeParameters[this.id] = this.choice;
         AppModule.options.save();
     }
