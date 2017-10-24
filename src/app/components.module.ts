@@ -14,6 +14,7 @@ import { MultipleChoiceComponent } from './components/options/mutipleChoice.comp
 import { Recents } from './components/search/recents.component';
 import { Route } from './components/connections/route.component';
 import { FooterComponent } from './components/footer.component';
+import { RouteScreen } from './components/connections/routeScreen.component';
 
 export class Components {
     public static components = [
@@ -31,6 +32,7 @@ export class Components {
         MultipleChoiceComponent,
         Recents,
         Route,
-        FooterComponent
+        FooterComponent,
+        RouteScreen
     ];
 }
