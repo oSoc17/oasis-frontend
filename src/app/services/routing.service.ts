@@ -6,7 +6,6 @@ const Client = require('lc-client');
 // Custom modules
 import { SearchData } from '../classes/connections/searchData';
 import { Utils } from '../classes/utils/utils';
-const parentTree = require('../../parentTree.json');
 
 export interface IRouteService {
     onQueryResult: ISimpleEvent<any>;
@@ -67,9 +66,7 @@ export class RouteService implements IRouteService {
             });
 
             resultStream.on('data', (data) => {
-                // console.log(data);
                 // Processed connections
-                console.log('data!!');
                 dataCount++;
                 self._onDataUpdate.dispatch(dataCount);
                 if (result) {
@@ -85,8 +82,7 @@ export class RouteService implements IRouteService {
             });
 
             connectionsStream.on('data', (data) => {
-                /*data['arrivalStop'] = this.findParent(data['arrivalStop']);
-                data['departureStop'] = this.findParent(data['departureStop']);*/
+                // Do something on data
             });
 
             source.on('request', () => {
@@ -112,8 +108,6 @@ export class RouteService implements IRouteService {
                 if (this.stopcondition) {
                     source.close();
                 }
-                // console.log(source);
-                // console.log(require('events').EventEmitter.listenerCount(source, 'response'));
                 if (result) {
                     if (!source._events.response) {
                         return;
@@ -135,18 +129,9 @@ export class RouteService implements IRouteService {
     query(searchData: SearchData): Promise<any> {
         searchData = searchData.toJSON();
         return new Promise((resolve, reject) => {
-            // console.log(searchData);
             searchData.departureTime = new Date(new Date(searchData.departureTime).valueOf() - Utils.getHoursValue(1));
             this.continuousQuery(searchData, resolve);
         });
-    }
-
-    private findParent(uri: string) {
-        const parent = parentTree[uri];
-        if (parent) {
-            return parent;
-        }
-        return uri;
     }
 
     /**

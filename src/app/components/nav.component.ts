@@ -23,7 +23,6 @@ export class NavComponent {
      * Handles the click on settings icon
      */
     private clickSettings() {
-        // console.log('open settings');
         if (AppComponent.getPage() === 2) {
             AppComponent.setPage(0);
             this.snackBar.open('Saved!', '', {

@@ -44,10 +44,8 @@ export class ConnectionQuery {
     clickCalculate() {
         const arriveSt = this.arrStation.selectedStation;
         const departSt = this.depStation.selectedStation;
-        console.log('arriveSt');
-        console.log(arriveSt);
-        console.log('departSt');
-        console.log(departSt);
+        console.log('arriveStation', arriveSt);
+        console.log('departStation', departSt);
         const arrInputValue = this.arrStation.inputValue;
         const depInputValue = this.depStation.inputValue;
         if (!(arriveSt && departSt && departSt['id'] && arriveSt['id'])) {

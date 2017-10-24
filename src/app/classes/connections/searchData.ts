@@ -24,7 +24,6 @@ export class SearchData {
     public static createPeriodicList(depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number = 5,
                                      goesForward: boolean = false): SearchData[] {
         const dataList = [];
-        // console.log('period: ', period, ' amount: ', amount);
         const calcdate = new Date(Date.parse(startDate));
         if (!goesForward) {
             period = -period;
@@ -36,7 +35,6 @@ export class SearchData {
             dateString = Utils.formatDate(calcdate);
             dataList.push(new SearchData(depStation, arrStation, travelTime, dateString, timeType));
         }
-        // console.log(dataList);
         return dataList;
     }
 

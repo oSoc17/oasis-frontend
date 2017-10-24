@@ -34,10 +34,8 @@ describe('RoutingService test', () => {
             expect(connections).toEqual(jasmine.any(Array));
             connections.forEach((connection) => {
                 if (connection.arrivalStop === undefined || connection.arrivalTime === undefined ||
-                        connection.departureStop === undefined || connection.departureTime === undefined ||
-                        connection['http://vocab.gtfs.org/terms#trip'] === undefined) {
-                    // console.log('some connection property is undefined');
-                    // console.log(connection);
+                    connection.departureStop === undefined || connection.departureTime === undefined ||
+                    connection['http://vocab.gtfs.org/terms#trip'] === undefined) {
                 }
 
                 expect(connection.arrivalStop).toBeDefined();

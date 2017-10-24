@@ -28,8 +28,6 @@ export class Options {
     public save(): boolean {
         if (this.checkLocalStorage()) {
             localStorage.setItem('Options', JSON.stringify(this));
-            // console.log(JSON.stringify(this));
-            // alert('Options saved!');
             return true;
         }
         return false;
@@ -50,10 +48,8 @@ export class Options {
                     for (const recent of options.recents) {
                         this.recents.push(Recent.fromJson(recent));
                     }
-                    // console.log(this.recents);
                 }
             }
-            // console.log(JSON.stringify(this));
             return true;
         }
         return false;
