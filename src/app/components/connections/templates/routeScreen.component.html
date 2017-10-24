@@ -1,0 +1,22 @@
+<md-chip-list class="rt-updates">
+    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('conn_proc') }}{{ dataCount }}</md-chip>
+    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('http_req') }}{{ httpRequests }}</md-chip>
+    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('http_res') }}{{ httpResponses }}</md-chip>
+</md-chip-list>
+
+<div *ngIf="!finished && !error">
+    <section _ngcontent-c23="" class="example-section">
+        <md-progress-bar mode="indeterminate"></md-progress-bar>
+    </section>
+</div>
+<h5 *ngIf="error || !loading">
+    <a href="#" (click)=(goBack())>
+        < {{ language.getMessage( 'back') }}</a>
+</h5>
+<h3 *ngIf="error">ERROR: {{ error }}</h3>
+
+<div>
+    <h5 class="center-align">{{ searchString.stations }}</h5>
+    <p class="center-align">{{ searchString.time }}</p>
+    <routes [qoeList]="qoeList"></routes>
+</div>
