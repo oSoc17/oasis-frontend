@@ -31,12 +31,12 @@ export class Connection {
         }
         this.gtfsroute = GraphItemJson['http://vocab.gtfs.org/terms#route'];
         // if there is a delay property, set it
-        if (GraphItemJson['departureDelay']) {
-            this.departureDelay.setSeconds(GraphItemJson['departureDelay']);
+        if (GraphItemJson['http://semweb.mmlab.be/ns/linkedconnections#departureDelay']) {
+            this.departureDelay.setSeconds(GraphItemJson['http://semweb.mmlab.be/ns/linkedconnections#departureDelay'].split('"')[1]);
         }
         // if there is a delay property, set it
-        if (GraphItemJson['arrivalDelay']) {
-            this.arrivalDelay.setSeconds(GraphItemJson['arrivalDelay']);
+        if (GraphItemJson['http://semweb.mmlab.be/ns/linkedconnections#arrivalDelay']) {
+            this.arrivalDelay.setSeconds(GraphItemJson['http://semweb.mmlab.be/ns/linkedconnections#arrivalDelay'].split('"')[1]);
         }
     }
 }
