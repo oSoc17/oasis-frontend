@@ -187,7 +187,7 @@ export class QoE implements IQoE {
         Calc.linearInterpolatePercentage(missedConnections, 0 , this.prefs['numberOfMissedConnections'] / 100));
         return {
             score: score,
-            value: missedConnections // Generated
+            value: missedConnections * 100 // Generated
         };
     }
 

@@ -22,7 +22,7 @@ export class SearchData {
      * @param goesForward wether or not the days should be added instead of removed to the startdate (default = false)
      */
     public static createPeriodicList(depStation, arrStation, travelTime, startDate, timeType, period: number, amount: number = 5,
-                                     goesForward: boolean = false): SearchData[] {
+        goesForward: boolean = false): SearchData[] {
         const dataList = [];
         const calcdate = new Date(Date.parse(startDate));
         if (!goesForward) {
