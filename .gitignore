@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# npm files
+package-lock.json
+
 # compiled output
 /dist
 /tmp
