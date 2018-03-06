@@ -2,7 +2,9 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - '6.9'
+  - '7'
+cache:
+  yarn: true
 
 addons:
 apt:
@@ -17,4 +19,4 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 
-script: npm test
+script: yarn test
