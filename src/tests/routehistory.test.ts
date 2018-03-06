@@ -17,25 +17,32 @@ describe('routeHistory.ts constructor', () => {
 describe('routeHistory.ts getAvgTravelTime()', () => {
     it('should return 15', () => {
         // setup
-        const dummyjson1 = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%'
-            + '3A1247%3A20170710","@type": "Connection","departureStop": "http://irail.be/stations/NMBS/'
-            + '008814340","arrivalStop": "http://irail.be/stations/NMBS/008814357","departureTime": "2017-'
-            + '07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z","gtfs:trip": "http://irail.be'
-            + '/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710","gtfs:route": "http://ira'
-            + 'il.be/routes/51"}';
-        const json1 = JSON.parse(dummyjson1);
-        const c1 = new Connection(json1);
+        const dummyjson1 = {
+            '@id': '#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710',
+            '@type': 'Connection',
+            'departureStop': 'http://irail.be/stations/NMBS/008814340',
+            'arrivalStop': 'http://irail.be/stations/NMBS/008814357',
+            'departureTime': '2017-07-10T09:30:00.000Z',
+            'arrivalTime': '2017-07-10T09:40:00.000Z',
+            'gtfs:trip': 'http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710',
+            'gtfs:route': 'http://irail.be/routes/51'
+        };
+        const c1 = new Connection(dummyjson1);
         const route1 = new Route([]);
         route1.addConnection(c1);
         const routeHistory = new RouteHistory([route1]);
 
-        const dummyjson2 = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A124'
-            + '7%3A20170710","@type": "Connection","departureStop": "http://irail.be/stations/NMBS/008814340"'
-            + ',"arrivalStop": "http://irail.be/stations/NMBS/008814357","departureTime": "2017-07-11T09:30:00'
-            + '.000Z","arrivalTime": "2017-07-11T09:50:00.000Z","gtfs:trip": "http://irail.be/trips/88____%3A00'
-            + '7%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710","gtfs:route": "http://irail.be/routes/51"}';
-        const json2 = JSON.parse(dummyjson2);
-        const c2 = new Connection(json2);
+        const dummyjson2 = {
+            '@id': '#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710',
+            '@type': 'Connection',
+            'departureStop': 'http://irail.be/stations/NMBS/008814340',
+            'arrivalStop': 'http://irail.be/stations/NMBS/008814357',
+            'departureTime': '2017-07-11T09:30:00.000Z',
+            'arrivalTime': '2017-07-11T09:50:00.000Z',
+            'gtfs:trip': 'http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710',
+            'gtfs:route': 'http://irail.be/routes/51'
+        };
+        const c2 = new Connection(dummyjson2);
         const route2 = new Route([]);
         route2.addConnection(c2);
         routeHistory.routes.push(route2);
@@ -50,22 +57,54 @@ describe('routeHistory.ts getAvgTravelTime()', () => {
  * Check if amount of changes missed chance is calculated correctly
  */
 describe('routeHistory.ts getChangeMissedChance() tests', () => {
-    const startOnTime = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
-        + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
-        + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": 120,'
-        + ' "arrivalDelay": 180}'));
-    const endOnTime = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
-        + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
-        + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": 60,'
-        + ' "arrivalDelay": 600}'));
-    const startLate = new Connection(JSON.parse('{"@id": "A","@type": "Connection","departureStop": "A","arrivalStop": "B",'
-        + '"departureTime": "2017-07-10T09:30:00.000Z","arrivalTime": "2017-07-10T09:40:00.000Z",'
-        + '"http://vocab.gtfs.org/terms#trip": "A","gtfs:route": "A", "departureDelay": 120,'
-        + ' "arrivalDelay": 1800}'));
-    const endLate = new Connection(JSON.parse('{"@id": "B","@type": "Connection","departureStop": "B","arrivalStop": "C",'
-        + '"departureTime": "2017-07-10T09:50:00.000Z","arrivalTime": "2017-07-10T09:80:00.000Z",'
-        + '"http://vocab.gtfs.org/terms#trip": "B","gtfs:route": "A", "departureDelay": 1800,'
-        + ' "arrivalDelay": 600}'));
+    const startOnTime = new Connection({
+        '@id': 'A',
+        '@type': 'Connection',
+        'departureStop': 'A',
+        'arrivalStop': 'B',
+        'departureTime': '2017-07-10T09:30:00.000Z',
+        'arrivalTime': '2017-07-10T09:40:00.000Z',
+        'http://vocab.gtfs.org/terms#trip': 'A',
+        'gtfs:route': 'A',
+        'departureDelay': 120,
+        'arrivalDelay': 180
+    });
+    const endOnTime = new Connection({
+        '@id': 'B',
+        '@type': 'Connection',
+        'departureStop': 'B',
+        'arrivalStop': 'C',
+        'departureTime': '2017-07-10T09:50:00.000Z',
+        'arrivalTime': '2017-07-10T09:80:00.000Z',
+        'http://vocab.gtfs.org/terms#trip': 'B',
+        'gtfs:route': 'A',
+        'departureDelay': 60,
+        'arrivalDelay': 600
+    });
+    const startLate = new Connection({
+        '@id': 'A',
+        '@type': 'Connection',
+        'departureStop': 'A',
+        'arrivalStop': 'B',
+        'departureTime': '2017-07-10T09:30:00.000Z',
+        'arrivalTime': '2017-07-10T09:40:00.000Z',
+        'http://vocab.gtfs.org/terms#trip': 'A',
+        'gtfs:route': 'A',
+        'departureDelay': 120,
+        'arrivalDelay': 1800
+    });
+    const endLate = new Connection({
+        '@id': 'B',
+        '@type': 'Connection',
+        'departureStop': 'B',
+        'arrivalStop': 'C',
+        'departureTime': '2017-07-10T09:50:00.000Z',
+        'arrivalTime': '2017-07-10T09:80:00.000Z',
+        'http://vocab.gtfs.org/terms#trip': 'B',
+        'gtfs:route': 'A',
+        'departureDelay': 1800,
+        'arrivalDelay': 600
+    });
     const r1 = new Route([startOnTime, endOnTime]);
     const r2 = new Route([startLate, endOnTime]);
     const r3 = new Route([startLate, endLate]);
@@ -90,22 +129,32 @@ describe('routeHistory.ts getChangeMissedChance() tests', () => {
 describe('routeHistory.ts getDelayConsistency()', () => {
     it('should return 150,000 (2.5 min)', () => {
         // setup
-        const dummyjson1 = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A' +
-            '20170710","@type": "Connection","departureStop": "http://irail.be/stations/NMBS/008814340","arrivalS' +
-            'top": "http://irail.be/stations/NMBS/008814357","departureTime": "2017-07-10T09:30:00.000Z","arrivalT' +
-            'ime": "2017-07-10T09:40:00.000Z","arrivalDelay":600,"gtfs:trip": "http://irail.be/trips/88____%3A007%3' +
-            'A%3A8841004%3A8884335%3A52%3A1247%3A20170710","gtfs:route": "http://irail.be/routes/51"}';
-        const json1 = JSON.parse(dummyjson1);
-        const c1 = new Connection(json1);
+        const dummyjson1 = {
+            '@id': '#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710',
+            '@type': 'Connection',
+            'departureStop': 'http://irail.be/stations/NMBS/008814340',
+            'arrivalStop': 'http://irail.be/stations/NMBS/008814357',
+            'departureTime': '2017-07-10T09:30:00.000Z',
+            'arrivalTime': '2017-07-10T09:40:00.000Z',
+            'arrivalDelay': 600,
+            'gtfs:trip': 'http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710',
+            'gtfs:route': 'http://irail.be/routes/51'
+        };
+        const c1 = new Connection(dummyjson1);
 
 
-        const dummyjson2 = '{"@id": "#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A201707' +
-            '10","@type": "Connection","departureStop": "http://irail.be/stations/NMBS/008814340","arrivalStop": "http:' +
-            '//irail.be/stations/NMBS/008814357","departureTime": "2017-07-11T09:30:00.000Z","arrivalTime": "2017-07-11T' +
-            '09:50:00.000Z","arrivalDelay":900,"gtfs:trip": "http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A' +
-            '52%3A1247%3A20170710","gtfs:route": "http://irail.be/routes/51"}';
-        const json2 = JSON.parse(dummyjson2);
-        const c2 = new Connection(json2);
+        const dummyjson2 = {
+            '@id': '#1499679000000881434088____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710',
+            '@type': 'Connection',
+            'departureStop': 'http://irail.be/stations/NMBS/008814340',
+            'arrivalStop': 'http://irail.be/stations/NMBS/008814357',
+            'departureTime': '2017-07-11T09:30:00.000Z',
+            'arrivalTime': '2017-07-11T09:50:00.000Z',
+            'arrivalDelay': 900,
+            'gtfs:trip': 'http://irail.be/trips/88____%3A007%3A%3A8841004%3A8884335%3A52%3A1247%3A20170710',
+            'gtfs:route': 'http://irail.be/routes/51'
+        };
+        const c2 = new Connection(dummyjson2);
         const route1 = new Route([c1, c2]);
         const route2 = new Route([c2, c1]);
         const array = [route1, route2];
