@@ -1,6 +1,6 @@
 // Node modules
 import { Component, Input } from '@angular/core';
-import { MdIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
 // Custom modules
@@ -25,7 +25,7 @@ export class Route {
     changes: Change[];
     tripScoreService: TripscoreService;
 
-    constructor(iconReg: MdIconRegistry, sanitizer: DomSanitizer, tripScoreService: TripscoreService) {
+    constructor(iconReg: MatIconRegistry, sanitizer: DomSanitizer, tripScoreService: TripscoreService) {
         this.tripScoreService = tripScoreService;
         iconReg.addSvgIcon('delay', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/delay.svg'))
             .addSvgIcon('hop_missed', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/hop_missed.svg'))

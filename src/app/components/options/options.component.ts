@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { AppModule } from '../../app.module';
 
 import { Language } from '../../classes/userData/language';
@@ -22,7 +22,7 @@ export class Options {
     private price;
     private mConnectionChance;
 
-    constructor(public snackBar: MdSnackBar) {
+    constructor(public snackBar: MatSnackBar) {
         this.language = new Language();
         this.delay = {
             name: () => this.language.getMessage('delay_title'),

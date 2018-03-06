@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
 
 import { AppModule } from '../../app.module';
-import { MdIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'multiple-choice',
     templateUrl: './templates/multipleChoice.component.html',
     styleUrls: ['./styles/multipleChoice.component.scss'],
-    viewProviders: [MdIconRegistry]
+    viewProviders: [MatIconRegistry]
 })
 
 export class MultipleChoiceComponent {
@@ -18,7 +18,7 @@ export class MultipleChoiceComponent {
     @Input('tooltip') tooltip: string;
     @Input('icons') icons: string[];
 
-    constructor(iconReg: MdIconRegistry, sanitizer: DomSanitizer) {
+    constructor(iconReg: MatIconRegistry, sanitizer: DomSanitizer) {
         iconReg.addSvgIcon('consistency0', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/consistency0.svg'))
             .addSvgIcon('consistency1', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/consistency1.svg'))
             .addSvgIcon('consistency2', sanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/consistency2.svg'))

@@ -1,7 +1,7 @@
 <div class='row'>
     <h4>{{ language.getMessage('searchHeader') }}</h4>
     <div class='col l7 m12 s12 connquery'>
-        <md-card>
+        <mat-card>
             <label>{{ language.getMessage('departure') }}</label>
             <stationlist #departure (notifyParent)="focusNext('depature')" (valueChange)="stationSelected($event, 0)" [type]="transportType" [company]="company"></stationlist>
             <label>{{ language.getMessage('destination') }}</label>
@@ -23,7 +23,7 @@
                 {{ language.getMessage('showAlts') }}
             </button>
 
-        </md-card>
+        </mat-card>
     </div>
     <div class="col l5 m12 s12">
         <recents></recents>

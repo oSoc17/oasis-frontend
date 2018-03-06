@@ -1,15 +1,15 @@
-<md-input-container class="stationList">
-  <input class="browser-default" mdInput [mdAutocomplete]="auto" [formControl]="stationCtrl"  >
-</md-input-container>
+<mat-form-field class="stationList">
+  <input class="browser-default" matInput [matAutocomplete]="auto" [formControl]="stationCtrl"  >
+</mat-form-field>
 
-<md-autocomplete #auto="mdAutocomplete" >
-  <md-option *ngFor="let station of qresults"
+<mat-autocomplete #auto="matAutocomplete" >
+  <mat-option *ngFor="let station of qresults"
              [value]="station.standardname"
              (onselect)="filterStations(station.standardname);requestFocusNext()">
       {{ station.standardname }}
       <img src='{{ imgstart + station.company + ".png" }}' class="line-end-img"/>
       <span *ngFor="let ttype of transportTypes" >
-        <md-icon  *ngIf='station.type == ttype.type' class="line-end-img">{{ ttype.icon }}</md-icon>
+        <mat-icon  *ngIf='station.type == ttype.type' class="line-end-img">{{ ttype.icon }}</mat-icon>
       </span>
-  </md-option>
-</md-autocomplete>
+  </mat-option>
+</mat-autocomplete>

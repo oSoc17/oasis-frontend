@@ -15,7 +15,25 @@ import { Services } from './services.module';
 /* Material by Angular */
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdAutocompleteModule, MaterialModule, MdInputModule, MdProgressSpinnerModule } from '@angular/material';
+import { 
+  MatDividerModule, 
+  MatButtonToggleModule, 
+  MatAutocompleteModule, 
+  MatSliderModule, 
+  MatTooltipModule, 
+  MatInputModule, 
+  MatMenuModule, 
+  MatProgressSpinnerModule, 
+  MatFormFieldModule, 
+  MatIconModule, 
+  MatCardModule, 
+  MatSelectModule,
+  MatListModule,
+  MatExpansionModule,
+  MatChipsModule,
+  MatProgressBarModule,
+  MatSnackBarModule
+} from '@angular/material';
 
 /* Custom form validation*/
 import { CustomFormsModule } from 'ng2-validation'
@@ -36,16 +54,30 @@ const appRoutes: Routes = [
     FormsModule,
     CustomFormsModule,
     ReactiveFormsModule,
-    MaterialModule,
-    MdAutocompleteModule,
+    MatAutocompleteModule,
     BrowserAnimationsModule,
-    MdProgressSpinnerModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatCardModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatSliderModule,
+    MatDividerModule,
+    MatButtonToggleModule,
+    MatListModule,
+    MatExpansionModule,
+    MatChipsModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatInputModule,
     RouterModule.forRoot(
       appRoutes
     )
   ],
   providers: Services.providers,
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 
 export class AppModule {

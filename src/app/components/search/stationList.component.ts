@@ -1,7 +1,7 @@
 // Node modules
 import { Component, EventEmitter, OnInit, Output, ViewChild, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MdInputContainer } from '@angular/material';
+import { MatInput } from '@angular/material';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
@@ -31,7 +31,7 @@ export class StationList implements OnInit {
     { type: 'metro', icon: 'subway' },
     { type: 'tram', icon: 'tram' },
     { type: 'train', icon: 'train' }]
-    @ViewChild(MdInputContainer) mdInput: MdInputContainer;
+    @ViewChild(MatInput) matInput: MatInput;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
     @Output() valueChange: EventEmitter<any> = new EventEmitter();
     @Input() type: string;
@@ -117,7 +117,7 @@ export class StationList implements OnInit {
      * Grabs focus
      */
     focus() {
-        this.mdInput._focusInput();
+        this.matInput.focus();
     }
 
     /**

@@ -1,12 +1,12 @@
-<md-chip-list class="rt-updates">
-    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('conn_proc') }}{{ dataCount }}</md-chip>
-    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('http_req') }}{{ httpRequests }}</md-chip>
-    <md-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('http_res') }}{{ httpResponses }}</md-chip>
-</md-chip-list>
+<mat-chip-list class="rt-updates">
+    <mat-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('conn_proc') }}{{ dataCount }}</mat-chip>
+    <mat-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('http_req') }}{{ httpRequests }}</mat-chip>
+    <mat-chip class="mat-chip mat-accent mat-chip-selected">{{ language.getMessage('http_res') }}{{ httpResponses }}</mat-chip>
+</mat-chip-list>
 
 <div *ngIf="!finished && !error">
     <section _ngcontent-c23="" class="example-section">
-        <md-progress-bar mode="indeterminate"></md-progress-bar>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </section>
 </div>
 <h5 *ngIf="error || !loading">

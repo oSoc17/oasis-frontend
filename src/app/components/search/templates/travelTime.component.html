@@ -1,4 +1,4 @@
-<md-input-container>
-    <input mdInput type="time" class="time timepicker browser-default " [(ngModel)]="selectedTime" (change)='changeTime()' />
-</md-input-container>
-<button md-button class="button-small" (click)="setNow()">{{ language.getMessage('now').toUpperCase() }}</button>
+<mat-form-field>
+    <input matInput type="time" class="time timepicker browser-default " [(ngModel)]="selectedTime" (change)='changeTime()' />
+</mat-form-field>
+<button mat-button class="button-small" (click)="setNow()">{{ language.getMessage('now').toUpperCase() }}</button>

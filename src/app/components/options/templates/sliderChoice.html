@@ -1,10 +1,10 @@
 <h5>{{ name }}
-    <md-icon class="grey-text" mdTooltip="{{ tooltip }}">help_outline</md-icon>
+    <mat-icon class="grey-text" matTooltip="{{ tooltip }}">help_outline</mat-icon>
 </h5>
-<md-slider class="slider-choice-slider" min="{{ min }}" max="{{ max }}" value="{{ time }}" [(ngModel)]="time" [thumb-label]="true" (change)="changeVal(time)"></md-slider>
-<md-input-container>
+<mat-slider class="slider-choice-slider" min="{{ min }}" max="{{ max }}" value="{{ time }}" [(ngModel)]="time" [thumb-label]="true" (change)="changeVal(time)"></mat-slider>
+<mat-form-field>
     <label>
-        <input class="slider-choice-input browser-default" mdInput [min]="min" [max]="max" value="{{ time }}" [(ngModel)]="time" (change)="changeVal(time)" type="number" required>
+        <input class="slider-choice-input browser-default" matInput [min]="min" [max]="max" value="{{ time }}" [(ngModel)]="time" (change)="changeVal(time)" type="number" required>
         {{ unit }}
     </label>
-</md-input-container>
+</mat-form-field>

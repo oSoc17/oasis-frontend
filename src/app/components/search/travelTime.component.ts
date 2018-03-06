@@ -4,7 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 // Custom modules
 import { Language } from '../../classes/userData/language'
 import { Utils } from '../../classes/utils/utils';
-import { MdInputContainer } from '@angular/material';
+import { MatInput } from '@angular/material';
 
 @Component({
     selector: 'traveltime',
@@ -18,7 +18,7 @@ export class TravelTime {
     language: Language = new Language;
     selectedTime = Utils.timeStringFromDate(new Date());
     selectedType = 'depart';
-    @ViewChild(MdInputContainer) mdInput: MdInputContainer;
+    @ViewChild(MatInput) matInput: MatInput;
 
     constructor() {}
 
@@ -40,6 +40,6 @@ export class TravelTime {
      * Grab the focus to the field
      */
     focus() {
-        this.mdInput._focusInput();
+        this.matInput.focus();
     }
 }

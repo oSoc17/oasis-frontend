@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 // Custom modules
 import { AppComponent } from './app.component';
 import { Language } from '../classes/userData/language';
-import {MdSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'nav-root',
@@ -17,7 +17,7 @@ import {MdSnackBar} from '@angular/material';
 export class NavComponent {
     language: Language = new Language();
 
-    constructor(public snackBar: MdSnackBar) { }
+    constructor(public snackBar: MatSnackBar) { }
 
     /**
      * Handles the click on settings icon
